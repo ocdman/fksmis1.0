@@ -1,0 +1,33 @@
+﻿@model FKS.Site.Models.MemberView
+@using FKS.Site.Helper.MVCHtmlExtend
+
+@{
+    Layout = "~/Views/Shared/_AjaxForm.cshtml";
+}
+
+@using (Ajax.BeginForm(new AjaxOptions
+{
+    OnSuccess = ViewBag.Success,
+    OnFailure = ViewBag.Failure
+}))
+{
+    @Html.HiddenFor(model => model.Id)
+    <div class="bs-example">
+        <h1 class="title">修改操作员</h1>
+        <div class="form-horizontal pd10">
+            @Html.FormItem(model => model.NickName)
+            @*@Html.FormItem(model => model.IsAdmin)*@
+            @Html.FormItem(model => model.Password)
+            @Html.FormItem(model => model.PasswordAgain)
+            <div class="form-group">
+                @Html.LabelFor(model => model.IsAdmin, new { @class = "col-sm-2 control-label" })
+                @Html.CheckBoxFor(model => model.IsAdmin)
+            </div>
+        </div>
+    </div>
+    
+    <div class="hidden">
+        @Html.FormItem(model => model.UserName)
+    </div>
+}
+

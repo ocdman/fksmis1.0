@@ -1,0 +1,67 @@
+﻿@Styles.Render("~/contents/jquery.plot/jquery.jqplot.min.css")
+
+<div class="easyui-layout" data-options="fit:true">
+    <div data-options="region:'north',border:false,collapsible:false" style="height: 60px;padding: 10px; overflow: hidden; border-bottom-width: 1px;">
+
+        <div style="margin:5px;" class="form-inline">
+
+            <div class="form-group">
+                <label class="control-label">设备选择：</label>
+            </div>
+
+            <div class="form-group">
+                <input data-role="type" id="EquipInfo" type="text" class="form-control input-sm" />
+            </div>
+
+            <a href="#"
+               data-operation="doStart"
+               id="start"
+               class="easyui-linkbutton"
+               data-options="plain:true,toggle:false">
+                开始
+            </a>
+
+            <a href="#"
+               data-operation="doStop"
+               id="stop"
+               class="easyui-linkbutton"
+               data-options="plain:true,toggle:false,disabled:true">
+                停止
+            </a>
+
+            <div class="form-group">
+                <label class="control-label">风机：</label>
+                <input type="checkbox" data-bind="checked:ZTfj" />
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">净化器：</label>
+                <input type="checkbox" data-bind="checked:ZTjhq" />
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">状态：</label>
+                <input type="checkbox" data-bind="checked:ZTsb" />
+            </div>
+
+        </div>
+    </div>
+    <div data-options="region:'center',split:true,border:false,title:'曲线图'" id="chart1" style="border-right-width:1px;">
+        @*<div id="tt" class="easyui-tabs" data-options="fit:true,border:false,tabPosition:'top'">
+                <div title="数据列表"></div>
+
+                <div title="曲线图" id="chart1" style="padding:10px;">
+
+                </div>
+            </div>*@
+    </div>
+    <div data-options="region:'east',split:true,border:false,title:'数据列表'"  style="width: 600px; border-left-width: 1px;">
+        @*<div id="tt" class="easyui-tabs" data-options="fit:true,border:false,tabPosition:'top'">
+                <div title="数据列表"></div>
+
+                <div title="曲线图" id="chart1" style="padding:10px;">
+
+                </div>
+            </div>*@
+    </div>
+</div>

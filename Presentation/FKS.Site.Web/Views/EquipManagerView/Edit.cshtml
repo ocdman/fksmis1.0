@@ -1,0 +1,36 @@
+﻿@model FKS.Site.Models.EquipManagerView
+@using FKS.Site.Helper.MVCHtmlExtend
+
+@{
+    Layout = "~/Views/Shared/_AjaxForm.cshtml";
+}
+
+@using (Ajax.BeginForm(new AjaxOptions
+{
+    OnSuccess = ViewBag.Success,
+    OnFailure = ViewBag.Failure
+}))
+{
+<div class="bs-example">
+    <h1 class="title">更新设备</h1>
+        <div class="form-horizontal pd10">
+            @Html.FormItem(model => model.UploadInterval)
+            @Html.FormItem(model => model.DetectorNum1)
+            @Html.FormItem(model => model.DetectorID1)
+            @Html.FormItem(model => model.DetectorNum2)
+            @Html.FormItem(model => model.DetectorID2)
+            @Html.FormItem(model => model.Humidity)
+            @Html.FormItem(model => model.Temperature)
+            @Html.FormItem(model => model.Concentration)
+            @Html.FormItem(model => model.Result)
+            @*<div id="allmap" class="baidumap"></div>*@
+        </div>
+
+        <div class="hidden">
+            @Html.FormItem(model => model.CollectionCode)
+            @*@Html.FormItem(model => model.YHX)
+            @Html.FormItem(model => model.YHY)*@
+        </div>
+    </div>
+}
+

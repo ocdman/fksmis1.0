@@ -1,0 +1,39 @@
+﻿@*@model FKS.Site.Models.EquipmentView
+@using FKS.Site.Helper.MVCHtmlExtend
+
+@{
+    Layout = "~/Views/Shared/_AjaxForm.cshtml";
+}
+
+@using (Ajax.BeginForm(new AjaxOptions
+{
+    OnSuccess = ViewBag.Success,
+    OnFailure = ViewBag.Failure
+}))
+{
+    <div class="bs-example">
+        <div class="form-horizontal pd10">
+            @Html.FormItem(model => model.EquipCode)
+            @Html.FormItem(model => model.CollectionCode)
+            @Html.FormItem(model => model.PropertyInfo)
+            @Html.FormItem(model => model.PositionInfo)
+            @Html.FormItem(model => model.NickName)
+            @Html.FormItem(model => model.Address)
+            @Html.FormItem(model => model.EquipCount)
+            @Html.FormItem(model => model.TimeOut)
+            @Html.FormItem(model => model.Interval)
+            @Html.FormItem(model => model.Status)
+            @Html.FormItem(model => model.FanAirFlow)
+            @Html.FormItem(model => model.FanPower)
+            @Html.FormItem(model => model.Content)
+            <div id="allmap" class="baidumap"></div>
+        </div>
+
+        <div class="hidden">
+
+            @Html.FormItem(model => model.YHX)
+            @Html.FormItem(model => model.YHY)
+        </div>
+    </div>
+}*@
+

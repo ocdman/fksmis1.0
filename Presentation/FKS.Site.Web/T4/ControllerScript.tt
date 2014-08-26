@@ -1,0 +1,38 @@
+﻿<#@ template language="C#" debug="True" #>
+<#@ output extension="cs" #>
+<#@ Assembly Name="System.Core" #>
+<#@ Assembly Name="$(SolutionDir)\build\FKS.Component.Tools.dll" #>
+<#@ Assembly Name="$(SolutionDir)\build\FKS.Site.Models.dll" #>
+<#@ Assembly Name="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.ComponentModel.DataAnnotations.dll" #>
+<#@ import namespace="System.IO" #>
+<#@ Import Namespace="System.Linq" #>
+<#@ Import Namespace="System.Text" #>
+<#@ import namespace="System.Reflection" #>
+<#@ Import Namespace="System.Collections.Generic" #>
+<#@ Import Namespace="FKS.Component.Tools" #>
+<#@ Import Namespace="FKS.Component.Tools.T4" #>
+<#@ include file="T4Toolbox.tt" #>
+<#@ include file="Include\ColumnsTemplate.ttinclude" #>
+
+<#
+    string currentPath = Path.GetDirectoryName(Host.TemplateFile);
+    string projectPath =currentPath.Substring(0, currentPath.IndexOf(@"\T4"));
+
+    Type baseType = typeof(FKS.Site.Models.ViewModelBase);
+
+    Assembly assembly = baseType.Assembly;
+
+    IEnumerable<Type> modelTypes = assembly.GetTypes().Where(m => m.IsSubclassOf(baseType));
+
+    foreach(Type modelType in modelTypes)
+    {
+        T4ModeController model = new T4ModeController(modelType, false);
+
+        ColumnsTemplate config = new ColumnsTemplate(model);
+        var path = model.UseModuleDir 
+            ? string.Format(@"{0}\scripts\tablecolumns\{1}", projectPath, model.ModuleName)
+            : string.Format(@"{0}\scripts\tablecolumns", projectPath);
+        config.Output.Encoding = Encoding.UTF8;
+        config.RenderToFile(Path.Combine(path, config.FileName));
+    }
+#>

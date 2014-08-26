@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/contents/bootstrap/bootstrap")
+    @Styles.Render("~/contents/easyui/themes/metro-green/easyui")
+    @Styles.Render("~/contents/easyui/themes/icon")
+    @Styles.Render("~/contents/site")
+</head>
+<body class="easyui-layout" data-option="fit:true,border:false">
+    <div class="loading"></div>
+    <div data-options="region:'west',split:true,title:'操作导航',border:true" class="panel-body" style="width: 200px; border-right-width: 1px;">
+        @RenderPage("~/Views/Home/Menus.cshtml")
+    </div>
+
+    <div data-options="region:'center'">
+        @RenderBody()
+    </div>
+
+    <div data-options="region:'south',split:false,border:false" class="panel-body" style="height: 30px; text-align: center; line-height: 30px; overflow: hidden;">
+        @ViewBag.Footer
+    </div>
+    <div data-options="region:'north',split:false,border:false" class="panel-body" style="height: 100px;">
+        @RenderPage("~/Views/Home/Header.cshtml")
+    </div>
+</body>
+
+@Scripts.Render("~/bundles/main")
+@RenderSection("scripts", required: false)
+
+</html>

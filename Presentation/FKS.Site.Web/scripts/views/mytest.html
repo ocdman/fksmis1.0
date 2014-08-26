@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Basic Form - jQuery EasyUI Demo</title>
+    <link rel="stylesheet" type="text/css" href="easyui.css">
+    <link rel="stylesheet" type="text/css" href="../../themes/icon.css">
+    <!--<link rel="stylesheet" type="text/css" href="../demo.css">-->
+    <script type="text/javascript" src="jquery-2.1.0.min.js"></script>
+    <script type="text/javascript" src="jquery.easyui.min.js"></script>
+</head>
+<body>
+    <h2>Basic Form</h2>
+    <p>Fill the form and submit it.</p>
+    <div style="margin:20px 0;"></div>
+    <div class="easyui-panel" title="New Topic" style="width:400px">
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="EquipCode">设备编码</label>
+        </div>
+        <div class="form-group">
+            <input class="easyui-textbox input-validation-error" data-val="true" data-val-length="字段 设备编码 必须是最大长度为 12 的字符串。" data-val-length-max="12" data-val-required="设备编码 字段是必需的。" id="EquipCode" name="EquipCode" style="width:300px" type="text" value="">
+        </div>
+        <span class="control-label field-validation-error" data-valmsg-for="EquipCode" data-valmsg-replace="true">
+            <span for="EquipCode" generated="true" class="">设备编码 字段是必需的。</span>
+        </span>
+    </div>
+    <script>
+        function submitForm() {
+            $('#ff').form('submit');
+        }
+        function clearForm() {
+            $('#ff').form('clear');
+        }
+    </script>
+</body>
+</html>

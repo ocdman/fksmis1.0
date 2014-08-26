@@ -1,0 +1,71 @@
+﻿@model FKS.Site.Models.EquipmentView
+@using FKS.Site.Helper.MVCHtmlExtend
+
+@{
+    Layout = "~/Views/Shared/_AjaxForm.cshtml";
+}
+
+@using (Ajax.BeginForm(new AjaxOptions
+{
+    OnSuccess = ViewBag.Success,
+    OnFailure = ViewBag.Failure
+}))
+{
+    <div class="bs-example">
+        <h1 class="title">新增用户</h1>
+        <div class="form-horizontal pd10">
+            @*<div style="margin:5px;" class="form-inline">
+                    @Html.FormItemInLine(model => model.EquipCode, new { @class = "col-sm-2 control-label" }, new { @class = "easyui-textbox", style = "width:240px"})
+                    @Html.FormItemInLine(model => model.CollectionCode, new { @class = "col-xs-offset-1 control-label" }, new { @class = "easyui-textbox", style = "width:240px"})
+                </div>
+                <div style="margin:5px;" class="form-inline">
+                    @Html.FormItemInLine(model => model.PropertyInfo, new { @class = "col-sm-2 control-label" }, new { @class = "easyui-combobox", style = "width:240px"})
+                    @Html.FormItemInLine(model => model.PositionInfo, new { @class = "col-xs-offset-1 control-label" }, new { @class = "easyui-combobox", style = "width:240px"})
+                </div>
+                <div style="margin:5px;" class="form-inline">
+                    @Html.FormItemInLine(model => model.NickName, new { @class = "col-sm-2 control-label" }, new { @class = "easyui-textbox", style = "width:240px"})
+                    @Html.FormItemInLine(model => model.Address, new { @class = "col-xs-offset-1 control-label" }, new { @class = "easyui-textbox", style = "width:240px"})
+                </div>
+                <div style="margin:5px;" class="form-inline">
+                    @Html.FormItemInLine(model => model.EquipCount, new { @class = "col-sm-2 control-label" }, new { @class = "easyui-textbox", style = "width:240px"})
+                    @Html.FormItemInLine(model => model.Interval, new { @class = "col-xs-offset-1 control-label" }, new { @class = "easyui-textbox", style = "width:240px"})
+                </div>
+                <div style="margin:5px;" class="form-inline">
+                    @Html.FormItemInLine(model => model.TimeOut, new { @class = "col-sm-2 control-label" }, new { @class = "easyui-combobox", style = "width:240px"})
+                    @Html.FormItemInLine(model => model.Status, new { @class = "col-xs-offset-1 control-label" }, new { @class = "easyui-combobox", style = "width:240px"})
+                </div>
+                <div style="margin:5px;" class="form-inline">
+                    @Html.FormItemInLine(model => model.FanAirFlow, new { @class = "col-sm-2 control-label" }, new { @class = "easyui-textbox", style = "width:240px"})
+                    @Html.FormItemInLine(model => model.FanPower, new { @class = "col-xs-offset-1 control-label" }, new { @class = "easyui-textbox", style = "width:240px"})
+                </div>*@
+            @Html.FormItem(model => model.EquipCode, new { @class = "easyui-textbox", style = "width:300px" })
+            @Html.FormItem(model => model.CollectionCode, new { @class = "easyui-textbox", style = "width:300px" })
+            @Html.FormItem(model => model.UserName, new { @class = "easyui-textbox", style = "width:300px" })
+            @Html.FormItem(model => model.PropertyInfo, new { @class = "easyui-combobox", style = "width:300px" })
+            @Html.FormItem(model => model.PositionInfo, new { @class = "easyui-combobox", style = "width:300px" })
+            @Html.FormItem(model => model.NickName, new { @class = "easyui-textbox", style = "width:300px" })
+            @Html.FormItem(model => model.Address, new { @class = "easyui-textbox", style = "width:300px" })
+            @Html.FormItem(model => model.EquipCount, new { @class = "easyui-textbox", style = "width:300px" })
+            @Html.FormItemForUnit(model => model.Interval, new { @class = "easyui-textbox", style = "width:300px" },
+            "<label class='col-sm-2 control-label'>采集间隔(s)</label>")
+            @Html.FormItem(model => model.TimeOut, new { @class = "easyui-combobox", style = "width:300px" })
+            @Html.FormItem(model => model.Status, new { @class = "easyui-combobox", style = "width:300px" })
+            @Html.FormItemForUnit(model => model.FanAirFlow, new { @class = "easyui-textbox", style = "width:300px" },
+            "<label class='col-sm-2 control-label'>风机风量(l/h)</label>")
+            @Html.FormItemForUnit(model => model.FanPower, new { @class = "easyui-textbox", style = "width:300px" },
+            "<label class='col-sm-2 control-label'>风机功率(kw)</label>")
+            @Html.FormItemForUnit(model => model.PurifierAirFlow, new { @class = "easyui-textbox", style = "width:300px" },
+            "<label class='col-sm-2 control-label'>净化器功率(l/h)</label>")
+            @Html.FormItem(model => model.Contacts, new { @class = "easyui-textbox", style = "width:300px" })
+            @Html.FormItem(model => model.ContactInfo, new { @class = "easyui-textbox", style = "width:300px" })
+            @Html.FormItem(model => model.Content, new { @class = "easyui-textbox", style = "width:300px" })
+            <div id="allmap" class="baidumap"></div>
+        </div>
+
+        <div class="hidden">
+            @Html.FormItem(model => model.YHX)
+            @Html.FormItem(model => model.YHY)
+        </div>
+    </div>
+}
+

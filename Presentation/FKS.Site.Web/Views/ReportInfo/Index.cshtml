@@ -1,0 +1,68 @@
+﻿@Styles.Render("~/contents/jquery.plot/jquery.jqplot.min.css")
+
+<div class="easyui-layout" data-options="fit:true">
+    <div data-options="region:'north', border:false, collapsible:false" style="height: 80px; padding: 5px; overflow: hidden;
+        border-bottom-width: 1px;">
+        <div style="margin: 5px;" class="form-inline">
+            <div class="form-group">
+                <label class="control-label">报表类型：</label>
+            </div>
+            <div class="form-group">
+                <select id="cc" class="easyui-combobox" name="report" style="width:200px;" data-options="required:true">
+                    <option value="01">日报表</option>
+                    <option value="02">周报表</option>
+                    <option value="03">月报表</option>
+                    <option value="04">季度报表</option>
+                    <option value="05">年报表</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">设备选择：</label>
+            </div>
+            <div class="form-group">
+                <input data-role="type" type="text" class="form-control input-sm EquipInfo" />
+            </div>
+            <a href="#"
+               data-operation="doSearch"
+               id="start"
+               class="easyui-linkbutton"
+               @*class="btn btn-primary btn-xs active"*@
+               data-options="plain:true,toggle:false">
+                查询
+            </a>
+        </div>
+        <div style="margin: 5px;" class="form-inline">
+            @*<div class="form-group">
+                <label class="control-label">设备选择：</label>
+            </div>
+            <div class="form-group">
+                <input data-role="type" type="text" class="form-control input-sm EquipInfo" />
+            </div>
+            <a href="#"
+               data-operation="doSearch"
+               id="start"
+               class="easyui-linkbutton"
+               data-options="plain:true,toggle:false">
+                查询
+            </a>*@
+            <a href="#"
+               data-operation="createReport"
+               id="start"
+               class="easyui-linkbutton"
+               data-options="plain:true,toggle:false">
+                生成报表
+            </a>
+        </div>
+    </div>
+    <div data-options="region:'center',border:false,split:true">
+        <div id="tt" class="easyui-tabs" data-options="fit:true, border:false">
+            <div title="曲线图" id="reportChart">
+
+            </div>
+            <div title="数据列表" style="padding:20px">
+
+            </div>
+        </div>
+    </div>
+    @*<div data-options="region:'east',split:true,border:false,title:'图形报表'" style="width: 600px; border-left-width: 1px;" id="reportChart"></div>*@
+</div>

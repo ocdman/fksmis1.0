@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F096BF67-7D81-4866-8D9B-968D89ABE247}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FKS.Core.Data</RootNamespace>
+    <AssemblyName>FKS.Core.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Build\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FKS.Component.Tools">
+      <HintPath>..\..\Build\FKS.Component.Tools.dll</HintPath>
+    </Reference>
+    <Reference Include="FKS.Core.Models, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Build\FKS.Core.Models.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configurations\Account\MemberConfiguration.generated.cs" />
+    <Compile Include="Configurations\Account\MemberExtendConfiguration.cs" />
+    <Compile Include="Configurations\Account\MemberExtendConfiguration.generated.cs" />
+    <Compile Include="Configurations\Hardware\DataAnalyseConfiguration.generated.cs" />
+    <Compile Include="Configurations\Hardware\DataStatisticsConfiguration.generated.cs" />
+    <Compile Include="Configurations\Hardware\EquipManagerConfiguration.generated.cs" />
+    <Compile Include="Configurations\Hardware\EquipmentConfiguration.generated.cs" />
+    <Compile Include="Configurations\Hardware\RunningTimeConfiguration.generated.cs" />
+    <Compile Include="Configurations\Report\ReportInfoConfiguration.generated.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="RealDataConfig.cs" />
+    <Compile Include="Configurations\logger\FKSLoggerConfiguration.generated.cs" />
+    <Compile Include="Configurations\logger\LogInfoConfiguration.generated.cs" />
+    <Compile Include="Initialize\DatabaseInitializer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Account\IMemberExtendRepository.generated.cs" />
+    <Compile Include="Repositories\Account\IMemberRepository.generated.cs" />
+    <Compile Include="Repositories\Account\Impl\MemberExtendRepository.generated.cs" />
+    <Compile Include="Repositories\Account\Impl\MemberRepository.generated.cs" />
+    <Compile Include="Repositories\Hardware\IDataAnalyseRepository.generated.cs" />
+    <Compile Include="Repositories\Hardware\IDataStatisticsRepository.generated.cs" />
+    <Compile Include="Repositories\Hardware\IEquipManagerRepository.generated.cs" />
+    <Compile Include="Repositories\Hardware\IEquipmentRepository.generated.cs" />
+    <Compile Include="Repositories\Hardware\Impl\DataAnalyseRepository.generated.cs" />
+    <Compile Include="Repositories\Hardware\Impl\DataStatisticsRepository.generated.cs" />
+    <Compile Include="Repositories\Hardware\Impl\EquipManagerRepository.generated.cs" />
+    <Compile Include="Repositories\Hardware\Impl\EquipmentRepository.generated.cs" />
+    <Compile Include="Repositories\Hardware\Impl\RunningTimeRepository.generated.cs" />
+    <Compile Include="Repositories\Hardware\IRunningTimeRepository.generated.cs" />
+    <Compile Include="Repositories\logger\IFKSLoggerRepository.generated.cs" />
+    <Compile Include="Repositories\logger\ILogInfoRepository.generated.cs" />
+    <Compile Include="Repositories\logger\Impl\FKSLoggerRepository.generated.cs" />
+    <Compile Include="Repositories\logger\Impl\LogInfoRepository.generated.cs" />
+    <Compile Include="Repositories\Report\Impl\ReportInfoRepository.generated.cs" />
+    <Compile Include="Repositories\Report\IReportInfoRepository.generated.cs" />
+    <Compile Include="T4\EntityCodeScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EntityCodeScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4\Include\EntityConfigurationTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EntityConfigurationTemplate.ttinclude</DependentUpon>
+    </Compile>
+    <Compile Include="T4\Include\EntityRepositoryTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EntityRepositoryTemplate.ttinclude</DependentUpon>
+    </Compile>
+    <Compile Include="T4\Include\IEntityRepositoryTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IEntityRepositoryTemplate.ttinclude</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+    <None Include="T4\EntityCodeScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>EntityCodeScript.cs</LastGenOutput>
+      <LastOutputs>
+..\Configurations\Account\MemberConfiguration.generated.cs
+..\Configurations\Account\MemberExtendConfiguration.generated.cs
+..\Configurations\Hardware\DataAnalyseConfiguration.generated.cs
+..\Configurations\Hardware\DataStatisticsConfiguration.generated.cs
+..\Configurations\Hardware\EquipManagerConfiguration.generated.cs
+..\Configurations\Hardware\EquipmentConfiguration.generated.cs
+..\Configurations\Hardware\RunningTimeConfiguration.generated.cs
+..\Configurations\logger\FKSLoggerConfiguration.generated.cs
+..\Configurations\logger\LogInfoConfiguration.generated.cs
+..\Configurations\Report\ReportInfoConfiguration.generated.cs
+..\Repositories\Account\IMemberExtendRepository.generated.cs
+..\Repositories\Account\IMemberRepository.generated.cs
+..\Repositories\Account\Impl\MemberExtendRepository.generated.cs
+..\Repositories\Account\Impl\MemberRepository.generated.cs
+..\Repositories\Hardware\IDataAnalyseRepository.generated.cs
+..\Repositories\Hardware\IDataStatisticsRepository.generated.cs
+..\Repositories\Hardware\IEquipManagerRepository.generated.cs
+..\Repositories\Hardware\IEquipmentRepository.generated.cs
+..\Repositories\Hardware\Impl\DataAnalyseRepository.generated.cs
+..\Repositories\Hardware\Impl\DataStatisticsRepository.generated.cs
+..\Repositories\Hardware\Impl\EquipManagerRepository.generated.cs
+..\Repositories\Hardware\Impl\EquipmentRepository.generated.cs
+..\Repositories\Hardware\Impl\RunningTimeRepository.generated.cs
+..\Repositories\Hardware\IRunningTimeRepository.generated.cs
+..\Repositories\logger\IFKSLoggerRepository.generated.cs
+..\Repositories\logger\ILogInfoRepository.generated.cs
+..\Repositories\logger\Impl\FKSLoggerRepository.generated.cs
+..\Repositories\logger\Impl\LogInfoRepository.generated.cs
+..\Repositories\Report\Impl\ReportInfoRepository.generated.cs
+..\Repositories\Report\IReportInfoRepository.generated.cs
+.\EntityCodeScript.cs
+</LastOutputs>
+    </None>
+    <None Include="T4\Include\IEntityRepositoryTemplate.ttinclude">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>IEntityRepositoryTemplate.cs</LastGenOutput>
+    </None>
+    <None Include="T4\Include\EntityRepositoryTemplate.ttinclude">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>EntityRepositoryTemplate.cs</LastGenOutput>
+    </None>
+    <None Include="T4\Include\EntityConfigurationTemplate.ttinclude">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>EntityConfigurationTemplate.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Infrastructure\FKS.Component.Data\FKS.Component.Data.csproj">
+      <Project>{01d263c6-97d8-496f-9e95-ca338f597747}</Project>
+      <Name>FKS.Component.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

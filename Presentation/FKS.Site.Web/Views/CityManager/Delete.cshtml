@@ -1,0 +1,24 @@
+﻿@*@model FKS.Site.Models.CityView
+@using FKS.Site.Helper.MVCHtmlExtend
+
+@{
+    Layout = "~/Views/Shared/_AjaxForm.cshtml";
+}
+
+@using (Ajax.BeginForm(new AjaxOptions
+{
+    OnSuccess = ViewBag.Success,
+    OnFailure = ViewBag.Failure
+}))
+{
+    @Html.HiddenFor(model => model.Id)
+    <div class="bs-example">
+        <h1 class="title">删除区域</h1>
+        <div class="form-horizontal pd10">
+            @Html.FormItem(model => model.Name)
+            @Html.FormItem(model => model.ParentID)
+            @Html.FormItem(model => model.Type, new { @style = "display:none;" })
+        </div>
+    </div>
+}*@
+

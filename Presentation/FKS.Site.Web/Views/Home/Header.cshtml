@@ -1,0 +1,17 @@
+﻿<div class="easyui-layout" data-options="fit:true,border:false">
+    <div data-options="region:'center',border:false,split:false">
+        <h1>@ViewBag.Title</h1>
+    </div>
+    <div data-options="region:'west',border:false,split:false" style="width:120px;">
+        <img src="~/contents/images/logo.jpg" style="width: 90px; margin: 5px 15px;" alt="" />
+    </div>
+    <div data-options="region:'east',border:false,split:false" style="width:120px;">
+        <div style="position:absolute;bottom:5px;right:5px;">
+            @if (User.Identity.IsAuthenticated)
+            {
+                <span>欢迎您：@User.Identity.Name</span>
+                 @Html.ActionLink("退出", "Logout", "Account")
+            }
+        </div>
+    </div>
+</div>

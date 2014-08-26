@@ -1,0 +1,53 @@
+﻿@Styles.Render("~/contents/jquery.plot/jquery.jqplot.min.css")
+
+<div class="easyui-layout" data-options="fit:true">
+    <div data-options="region:'north',border:false,collapsible:false" style="height: 90px;padding: 10px; overflow: hidden; border-bottom-width: 1px;">
+
+        <div style="margin:5px;" class="form-inline">
+
+            <div class="form-group">
+                <label class="control-label">开始日期：</label>
+            </div>
+
+            <div class="form-group">
+                <input data-role="type" type="text" data-options="required:true,showSeconds:false,value:'6/3/2014 13:12'" class="form-control input-sm easyui-datetimebox startTime" style="width:150px" />
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">截止日期：</label>
+            </div>
+
+            <div class="form-group">
+                <input data-role="type" type="text" data-options="required:true,showSeconds:false,value:'7/2/2014 13:12'" class="form-control input-sm easyui-datetimebox endTime" style="width:150px" />
+            </div>
+
+        </div>
+        <div style="margin:5px;" class="form-inline">
+
+            @*<div class="form-group">
+                    <label class="control-label">数据类型：</label>
+                </div>
+
+                <div class="form-group">
+                    <input data-role="type" data-options="required:true" type="text" class="form-control input-sm dataType" />
+                </div>*@
+
+            <div class="form-group">
+                <label class="control-label">设备选择：</label>
+            </div>
+
+            <div class="form-group">
+                <input data-role="type" type="text" class="form-control input-sm EquipInfo" />
+            </div>
+
+            <a href="#"
+               data-operation="doSearch"
+               class="easyui-linkbutton"
+               data-options="plain:true,toggle:false">
+                查询
+            </a>
+
+        </div>
+    </div>
+    <div data-options="region:'center',split:true,border:false,title:'曲线图'" id="time" style="border-right-width:1px;"></div>
+</div>

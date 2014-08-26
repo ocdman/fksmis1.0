@@ -1630,6 +1630,15 @@ textarea.input-lg {
 	background-color:#428bca;
 	border-color:#357ebd
 }
+.btn-linkbutton{
+    color:#fff;
+    background-color:#428bca;
+    border-color:#357ebd;
+    padding:3px 6px;
+	font-size:12px;
+	line-height:1.5;
+	border-radius:3px
+}
 .btn-primary.active,.btn-primary:active,.btn-primary:focus,.btn-primary:hover,.open .dropdown-toggle.btn-primary {
 	color:#fff;
 	background-color:#3276b1;

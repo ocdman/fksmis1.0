@@ -83,7 +83,9 @@
     <Compile Include="Impl\EquipManagerSiteService.cs" />
     <Compile Include="Impl\EquipmentSiteService.cs" />
     <Compile Include="Impl\LogInfoSiteService.cs" />
+    <Compile Include="Impl\ParameterSetSiteService.cs" />
     <Compile Include="Impl\ReportSiteService.cs" />
+    <Compile Include="IParameterSetSiteContract.cs" />
     <Compile Include="IReportSiteContract.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

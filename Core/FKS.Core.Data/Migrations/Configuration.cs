@@ -97,9 +97,20 @@ namespace FKS.Core.Data.Migrations
             DbSet<Equipment> EquipmentSet = context.Set<Equipment>();
             EquipmentSet.AddOrUpdate(m => new { m.CollectionCode }, equipments.ToArray());
 
+            FKS.Core.Models.Parameters.ParameterSet parameter = new Models.Parameters.ParameterSet 
+            {
+                Id = 1,
+                MaintenanceBound = 3,
+                ConcentrateBound = 1,
+                PurifierBound = 80,
+                DayDischargeBound = 50,
+                ShowNumbers = 10
+            };
+            DbSet<FKS.Core.Models.Parameters.ParameterSet> parameterSet = context.Set<FKS.Core.Models.Parameters.ParameterSet>();
+            parameterSet.AddOrUpdate(m => new { m.Id }, parameter);
+             
             context.SaveChanges();
              */
-             
         }
     }
 }

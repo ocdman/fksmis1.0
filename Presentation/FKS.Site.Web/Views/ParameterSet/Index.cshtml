@@ -1,0 +1,24 @@
+﻿@model FKS.Site.Models.ParameterSetView
+@using FKS.Site.Helper.MVCHtmlExtend
+
+@{
+    Layout = "~/Views/Shared/_AjaxForm.cshtml";
+}
+
+@using (Ajax.BeginForm(new AjaxOptions
+{
+    OnSuccess = ViewBag.Success,
+    OnFailure = ViewBag.Failure
+}))
+{
+    <div class="bs-example">
+        <h1 class="title">修改参数</h1>
+        <div class="form-horizontal pd10">
+            @Html.FormItem(model => model.MaintenanceBound)
+            @Html.FormItem(model => model.ConcentrateBound)
+            @Html.FormItem(model => model.PurifierBound)
+            @Html.FormItem(model => model.DayDischargeBound)
+            @Html.FormItem(model => model.ShowNumbers)
+        </div>
+    </div>
+}

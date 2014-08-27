@@ -74,7 +74,9 @@
     <Compile Include="Impl\EquipManagerService.cs" />
     <Compile Include="Impl\EquipmentService.cs" />
     <Compile Include="Impl\LogInfoService.cs" />
+    <Compile Include="Impl\ParameterSetService.cs" />
     <Compile Include="Impl\ReportService.cs" />
+    <Compile Include="IParameterSetContract.cs" />
     <Compile Include="IReportContract.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

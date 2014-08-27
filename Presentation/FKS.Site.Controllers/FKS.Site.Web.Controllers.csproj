@@ -148,6 +148,7 @@
     <Compile Include="Controllers\LogInfoController.cs" />
     <Compile Include="Controllers\MemberViewController.cs" />
     <Compile Include="Controllers\MemberViewController.generated.cs" />
+    <Compile Include="Controllers\ParameterSetController.cs" />
     <Compile Include="Controllers\ReportInfoController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnhandledExceptionModule.cs" />

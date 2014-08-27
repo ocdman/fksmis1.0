@@ -681,6 +681,7 @@
     <Content Include="contents\images\png\20140515102134563_easyicon_net_128.png" />
     <Content Include="contents\images\png\20140515103605734_easyicon_net_512.png" />
     <Content Include="contents\images\png\20140515103740688_easyicon_net_128.png" />
+    <Content Include="contents\images\png\report.png" />
     <Content Include="contents\jquery.plot\jquery.jqplot.min.css" />
     <Content Include="contents\login\login.css" />
     <Content Include="contents\site.css" />
@@ -876,6 +877,7 @@
     <Content Include="scripts\modules\page\equipment_manager.js" />
     <Content Include="scripts\modules\page\data_abnormal.js" />
     <Content Include="scripts\modules\page\log.js" />
+    <Content Include="scripts\modules\page\parameterSet.js" />
     <Content Include="scripts\modules\page\report.js" />
     <Content Include="scripts\modules\page\user_manager.js" />
     <Content Include="scripts\plugins\bootstrap\bootstrap.js" />
@@ -1237,6 +1239,7 @@
     <Content Include="Views\DataAnalyse\PureRateIndex.cshtml" />
     <Content Include="Views\DataAnalyse\ConcentrationIndex.cshtml" />
     <Content Include="Views\DataAnalyse\AbnormalDataIndex.cshtml" />
+    <Content Include="Views\ParameterSet\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Account\Login.cshtml" />

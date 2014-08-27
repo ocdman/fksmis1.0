@@ -57,6 +57,7 @@
     <Compile Include="logger\FKSLogger.cs" />
     <Compile Include="logger\LogInfo.cs" />
     <Compile Include="logger\LogType.cs" />
+    <Compile Include="Parameters\ParameterSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Report\ReportInfo.cs" />
   </ItemGroup>

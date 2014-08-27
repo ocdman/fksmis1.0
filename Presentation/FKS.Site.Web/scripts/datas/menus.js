@@ -126,6 +126,13 @@
         }
     }, {
         "id": 133,
+        "text": "参数设定",
+        "iconCls": "icon_15",
+        "attributes": {
+            "hash": "page/parameterSet/参数设定"
+        }
+    },{
+        "id": 134,
         "iconCls": "icon_18",
         "text": "操作日志",
         "attributes": {

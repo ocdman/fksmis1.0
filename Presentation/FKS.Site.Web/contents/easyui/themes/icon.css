@@ -1,3 +1,148 @@
 /*! fks 2014-07-07 */
 
-.icon-blank{background:url(./icons/blank.gif) no-repeat center center}.icon-add{background:url(./icons/edit_add.png) no-repeat center center}.icon-edit{background:url(./icons/pencil.png) no-repeat center center}.icon-remove{background:url(./icons/edit_remove.png) no-repeat center center}.icon-save{background:url(./icons/filesave.png) no-repeat center center}.icon-cut{background:url(./icons/cut.png) no-repeat center center}.icon-ok{background:url(./icons/ok.png) no-repeat center center}.icon-no{background:url(./icons/no.png) no-repeat center center}.icon-cancel{background:url(./icons/cancel.png) no-repeat center center}.icon-reload{background:url(./icons/reload.png) no-repeat center center}.icon-search{background:url(./icons/search.png) no-repeat center center}.icon-print{background:url(./icons/print.png) no-repeat center center}.icon-help{background:url(./icons/help.png) no-repeat center center}.icon-undo{background:url(./icons/undo.png) no-repeat center center}.icon-redo{background:url(./icons/redo.png) no-repeat center center}.icon-back{background:url(./icons/back.png) no-repeat center center}.icon-sum{background:url(./icons/sum.png) no-repeat center center}.icon-tip{background:url(./icons/tip.png) no-repeat center center}.icon-filter{background:url(./icons/filter.png) no-repeat center center}.icon-mini-add{background:url(./icons/mini_add.png) no-repeat center center}.icon-mini-edit{background:url(./icons/mini_edit.png) no-repeat center center}.icon-mini-refresh{background:url(./icons/mini_refresh.png) no-repeat center center}.icon_0{background:url(../../images/png/20140512022333892_easyicon_net_128.png) no-repeat center center;background-size:16px}.icon_1{background:url(../../images/png/20140512022435677_easyicon_net_512.png) no-repeat center center;background-size:16px}.icon_2{background:url(../../images/png/20140512022421585_easyicon_net_512.png) no-repeat center center;background-size:16px}.icon_3{background:url(../../images/png/2014051202272017_easyicon_net_256.png) no-repeat center center;background-size:16px}.icon_4{background:url(../../images/png/20140512022840623_easyicon_net_128.png) no-repeat center center;background-size:16px}.icon_5{background:url(../../images/png/20140515103740688_easyicon_net_128.png) no-repeat center center;background-size:16px}.icon_6{background:url(../../images/png/20140513111904986_easyicon_net_224.png) no-repeat center center;background-size:16px}.icon_7{background:url(../../images/png/2014051202301089_easyicon_net_128.png) no-repeat center center;background-size:16px}.icon_8{background:url(../../images/png/20140513111352510_easyicon_net_128.png) no-repeat center center;background-size:16px}.icon_9{background:url(../../images/png/20140512022223860_easyicon_net_512.png) no-repeat center center;background-size:16px}.icon_10{background:url(../../images/png/20140515102134563_easyicon_net_128.png) no-repeat center center;background-size:16px}.icon_11{background:url(../../images/png/20140512023143952_easyicon_net_512.png) no-repeat center center;background-size:16px}.icon_12{background:url(../../images/png/20140513105158569_easyicon_net_128.png) no-repeat center center;background-size:16px}.icon_13{background:url(../../images/png/20140515103605734_easyicon_net_512.png) no-repeat center center;background-size:16px}.icon_14{background:url(../../images/png/20140513112133262_easyicon_net_48.png) no-repeat center center;background-size:16px}.icon_15{background:url(../../images/png/20140512023159353_easyicon_net_128.png) no-repeat center center;background-size:16px}.icon_16{background:url(../../images/png/20140512024216160_easyicon_net_128.png) no-repeat center center;background-size:16px}.icon_17{background:url(../../images/png/2014051202431763_easyicon_net_128.png) no-repeat center center;background-size:16px}.icon_18{background:url(../../images/png/20140513105417986_easyicon_net_256.png) no-repeat center center;background-size:16px}
+.icon-blank {
+	background:url(./icons/blank.gif) no-repeat center center
+}
+.icon-add {
+	background:url(./icons/edit_add.png) no-repeat center center
+}
+.icon-edit {
+	background:url(./icons/pencil.png) no-repeat center center
+}
+.icon-remove {
+	background:url(./icons/edit_remove.png) no-repeat center center
+}
+.icon-save {
+	background:url(./icons/filesave.png) no-repeat center center
+}
+.icon-cut {
+	background:url(./icons/cut.png) no-repeat center center
+}
+.icon-ok {
+	background:url(./icons/ok.png) no-repeat center center
+}
+.icon-no {
+	background:url(./icons/no.png) no-repeat center center
+}
+.icon-cancel {
+	background:url(./icons/cancel.png) no-repeat center center
+}
+.icon-reload {
+	background:url(./icons/reload.png) no-repeat center center
+}
+.icon-search {
+	background:url(./icons/search.png) no-repeat center center
+}
+.icon-print {
+	background:url(./icons/print.png) no-repeat center center
+}
+.icon-help {
+	background:url(./icons/help.png) no-repeat center center
+}
+.icon-undo {
+	background:url(./icons/undo.png) no-repeat center center
+}
+.icon-redo {
+	background:url(./icons/redo.png) no-repeat center center
+}
+.icon-back {
+	background:url(./icons/back.png) no-repeat center center
+}
+.icon-sum {
+	background:url(./icons/sum.png) no-repeat center center
+}
+.icon-tip {
+	background:url(./icons/tip.png) no-repeat center center
+}
+.icon-filter {
+	background:url(./icons/filter.png) no-repeat center center
+}
+.icon-mini-add {
+	background:url(./icons/mini_add.png) no-repeat center center
+}
+.icon-mini-edit {
+	background:url(./icons/mini_edit.png) no-repeat center center
+}
+.icon-mini-refresh {
+	background:url(./icons/mini_refresh.png) no-repeat center center
+}
+.icon_0 {
+	background:url(../../images/png/20140512022333892_easyicon_net_128.png) no-repeat center center;
+	background-size:16px
+}
+.icon_1 {
+	background:url(../../images/png/20140512022435677_easyicon_net_512.png) no-repeat center center;
+	background-size:16px
+}
+.icon_2 {
+	background:url(../../images/png/20140512022421585_easyicon_net_512.png) no-repeat center center;
+	background-size:16px
+}
+.icon_3 {
+	background:url(../../images/png/2014051202272017_easyicon_net_256.png) no-repeat center center;
+	background-size:16px
+}
+.icon_4 {
+	background:url(../../images/png/20140512022840623_easyicon_net_128.png) no-repeat center center;
+	background-size:16px
+}
+.icon_5 {
+	background:url(../../images/png/20140515103740688_easyicon_net_128.png) no-repeat center center;
+	background-size:16px
+}
+.icon_6 {
+	background:url(../../images/png/20140513111904986_easyicon_net_224.png) no-repeat center center;
+	background-size:16px
+}
+.icon_7 {
+	background:url(../../images/png/2014051202301089_easyicon_net_128.png) no-repeat center center;
+	background-size:16px
+}
+.icon_8 {
+	background:url(../../images/png/20140513111352510_easyicon_net_128.png) no-repeat center center;
+	background-size:16px
+}
+.icon_9 {
+	background:url(../../images/png/20140512022223860_easyicon_net_512.png) no-repeat center center;
+	background-size:16px
+}
+.icon_10 {
+	background:url(../../images/png/20140515102134563_easyicon_net_128.png) no-repeat center center;
+	background-size:16px
+}
+.icon_11 {
+	background:url(../../images/png/20140512023143952_easyicon_net_512.png) no-repeat center center;
+	background-size:16px
+}
+.icon_12 {
+	background:url(../../images/png/20140513105158569_easyicon_net_128.png) no-repeat center center;
+	background-size:16px
+}
+.icon_13 {
+	background:url(../../images/png/20140515103605734_easyicon_net_512.png) no-repeat center center;
+	background-size:16px
+}
+.icon_14 {
+	background:url(../../images/png/20140513112133262_easyicon_net_48.png) no-repeat center center;
+	background-size:16px
+}
+.icon_15 {
+	background:url(../../images/png/20140512023159353_easyicon_net_128.png) no-repeat center center;
+	background-size:16px
+}
+.icon_16 {
+	background:url(../../images/png/20140512024216160_easyicon_net_128.png) no-repeat center center;
+	background-size:16px
+}
+.icon_17 {
+	background:url(../../images/png/2014051202431763_easyicon_net_128.png) no-repeat center center;
+	background-size:16px
+}
+.icon_18 {
+	background:url(../../images/png/20140513105417986_easyicon_net_256.png) no-repeat center center;
+	background-size:16px
+}
+.icon_19{
+    background:url(../../images/png/report.png) no-repeat center center;
+    background-size:16px
+}

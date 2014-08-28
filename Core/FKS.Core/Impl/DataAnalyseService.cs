@@ -105,9 +105,9 @@ namespace FKS.Core.Impl
             return result.ToList();
         }
 
-        public ICollection<Equipment> GetAbnormalData()
+        public ICollection<AbnormalEquip> GetAbnormalData()
         {
-            var result = from p in this.UnitOfWork.DbContext.Database.SqlQuery<Equipment>("exec pro_get_abnormal")
+            var result = from p in this.UnitOfWork.DbContext.Database.SqlQuery<AbnormalEquip>("exec pro_get_abnormal")
                          select p;
             return result.ToList();
         }

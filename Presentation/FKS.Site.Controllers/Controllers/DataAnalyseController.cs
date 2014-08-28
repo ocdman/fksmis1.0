@@ -219,6 +219,10 @@ namespace FKS.Site.Web.Controllers.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// 异常设备
+        /// </summary>
+        /// <returns></returns>
         public ActionResult AbnormalDataRow()
         {
             var result = this.SiteContract.GetAbnormalData();

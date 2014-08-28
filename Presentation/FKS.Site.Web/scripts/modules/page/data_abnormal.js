@@ -36,8 +36,9 @@ define([
                 { field: 'Address', title: '用户地址', width: 150, sortable: true },
                 { field: 'EquipCode', title: '设备ID', width: 100, sortable: true },
                 { field: 'ZTqd', title: '信号强度', width: 100, sortable: true },
-                { field: 'OnOff', title: '连接状态', width: 100, sortable: true, formatter: function () { return "离线" } },
-                { field: 'ZTst', title: '探测器', width: 100, sortable: true, formatter: function () { return "报警" } },
+                { field: 'OnOff', title: '连接状态', width: 100, sortable: true, formatter: function (a) { if (a == 0) return "离线"; else return "在线" } },
+                { field: 'ZTst', title: '探测器', width: 100, sortable: true, formatter: function (a) { if (a == 0) return "报警"; else return "正常" } },
+                { field: 'Category', title: '类型', width: 100, sortable: true},
             ]];
         },
         render: function () {

@@ -59,6 +59,7 @@
     <Compile Include="Configurations\Account\MemberConfiguration.generated.cs" />
     <Compile Include="Configurations\Account\MemberExtendConfiguration.cs" />
     <Compile Include="Configurations\Account\MemberExtendConfiguration.generated.cs" />
+    <Compile Include="Configurations\Hardware\AbnormalEquipConfiguration.generated.cs" />
     <Compile Include="Configurations\Hardware\DataAnalyseConfiguration.generated.cs" />
     <Compile Include="Configurations\Hardware\DataStatisticsConfiguration.generated.cs" />
     <Compile Include="Configurations\Hardware\EquipManagerConfiguration.generated.cs" />
@@ -76,10 +77,12 @@
     <Compile Include="Repositories\Account\IMemberRepository.generated.cs" />
     <Compile Include="Repositories\Account\Impl\MemberExtendRepository.generated.cs" />
     <Compile Include="Repositories\Account\Impl\MemberRepository.generated.cs" />
+    <Compile Include="Repositories\Hardware\IAbnormalEquipRepository.generated.cs" />
     <Compile Include="Repositories\Hardware\IDataAnalyseRepository.generated.cs" />
     <Compile Include="Repositories\Hardware\IDataStatisticsRepository.generated.cs" />
     <Compile Include="Repositories\Hardware\IEquipManagerRepository.generated.cs" />
     <Compile Include="Repositories\Hardware\IEquipmentRepository.generated.cs" />
+    <Compile Include="Repositories\Hardware\Impl\AbnormalEquipRepository.generated.cs" />
     <Compile Include="Repositories\Hardware\Impl\DataAnalyseRepository.generated.cs" />
     <Compile Include="Repositories\Hardware\Impl\DataStatisticsRepository.generated.cs" />
     <Compile Include="Repositories\Hardware\Impl\EquipManagerRepository.generated.cs" />
@@ -124,6 +127,7 @@
       <LastOutputs>
 ..\Configurations\Account\MemberConfiguration.generated.cs
 ..\Configurations\Account\MemberExtendConfiguration.generated.cs
+..\Configurations\Hardware\AbnormalEquipConfiguration.generated.cs
 ..\Configurations\Hardware\DataAnalyseConfiguration.generated.cs
 ..\Configurations\Hardware\DataStatisticsConfiguration.generated.cs
 ..\Configurations\Hardware\EquipManagerConfiguration.generated.cs
@@ -137,10 +141,12 @@
 ..\Repositories\Account\IMemberRepository.generated.cs
 ..\Repositories\Account\Impl\MemberExtendRepository.generated.cs
 ..\Repositories\Account\Impl\MemberRepository.generated.cs
+..\Repositories\Hardware\IAbnormalEquipRepository.generated.cs
 ..\Repositories\Hardware\IDataAnalyseRepository.generated.cs
 ..\Repositories\Hardware\IDataStatisticsRepository.generated.cs
 ..\Repositories\Hardware\IEquipManagerRepository.generated.cs
 ..\Repositories\Hardware\IEquipmentRepository.generated.cs
+..\Repositories\Hardware\Impl\AbnormalEquipRepository.generated.cs
 ..\Repositories\Hardware\Impl\DataAnalyseRepository.generated.cs
 ..\Repositories\Hardware\Impl\DataStatisticsRepository.generated.cs
 ..\Repositories\Hardware\Impl\EquipManagerRepository.generated.cs

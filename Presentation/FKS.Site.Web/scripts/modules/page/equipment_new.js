@@ -3,7 +3,7 @@ define(["jquery", "underscore", "backbone", "knockout", "helper", "plugins/map",
 function (a, b, c, d, e, f, g, h, i, j, k) {
     var l = i.extend({
         doResetForm: function () {
-            this.$ajaxDialog.find("form")[0].reset(),
+            this.$ajaxDialog.find("form")[0].reset()
             //this.$ajaxDialog.find("#PropertyInfo").val("2"),
             //this.$ajaxDialog.find("#PositionInfo").val("1"),
             //this.$ajaxDialog.find("#Interval").val("60"),

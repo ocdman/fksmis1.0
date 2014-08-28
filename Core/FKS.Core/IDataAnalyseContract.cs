@@ -48,7 +48,7 @@ namespace FKS.Core
         /// 异常设备
         /// </summary>
         /// <returns></returns>
-        ICollection<Equipment> GetAbnormalData();
+        ICollection<AbnormalEquip> GetAbnormalData();
         /// <summary>
         /// 排放量
         /// </summary>

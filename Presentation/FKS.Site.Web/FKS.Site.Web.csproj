@@ -155,6 +155,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppDBDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="fksmis1DataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>fksmis1DataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -844,6 +849,17 @@
     <Content Include="DataSet\AppDBDataSet.xss">
       <DependentUpon>AppDBDataSet.xsd</DependentUpon>
     </Content>
+    <Content Include="fksmis1DataSet.xsc">
+      <DependentUpon>fksmis1DataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="fksmis1DataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>fksmis1DataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="fksmis1DataSet.xss">
+      <DependentUpon>fksmis1DataSet.xsd</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\fksmis.pubxml" />
     <None Include="scripts\libs\jquery-2.1.0.intellisense.js" />
     <Content Include="scripts\form\jquery.unobtrusive-ajax.js" />
@@ -864,6 +880,7 @@
     <Content Include="scripts\modules\main_ui.js" />
     <Content Include="scripts\modules\page\data_clean.js" />
     <Content Include="scripts\modules\page\data_concentration.js" />
+    <Content Include="scripts\modules\page\data_discharge_report.js" />
     <Content Include="scripts\modules\page\data_purerate.js" />
     <Content Include="scripts\modules\page\data_discharge.js" />
     <Content Include="scripts\modules\page\data_linkage.js" />
@@ -1240,6 +1257,7 @@
     <Content Include="Views\DataAnalyse\ConcentrationIndex.cshtml" />
     <Content Include="Views\DataAnalyse\AbnormalDataIndex.cshtml" />
     <Content Include="Views\ParameterSet\Index.cshtml" />
+    <Content Include="Views\ReportInfo\DischargeIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Account\Login.cshtml" />
@@ -1258,6 +1276,7 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ReportModule\DischargeReport.rdlc" />
     <EmbeddedResource Include="ReportModule\SampleReport.rdlc" />
   </ItemGroup>
   <ItemGroup>

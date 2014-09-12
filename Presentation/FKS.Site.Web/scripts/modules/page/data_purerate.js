@@ -41,18 +41,19 @@ function (a, b, c, d, e, f, g, h, i) {
             d = [];
             f = "";
             if (b && b.length) {
+                j = b[0].PurifierBound;
                 for (var g in b) {
                     var h = b[g];
                     void 0 != h.TimeUp && void 0 != h.Id && (f != h.TimeUp && (f = h.TimeUp, d.push(e.DateFormat(e.getUnixToTime1(f.replace("/Date(", "").replace(")/", "")), "yyyy/MM/dd"))), c[h.Id].push(h.YouYanND))
                 }
                 try {
-                    this.doDrawChart(c, d)
+                    this.doDrawChart(c, d, j)
                 }
                 catch (i) { }
             }
             else a.messager.alert("提示", "没有数据！", "warning");
         },
-        doDrawChart: function (b, c) {
+        doDrawChart: function (b, c, j) {
             var d = this;
             d.$jqPlot && d.$jqPlot.destroy();
             d.$jqPlot = a.jqplot("pureRate", b, {
@@ -95,7 +96,7 @@ function (a, b, c, d, e, f, g, h, i) {
                         {
                             horizontalLine: {
                                 name: 'pebbles',
-                                y: 50,
+                                y: j,
                                 lineWidth: 3,
                                 xOffset: 0,
                                 color: 'rgb(89, 198, 154)',

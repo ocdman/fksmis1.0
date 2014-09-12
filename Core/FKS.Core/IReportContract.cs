@@ -12,5 +12,8 @@ namespace FKS.Core
         IQueryable<ReportInfo> Reports { get; }
 
         ICollection<ReportInfo> GetReportData(string collectionCode, DateTime timeStart, DateTime timeEnd, string reportType);
+
+        ICollection<ReportStatistics> GetDischargeReportData(string reportType, string sortType, DateTime timeStart,
+            DateTime timeEnd);
     }
 }

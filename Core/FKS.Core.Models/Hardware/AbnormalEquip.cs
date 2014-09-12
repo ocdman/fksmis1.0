@@ -20,7 +20,7 @@ namespace FKS.Core.Models.Hardware
         /// </summary>
         public int ZTqd { get; set; }
 
-        public int ZTst { get; set; }
+        public bool ZTst { get; set; }
 
         /// <summary>
         /// 连接状态

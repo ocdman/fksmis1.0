@@ -34,7 +34,7 @@ define([
             return [[
                 { field: 'NickName', title: '用户名', width: 100, sortable: true },
                 { field: 'Address', title: '用户地址', width: 150, sortable: true },
-                { field: 'EquipCode', title: '设备ID', width: 100, sortable: true },
+                { field: 'CollectionCode', title: '设备ID', width: 100, sortable: true },
                 { field: 'ZTqd', title: '信号强度', width: 100, sortable: true },
                 { field: 'OnOff', title: '连接状态', width: 100, sortable: true, formatter: function (a) { if (a == 0) return "离线"; else return "在线" } },
                 { field: 'ZTst', title: '探测器', width: 100, sortable: true, formatter: function (a) { if (a == 0) return "报警"; else return "正常" } },
@@ -72,9 +72,10 @@ define([
         },
         doSearch: function(){
             var a = this;
-            (a.$table.datagrid("options").url = a.getHref(!1, a.controller, "AbnormalDataRow"),
-            a.$table.datagrid("reload",
-                {}))
+            //(a.$table.datagrid("options").url = a.getHref(!1, a.controller, "AbnormalDataRow"),
+            //a.$table.datagrid("reload",
+            //    {}))
+            (a.$table.datagrid("options").url = a.getHref(!1, a.controller, "AbnormalDataRow"))
         },
         dispose: function () {
 

@@ -67,6 +67,7 @@
     <Compile Include="Configurations\Hardware\RunningTimeConfiguration.generated.cs" />
     <Compile Include="Configurations\Parameters\ParameterSetConfiguration.generated.cs" />
     <Compile Include="Configurations\Report\ReportInfoConfiguration.generated.cs" />
+    <Compile Include="Configurations\Report\ReportStatisticsConfiguration.generated.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="RealDataConfig.cs" />
     <Compile Include="Configurations\logger\FKSLoggerConfiguration.generated.cs" />
@@ -96,7 +97,9 @@
     <Compile Include="Repositories\Parameters\Impl\ParameterSetRepository.generated.cs" />
     <Compile Include="Repositories\Parameters\IParameterSetRepository.generated.cs" />
     <Compile Include="Repositories\Report\Impl\ReportInfoRepository.generated.cs" />
+    <Compile Include="Repositories\Report\Impl\ReportStatisticsRepository.generated.cs" />
     <Compile Include="Repositories\Report\IReportInfoRepository.generated.cs" />
+    <Compile Include="Repositories\Report\IReportStatisticsRepository.generated.cs" />
     <Compile Include="T4\EntityCodeScript.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -137,6 +140,7 @@
 ..\Configurations\logger\LogInfoConfiguration.generated.cs
 ..\Configurations\Parameters\ParameterSetConfiguration.generated.cs
 ..\Configurations\Report\ReportInfoConfiguration.generated.cs
+..\Configurations\Report\ReportStatisticsConfiguration.generated.cs
 ..\Repositories\Account\IMemberExtendRepository.generated.cs
 ..\Repositories\Account\IMemberRepository.generated.cs
 ..\Repositories\Account\Impl\MemberExtendRepository.generated.cs
@@ -160,7 +164,9 @@
 ..\Repositories\Parameters\Impl\ParameterSetRepository.generated.cs
 ..\Repositories\Parameters\IParameterSetRepository.generated.cs
 ..\Repositories\Report\Impl\ReportInfoRepository.generated.cs
+..\Repositories\Report\Impl\ReportStatisticsRepository.generated.cs
 ..\Repositories\Report\IReportInfoRepository.generated.cs
+..\Repositories\Report\IReportStatisticsRepository.generated.cs
 .\EntityCodeScript.cs
 </LastOutputs>
     </None>

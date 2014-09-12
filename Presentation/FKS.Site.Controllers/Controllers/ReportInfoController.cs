@@ -20,6 +20,8 @@ namespace FKS.Site.Web.Controllers.Controllers
         public DateTime EndTime { get; set; }
         public int page { get; set; }
         public int rows { get; set; }
+
+        public string SortType { get; set; }
 	}
 
     [Export]
@@ -33,11 +35,12 @@ namespace FKS.Site.Web.Controllers.Controllers
             return View();
         }
 
+
         public ActionResult ReportDataRow(ReportParams param)
         {
-            // AnalyseReportType(param);
-            param.StartTime = DateTime.Parse("2014-06-23 00:00:00");
-            param.EndTime = DateTime.Parse("2014-06-28 00:00:00");
+            AnalyseReportType(param);
+            //param.StartTime = DateTime.Parse("2014-06-23 00:00:00");
+            //param.EndTime = DateTime.Parse("2014-06-28 00:00:00");
             var result = this.SiteContract.GetReportData(param.collectionCode, param.StartTime, param.EndTime, param.reportType);
             var dataGridData = new DataGridView<ReportInfo>
             {
@@ -83,8 +86,9 @@ namespace FKS.Site.Web.Controllers.Controllers
         public ActionResult Reporting(ReportParams param)
         {
             string type = "Excel";
-            param.StartTime = DateTime.Parse("2014-06-23 00:00:00");
-            param.EndTime = DateTime.Parse("2014-06-28 00:00:00");
+            //param.StartTime = DateTime.Parse("2014-06-23 00:00:00");
+            //param.EndTime = DateTime.Parse("2014-06-28 00:00:00");
+            AnalyseReportType(param);
             List<ReportInfo> ds = (List<ReportInfo>)this.SiteContract.GetReportData(param.collectionCode, param.StartTime, param.EndTime, param.reportType);
             LocalReport localReport = new LocalReport();
             localReport.ReportPath = Server.MapPath("~/ReportModule/SampleReport.rdlc");
@@ -122,5 +126,70 @@ namespace FKS.Site.Web.Controllers.Controllers
             //renderedBytes = localReport.Render(reportType, deviceInfo);
             return File(renderedBytes, mimeType);
         }
+
+        #region 排放量统计
+        public ActionResult DischargeIndex()
+        {
+            return View();
+        }
+
+        public ActionResult DischargeDataRow(ReportParams param)
+        {
+            AnalyseReportType(param);
+            param.StartTime = DateTime.Parse("2014-06-23 00:00:00");
+            param.EndTime = DateTime.Parse("2014-06-23 23:00:00");
+            var result = this.SiteContract.GetDischargeReportData(param.reportType, param.SortType, param.StartTime, param.EndTime);
+            var dataGridData = new DataGridView<ReportStatistics>()
+            {
+                total = result.Count,
+                rows = result.Skip((param.page - 1) * param.rows).Take(param.rows).ToList()
+            };
+            return Json(dataGridData, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult DischargeReporting(ReportParams param)
+        {
+            string type = "Excel";
+            //param.StartTime = DateTime.Parse("2014-06-23 00:00:00");
+            //param.EndTime = DateTime.Parse("2014-06-28 00:00:00");
+            AnalyseReportType(param);
+            List<ReportStatistics> ds = (List<ReportStatistics>)this.SiteContract.GetDischargeReportData(param.reportType, param.SortType, param.StartTime, param.EndTime);
+            LocalReport localReport = new LocalReport();
+            localReport.ReportPath = Server.MapPath("~/ReportModule/DischargeReport.rdlc");
+            ReportDataSource reportDataSource = new ReportDataSource("DataSet1", ds);
+            localReport.DataSources.Add(reportDataSource);
+
+            string reportType = type;
+            string mimeType;
+            string encoding;
+            string fileNameExtension;
+
+            string deviceInfo =
+                "<DeviceInfo>" +
+                "<OutputFormat>" + type + "</OutputFormat>" +
+                "<PageWidth>11in</PageWidth>" +
+                "<PageHeight>11in</PageHeight>" +
+                "<MarginTop>0.5in</MarginTop>" +
+                "<MarginLeft>1in</MarginLeft>" +
+                "<MarginRight>1in</MarginRight>" +
+                "<MarginBottom>0.5in</MarginBottom>" +
+                "</DeviceInfo>";
+            Warning[] warnings;
+            string[] streams;
+            byte[] renderedBytes;
+
+            renderedBytes = localReport.Render(
+                reportType,
+                deviceInfo,
+                out mimeType,
+                out encoding,
+                out fileNameExtension,
+                out streams,
+                out warnings);
+
+            //renderedBytes = localReport.Render(reportType, deviceInfo);
+            return File(renderedBytes, mimeType);
+        }
+        #endregion
     }
 }

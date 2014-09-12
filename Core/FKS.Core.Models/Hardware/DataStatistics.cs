@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace FKS.Core.Models.Hardware
 {
     /// <summary>
-    /// created by wbgong at 2014-08-13
+    /// created by wbgong at 2014-08-13 
     /// </summary>
     [Description("数据统计")]
     public class DataStatistics : EntityBase<int>
@@ -19,5 +19,11 @@ namespace FKS.Core.Models.Hardware
         public int FanRuntime { get; set; }
 
         public DateTime TimeUp { get; set; }
+
+        public int ConcentrateBound { get; set; }
+
+        public int PurifierBound { get; set; }
+
+        public int DayDischargeBound { get; set; }
     }
 }

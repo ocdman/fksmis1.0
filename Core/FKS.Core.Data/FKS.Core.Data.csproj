@@ -59,6 +59,7 @@
     <Compile Include="Configurations\Account\MemberConfiguration.generated.cs" />
     <Compile Include="Configurations\Account\MemberExtendConfiguration.cs" />
     <Compile Include="Configurations\Account\MemberExtendConfiguration.generated.cs" />
+    <Compile Include="Configurations\Authority\AuthorityConfiguration.generated.cs" />
     <Compile Include="Configurations\Hardware\AbnormalEquipConfiguration.generated.cs" />
     <Compile Include="Configurations\Hardware\DataAnalyseConfiguration.generated.cs" />
     <Compile Include="Configurations\Hardware\DataStatisticsConfiguration.generated.cs" />
@@ -78,6 +79,8 @@
     <Compile Include="Repositories\Account\IMemberRepository.generated.cs" />
     <Compile Include="Repositories\Account\Impl\MemberExtendRepository.generated.cs" />
     <Compile Include="Repositories\Account\Impl\MemberRepository.generated.cs" />
+    <Compile Include="Repositories\Authority\IAuthorityRepository.generated.cs" />
+    <Compile Include="Repositories\Authority\Impl\AuthorityRepository.generated.cs" />
     <Compile Include="Repositories\Hardware\IAbnormalEquipRepository.generated.cs" />
     <Compile Include="Repositories\Hardware\IDataAnalyseRepository.generated.cs" />
     <Compile Include="Repositories\Hardware\IDataStatisticsRepository.generated.cs" />
@@ -130,6 +133,7 @@
       <LastOutputs>
 ..\Configurations\Account\MemberConfiguration.generated.cs
 ..\Configurations\Account\MemberExtendConfiguration.generated.cs
+..\Configurations\Authority\AuthorityConfiguration.generated.cs
 ..\Configurations\Hardware\AbnormalEquipConfiguration.generated.cs
 ..\Configurations\Hardware\DataAnalyseConfiguration.generated.cs
 ..\Configurations\Hardware\DataStatisticsConfiguration.generated.cs
@@ -145,6 +149,8 @@
 ..\Repositories\Account\IMemberRepository.generated.cs
 ..\Repositories\Account\Impl\MemberExtendRepository.generated.cs
 ..\Repositories\Account\Impl\MemberRepository.generated.cs
+..\Repositories\Authority\IAuthorityRepository.generated.cs
+..\Repositories\Authority\Impl\AuthorityRepository.generated.cs
 ..\Repositories\Hardware\IAbnormalEquipRepository.generated.cs
 ..\Repositories\Hardware\IDataAnalyseRepository.generated.cs
 ..\Repositories\Hardware\IDataStatisticsRepository.generated.cs

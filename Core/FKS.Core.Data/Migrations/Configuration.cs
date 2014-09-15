@@ -109,8 +109,17 @@ namespace FKS.Core.Data.Migrations
             DbSet<FKS.Core.Models.Parameters.ParameterSet> parameterSet = context.Set<FKS.Core.Models.Parameters.ParameterSet>();
             parameterSet.AddOrUpdate(m => new { m.Id }, parameter);
              
+            FKS.Core.Models.Authority.Authority authority = new Models.Authority.Authority
+            {
+                Id = 1,
+                HasAuthority = true
+            };
+            DbSet<FKS.Core.Models.Authority.Authority> authoritySet = context.Set<FKS.Core.Models.Authority.Authority>();
+            authoritySet.AddOrUpdate(m => new { m.Id }, authority);
+            
             context.SaveChanges();
              */
+
         }
     }
 }

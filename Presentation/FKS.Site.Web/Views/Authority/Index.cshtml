@@ -1,0 +1,26 @@
+﻿@Styles.Render("~/contents/jquery.plot/jquery.jqplot.min.css")
+
+<div class="easyui-layout" data-options="fit:true">
+    <div data-options="region:'north',border:false,collapsible:false" style="height: 90px;padding: 10px; overflow: hidden; border-bottom-width: 1px;">
+        <div style="margin:5px;" class="form-inline">
+
+            <a href="#"
+                   data-operation="doStop"
+                   id="stop"
+                   class="easyui-linkbutton"
+                   data-options="plain:true,toggle:false">
+                    停止查看
+                </a>
+
+            <a href="#"
+               data-operation="doStart"
+               id="start"
+               class="easyui-linkbutton"
+               data-options="plain:true,toggle:false">
+                开始查看
+            </a>
+            
+
+        </div>
+    </div>
+</div>

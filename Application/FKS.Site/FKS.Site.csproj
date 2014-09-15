@@ -70,6 +70,7 @@
     <Compile Include="Helper\Attributes\MyAuthorize.cs" />
     <Compile Include="Helper\Attributes\MyHandleErrorAttribute.cs" />
     <Compile Include="Helper\MVCHtmlExtend\FormItem.cs" />
+    <Compile Include="IAuthoritySiteContract.cs" />
     <Compile Include="IDataAnalyseSiteContract.cs" />
     <Compile Include="IEquipManagerSiteContract.cs" />
     <Compile Include="IEquipmentSiteContract.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="Helper\SiteStaticStrings.cs" />
     <Compile Include="ILogInfoSiteContract.cs" />
     <Compile Include="Impl\AccountSiteService.cs" />
+    <Compile Include="Impl\AuthoritySiteService.cs" />
     <Compile Include="Impl\DataAnalyseSiteService.cs" />
     <Compile Include="Impl\EquipManagerSiteService.cs" />
     <Compile Include="Impl\EquipmentSiteService.cs" />

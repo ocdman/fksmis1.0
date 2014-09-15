@@ -49,6 +49,7 @@
     <Compile Include="Account\LoginInfo.cs" />
     <Compile Include="Account\Member.cs" />
     <Compile Include="Account\MemberExtend.cs" />
+    <Compile Include="Authority\Authority.cs" />
     <Compile Include="Hardware\AbnormalEquip.cs" />
     <Compile Include="Hardware\DataAnalyse.cs" />
     <Compile Include="Hardware\DataStatistics.cs" />

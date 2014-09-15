@@ -60,12 +60,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IAuthorityContract.cs" />
     <Compile Include="IContract.cs" />
     <Compile Include="IDataAnalyseContract.cs" />
     <Compile Include="IEquipManagerContract.cs" />
     <Compile Include="IEquipmentContract.cs" />
     <Compile Include="ILogInfoContract.cs" />
     <Compile Include="Impl\AccountService.cs" />
+    <Compile Include="Impl\AuthorityService.cs" />
     <Compile Include="Impl\CoreServiceBase.cs" />
     <Compile Include="IAccountContract.cs" />
     <Compile Include="Impl\DataAnalyseService.cs">

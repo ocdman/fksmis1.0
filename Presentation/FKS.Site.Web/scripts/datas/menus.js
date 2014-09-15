@@ -138,6 +138,13 @@
         "attributes": {
             "hash": "page/log/操作日志"
         }
+    }, {
+        "id": 135,
+        "iconCls": "icon_0",
+        "text": "权限设置",
+        "attributes": {
+            "hash": "page/authority/权限设置"
+        }
     }]
 }]
 

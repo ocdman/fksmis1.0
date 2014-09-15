@@ -878,6 +878,7 @@
     <Content Include="scripts\modules\base\view_base.js" />
     <Content Include="scripts\modules\home.js" />
     <Content Include="scripts\modules\main_ui.js" />
+    <Content Include="scripts\modules\page\authority.js" />
     <Content Include="scripts\modules\page\data_clean.js" />
     <Content Include="scripts\modules\page\data_concentration.js" />
     <Content Include="scripts\modules\page\data_discharge_report.js" />
@@ -1258,6 +1259,7 @@
     <Content Include="Views\DataAnalyse\AbnormalDataIndex.cshtml" />
     <Content Include="Views\ParameterSet\Index.cshtml" />
     <Content Include="Views\ReportInfo\DischargeIndex.cshtml" />
+    <Content Include="Views\Authority\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Account\Login.cshtml" />

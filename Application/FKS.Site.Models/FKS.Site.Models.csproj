@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthorityView.cs" />
     <Compile Include="EquipManagerView.cs" />
     <Compile Include="EquipmentView.cs" />
     <Compile Include="LogInfoView.cs" />

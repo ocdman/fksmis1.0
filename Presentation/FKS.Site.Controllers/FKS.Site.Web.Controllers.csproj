@@ -137,6 +137,7 @@
     <Compile Include="BaseControllers\BaseController.cs" />
     <Compile Include="BaseControllers\ManagerController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AuthorityController.cs" />
     <Compile Include="Controllers\DataAnalyseController.cs">
       <SubType>Code</SubType>
     </Compile>

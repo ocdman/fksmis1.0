@@ -1,5 +1,21 @@
 /*! fks 24-07-2014 */
-define(["jquery", "underscore", "backbone", "knockout", "helper", "plugins/map", "modules/base/manager_base", "modules/main_ui", "modules/page/equipment_manager", "plugins/jquery.plot/plugins/jqplot.cursor.min", "plugins/jquery.plot/plugins/jqplot.dateAxisRenderer.min", "plugins/jquery.plot/plugins/jqplot.logAxisRenderer.min", "plugins/jquery.plot/plugins/jqplot.canvasTextRenderer.min", "plugins/jquery.plot/plugins/jqplot.canvasAxisTickRenderer.min"],
+define(["jquery",
+    "underscore",
+    "backbone",
+    "knockout",
+    "helper",
+    "plugins/map",
+    "modules/base/manager_base",
+    "modules/main_ui",
+    "modules/page/equipment_manager",
+    "plugins/jquery.plot/plugins/jqplot.cursor.min",
+    "plugins/jquery.plot/plugins/jqplot.dateAxisRenderer.min",
+    "plugins/jquery.plot/plugins/jqplot.logAxisRenderer.min",
+    "plugins/jquery.plot/plugins/jqplot.canvasTextRenderer.min",
+    "plugins/jquery.plot/plugins/jqplot.canvasAxisTickRenderer.min",
+    "plugins/js/highcharts",
+    "plugins/js/highcharts-more",
+    "plugins/js/modules/exporting"],
 function (a, b, c, d, e, f, g, h, i) {
     var j = g.extend({
         controller: "DataAnalyse",
@@ -98,13 +114,17 @@ function (a, b, c, d, e, f, g, h, i) {
         doRenderChart: function (a) {
             var b = {},
             c = [];
+            x = [];
+            y = [];
+            z = [];
+            t = [];
             if (a && a.length) {
                 for (var d in a) {
                     var f = a[d];
                     b[f.ProbeID + "ND"] || (b[f.ProbeID + "ND"] = [], c.push({
                         label: f.ProbeID + "浓度",
                         markerOptions: {
-                            show:!1
+                            show: !1
                         }
                     })),
                     b[f.ProbeID + "WD"] || (b[f.ProbeID + "WD"] = [], c.push({
@@ -122,53 +142,102 @@ function (a, b, c, d, e, f, g, h, i) {
                     b[f.ProbeID + "ND"].push([e.getUnixToTime1(f.TimeUp.replace("/Date(", "").replace(")/", "")), .02 * f.YouYanND]),
                     b[f.ProbeID + "WD"].push([e.getUnixToTime1(f.TimeUp.replace("/Date(", "").replace(")/", "")), .64 * f.YouYanWD - 40]),
                     b[f.ProbeID + "SD"].push([e.getUnixToTime1(f.TimeUp.replace("/Date(", "").replace(")/", "")), f.YouYanSD])
+                    x.push(.02 * f.YouYanND);
+                    y.push(.64 * f.YouYanWD - 40);
+                    z.push(f.YouYanSD);
+                    t.push(e.getUnixToTime1(f.TimeUp.replace("/Date(", "").replace(")/", "")))
                 }
                 var g = [];
-                for (var d in b) g.push(b[d]);
+                for (var d in b)
+                    g.push(b[d]);
                 try {
                     this.doDrawChart(g, c)
                 } catch (h) { }
             }
         },
         doDrawChart: function (b, c) {
-            var d = this;
-            d.$jqPlot && d.$jqPlot.destroy();
-            d.$jqPlot = a.jqplot("monitor", b, {
-                title: "",
-                //seriesColors: ["#4bb2c5", "#c5b47f", "#EAA228", "#579575", "#839557", "#958c12", "#953579", "#4b5de4", "#d8b83f", "#ff5800", "#0085cc"],
-                seriesColors: ["#008000", "#0000FF", "#FF0000", "#958c12", "#953579", "#4b5de4", "#d8b83f", "#ff5800", "#0085cc", "#4bb2c5", "#c5b47f"],
-                series: c,
-                legend: {
-                    show: !0,
-                    location: "ne",
-                    xoffset: 12,
-                    yoffset: 12,
-                    background: "",
-                    textColor: ""
+            //var d = this;
+            //d.$jqPlot && d.$jqPlot.destroy();
+            //d.$jqPlot = a.jqplot("monitor", b, {
+            //    title: "",
+            //    seriesColors: ["#008000", "#0000FF", "#FF0000", "#958c12", "#953579", "#4b5de4", "#d8b83f", "#ff5800", "#0085cc", "#4bb2c5", "#c5b47f"],
+            //    series: c,
+            //    legend: {
+            //        show: !0,
+            //        location: "ne",
+            //        xoffset: 12,
+            //        yoffset: 12,
+            //        background: "",
+            //        textColor: ""
+            //    },
+            //    axes: {
+            //        xaxis: {
+            //            renderer: a.jqplot.DateAxisRenderer,
+            //            tickRenderer: a.jqplot.CanvasAxisTickRenderer,
+            //            tickOptions: {
+            //                angle: -.1,
+            //                formatString: "%Y/%#m/%#d"
+            //            }
+            //        },
+            //        yaxis: {
+            //            renderer: a.jqplot.LinerAxisRenderer,
+            //            tickOptions: {
+            //                prefix: "",
+            //                angle: -10,
+            //                formatString: "%d"
+            //            }
+            //        }
+            //    },
+            //    cursor: {
+            //        show: !0,
+            //        zoom: !0
+            //    }
+            //})
+            $('#monitor').highcharts({
+                title: {
+                    text: 'Monthly Average Temperature',
+                    x: -20 //center
                 },
-                axes: {
-                    xaxis: {
-                        renderer: a.jqplot.DateAxisRenderer,
-                        tickRenderer: a.jqplot.CanvasAxisTickRenderer,
-                        tickOptions: {
-                            angle: -.1,
-                            formatString: "%Y/%#m/%#d"
-                        }
+                subtitle: {
+                    text: 'Source: WorldClimate.com',
+                    x: -20
+                },
+                xAxis: {
+                    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                },
+                yAxis: {
+                    title: {
+                        text: 'Temperature (°C)'
                     },
-                    yaxis: {
-                        renderer: a.jqplot.LinerAxisRenderer,
-                        tickOptions: {
-                            prefix: "",
-                            angle: -10,
-                            formatString: "%d"
-                        }
-                    }
+                    plotLines: [{
+                        value: 0,
+                        width: 1,
+                        color: '#808080'
+                    }]
                 },
-                cursor: {
-                    show: !0,
-                    zoom: !0
-                }
-            })
+                tooltip: {
+                    valueSuffix: '°C'
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'middle',
+                    borderWidth: 0
+                },
+                series: [{
+                    name: 'Tokyo',
+                    data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+                }, {
+                    name: 'New York',
+                    data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
+                }, {
+                    name: 'Berlin',
+                    data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0]
+                }, {
+                    name: 'London',
+                    data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+                }]
+            });
         },
         render: function () {
             var b, c, e, f = this;

@@ -16,6 +16,10 @@ function (a, b, c, d, e) {
                     if (a(".hidden")[0].children.IsAdmin.value == "False") {
                         this.childNodes[0].hidden = !0;
                         this.childNodes[3].hidden = !0;
+                    }
+                    else if (a(".hidden")[0].children.IsAdmin.value == "True" &&
+                        a(".hidden")[0].children.UserName.value != "admin") {
+                        this.childNodes[3].children[1].children[4].hidden = !0;
                     };
                     a(".loading").fadeOut();
                     //location.hash = "#page/data_monitor/dajige数据"

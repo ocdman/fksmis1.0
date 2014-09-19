@@ -42,6 +42,7 @@ namespace FKS.Site.Web.Controllers.BaseControllers
                 model.IsAdmin = true;
             else
                 model.IsAdmin = false;
+            model.UserName = User.Identity.Name;
             return View(model);
         }
 

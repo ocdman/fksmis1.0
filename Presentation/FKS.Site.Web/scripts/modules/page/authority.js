@@ -50,7 +50,7 @@ define([
                 success: function (a) {
                     //console.log(a);
                     //b.doAjaxSuccess(a);
-                    $.messager.alert("提示", "操作成功", "success")
+                    $.messager.alert("提示", "操作成功", "info")
                 },
                 error: function () {
                     $.messager.alert("提示", "获取数据失败！", "error")
@@ -65,7 +65,7 @@ define([
                 success: function (a) {
                     //console.log(a);
                     //b.doAjaxSuccess(a);
-                    $.messager.alert("提示", "操作成功", "success")
+                    $.messager.alert("提示", "操作成功", "info")
                 },
                 error: function () {
                     $.messager.alert("提示", "获取数据失败！", "error")

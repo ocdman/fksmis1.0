@@ -1,4 +1,5 @@
 ﻿using FKS.Component.Tools;
+using FKS.Core.Models.Authority;
 using FKS.Core.Models.Report;
 using FKS.Site.Models;
 using FKS.Site.Web.Controllers.BaseControllers;
@@ -27,6 +28,9 @@ namespace FKS.Site.Web.Controllers.Controllers
     [Export]
     public class ReportInfoController : ManagerController<IReportSiteContract, ReportInfoView>
     {
+        [Import]
+        protected IAuthoritySiteContract AuthoritySiteContract { get; set; }
+
         //
         // GET: /ReportInfo/
 
@@ -35,9 +39,20 @@ namespace FKS.Site.Web.Controllers.Controllers
             return View();
         }
 
+        public bool CheckAuthority()
+        {
+            var authority = this.AuthoritySiteContract.Authorities.Single<Authority>(m => m.Id == 1);
+            return authority.HasAuthority;
+        }
+
 
         public ActionResult ReportDataRow(ReportParams param)
         {
+            if (CheckAuthority() == false)
+            {
+                return Json("error", JsonRequestBehavior.DenyGet);
+            }
+
             AnalyseReportType(param);
             //param.StartTime = DateTime.Parse("2014-06-23 00:00:00");
             //param.EndTime = DateTime.Parse("2014-06-28 00:00:00");
@@ -85,6 +100,11 @@ namespace FKS.Site.Web.Controllers.Controllers
 
         public ActionResult Reporting(ReportParams param)
         {
+            if (CheckAuthority() == false)
+            {
+                return Json("error", JsonRequestBehavior.DenyGet);
+            }
+
             string type = "Excel";
             //param.StartTime = DateTime.Parse("2014-06-23 00:00:00");
             //param.EndTime = DateTime.Parse("2014-06-28 00:00:00");
@@ -150,9 +170,9 @@ namespace FKS.Site.Web.Controllers.Controllers
         public ActionResult DischargeReporting(ReportParams param)
         {
             string type = "Excel";
-            //param.StartTime = DateTime.Parse("2014-06-23 00:00:00");
-            //param.EndTime = DateTime.Parse("2014-06-28 00:00:00");
             AnalyseReportType(param);
+            param.StartTime = DateTime.Parse("2014-06-23 00:00:00");
+            param.EndTime = DateTime.Parse("2014-06-23 23:00:00");
             List<ReportStatistics> ds = (List<ReportStatistics>)this.SiteContract.GetDischargeReportData(param.reportType, param.SortType, param.StartTime, param.EndTime);
             LocalReport localReport = new LocalReport();
             localReport.ReportPath = Server.MapPath("~/ReportModule/DischargeReport.rdlc");

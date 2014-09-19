@@ -171,11 +171,21 @@ function (a, b, c, d, e, f, g, h, i) {
                 pageSize: 50,
                 pageList: [50]
             }, [], "", "");
-            d.find("#statisticType").combobox({
+            d.find("#reportType").combobox({
                 required: !0,
                 width: 150,
                 onSelect: function (a) {
                     e.reportType = a.value;
+                    if (a.value == "01") {
+                        var yesterday = e.getYesterday(-1);
+                        e.$searchBar.find(".startTime").datetimebox("setValue", yesterday + e.getStartHour());
+                        e.$searchBar.find(".endTime").datetimebox("setValue", yesterday + e.getEndHour());
+                    }
+                    else if (a.value == "02") {
+                        var lastweek = e.getYesterday(-7);
+                        e.$searchBar.find(".startTime").datetimebox("setValue", lastweek + e.getStartHour());
+                        e.$searchBar.find(".endTime").datetimebox("setValue", lastweek + e.getEndHour());
+                    }
                 }
             });
             d.find("#sortType").combobox({
@@ -224,6 +234,24 @@ function (a, b, c, d, e, f, g, h, i) {
             var a = this;
             var strurl = '../ReportInfo/DischargeReporting' + '?reportType=' + a.reportType + '&sortType=' + a.sortType;
             window.open(strurl);
+        },
+        getYesterday: function (day) {
+            var today = new Date();
+            //var targetDayMilliseconds = today.getTime() + 1000 * 60 * 60 * day;
+            //today.setTime(targetDayMilliseconds);
+
+            var tYear = today.getFullYear();
+            //var tMonth = today.getMonth() + 1;
+            //var tDate = today.getDate() - 1;
+            var tMonth = today.getMonth() + day;
+            var tDate = today.getDate() - day;
+            return tYear + "/" + tMonth + "/" + tDate;
+        },
+        getStartHour: function () {
+            return " 00:00:00";
+        },
+        getEndHour: function(){
+            return " 23:00:00";
         },
         dispose: function () {
             this.base("dispose");

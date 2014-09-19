@@ -125,6 +125,9 @@
                     onLoadSuccess: function (a) {
                         e.doRenderChart(a.rows);
                     },
+                    onLoadError: function(){
+                        a.messager.alert("提示", "系统数据库查询异常", "error");
+                    },
                     onDblClickRow: a.noop,
                     url: "",
                     pagination: !0,

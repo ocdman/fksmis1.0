@@ -20,6 +20,7 @@ using FKS.Site.Web.Controllers.BaseControllers;
 using FKS.Core.Models.Hardware;
 using FKS.Site.Helper.Logging;
 using FKS.Core;
+using FKS.Core.Models.Authority;
 
 namespace FKS.Site.Web.Controllers.Controllers
 {
@@ -36,6 +37,10 @@ namespace FKS.Site.Web.Controllers.Controllers
     [Export]
     public class DataAnalyseController : ManagerController<IDataAnalyseSiteContract, DataAnalyse>
     {
+        [Import]
+        protected IAuthoritySiteContract AuthoritySiteContract { get; set; }
+
+
         static DateTime time = new DateTime(2014, 6, 11, 12, 01, 0);
 
         #region View
@@ -72,7 +77,7 @@ namespace FKS.Site.Web.Controllers.Controllers
         {
             return View();
         }
-        
+
         /// <summary>
         /// 运行时间
         /// </summary>
@@ -120,6 +125,12 @@ namespace FKS.Site.Web.Controllers.Controllers
 
         #endregion
 
+        public bool CheckAuthority()
+        {
+            var authority = this.AuthoritySiteContract.Authorities.Single<Authority>(m => m.Id == 1);
+            return authority.HasAuthority;
+        }
+
         #region R
 
         /// <summary>
@@ -130,6 +141,10 @@ namespace FKS.Site.Web.Controllers.Controllers
         public ActionResult RealDataRow(string Id)
         {
             //var result = this.SiteContract.GetRealData(Id, DateTime.Now, 1);
+            if (CheckAuthority() == false)
+            {
+                return Json("error", JsonRequestBehavior.DenyGet);
+            }
             var result = this.SiteContract.GetRealData(Id, time, 1);
             time = time.AddMinutes(1);
             return Json(result, JsonRequestBehavior.AllowGet);
@@ -142,6 +157,10 @@ namespace FKS.Site.Web.Controllers.Controllers
         /// <returns></returns>
         public ActionResult MonitorDataRow(MonitorParams param)
         {
+            if (CheckAuthority() == false)
+            {
+                return Json("error", JsonRequestBehavior.DenyGet);
+            }
             var result = this.SiteContract.GetMonitorData(param.tableName, param.StartTime, param.EndTime, param.Interval);
 
             var datagriddata = new DataGridView<DataAnalyse>
@@ -160,6 +179,11 @@ namespace FKS.Site.Web.Controllers.Controllers
         /// <returns></returns>
         public ActionResult LinkageDataRow(MonitorParams param)
         {
+            if (CheckAuthority() == false)
+            {
+                return Json("error", JsonRequestBehavior.DenyGet);
+            }
+
             var result = this.SiteContract.GetLinkageData(param.tableName, param.StartTime, param.EndTime);
 
             //var datagriddata = new DataGridView<DataAnalyse>
@@ -178,6 +202,11 @@ namespace FKS.Site.Web.Controllers.Controllers
         /// <returns></returns>
         public ActionResult CleanDataRow(MonitorParams param)
         {
+            if (CheckAuthority() == false)
+            {
+                return Json("error", JsonRequestBehavior.DenyGet);
+            }
+
             int dayDiff = (param.EndTime - param.StartTime).Days;
 
             if (dayDiff <= 1)
@@ -208,6 +237,10 @@ namespace FKS.Site.Web.Controllers.Controllers
         /// <returns></returns>
         public ActionResult RunningTimeDataRow(MonitorParams param)
         {
+            if (CheckAuthority() == false)
+            {
+                return Json("error", JsonRequestBehavior.DenyGet);
+            }
             var result = this.SiteContract.GetRunningTimeData(param.tableName, param.StartTime, param.EndTime);
 
             //var datagriddata = new DataGridView<DataAnalyse>
@@ -225,6 +258,10 @@ namespace FKS.Site.Web.Controllers.Controllers
         /// <returns></returns>
         public ActionResult AbnormalDataRow()
         {
+            if (CheckAuthority() == false)
+            {
+                return Json("error", JsonRequestBehavior.DenyGet);
+            }
             var result = this.SiteContract.GetAbnormalData();
             return Json(result, JsonRequestBehavior.AllowGet);
         }
@@ -236,6 +273,10 @@ namespace FKS.Site.Web.Controllers.Controllers
         /// <returns></returns>
         public ActionResult DischargeDataRow(MonitorParams param)
         {
+            if (CheckAuthority() == false)
+            {
+                return Json("error", JsonRequestBehavior.DenyGet);
+            }
             var result = this.SiteContract.GetDischarge(param.tableName, param.StartTime, param.EndTime);
             return Json(result, JsonRequestBehavior.AllowGet);
         }
@@ -247,6 +288,10 @@ namespace FKS.Site.Web.Controllers.Controllers
         /// <returns></returns>
         public ActionResult PureRateDataRow(MonitorParams param)
         {
+            if (CheckAuthority() == false)
+            {
+                return Json("error", JsonRequestBehavior.DenyGet);
+            }
             var result = this.SiteContract.GetPureRate(param.tableName, param.StartTime, param.EndTime);
             return Json(result, JsonRequestBehavior.AllowGet);
         }
@@ -258,6 +303,10 @@ namespace FKS.Site.Web.Controllers.Controllers
         /// <returns></returns>
         public ActionResult ConcentrationDataRow(MonitorParams param)
         {
+            if (CheckAuthority() == false)
+            {
+                return Json("error", JsonRequestBehavior.DenyGet);
+            }
             var result = this.SiteContract.GetConcentration(param.tableName, param.StartTime, param.EndTime);
             return Json(result, JsonRequestBehavior.AllowGet);
         }

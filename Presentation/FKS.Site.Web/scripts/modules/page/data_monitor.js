@@ -114,100 +114,59 @@ function (a, b, c, d, e, f, g, h, i) {
         doRenderChart: function (a) {
             var b = {},
             c = [];
-            x = [];
-            y = [];
-            z = [];
-            t = [];
             if (a && a.length) {
                 for (var d in a) {
                     var f = a[d];
-                    b[f.ProbeID + "ND"] || (b[f.ProbeID + "ND"] = [], c.push({
-                        label: f.ProbeID + "浓度",
-                        markerOptions: {
-                            show: !1
-                        }
-                    })),
-                    b[f.ProbeID + "WD"] || (b[f.ProbeID + "WD"] = [], c.push({
-                        label: f.ProbeID + "温度",
-                        markerOptions: {
-                            show: !1
-                        }
-                    })),
-                    b[f.ProbeID + "SD"] || (b[f.ProbeID + "SD"] = [], c.push({
-                        label: f.ProbeID + "湿度",
-                        markerOptions: {
-                            show: !1
-                        }
-                    })),
-                    b[f.ProbeID + "ND"].push([e.getUnixToTime1(f.TimeUp.replace("/Date(", "").replace(")/", "")), .02 * f.YouYanND]),
-                    b[f.ProbeID + "WD"].push([e.getUnixToTime1(f.TimeUp.replace("/Date(", "").replace(")/", "")), .64 * f.YouYanWD - 40]),
-                    b[f.ProbeID + "SD"].push([e.getUnixToTime1(f.TimeUp.replace("/Date(", "").replace(")/", "")), f.YouYanSD])
-                    x.push(.02 * f.YouYanND);
-                    y.push(.64 * f.YouYanWD - 40);
-                    z.push(f.YouYanSD);
-                    t.push(e.getUnixToTime1(f.TimeUp.replace("/Date(", "").replace(")/", "")))
+                    b[f.ProbeID + "ND"] || (b[f.ProbeID + "ND"] = [], c.push(
+                        f.ProbeID + "浓度"
+                    )),
+                    b[f.ProbeID + "WD"] || (b[f.ProbeID + "WD"] = [], c.push(
+                        f.ProbeID + "温度"
+                    )),
+                    b[f.ProbeID + "SD"] || (b[f.ProbeID + "SD"] = [], c.push(
+                        f.ProbeID + "湿度"
+                    )),
+                    b[f.ProbeID + "ND"].push([e.getUnixToTime3(f.TimeUp.replace("/Date(", "").replace(")/", "")), .02 * f.YouYanND]),
+                    b[f.ProbeID + "WD"].push([e.getUnixToTime3(f.TimeUp.replace("/Date(", "").replace(")/", "")), .64 * f.YouYanWD - 40]),
+                    b[f.ProbeID + "SD"].push([e.getUnixToTime3(f.TimeUp.replace("/Date(", "").replace(")/", "")), f.YouYanSD])
                 }
                 var g = [];
-                for (var d in b)
-                    g.push(b[d]);
+                var i = 0;
+                for (var d in b) {
+                    g.push({
+                        name: c[i++],
+                        data: b[d]});
+                }
                 try {
-                    this.doDrawChart(g, c)
+                    this.doDrawChart(g)
                 } catch (h) { }
             }
         },
-        doDrawChart: function (b, c) {
-            //var d = this;
-            //d.$jqPlot && d.$jqPlot.destroy();
-            //d.$jqPlot = a.jqplot("monitor", b, {
-            //    title: "",
-            //    seriesColors: ["#008000", "#0000FF", "#FF0000", "#958c12", "#953579", "#4b5de4", "#d8b83f", "#ff5800", "#0085cc", "#4bb2c5", "#c5b47f"],
-            //    series: c,
-            //    legend: {
-            //        show: !0,
-            //        location: "ne",
-            //        xoffset: 12,
-            //        yoffset: 12,
-            //        background: "",
-            //        textColor: ""
-            //    },
-            //    axes: {
-            //        xaxis: {
-            //            renderer: a.jqplot.DateAxisRenderer,
-            //            tickRenderer: a.jqplot.CanvasAxisTickRenderer,
-            //            tickOptions: {
-            //                angle: -.1,
-            //                formatString: "%Y/%#m/%#d"
-            //            }
-            //        },
-            //        yaxis: {
-            //            renderer: a.jqplot.LinerAxisRenderer,
-            //            tickOptions: {
-            //                prefix: "",
-            //                angle: -10,
-            //                formatString: "%d"
-            //            }
-            //        }
-            //    },
-            //    cursor: {
-            //        show: !0,
-            //        zoom: !0
-            //    }
-            //})
+        doDrawChart: function (b) {
             $('#monitor').highcharts({
                 title: {
-                    text: 'Monthly Average Temperature',
+                    text: '油烟监测曲线图',
                     x: -20 //center
                 },
                 subtitle: {
-                    text: 'Source: WorldClimate.com',
+                    //text: 'Source: WorldClimate.com',
                     x: -20
                 },
+                chart: {
+                    zoomType: 'xy'
+                },
                 xAxis: {
-                    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                    type: 'datetime',
+                    labels: {
+                        step: 2,
+                        formatter: function () {
+                            return Highcharts.dateFormat('%Y-%m-%d', this.value);
+                        }
+                    }
                 },
                 yAxis: {
                     title: {
-                        text: 'Temperature (°C)'
+                        //text: 'Temperature (°C)'
                     },
                     plotLines: [{
                         value: 0,
@@ -216,7 +175,7 @@ function (a, b, c, d, e, f, g, h, i) {
                     }]
                 },
                 tooltip: {
-                    valueSuffix: '°C'
+                    //valueSuffix: '°C'
                 },
                 legend: {
                     layout: 'vertical',
@@ -224,19 +183,24 @@ function (a, b, c, d, e, f, g, h, i) {
                     verticalAlign: 'middle',
                     borderWidth: 0
                 },
-                series: [{
-                    name: 'Tokyo',
-                    data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
-                }, {
-                    name: 'New York',
-                    data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
-                }, {
-                    name: 'Berlin',
-                    data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0]
-                }, {
-                    name: 'London',
-                    data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
-                }]
+                plotOptions: {
+                    series: {
+                        marker: {
+                            radius: 0
+                        },
+                    }
+                },
+                //series: [{
+                //    name: '油烟浓度1',
+                //    data: b[0]
+                //}, {
+                //    name: '油烟温度1',
+                //    data: b[1]
+                //}, {
+                //    name: '油烟湿度1',
+                //    data: b[2]
+                //}]
+                series: b
             });
         },
         render: function () {

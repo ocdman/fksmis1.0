@@ -31,6 +31,9 @@ function () {
         }
     }(),
     b = {
+        getUnixToTime3: function (a) {
+            return parseInt(a);
+        },
         getUnixToTime1: function (a) {
             return 10 == a.toString().length && (a += "000"),
             new Date(parseInt(a))

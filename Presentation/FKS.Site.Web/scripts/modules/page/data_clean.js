@@ -1,5 +1,21 @@
 ﻿/*! fks 24-07-2014 */
-define(["jquery", "underscore", "backbone", "knockout", "helper", "plugins/map", "modules/base/manager_base", "modules/main_ui", "modules/page/equipment_manager", "plugins/jquery.plot/plugins/jqplot.cursor.min", "plugins/jquery.plot/plugins/jqplot.dateAxisRenderer.min", "plugins/jquery.plot/plugins/jqplot.logAxisRenderer.min", "plugins/jquery.plot/plugins/jqplot.canvasTextRenderer.min", "plugins/jquery.plot/plugins/jqplot.canvasAxisTickRenderer.min"],
+define(["jquery",
+    "underscore",
+    "backbone",
+    "knockout",
+    "helper",
+    "plugins/map",
+    "modules/base/manager_base",
+    "modules/main_ui",
+    "modules/page/equipment_manager",
+    "plugins/jquery.plot/plugins/jqplot.cursor.min",
+    "plugins/jquery.plot/plugins/jqplot.dateAxisRenderer.min",
+    "plugins/jquery.plot/plugins/jqplot.logAxisRenderer.min",
+    "plugins/jquery.plot/plugins/jqplot.canvasTextRenderer.min",
+    "plugins/jquery.plot/plugins/jqplot.canvasAxisTickRenderer.min",
+    "plugins/js/highcharts",
+    "plugins/js/highcharts-more",
+    "plugins/js/modules/exporting"],
 function (a, b, c, d, e, f, g, h, i) {
     var j = g.extend({
         controller: "DataAnalyse",
@@ -28,55 +44,71 @@ function (a, b, c, d, e, f, g, h, i) {
                     var f = b[d],
                     g = Math.floor(f.YouYanND / 20, 0);
                     g >= 5 && (g = 4),
-                    c[0].push([e.getUnixToTime1(f.TimeUp.replace("/Date(", "").replace(")/", "")), g])
+                    c[0].push([e.getUnixToTime2(f.TimeUp.replace("/Date(", "").replace(")/", "")), g])
                 }
+                var h = [];
+                h.push({
+                    data: c[0],
+                    name: "洁净度"
+                })
                 try {
-                    this.doDrawChart(c, [{
-                        label: "洁净度",
-                        markerOptions: {
-                            show: !1
-                        }
-                    }])
-                } catch (h) { }
+                    this.doDrawChart(h)
+                } catch (i) { }
             } else a.messager.alert("提示", "没有数据！", "warning")
         },
-        doDrawChart: function (b, c) {
-            var d = this;
-            d.$jqPlot && d.$jqPlot.destroy();
-            d.$jqPlot = a.jqplot("clean", b, {
-                title: "",
-                seriesColors: ["#008000", "#0000FF", "#FF0000", "#579575", "#839557", "#958c12", "#953579", "#4b5de4", "#d8b83f", "#ff5800", "#0085cc"],
-                series: c,
-                legend: {
-                    show: !0,
-                    location: "ne",
-                    xoffset: 12,
-                    yoffset: 12,
-                    background: "",
-                    textColor: ""
+        doDrawChart: function (b) {
+            $('#clean').highcharts({
+                credits: {
+                    enabled: false
                 },
-                axes: {
-                    xaxis: {
-                        renderer: a.jqplot.DateAxisRenderer,
-                        tickRenderer: a.jqplot.CanvasAxisTickRenderer,
-                        tickOptions: {
-                            angle: -.1,
-                            formatString: "%Y/%#m/%#d"
-                        }
-                    },
-                    yaxis: {
-                        renderer: a.jqplot.LinerAxisRenderer,
-                        tickOptions: {
-                            prefix: "",
-                            formatString: "%d 级"
+                title: {
+                    text: '洁净度曲线图',
+                    x: -20 //center
+                },
+                subtitle: {
+                    //text: '1：清洁 2：较清洁 3：脏 4：较脏 5：极脏',
+                    x: -20
+                },
+                chart: {
+                    zoomType: 'xy'
+                },
+                xAxis: {
+                    type: 'datetime',
+                    labels: {
+                        //step: 2,
+                        formatter: function () {
+                            return Highcharts.dateFormat('%Y-%m-%d', this.value);
                         }
                     }
                 },
-                cursor: {
-                    show: !0,
-                    zoom: !0
-                }
-            })
+                yAxis: {
+                    title: {
+                        //text: 'Temperature (°C)'
+                    },
+                    plotLines: [{
+                        value: 0,
+                        width: 1,
+                        color: '#808080'
+                    }]
+                },
+                tooltip: {
+                    //valueSuffix: '°C'
+                },
+                //legend: {
+                //    layout: 'vertical',
+                //    align: 'right',
+                //    verticalAlign: 'middle',
+                //    borderWidth: 0
+                //},
+                plotOptions: {
+                    series: {
+                        marker: {
+                            radius: 0
+                        },
+                    }
+                },
+                series: b
+            });
         },
         render: function () {
             var b, c, d, e = this;

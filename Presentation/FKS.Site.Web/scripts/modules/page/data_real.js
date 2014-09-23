@@ -12,7 +12,10 @@ define(["jquery",
     "plugins/jquery.plot/plugins/jqplot.dateAxisRenderer.min",
     "plugins/jquery.plot/plugins/jqplot.logAxisRenderer.min",
     "plugins/jquery.plot/plugins/jqplot.canvasTextRenderer.min",
-    "plugins/jquery.plot/plugins/jqplot.canvasAxisTickRenderer.min"],
+    "plugins/jquery.plot/plugins/jqplot.canvasAxisTickRenderer.min",
+    "plugins/js/highcharts",
+    "plugins/js/highcharts-more",
+    "plugins/js/modules/exporting"],
     function (a, b, c, d, e, f, g, h, i) {
         var j = g.extend({
             controller: "DataAnalyse",
@@ -105,21 +108,35 @@ define(["jquery",
                                             var g = a[f];
                                             c.$table.datagrid("appendRow", g),
                                             c.LineData[g.ProbeID + "ND"] || (c.LineData[g.ProbeID + "ND"] = [],
-                                            c.serials.push({ label: g.ProbeID + "浓度", markerOptions: {show: !1} })),
+                                            //c.serials.push({ label: g.ProbeID + "浓度", markerOptions: { show: !1 } })
+                                            c.serials.push(g.ProbeID + "浓度")
+                                            ),
                                             c.LineData[g.ProbeID + "WD"] || (c.LineData[g.ProbeID + "WD"] = [],
-                                            c.serials.push({ label: g.ProbeID + "温度", markerOptions: { show: !1 } })),
+                                            //c.serials.push({ label: g.ProbeID + "温度", markerOptions: { show: !1 } })
+                                            c.serials.push(g.ProbeID + "温度")
+                                            ),
                                             c.LineData[g.ProbeID + "SD"] || (c.LineData[g.ProbeID + "SD"] = [],
-                                            c.serials.push({ label: g.ProbeID + "湿度", markerOptions: { show: !1 } })),
-                                            c.LineData[g.ProbeID + "ND"].push([e.getUnixToTime1(g.TimeUp.replace("/Date(", "").replace(")/", "")),
+                                            //c.serials.push({ label: g.ProbeID + "湿度", markerOptions: { show: !1 } })
+                                            c.serials.push(g.ProbeID + "湿度")
+                                            ),
+                                            c.LineData[g.ProbeID + "ND"].push([e.getUnixToTime2(g.TimeUp.replace("/Date(", "").replace(")/", "")),
                                                 g.YouYanND]),
-                                            c.LineData[g.ProbeID + "WD"].push([e.getUnixToTime1(g.TimeUp.replace("/Date(", "").replace(")/", "")),
-                                                g.YouYanWD]), c.LineData[g.ProbeID + "SD"].push([e.getUnixToTime1(g.TimeUp.replace("/Date(", "").replace(")/", "")),
+                                            c.LineData[g.ProbeID + "WD"].push([e.getUnixToTime2(g.TimeUp.replace("/Date(", "").replace(")/", "")),
+                                                g.YouYanWD]),
+                                            c.LineData[g.ProbeID + "SD"].push([e.getUnixToTime2(g.TimeUp.replace("/Date(", "").replace(")/", "")),
                                                     g.YouYanSD])
                                         }
                                         var h = [];
-                                        for (var f in c.LineData) h.push(c.LineData[f]);
+                                        var j = 0;
+                                        for (var f in c.LineData) {
+                                            //h.push(c.LineData[f]);
+                                            h.push({
+                                                name: c.serials[j++],
+                                                data: c.LineData[f]
+                                            })
+                                        }
                                         try {
-                                            c.doDrawChart(h, c.serials)
+                                            c.doDrawChart(h)
                                         }
                                         catch (i) { }
                                     }
@@ -140,45 +157,69 @@ define(["jquery",
                 a("#EquipInfo").combogrid("enable"),
                 this.LineData = {},
                 this.serials = [])
-            }, doDrawChart: function (b, c) {
-                var d = this;
-                d.$jqPlot && d.$jqPlot.destroy(),
-                d.$jqPlot = a.jqplot("chart1", b, {
-                    title: "",
-                    seriesColors: ["#008000",
-                        "#0000FF",
-                        "#FF0000",
-                        "#579575",
-                        "#839557",
-                        "#958c12",
-                        "#953579",
-                        "#4b5de4",
-                        "#d8b83f",
-                        "#ff5800",
-                        "#0085cc"],
-                    series: c,
-                    legend: {
-                        show: !0,
-                        location: "ne",
-                        xoffset: 12,
-                        yoffset: 12,
-                        background: "",
-                        textColor: ""
-                    }, axes: {
-                        xaxis: {
-                            renderer: a.jqplot.DateAxisRenderer,
-                            tickRenderer: a.jqplot.CanvasAxisTickRenderer,
-                            tickOptions: { angle: -30 }
-                        },
-                        yaxis: {
-                            renderer: a.jqplot.LinerAxisRenderer,
-                            tickOptions: { prefix: "" }
+            }, doDrawChart: function (b) {
+                $('#chart1').highcharts({
+                    credits: {
+                        enabled: false
+                    },
+                    title: {
+                        text: '实时数据监测',
+                        x: -20 //center
+                    },
+                    subtitle: {
+                        //text: 'Source: WorldClimate.com',
+                        x: -20
+                    },
+                    chart: {
+                        zoomType: 'xy'
+                    },
+                    xAxis: {
+                        type: 'datetime',
+                        labels: {
+                            //step: 2,
+                            formatter: function () {
+                                return Highcharts.dateFormat('%H:%M:%S', this.value);
+                            }
                         }
-                    }, cursor: {
-                        show: !0,
-                        zoom: !0
-                    }
-                })
+                    },
+                    yAxis: {
+                        title: {
+                            //text: 'Temperature (°C)'
+                        },
+                        plotLines: [{
+                            value: 0,
+                            width: 1,
+                            color: '#808080'
+                        }]
+                    },
+                    tooltip: {
+                        //valueSuffix: '°C'
+                    },
+                    legend: {
+                        layout: 'vertical',
+                        align: 'right',
+                        verticalAlign: 'middle',
+                        borderWidth: 0
+                    },
+                    plotOptions: {
+                        series: {
+                            marker: {
+                                radius: 0
+                            },
+                        }
+                    },
+                    //series: [{
+                    //    name: '油烟浓度1',
+                    //    data: b[0]
+                    //}, {
+                    //    name: '油烟温度1',
+                    //    data: b[1]
+                    //}, {
+                    //    name: '油烟湿度1',
+                    //    data: b[2]
+                    //}]
+                    series: b
+                });
             }, render: function () {
                 {
                     var b, c, e, f = this;

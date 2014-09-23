@@ -12,7 +12,10 @@ define(["jquery",
         "plugins/jquery.plot/plugins/jqplot.dateAxisRenderer.min",
         "plugins/jquery.plot/plugins/jqplot.logAxisRenderer.min",
         "plugins/jquery.plot/plugins/jqplot.canvasTextRenderer.min",
-        "plugins/jquery.plot/plugins/jqplot.canvasAxisTickRenderer.min"],
+        "plugins/jquery.plot/plugins/jqplot.canvasAxisTickRenderer.min",
+    "plugins/js/highcharts",
+    "plugins/js/highcharts-more",
+    "plugins/js/modules/exporting"],
 function (a, b, c, d, e, f, g, h, i) {
     var j = g.extend({
         controller: "DataAnalyse",
@@ -39,58 +42,71 @@ function (a, b, c, d, e, f, g, h, i) {
             if (b && b.length) {
                 for (var d in b) {
                     var f = b[d];
-                    c[0].push([e.getUnixToTime1(f.TimeUp.replace("/Date(", "").replace(")/", "")), f.ZTjhqCount / f.ZTfjCount])
+                    c[0].push([e.getUnixToTime2(f.TimeUp.replace("/Date(", "").replace(")/", "")), f.ZTjhqCount / f.ZTfjCount])
                 }
+                var g = [];
+                g.push({
+                    data: c[0],
+                    name: "联动比"
+                })
                 try {
-                    this.doDrawChart(c, [{
-                        label: "联动比"
-                    }])
+                    this.doDrawChart(g)
                 } catch (g) { }
             } else a.messager.alert("提示", "没有数据！", "warning")
         },
-        doDrawChart: function (b, c) {
-            var d = this;
-            d.$jqPlot && d.$jqPlot.destroy(),
-            d.$jqPlot = a.jqplot("linkage", b, {
-                title: "1：清洁 2：较清洁 3：脏 4：较脏 5：极脏",
-                seriesColors: ["#008000", "#0000FF", "#FF0000", "#579575", "#839557", "#958c12", "#953579", "#4b5de4", "#d8b83f", "#ff5800", "#0085cc"],
-                series: c,
-                legend: {
-                    show: !0,
-                    location: "ne",
-                    xoffset: 12,
-                    yoffset: 12,
-                    background: "",
-                    textColor: ""
+        doDrawChart: function (b) {
+            $('#linkage').highcharts({
+                credits: {
+                    enabled: false
                 },
-                seriesDefaults: {
-                    dragable: {
-                        color: void 0,
-                        constrainTo: "none"
+                title: {
+                    text: '联动比曲线图',
+                    x: -20 //center
+                },
+                subtitle: {
+                    text: '1：清洁 2：较清洁 3：脏 4：较脏 5：极脏',
+                    x: -20
+                },
+                chart: {
+                    zoomType: 'xy'
+                },
+                xAxis: {
+                    type: 'datetime',
+                    labels: {
+                        //step: 2,
+                        formatter: function () {
+                            return Highcharts.dateFormat('%Y-%m-%d', this.value);
+                        }
                     }
                 },
-                axes: {
-                    xaxis: {
-                        renderer: a.jqplot.DateAxisRenderer,
-                        tickRenderer: a.jqplot.CanvasAxisTickRenderer,
-                        title: "时间",
-                        tickOptions: {
-                            angle: -30
-                        }
+                yAxis: {
+                    title: {
+                        //text: 'Temperature (°C)'
                     },
-                    yaxis: {
-                        renderer: a.jqplot.LinerAxisRenderer,
-                        title: "联动比",
-                        tickOptions: {
-                            prefix: ""
-                        }
+                    plotLines: [{
+                        value: 0,
+                        width: 1,
+                        color: '#808080'
+                    }]
+                },
+                tooltip: {
+                    //valueSuffix: '°C'
+                },
+                //legend: {
+                //    layout: 'vertical',
+                //    align: 'right',
+                //    verticalAlign: 'middle',
+                //    borderWidth: 0
+                //},
+                plotOptions: {
+                    series: {
+                        marker: {
+                            radius: 0
+                        },
                     }
                 },
-                cursor: {
-                    show: !0,
-                    zoom: !0
-                }
-            })
+                series: b
+            });
         },
         render: function () {
             var b, c, d, e = this;

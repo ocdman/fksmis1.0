@@ -14,7 +14,10 @@
     "plugins/jquery.plot/plugins/jqplot.pointLabels.min",
     "plugins/jquery.plot/plugins/jqplot.canvasAxisTickRenderer.min",
     "plugins/jquery.plot/plugins/jqplot.canvasOverlay.min",
-    "plugins/jquery.plot/plugins/jqplot.highlighter.min"],
+    "plugins/jquery.plot/plugins/jqplot.highlighter.min",
+    "plugins/js/highcharts",
+    "plugins/js/highcharts-more",
+    "plugins/js/modules/exporting"],
 function (a, b, c, d, e, f, g, h, i) {
     var j = g.extend({
         controller: "DataAnalyse",
@@ -37,78 +40,156 @@ function (a, b, c, d, e, f, g, h, i) {
             }), h.doAddModule(c.controller, a, c), !0) : !1
         },
         doRenderChart: function (b) {
-            var c = [[]];
-            d = [];
-            f = "";
+            var d = [];
+            k = {};
             if (b && b.length) {
                 j = b[0].ConcentrateBound;
                 for (var g in b) {
                     var h = b[g];
-                    void 0 != h.TimeUp && void 0 != h.Id && (f != h.TimeUp && (f = h.TimeUp, d.push(e.DateFormat(e.getUnixToTime1(f.replace("/Date(", "").replace(")/", "")), "yyyy/MM/dd"))), c[h.Id].push(h.YouYanND))
+                    k[h.Id] || (k[h.Id] = []),
+                    k[h.Id].push([e.getUnixToTime2(h.TimeUp.replace("/Date(", "").replace(")/", "")), h.YouYanND])
                 }
+                var g = [];
+                g.push({
+                    name: "排放量",
+                    data: k[h.Id]
+                })
                 try {
-                    this.doDrawChart(c, d, j)
+                    this.doDrawChart(g, j)
                 }
                 catch (i) { }
             }
             else a.messager.alert("提示", "没有数据！", "warning");
         },
-        doDrawChart: function (b, c, j) {
-            var d = this;
-            d.$jqPlot && d.$jqPlot.destroy();
-            d.$jqPlot = a.jqplot("concentration", b, {
-                animate: !0,
-                animateReplot: !0,
-                cursor:{
-                    show: !0,
-                    zoom: !0,
-                    looseZoom: !0,
-                    showTooltip: !1
+        doDrawChart: function (b, j) {
+            $('#concentration').highcharts({
+                credits: {
+                    enabled: false
                 },
-                seriesDefaults: {
-                    renderer: a.jqplot.BarRenderer,
-                    //pointLabels: { show: !0},
-                    rendererOptions: {
-                        fillToZero: !0,
-                        animation: {
-                            speed: 2500
-                        },
-                    },
+                title: {
+                    text: '油烟浓度曲线图',
+                    x: -20 //center
                 },
-                series: [
-                    { label: "油烟浓度" }
-                ],
-                axes: {
-                    xaxis: {
-                        renderer: a.jqplot.CategoryAxisRenderer,
-                        ticks: c,
-                    },
-                    yaxis: {
-                        pad: 1.05,
-                        tickOptions: {
-                            formatString: "%d (mg/m3)"
-                        },
-                        rendererOptions: {
-                            forceTickAt0: true
+                subtitle: {
+                    //text: 'Source: WorldClimate.com',
+                    x: -20
+                },
+                chart: {
+                    zoomType: 'xy',
+                    type: 'column'
+                },
+                xAxis: {
+                    type: 'datetime',
+                    labels: {
+                        //step: 2,
+                        formatter: function () {
+                            return Highcharts.dateFormat('%Y-%m-%d', this.value);
                         }
-                    },
+                    }
                 },
-                canvasOverlay: {
-                    show: true,
-                    objects: [
-                        {
-                            horizontalLine: {
-                                name: 'pebbles',
-                                y: j,
-                                lineWidth: 3,
-                                xOffset: 0,
-                                color: 'rgb(89, 198, 154)',
-                                shadow: false
+                yAxis: {
+                    title: {
+                        text: '油烟浓度 (mg/m³)'
+                    },
+                    plotLines: [{
+                        color: 'red',
+                        value: j,
+                        width: 2,
+                        //color: '#808080'
+                        label: {
+                            text: '警戒线',
+                            align: 'left',
+                            x: 10,
+                            style: {
+                                fontSize: '14px',
+                                fontWeight: 'bold'
                             }
                         }
-                    ]
-                }
-            })
+                    }]
+                },
+                tooltip: {
+                    valueSuffix: 'mg/m³'
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'middle',
+                    borderWidth: 0
+                },
+                plotOptions: {
+                    series: {
+                        marker: {
+                            radius: 0
+                        },
+                    }
+                },
+                //series: [{
+                //    name: '油烟浓度1',
+                //    data: b[0]
+                //}, {
+                //    name: '油烟温度1',
+                //    data: b[1]
+                //}, {
+                //    name: '油烟湿度1',
+                //    data: b[2]
+                //}]
+                series: b
+            });
+            //var d = this;
+            //d.$jqPlot && d.$jqPlot.destroy();
+            //d.$jqPlot = a.jqplot("concentration", b, {
+            //    animate: !0,
+            //    animateReplot: !0,
+            //    cursor:{
+            //        show: !0,
+            //        zoom: !0,
+            //        looseZoom: !0,
+            //        showTooltip: !1
+            //    },
+            //    seriesDefaults: {
+            //        renderer: a.jqplot.BarRenderer,
+            //        //pointLabels: { show: !0},
+            //        rendererOptions: {
+            //            fillToZero: !0,
+            //            animation: {
+            //                speed: 2500
+            //            },
+            //        },
+            //    },
+            //    series: [
+            //        { label: "油烟浓度" }
+            //    ],
+            //    axes: {
+            //        xaxis: {
+            //            renderer: a.jqplot.CategoryAxisRenderer,
+            //            ticks: c,
+            //        },
+            //        yaxis: {
+            //            pad: 1.05,
+            //            tickOptions: {
+            //                formatString: "%d (mg/m3)"
+            //            },
+            //            rendererOptions: {
+            //                forceTickAt0: true
+            //            }
+            //        },
+            //    },
+            //    canvasOverlay: {
+            //        show: true,
+            //        objects: [
+            //            {
+            //                horizontalLine: {
+            //                    name: 'pebbles',
+            //                    y: j,
+            //                    lineWidth: 3,
+            //                    xOffset: 0,
+            //                    color: 'rgb(89, 198, 154)',
+            //                    shadow: false
+            //                }
+            //            }
+            //        ]
+            //    }
+            //})
             //$('#discharge').bind('jqplotDataHighlight',
             //    function (ev, seriesIndex, pointIndex, data) {
             //        $('#dischargeContent').html('日期： ' + c[pointIndex] + '，数据：' + data[1] + '克');

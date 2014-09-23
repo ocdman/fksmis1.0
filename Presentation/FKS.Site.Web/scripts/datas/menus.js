@@ -82,7 +82,7 @@
         "text": "排放量",
         "iconCls": "icon_12",
         "attributes": {
-            "hash": "page/data_discharge_report/排放量"
+            "hash": "page/data_discharge/排放量"
         }
     }, {
         "id": 132,

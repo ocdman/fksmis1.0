@@ -126,9 +126,9 @@ function (a, b, c, d, e, f, g, h, i) {
                     b[f.ProbeID + "SD"] || (b[f.ProbeID + "SD"] = [], c.push(
                         f.ProbeID + "湿度"
                     )),
-                    b[f.ProbeID + "ND"].push([e.getUnixToTime3(f.TimeUp.replace("/Date(", "").replace(")/", "")), .02 * f.YouYanND]),
-                    b[f.ProbeID + "WD"].push([e.getUnixToTime3(f.TimeUp.replace("/Date(", "").replace(")/", "")), .64 * f.YouYanWD - 40]),
-                    b[f.ProbeID + "SD"].push([e.getUnixToTime3(f.TimeUp.replace("/Date(", "").replace(")/", "")), f.YouYanSD])
+                    b[f.ProbeID + "ND"].push([e.getUnixToTime2(f.TimeUp.replace("/Date(", "").replace(")/", "")), .02 * f.YouYanND]),
+                    b[f.ProbeID + "WD"].push([e.getUnixToTime2(f.TimeUp.replace("/Date(", "").replace(")/", "")), .64 * f.YouYanWD - 40]),
+                    b[f.ProbeID + "SD"].push([e.getUnixToTime2(f.TimeUp.replace("/Date(", "").replace(")/", "")), f.YouYanSD])
                 }
                 var g = [];
                 var i = 0;
@@ -144,6 +144,9 @@ function (a, b, c, d, e, f, g, h, i) {
         },
         doDrawChart: function (b) {
             $('#monitor').highcharts({
+                credits: {
+                    enabled: false
+                },
                 title: {
                     text: '油烟监测曲线图',
                     x: -20 //center
@@ -158,7 +161,7 @@ function (a, b, c, d, e, f, g, h, i) {
                 xAxis: {
                     type: 'datetime',
                     labels: {
-                        step: 2,
+                        //step: 2,
                         formatter: function () {
                             return Highcharts.dateFormat('%Y-%m-%d', this.value);
                         }

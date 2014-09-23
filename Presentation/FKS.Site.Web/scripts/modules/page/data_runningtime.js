@@ -1,5 +1,22 @@
 ﻿/*! fks 24-07-2014 */
-define(["jquery", "underscore", "backbone", "knockout", "helper", "plugins/map", "modules/base/manager_base", "modules/main_ui", "modules/page/equipment_manager", "plugins/jquery.plot/plugins/jqplot.cursor.min", "plugins/jquery.plot/plugins/jqplot.dateAxisRenderer.min", "plugins/jquery.plot/plugins/jqplot.categoryAxisRenderer.min", "plugins/jquery.plot/plugins/jqplot.barRenderer.min", "plugins/jquery.plot/plugins/jqplot.pointLabels.min", "plugins/jquery.plot/plugins/jqplot.canvasAxisTickRenderer.min"],
+define(["jquery",
+    "underscore",
+    "backbone",
+    "knockout",
+    "helper",
+    "plugins/map",
+    "modules/base/manager_base",
+    "modules/main_ui",
+    "modules/page/equipment_manager",
+    "plugins/jquery.plot/plugins/jqplot.cursor.min",
+    "plugins/jquery.plot/plugins/jqplot.dateAxisRenderer.min",
+    "plugins/jquery.plot/plugins/jqplot.categoryAxisRenderer.min",
+    "plugins/jquery.plot/plugins/jqplot.barRenderer.min",
+    "plugins/jquery.plot/plugins/jqplot.pointLabels.min",
+    "plugins/jquery.plot/plugins/jqplot.canvasAxisTickRenderer.min",
+    "plugins/js/highcharts",
+    "plugins/js/highcharts-more",
+    "plugins/js/modules/exporting"],
 function (a, b, c, d, e, f, g, h, i) {
     var j = g.extend({
         controller: "DataAnalyse",
@@ -22,66 +39,95 @@ function (a, b, c, d, e, f, g, h, i) {
             }), h.doAddModule(c.controller, a, c), !0) : !1
         },
         doRenderChart: function (b) {
-            var c = [[], [], [], []],
-            d = [],
-            f = "";
+            var d = [],
+            k = {};
             if (b && b.length) {
                 for (var g in b) {
                     var h = b[g];
-                    void 0 != h.TimeUp && void 0 != h.Id && (f != h.TimeUp && (f = h.TimeUp, d.push(e.DateFormat(e.getUnixToTime1(f.replace("/Date(", "").replace(")/", "")), "yyyy/MM/dd"))), c[h.Id].push(h.ProbeID))
+                    k[h.Category] || (k[h.Category] = [],
+                        h.Category == "fj" ? d.push("风机有效时间") :
+                    (h.Category == "fjall" ? d.push("风机运行时间") :
+                    (h.Category == "jhq" ? d.push("净化器有效时间") :
+                    (h.Category == "jhqall" ? d.push("净化器运行时间") : null)))),
+                    k[h.Category].push([e.getUnixToTime2(h.TimeUp.replace("/Date(", "").replace(")/", "")), h.ProbeID])
+                }
+                var g = [],
+                    j = 0;
+                for (var a in k) {
+                    g.push({
+                        name: d[j++],
+                        data: k[a]
+                    })
                 }
                 try {
-                    this.doDrawChart(c, d)
+                    this.doDrawChart(g)
                 } catch (i) { }
             } else a.messager.alert("提示", "没有数据！", "warning")
         },
-        doDrawChart: function (b, c) {
-            var d = this;
-            d.$jqPlot && d.$jqPlot.destroy(),
-            d.$jqPlot = a.jqplot("runningtime", b, {
-                seriesDefaults: {
-                    renderer: a.jqplot.BarRenderer,
-                    rendererOptions: {
-                        fillToZero: !0
+        doDrawChart: function (b) {
+            $('#runningtime').highcharts({
+                credits: {
+                    enabled: false
+                },
+                title: {
+                    text: '运行时间曲线图',
+                    x: -20 //center
+                },
+                subtitle: {
+                    //text: 'Source: WorldClimate.com',
+                    x: -20
+                },
+                chart: {
+                    zoomType: 'xy',
+                    type: 'column'
+                },
+                xAxis: {
+                    type: 'datetime',
+                    labels: {
+                        //step: 2,
+                        formatter: function () {
+                            return Highcharts.dateFormat('%Y-%m-%d', this.value);
+                        }
                     }
                 },
-                series: [{
-                    label: "风机有效时间"
-                },
-                {
-                    label: "风机运行时间"
-                },
-                {
-                    label: "净化器有效时间"
-                },
-                {
-                    label: "净化器运行时间"
-                }],
-                legend: {
-                    show: !0,
-                    placement: "outsideGrid"
-                },
-                axes: {
-                    xaxis: {
-                        renderer: a.jqplot.CategoryAxisRenderer,
-                        ticks: c,
-                        tickOptions: {
-                            angle: -30,
-                            //formatString: "%Y/%#m/%#d"
-                        }
+                yAxis: {
+                    title: {
+                        //text: 'Temperature (°C)'
                     },
-                    yaxis: {
-                        pad: 1.05,
-                        tickOptions: {
-                            formatString: "%d 分钟"
-                        }
+                    plotLines: [{
+                        value: 0,
+                        width: 1,
+                        color: '#808080'
+                    }]
+                },
+                tooltip: {
+                    //valueSuffix: '°C'
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'middle',
+                    borderWidth: 0
+                },
+                plotOptions: {
+                    series: {
+                        marker: {
+                            radius: 0
+                        },
                     }
                 },
-                cursor: {
-                    show: !0,
-                    zoom: !0
-                }
-            })
+                //series: [{
+                //    name: '油烟浓度1',
+                //    data: b[0]
+                //}, {
+                //    name: '油烟温度1',
+                //    data: b[1]
+                //}, {
+                //    name: '油烟湿度1',
+                //    data: b[2]
+                //}]
+                series: b
+            });
         },
         render: function () {
             var b, c, d, e = this;

@@ -28,7 +28,7 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
             },
             {
                 field: "CleanTime",
-                title: "清洗时间",
+                title: "上次维护时间",
                 width: 150,
                 sortable: !1,
                 formatter: function (a) {

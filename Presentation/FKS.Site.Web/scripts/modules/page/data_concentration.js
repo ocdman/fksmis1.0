@@ -135,66 +135,6 @@ function (a, b, c, d, e, f, g, h, i) {
                 //}]
                 series: b
             });
-            //var d = this;
-            //d.$jqPlot && d.$jqPlot.destroy();
-            //d.$jqPlot = a.jqplot("concentration", b, {
-            //    animate: !0,
-            //    animateReplot: !0,
-            //    cursor:{
-            //        show: !0,
-            //        zoom: !0,
-            //        looseZoom: !0,
-            //        showTooltip: !1
-            //    },
-            //    seriesDefaults: {
-            //        renderer: a.jqplot.BarRenderer,
-            //        //pointLabels: { show: !0},
-            //        rendererOptions: {
-            //            fillToZero: !0,
-            //            animation: {
-            //                speed: 2500
-            //            },
-            //        },
-            //    },
-            //    series: [
-            //        { label: "油烟浓度" }
-            //    ],
-            //    axes: {
-            //        xaxis: {
-            //            renderer: a.jqplot.CategoryAxisRenderer,
-            //            ticks: c,
-            //        },
-            //        yaxis: {
-            //            pad: 1.05,
-            //            tickOptions: {
-            //                formatString: "%d (mg/m3)"
-            //            },
-            //            rendererOptions: {
-            //                forceTickAt0: true
-            //            }
-            //        },
-            //    },
-            //    canvasOverlay: {
-            //        show: true,
-            //        objects: [
-            //            {
-            //                horizontalLine: {
-            //                    name: 'pebbles',
-            //                    y: j,
-            //                    lineWidth: 3,
-            //                    xOffset: 0,
-            //                    color: 'rgb(89, 198, 154)',
-            //                    shadow: false
-            //                }
-            //            }
-            //        ]
-            //    }
-            //})
-            //$('#discharge').bind('jqplotDataHighlight',
-            //    function (ev, seriesIndex, pointIndex, data) {
-            //        $('#dischargeContent').html('日期： ' + c[pointIndex] + '，数据：' + data[1] + '克');
-            //    })
-
         },
         render: function () {
             var b, c, d, e = this;

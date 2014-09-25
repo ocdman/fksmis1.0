@@ -23,6 +23,13 @@
         "attributes": {
             "hash": "page/equipment_details/设备档案"
         }
+    }, {
+        "id": 124,
+        "text": "运行维护一览",
+        "iconCls": "icon_11",
+        "attributes": {
+            "hash": "page/operation_maintenance/运行维护一览"
+        }
     }]
 }, {
     "id": 13,
@@ -82,7 +89,7 @@
         "text": "排放量",
         "iconCls": "icon_12",
         "attributes": {
-            "hash": "page/data_discharge/排放量"
+            "hash": "page/data_discharge_report/排放量"
         }
     }, {
         "id": 132,

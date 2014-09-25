@@ -243,8 +243,8 @@ function (a, b, c, d, e, f, g, h, i) {
             var tYear = today.getFullYear();
             //var tMonth = today.getMonth() + 1;
             //var tDate = today.getDate() - 1;
-            var tMonth = today.getMonth() + day;
-            var tDate = today.getDate() - day;
+            var tMonth = today.getMonth() + 1;
+            var tDate = today.getDate() + day;
             return tYear + "/" + tMonth + "/" + tDate;
         },
         getStartHour: function () {

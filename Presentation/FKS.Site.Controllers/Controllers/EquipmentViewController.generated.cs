@@ -19,6 +19,7 @@ using FKS.Site.Helper.Attributes;
 using FKS.Site.Web.Controllers.BaseControllers;
 using FKS.Core.Models.Hardware;
 using FKS.Site.Helper.Logging;
+using FKS.Core.Models.Parameters;
 
 namespace FKS.Site.Web.Controllers.Controllers
 {
@@ -33,6 +34,8 @@ namespace FKS.Site.Web.Controllers.Controllers
 
         [Import]
         protected IEquipManagerSiteContract EquipManagerSiteContract { get; set; }
+        [Import]
+        protected IParameterSetSiteContract ParameterSetSiteContract { get; set; }
 
         #region R
 
@@ -46,6 +49,8 @@ namespace FKS.Site.Web.Controllers.Controllers
             int total = 0;
             List<PropertySortCondition> sortConditions = this.getPropertySortCondition(pagination);
             DataGridView<EquipmentView> dgvResult = new DataGridView<EquipmentView>();
+
+            var paramModel = this.ParameterSetSiteContract.ParameterSets.Single<ParameterSet>(m => m.Id == 1);
 
             this.SetQueryBuilder(pagination);
             var memberViews = this.SiteContract.Equipments.Where(this.ViewQueryBuilder.Expression).Where<Equipment, int>(m => true, pagination.page, pagination.rows, out total, sortConditions.ToArray())
@@ -77,6 +82,19 @@ namespace FKS.Site.Web.Controllers.Controllers
                 });
 
             dgvResult.rows = memberViews.ToList();
+
+            foreach (EquipmentView ev in dgvResult.rows)
+            {
+                if (ev.CleanTime != DateTime.Parse("1900-01-01"))
+                {
+                    ev.NextCleanTime = ev.CleanTime.AddDays(paramModel.MaintenanceBound);
+                }
+                else
+                {
+                    ev.NextCleanTime = DateTime.Parse("1900-01-01");
+                }
+            }
+
             dgvResult.total = total;
 
             return Json(dgvResult, JsonRequestBehavior.AllowGet);
@@ -166,7 +184,9 @@ namespace FKS.Site.Web.Controllers.Controllers
                     UserName = viewModel.UserName,
                     PurifierAirFlow = viewModel.PurifierAirFlow,
                     Contacts = viewModel.Contacts,
-                    ContactInfo = viewModel.ContactInfo
+                    ContactInfo = viewModel.ContactInfo,
+                    ContractNo = viewModel.ContractNo,
+                    ContractStartTime = viewModel.ContractStartTime
                 };
 
                 if (viewModel.Status == 1)
@@ -260,7 +280,9 @@ namespace FKS.Site.Web.Controllers.Controllers
                     UserName = model.UserName,
                     PurifierAirFlow = model.PurifierAirFlow,
                     Contacts = model.Contacts,
-                    ContactInfo = model.ContactInfo
+                    ContactInfo = model.ContactInfo,
+                    ContractNo = model.ContractNo,
+                    ContractStartTime = model.ContractStartTime
                 };
             }
 
@@ -300,6 +322,8 @@ namespace FKS.Site.Web.Controllers.Controllers
                     model.PurifierAirFlow = viewModel.PurifierAirFlow;
                     model.Contacts = viewModel.Contacts;
                     model.ContactInfo = viewModel.ContactInfo;
+                    model.ContractNo = viewModel.ContractNo;
+                    model.ContractStartTime = viewModel.ContractStartTime;
 
                     if (viewModel.IsCleanChecked)
                     {
@@ -388,7 +412,9 @@ namespace FKS.Site.Web.Controllers.Controllers
                     UserName = model.UserName,
                     PurifierAirFlow = model.PurifierAirFlow,
                     Contacts = model.Contacts,
-                    ContactInfo = model.ContactInfo
+                    ContactInfo = model.ContactInfo,
+                    ContractNo = model.ContractNo,
+                    ContractStartTime = model.ContractStartTime
                 };
             }
 

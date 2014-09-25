@@ -209,5 +209,14 @@ namespace FKS.Site.Models
         [Display(Name = "净化器风量")]
         [ViewModel(CanAdd = true, CanEdit = true)]
         public double? PurifierAirFlow { get; set; }
+
+        // add by wbgong at 2014-9-24 start
+        public DateTime? NextCleanTime { get; set; }
+
+        [Display(Name = "合同编号")]
+        public string ContractNo { get; set; }
+
+        [Display(Name = "合同起始日期")]
+        public DateTime? ContractStartTime { get; set; }
     }
 }

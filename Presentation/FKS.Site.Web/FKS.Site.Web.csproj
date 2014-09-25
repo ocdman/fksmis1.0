@@ -160,6 +160,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>fksmis1DataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="fksmis2DataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>fksmis2DataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -860,6 +865,17 @@
     <Content Include="fksmis1DataSet.xss">
       <DependentUpon>fksmis1DataSet.xsd</DependentUpon>
     </Content>
+    <Content Include="fksmis2DataSet.xsc">
+      <DependentUpon>fksmis2DataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="fksmis2DataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>fksmis2DataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="fksmis2DataSet.xss">
+      <DependentUpon>fksmis2DataSet.xsd</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\fksmis.pubxml" />
     <None Include="scripts\libs\jquery-2.1.0.intellisense.js" />
     <Content Include="scripts\form\jquery.unobtrusive-ajax.js" />
@@ -895,6 +911,7 @@
     <Content Include="scripts\modules\page\equipment_manager.js" />
     <Content Include="scripts\modules\page\data_abnormal.js" />
     <Content Include="scripts\modules\page\log.js" />
+    <Content Include="scripts\modules\page\operation_maintenance.js" />
     <Content Include="scripts\modules\page\parameterSet.js" />
     <Content Include="scripts\modules\page\report.js" />
     <Content Include="scripts\modules\page\user_manager.js" />
@@ -1312,6 +1329,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ReportModule\DischargeReport.rdlc" />
+    <EmbeddedResource Include="ReportModule\OperationMaintenanceReport.rdlc" />
     <EmbeddedResource Include="ReportModule\SampleReport.rdlc" />
   </ItemGroup>
   <ItemGroup>

@@ -32,7 +32,18 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
                 width: 150,
                 sortable: !1,
                 formatter: function (a) {
-                    return e.DateFormat(e.getUnixToTime1(a.replace("/Date(", "").replace(")/", "")), "yyyy-MM-dd");
+                    return (e.getUnixToTime3(a.replace("/Date(", "").replace(")/", "")) != (new Date("1900/01/01 00:00:00")).getTime())
+                    ? e.DateFormat(e.getUnixToTime1(a.replace("/Date(", "").replace(")/", "")), "yyyy-MM-dd") : "";
+                }
+            },
+            {
+                field: "NextCleanTime",
+                title: "下次维护时间",
+                width: 150,
+                sortable: !1,
+                formatter: function (a) {
+                    return (e.getUnixToTime3(a.replace("/Date(", "").replace(")/","")) !=  (new Date("1900/01/01 00:00:00")).getTime()) 
+                    ? e.DateFormat(e.getUnixToTime1(a.replace("/Date(", "").replace(")/", "")), "yyyy-MM-dd") : "";
                 }
             },
             {

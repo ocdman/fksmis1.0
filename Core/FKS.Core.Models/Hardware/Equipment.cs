@@ -218,5 +218,11 @@ namespace FKS.Core.Models.Hardware
         /// </summary>
         public bool OnOff { get; set; }
 
+        // 合同编号
+        public string ContractNo { get; set; }
+
+        // 合同起始日期
+        public DateTime? ContractStartTime { get; set; }
+
     }
 }

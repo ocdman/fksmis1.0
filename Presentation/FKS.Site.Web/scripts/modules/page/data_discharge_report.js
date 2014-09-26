@@ -150,17 +150,17 @@ function (a, b, c, d, e, f, g, h, i) {
 
         },
         render: function () {
-            var b, c, d, e = this;
-            b = e.$panel.find(".easyui-layout").layout(),
+            var b, c, d, g = this;
+            b = g.$panel.find(".easyui-layout").layout(),
             c = b.layout("panel", "center"),
             d = b.layout("panel", "north"),
-            f = e.$panel.find(".easyui-tabs").tabs({
+            f = g.$panel.find(".easyui-tabs").tabs({
                 onSelect: function (a, b) {
-                    1 == b && e.$table.datagrid("resize");
+                    1 == b && g.$table.datagrid("resize");
                 }
             });
-            e.$tablePanel = f.tabs("getTab", 0);
-            e.doInitTable({
+            g.$tablePanel = f.tabs("getTab", 0);
+            g.doInitTable({
                 rownumbers: !0,
                 onLoadSuccess: function (a) {
 
@@ -171,20 +171,25 @@ function (a, b, c, d, e, f, g, h, i) {
                 pageSize: 50,
                 pageList: [50]
             }, [], "", "");
+
             d.find("#reportType").combobox({
                 required: !0,
                 width: 150,
                 onSelect: function (a) {
-                    e.reportType = a.value;
+                    g.reportType = a.value;
                     if (a.value == "01") {
-                        var yesterday = e.getYesterday(-1);
-                        e.$searchBar.find(".startTime").datetimebox("setValue", yesterday + e.getStartHour());
-                        e.$searchBar.find(".endTime").datetimebox("setValue", yesterday + e.getEndHour());
+                        var yesterday = e.getDate(-1);
+                        g.$searchBar.find(".startTime").datetimebox("setValue", yesterday + e.getStartHour());
+                        g.$searchBar.find(".endTime").datetimebox("setValue", yesterday + e.getEndHour());
                     }
                     else if (a.value == "02") {
-                        var lastweek = e.getYesterday(-7);
-                        e.$searchBar.find(".startTime").datetimebox("setValue", lastweek + e.getStartHour());
-                        e.$searchBar.find(".endTime").datetimebox("setValue", lastweek + e.getEndHour());
+                        var monday = e.getMonday();
+                        g.$searchBar.find(".startTime").datetimebox("setValue", e.getDate(-monday-7) + e.getStartHour());
+                        g.$searchBar.find(".endTime").datetimebox("setValue", e.getDate(-monday-1) + e.getEndHour());
+                    }
+                    else if (a.value == "03") {
+                        g.$searchBar.find(".startTime").datetimebox("setValue", e.getMonth("s", -1) + e.getStartHour());
+                        g.$searchBar.find(".endTime").datetimebox("setValue", e.getMonth("g", -1) + e.getEndHour());
                     }
                 }
             });
@@ -192,67 +197,34 @@ function (a, b, c, d, e, f, g, h, i) {
                 required: !0,
                 width: 150,
                 onSelect: function (a) {
-                    e.sortType = a.value;
+                    g.sortType = a.value;
                 }
             });
             d.find(".easyui-linkbutton").linkbutton({
                 onClick: function () {
                     var b = a(this).attr("data-operation");
-                    b && e[b] && e[b].call(e);
+                    b && g[b] && g[b].call(g);
                 }
             }),
-            e.$searchBar = d;
+            g.$searchBar = d;
+            g.$searchBar.find(".startTime").datetimebox("setValue", e.getDate(-1) + e.getStartHour());
+            g.$searchBar.find(".endTime").datetimebox("setValue", e.getDate(-1) + e.getEndHour());
         },
         doSearch: function () {
             var b = this;
-            //c = b.$searchBar.find(".startTime").datebox("getValue");
-            //d = b.$searchBar.find(".endTime").datebox("getValue");
-            b.reportType && b.sortType && (b.$table.datagrid("options").url = b.getHref(!1, b.controller, "DischargeDataRow"),
+            b.sortType && (b.$table.datagrid("options").url = b.getHref(!1, b.controller, "DischargeDataRow"),
             b.$table.datagrid("reload", {
-                reportType: b.reportType,
-                SortType: b.sortType
+                SortType: b.sortType,
+                StartTime: b.$searchBar.find(".startTime").datetimebox("getValue"),
+                EndTime: b.$searchBar.find(".endTime").datetimebox("getValue")
             }));
-            //b.reportType && b.sortType && b.currentId && a.ajax({
-            //    url: b.getHref(!1, b.controller, "DischargeDataRow"),
-            //    data: {
-            //        tableName: b.currentId,
-            //        StartTime: c,
-            //        EndTime: d,
-            //        reportType: b.reportType,
-            //        SortType: b.sortType
-            //    },
-            //    success: function (a) {
-            //        console.log(a);
-            //        b.doRenderChart(a);
-            //    },
-            //    error: function () {
-            //        a.messager.alert("提示", "获取数据失败", "error");
-            //    }
-            //})
         },
         createReport: function(){
             var a = this;
             var strurl = '../ReportInfo/DischargeReporting' + '?reportType=' + a.reportType + '&sortType=' + a.sortType;
             window.open(strurl);
         },
-        getYesterday: function (day) {
-            var today = new Date();
-            //var targetDayMilliseconds = today.getTime() + 1000 * 60 * 60 * day;
-            //today.setTime(targetDayMilliseconds);
 
-            var tYear = today.getFullYear();
-            //var tMonth = today.getMonth() + 1;
-            //var tDate = today.getDate() - 1;
-            var tMonth = today.getMonth() + 1;
-            var tDate = today.getDate() + day;
-            return tYear + "/" + tMonth + "/" + tDate;
-        },
-        getStartHour: function () {
-            return " 00:00:00";
-        },
-        getEndHour: function(){
-            return " 23:00:00";
-        },
         dispose: function () {
             this.base("dispose");
         }

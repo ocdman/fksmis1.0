@@ -66,15 +66,14 @@ namespace FKS.Core.Impl
         }
 
 
-        public ICollection<ReportStatistics> GetDischargeReportData(string reportType, string sortType, DateTime timeStart, DateTime timeEnd)
+        public ICollection<ReportStatistics> GetDischargeReportData(string sortType, DateTime timeStart, DateTime timeEnd)
         {
-            SqlParameter[] sqlParams = new SqlParameter[4];
-            sqlParams[0] = new SqlParameter("@report_type", reportType);
-            sqlParams[1] = new SqlParameter("@sort_type", sortType);
-            sqlParams[2] = new SqlParameter("@start_time", timeStart);
-            sqlParams[3] = new SqlParameter("@end_time", timeEnd);
+            SqlParameter[] sqlParams = new SqlParameter[3];
+            sqlParams[0] = new SqlParameter("@sort_type", sortType);
+            sqlParams[1] = new SqlParameter("@start_time", timeStart);
+            sqlParams[2] = new SqlParameter("@end_time", timeEnd);
 
-            var result = from p in this.UnitOfWork.DbContext.Database.SqlQuery<ReportStatistics>("exec proc_get_discharge_report @report_type,@sort_type,@start_time,@end_time", sqlParams)
+            var result = from p in this.UnitOfWork.DbContext.Database.SqlQuery<ReportStatistics>("exec proc_get_discharge_report @sort_type,@start_time,@end_time", sqlParams)
                          select p;
 
             return result.ToList();

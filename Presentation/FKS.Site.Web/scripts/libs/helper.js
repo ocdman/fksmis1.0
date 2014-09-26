@@ -104,7 +104,91 @@ function () {
             for (var c = 0; c < a.series.length; c++) for (var d = 0; d < a.series[c].data.length; d++) try {
                 a.series[c].data[d][1] = b[c][d]
             } catch (e) { }
-        }
+        },
+        getDate: function (dates) {
+            var dd = new Date();
+            dd.setDate(dd.getDate() + dates);
+            var y = dd.getFullYear();
+            var m = dd.getMonth() + 1;
+            var d = dd.getDate();
+            return y + "/" + m + "/" + d;
+        },
+        getMonday: function () {
+            var d = new Date();
+            var year = d.getFullYear();
+            var month = d.getMonth() + 1;
+            var date = d.getDate();
+            //周
+            var day = d.getDay();
+            var monday = day != 0 ? day - 1 : 6;
+            return monday;
+        },
+        getMonth: function (type, months) {
+            var d = new Date();
+            var year = d.getFullYear();
+            var month = d.getMonth() + 1;
+
+            if (months != 0) {
+                //如果本月为12月,年份加1,月份为1,否则月份加1
+                if (month == 12 && months > 0) {
+                    year++;
+                    month = 1;
+                }
+                else if (month == 1 && months < 0) {
+                    year--;
+                    month = 12;
+                }
+                else {
+                    month += months;
+                }
+            }
+
+            var date = d.getDate();
+            var firstday = year + "/" + month + "/" + 1;
+            var lastday;
+
+            if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 ||
+                month == 10 || month == 12) {
+                lastday = year + "/" + month + "/" + 31;
+            }
+            else if (month == 2) {
+                //判断是否为闰年
+                if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
+                    lastday = year + "/" + month + "/" + 29;
+                }
+                else {
+                    lastday = year + "/" + month + "/" + 28;
+                }
+            }
+            else {
+                lastday = year + "/" + month + "/" + 30;
+            }
+
+            var day = "";
+            if (type == "s") {
+                day = firstday;
+            }
+            else {
+                day = lastday;
+            }
+            return day;
+        },
+        getStartHour: function () {
+            return " 00:00:00";
+        },
+        getEndHour: function () {
+            return " 23:00:00";
+        },
+        //getDay: function (day) {
+        //    var today = new Date();
+        //    var targetDayMilliseconds = today.getTime() + 1000 * 60 * 60 * 24 * day;
+        //    today.setTime(targetDayMilliseconds);
+
+        //    var tYear = today.getFullYear();
+        //    var tMonth = today.getMonth() + 1;
+        //    var tDate = today.getDate();
+        //    return tYear + "/" + tMonth + "/" + tDate;
+        //},
     };
     return b
 });

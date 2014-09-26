@@ -155,10 +155,10 @@ namespace FKS.Site.Web.Controllers.Controllers
 
         public ActionResult DischargeDataRow(ReportParams param)
         {
-            AnalyseReportType(param);
+            //AnalyseReportType(param);
             param.StartTime = DateTime.Parse("2014-06-23 00:00:00");
             param.EndTime = DateTime.Parse("2014-06-23 23:00:00");
-            var result = this.SiteContract.GetDischargeReportData(param.reportType, param.SortType, param.StartTime, param.EndTime);
+            var result = this.SiteContract.GetDischargeReportData(param.SortType, param.StartTime, param.EndTime);
             var dataGridData = new DataGridView<ReportStatistics>()
             {
                 total = result.Count,
@@ -170,10 +170,9 @@ namespace FKS.Site.Web.Controllers.Controllers
         public ActionResult DischargeReporting(ReportParams param)
         {
             string type = "Excel";
-            AnalyseReportType(param);
             param.StartTime = DateTime.Parse("2014-06-23 00:00:00");
             param.EndTime = DateTime.Parse("2014-06-23 23:00:00");
-            List<ReportStatistics> ds = (List<ReportStatistics>)this.SiteContract.GetDischargeReportData(param.reportType, param.SortType, param.StartTime, param.EndTime);
+            List<ReportStatistics> ds = (List<ReportStatistics>)this.SiteContract.GetDischargeReportData(param.SortType, param.StartTime, param.EndTime);
             LocalReport localReport = new LocalReport();
             localReport.ReportPath = Server.MapPath("~/ReportModule/DischargeReport.rdlc");
             ReportDataSource reportDataSource = new ReportDataSource("DataSet1", ds);

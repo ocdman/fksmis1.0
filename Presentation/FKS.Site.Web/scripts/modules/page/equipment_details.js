@@ -132,7 +132,7 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
         getData: function () {
             var b = this;
             a.ajax({
-                url: b.getHref(!1, b.controller, "DataRowIndex"),
+                url: b.getHref(!1, b.controller, "DataRowIndexForNextCleanTime"),
                 data: e.mvcParamsFormat(this.params, "KeyValues"),
                 success: function (c) {
                     for (var d in c.rows)
@@ -196,6 +196,7 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
                 onDblClickRow: a.noop,
                 url: "",
                 pagination: !0,
+                //url: e.getHref(!1, e.controller, "DataRowIndexForNextCleanTime"),
             },
             [], n, ""),
             e.$searchBar = a(m),

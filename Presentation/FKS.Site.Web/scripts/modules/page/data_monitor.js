@@ -126,7 +126,7 @@ function (a, b, c, d, e, f, g, h, i) {
                     b[f.ProbeID + "SD"] || (b[f.ProbeID + "SD"] = [], c.push(
                         f.ProbeID + "湿度"
                     )),
-                    b[f.ProbeID + "ND"].push([e.getUnixToTime2(f.TimeUp.replace("/Date(", "").replace(")/", "")), .02 * f.YouYanND]),
+                    b[f.ProbeID + "ND"].push([e.getUnixToTime2(f.TimeUp.replace("/Date(", "").replace(")/", "")), f.YouYanND != 0 ? 100 / f.YouYanND : 0]),
                     b[f.ProbeID + "WD"].push([e.getUnixToTime2(f.TimeUp.replace("/Date(", "").replace(")/", "")), .64 * f.YouYanWD - 40]),
                     b[f.ProbeID + "SD"].push([e.getUnixToTime2(f.TimeUp.replace("/Date(", "").replace(")/", "")), f.YouYanSD])
                 }

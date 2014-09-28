@@ -77,7 +77,7 @@ function (a, b, c, d, e, f, g, h, l) {
         render: function () {
             var a = this;
             a.doInitTable({
-                rownumbers: !0
+                rownumbers: !0,
             },
             [{
                 operation: "doPrint",

@@ -50,6 +50,53 @@ namespace FKS.Site.Web.Controllers.Controllers
             List<PropertySortCondition> sortConditions = this.getPropertySortCondition(pagination);
             DataGridView<EquipmentView> dgvResult = new DataGridView<EquipmentView>();
 
+            this.SetQueryBuilder(pagination);
+            var memberViews = this.SiteContract.Equipments.Where(this.ViewQueryBuilder.Expression).Where<Equipment, int>(m => true, pagination.page, pagination.rows, out total, sortConditions.ToArray())
+                .Select(m => new EquipmentView
+                {
+                    EquipCode = m.EquipCode,
+                    CollectionCode = m.CollectionCode,
+                    PropertyInfo = m.PropertyInfo,
+                    PositionInfo = m.PositionInfo,
+                    NickName = m.NickName,
+                    Address = m.Address,
+                    EquipCount = m.EquipCount,
+                    TimeOut = m.TimeOut,
+                    Interval = m.Interval,
+                    YHX = m.YHX,
+                    YHY = m.YHY,
+                    Status = m.Status,
+                    Content = m.Content,
+                    ZTjhq = m.ZTjhq,
+                    ZTfj = m.ZTfj,
+                    ZTst = m.ZTst,
+                    YouYanND = m.YouYanND,
+                    YouYanWD = m.YouYanWD,
+                    YouYanSD = m.YouYanSD,
+                    LastTimeGet = m.LastTimeGet,
+                    OpenTime = m.OpenTime,
+                    CleanTime = m.CleanTime,
+                    UserName = m.UserName
+                });
+
+            dgvResult.rows = memberViews.ToList();
+            dgvResult.total = total;
+
+            return Json(dgvResult, JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 查询数据
+        /// 针对下次维护时间而言
+        /// </summary>
+        /// <param name="pagination"></param>
+        /// <returns></returns>
+        public ActionResult DataRowIndexForNextCleanTime(Pagination pagination)
+        {
+            int total = 0;
+            List<PropertySortCondition> sortConditions = this.getPropertySortCondition(pagination);
+            DataGridView<EquipmentView> dgvResult = new DataGridView<EquipmentView>();
+
             var paramModel = this.ParameterSetSiteContract.ParameterSets.Single<ParameterSet>(m => m.Id == 1);
 
             this.SetQueryBuilder(pagination);

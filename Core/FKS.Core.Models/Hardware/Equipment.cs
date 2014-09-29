@@ -222,7 +222,7 @@ namespace FKS.Core.Models.Hardware
         public string ContractNo { get; set; }
 
         // 合同起始日期
-        public DateTime? ContractStartTime { get; set; }
+        public DateTime? ContractStartTime { get; set; }    
 
     }
 }

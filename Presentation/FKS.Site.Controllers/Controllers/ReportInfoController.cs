@@ -172,11 +172,17 @@ namespace FKS.Site.Web.Controllers.Controllers
             string type = "Excel";
             param.StartTime = DateTime.Parse("2014-06-23 00:00:00");
             param.EndTime = DateTime.Parse("2014-06-23 23:00:00");
-            List<ReportStatistics> ds = (List<ReportStatistics>)this.SiteContract.GetDischargeReportData(param.SortType, param.StartTime, param.EndTime);
+            List<ReportStatistics> ds0 = (List<ReportStatistics>)this.SiteContract.GetDischargeReportData(param.SortType, param.StartTime, param.EndTime);
+            List<ReportStatistics> ds1 = (List<ReportStatistics>)this.SiteContract.GetConcentrationReportData(param.SortType, param.StartTime, param.EndTime);
+            //List<ReportStatistics>[] ds = new List<ReportStatistics>[2];
+            //ds[0] = ds0;
+            //ds[1] = ds1;
             LocalReport localReport = new LocalReport();
             localReport.ReportPath = Server.MapPath("~/ReportModule/DischargeReport.rdlc");
-            ReportDataSource reportDataSource = new ReportDataSource("DataSet1", ds);
+            ReportDataSource reportDataSource = new ReportDataSource("DataSet1", ds0);
+            ReportDataSource reportDataSource1 = new ReportDataSource("DataSet1", ds1);
             localReport.DataSources.Add(reportDataSource);
+            localReport.DataSources.Add(reportDataSource1);
 
             string reportType = type;
             string mimeType;

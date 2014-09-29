@@ -15,5 +15,8 @@ namespace FKS.Core
 
         ICollection<ReportStatistics> GetDischargeReportData(string sortType, DateTime timeStart,
             DateTime timeEnd);
+
+        ICollection<ReportStatistics> GetConcentrationReportData(string sortType, DateTime timeStart,
+            DateTime timeEnd);
     }
 }

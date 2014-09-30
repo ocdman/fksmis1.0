@@ -165,11 +165,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>fksmis2DataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="fksmis3DataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>fksmis3DataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -881,17 +876,6 @@
     <Content Include="fksmis2DataSet.xss">
       <DependentUpon>fksmis2DataSet.xsd</DependentUpon>
     </Content>
-    <Content Include="fksmis3DataSet.xsc">
-      <DependentUpon>fksmis3DataSet.xsd</DependentUpon>
-    </Content>
-    <None Include="fksmis3DataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>fksmis3DataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <Content Include="fksmis3DataSet.xss">
-      <DependentUpon>fksmis3DataSet.xsd</DependentUpon>
-    </Content>
     <None Include="Properties\PublishProfiles\fksmis.pubxml" />
     <None Include="scripts\libs\jquery-2.1.0.intellisense.js" />
     <Content Include="scripts\form\jquery.unobtrusive-ajax.js" />
@@ -1344,9 +1328,10 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ReportModule\DischargeReport.rdlc" />
+    <EmbeddedResource Include="ReportModule\DischargeReport.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportModule\OperationMaintenanceReport.rdlc" />
-    <EmbeddedResource Include="ReportModule\Report1.rdlc" />
     <EmbeddedResource Include="ReportModule\SampleReport.rdlc" />
   </ItemGroup>
   <ItemGroup>

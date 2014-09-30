@@ -191,7 +191,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!NickName.Value</Value>
+                              <Value>=IIf(InScope("DataSet1"),Fields!NickName.Value,nothing)</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -221,7 +221,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!Discharge.Value</Value>
+                              <Value>=IIf(InScope("DataSet1"),Fields!Discharge.Value,nothing)</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -419,7 +419,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!NickName.Value</Value>
+                              <Value>=Parameters!ReportParameter1.Value(0)</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -449,7 +449,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!Concentration.Value</Value>
+                              <Value>=Parameters!ReportParameter2.Value(1)</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -538,6 +538,50 @@
     </DataSource>
   </DataSources>
   <DataSets>
+    <DataSet Name="DataSet2">
+      <Query>
+        <DataSourceName>fksmis1DataSet</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="Id">
+          <DataField>Id</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Discharge">
+          <DataField>Discharge</DataField>
+          <rd:TypeName>System.Single</rd:TypeName>
+        </Field>
+        <Field Name="Concentration">
+          <DataField>Concentration</DataField>
+          <rd:TypeName>System.Single</rd:TypeName>
+        </Field>
+        <Field Name="PureRate">
+          <DataField>PureRate</DataField>
+          <rd:TypeName>System.Single</rd:TypeName>
+        </Field>
+        <Field Name="NickName">
+          <DataField>NickName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IsDeleted">
+          <DataField>IsDeleted</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="AddDate">
+          <DataField>AddDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>fksmis1DataSet</rd:DataSetName>
+        <rd:SchemaPath>D:\桌面文件\我的文档\GitHub\fksmis\Presentation\FKS.Site.Web\fksmis1DataSet.xsd</rd:SchemaPath>
+        <rd:TableName>ReportStatistics</rd:TableName>
+        <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
+        <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
+        <rd:TableAdapterName>ReportStatisticsTableAdapter</rd:TableAdapterName>
+      </rd:DataSetInfo>
+    </DataSet>
     <DataSet Name="DataSet1">
       <Query>
         <DataSourceName>fksmis1DataSet</DataSourceName>
@@ -583,6 +627,31 @@
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
+  <ReportParameters>
+    <ReportParameter Name="ReportParameter1">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>DataSet2</DataSetName>
+          <ValueField>NickName</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="ReportParameter2">
+      <DataType>Float</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>DataSet2</DataSetName>
+          <ValueField>Concentration</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>ReportParameter2</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+  </ReportParameters>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>c592be3f-4f0c-49ac-82d0-cb5b366c8fbe</rd:ReportID>
 </Report>

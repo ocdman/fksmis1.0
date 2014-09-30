@@ -177,12 +177,18 @@ namespace FKS.Site.Web.Controllers.Controllers
             //List<ReportStatistics>[] ds = new List<ReportStatistics>[2];
             //ds[0] = ds0;
             //ds[1] = ds1;
+            string[] arr = new string[2];
+            arr[0] = "1";
+            arr[1] = "2";
             LocalReport localReport = new LocalReport();
             localReport.ReportPath = Server.MapPath("~/ReportModule/DischargeReport.rdlc");
             ReportDataSource reportDataSource = new ReportDataSource("DataSet1", ds0);
-            ReportDataSource reportDataSource1 = new ReportDataSource("DataSet1", ds1);
+            ReportDataSource reportDataSource1 = new ReportDataSource("DataSet2", ds1);
             localReport.DataSources.Add(reportDataSource);
             localReport.DataSources.Add(reportDataSource1);
+            localReport.SetParameters(new ReportParameter("ReportParameter1", arr));
+            localReport.SetParameters(new ReportParameter("ReportParameter2", arr));
+            
 
             string reportType = type;
             string mimeType;

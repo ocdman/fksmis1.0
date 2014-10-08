@@ -13,10 +13,12 @@ namespace FKS.Core
 
         ICollection<ReportInfo> GetReportData(string collectionCode, DateTime timeStart, DateTime timeEnd, string reportType);
 
-        ICollection<ReportStatistics> GetDischargeReportData(string sortType, DateTime timeStart,
+        ICollection<DischargeReport> GetDischargeReportData(string sortType, DateTime timeStart,
             DateTime timeEnd);
 
-        ICollection<ReportStatistics> GetConcentrationReportData(string sortType, DateTime timeStart,
+        ICollection<ConcentrationReport> GetConcentrationReportData(string sortType, DateTime timeStart,
             DateTime timeEnd);
+
+        ICollection<AlarmTimeReport> GetAlarmTimeReportData(string sortType, DateTime timeStart, DateTime timeEnd);
     }
 }

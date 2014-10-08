@@ -159,7 +159,7 @@ namespace FKS.Site.Web.Controllers.Controllers
             param.StartTime = DateTime.Parse("2014-06-23 00:00:00");
             param.EndTime = DateTime.Parse("2014-06-23 23:00:00");
             var result = this.SiteContract.GetDischargeReportData(param.SortType, param.StartTime, param.EndTime);
-            var dataGridData = new DataGridView<ReportStatistics>()
+            var dataGridData = new DataGridView<DischargeReport>()
             {
                 total = result.Count,
                 rows = result.Skip((param.page - 1) * param.rows).Take(param.rows).ToList()
@@ -172,23 +172,27 @@ namespace FKS.Site.Web.Controllers.Controllers
             string type = "Excel";
             param.StartTime = DateTime.Parse("2014-06-23 00:00:00");
             param.EndTime = DateTime.Parse("2014-06-23 23:00:00");
-            List<ReportStatistics> ds0 = (List<ReportStatistics>)this.SiteContract.GetDischargeReportData(param.SortType, param.StartTime, param.EndTime);
-            List<ReportStatistics> ds1 = (List<ReportStatistics>)this.SiteContract.GetConcentrationReportData(param.SortType, param.StartTime, param.EndTime);
+            List<ConcentrationReport> ds1 = (List<ConcentrationReport>)this.SiteContract.GetConcentrationReportData(param.SortType, param.StartTime, param.EndTime);
+            List<DischargeReport> ds2 = (List<DischargeReport>)this.SiteContract.GetDischargeReportData(param.SortType, param.StartTime, param.EndTime);
+            List<AlarmTimeReport> ds3 = (List<AlarmTimeReport>)this.SiteContract.GetAlarmTimeReportData(param.SortType, param.StartTime, param.EndTime);
             //List<ReportStatistics>[] ds = new List<ReportStatistics>[2];
             //ds[0] = ds0;
             //ds[1] = ds1;
-            string[] arr = new string[2];
-            arr[0] = "1";
-            arr[1] = "2";
+            string parameter1 = ds2.Count.ToString();
+            string parameter2 = param.StartTime.ToString();
+            string parameter3 = param.EndTime.ToString();
+
             LocalReport localReport = new LocalReport();
-            localReport.ReportPath = Server.MapPath("~/ReportModule/DischargeReport.rdlc");
-            ReportDataSource reportDataSource = new ReportDataSource("DataSet1", ds0);
-            ReportDataSource reportDataSource1 = new ReportDataSource("DataSet2", ds1);
-            localReport.DataSources.Add(reportDataSource);
+            localReport.ReportPath = Server.MapPath("~/ReportModule/LampblackMonitorReport.rdlc");
+            ReportDataSource reportDataSource1 = new ReportDataSource("DataSet1", ds1);
+            ReportDataSource reportDataSource2 = new ReportDataSource("DataSet2", ds2);
+            ReportDataSource reportDataSource3 = new ReportDataSource("DataSet3", ds3);
             localReport.DataSources.Add(reportDataSource1);
-            localReport.SetParameters(new ReportParameter("ReportParameter1", arr));
-            localReport.SetParameters(new ReportParameter("ReportParameter2", arr));
-            
+            localReport.DataSources.Add(reportDataSource2);
+            localReport.DataSources.Add(reportDataSource3);
+            localReport.SetParameters(new ReportParameter("ReportParameter1", parameter1));
+            localReport.SetParameters(new ReportParameter("ReportParameter2", parameter2));
+            localReport.SetParameters(new ReportParameter("ReportParameter3", parameter3));
 
             string reportType = type;
             string mimeType;

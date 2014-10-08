@@ -61,6 +61,7 @@
     <Compile Include="Configurations\Account\MemberExtendConfiguration.generated.cs" />
     <Compile Include="Configurations\Authority\AuthorityConfiguration.generated.cs" />
     <Compile Include="Configurations\Hardware\AbnormalEquipConfiguration.generated.cs" />
+    <Compile Include="Configurations\Report\AlarmTimeReportConfiguration.generated.cs" />
     <Compile Include="Configurations\Report\ConcentrationReportConfiguration.generated.cs" />
     <Compile Include="Configurations\Hardware\DataAnalyseConfiguration.generated.cs" />
     <Compile Include="Configurations\Hardware\DataStatisticsConfiguration.generated.cs" />
@@ -85,12 +86,14 @@
     <Compile Include="Repositories\Authority\IAuthorityRepository.generated.cs" />
     <Compile Include="Repositories\Authority\Impl\AuthorityRepository.generated.cs" />
     <Compile Include="Repositories\Hardware\IAbnormalEquipRepository.generated.cs" />
+    <Compile Include="Repositories\Report\IAlarmTimeReportRepository.generated.cs" />
     <Compile Include="Repositories\Report\IConcentrationReportRepository.generated.cs" />
     <Compile Include="Repositories\Hardware\IDataAnalyseRepository.generated.cs" />
     <Compile Include="Repositories\Hardware\IDataStatisticsRepository.generated.cs" />
     <Compile Include="Repositories\Hardware\IEquipManagerRepository.generated.cs" />
     <Compile Include="Repositories\Hardware\IEquipmentRepository.generated.cs" />
     <Compile Include="Repositories\Hardware\Impl\AbnormalEquipRepository.generated.cs" />
+    <Compile Include="Repositories\Report\Impl\AlarmTimeReportRepository.generated.cs" />
     <Compile Include="Repositories\Report\Impl\ConcentrationReportRepository.generated.cs" />
     <Compile Include="Repositories\Hardware\Impl\DataAnalyseRepository.generated.cs" />
     <Compile Include="Repositories\Hardware\Impl\DataStatisticsRepository.generated.cs" />
@@ -144,7 +147,6 @@
 ..\Configurations\Account\MemberExtendConfiguration.generated.cs
 ..\Configurations\Authority\AuthorityConfiguration.generated.cs
 ..\Configurations\Hardware\AbnormalEquipConfiguration.generated.cs
-..\Configurations\Hardware\ConcentrationReportConfiguration.generated.cs
 ..\Configurations\Hardware\DataAnalyseConfiguration.generated.cs
 ..\Configurations\Hardware\DataStatisticsConfiguration.generated.cs
 ..\Configurations\Hardware\EquipManagerConfiguration.generated.cs
@@ -153,6 +155,8 @@
 ..\Configurations\logger\FKSLoggerConfiguration.generated.cs
 ..\Configurations\logger\LogInfoConfiguration.generated.cs
 ..\Configurations\Parameters\ParameterSetConfiguration.generated.cs
+..\Configurations\Report\AlarmTimeReportConfiguration.generated.cs
+..\Configurations\Report\ConcentrationReportConfiguration.generated.cs
 ..\Configurations\Report\DischargeReportConfiguration.generated.cs
 ..\Configurations\Report\OperationMaintenanceReportConfiguration.generated.cs
 ..\Configurations\Report\ReportInfoConfiguration.generated.cs
@@ -164,13 +168,11 @@
 ..\Repositories\Authority\IAuthorityRepository.generated.cs
 ..\Repositories\Authority\Impl\AuthorityRepository.generated.cs
 ..\Repositories\Hardware\IAbnormalEquipRepository.generated.cs
-..\Repositories\Hardware\IConcentrationReportRepository.generated.cs
 ..\Repositories\Hardware\IDataAnalyseRepository.generated.cs
 ..\Repositories\Hardware\IDataStatisticsRepository.generated.cs
 ..\Repositories\Hardware\IEquipManagerRepository.generated.cs
 ..\Repositories\Hardware\IEquipmentRepository.generated.cs
 ..\Repositories\Hardware\Impl\AbnormalEquipRepository.generated.cs
-..\Repositories\Hardware\Impl\ConcentrationReportRepository.generated.cs
 ..\Repositories\Hardware\Impl\DataAnalyseRepository.generated.cs
 ..\Repositories\Hardware\Impl\DataStatisticsRepository.generated.cs
 ..\Repositories\Hardware\Impl\EquipManagerRepository.generated.cs
@@ -183,7 +185,11 @@
 ..\Repositories\logger\Impl\LogInfoRepository.generated.cs
 ..\Repositories\Parameters\Impl\ParameterSetRepository.generated.cs
 ..\Repositories\Parameters\IParameterSetRepository.generated.cs
+..\Repositories\Report\IAlarmTimeReportRepository.generated.cs
+..\Repositories\Report\IConcentrationReportRepository.generated.cs
 ..\Repositories\Report\IDischargeReportRepository.generated.cs
+..\Repositories\Report\Impl\AlarmTimeReportRepository.generated.cs
+..\Repositories\Report\Impl\ConcentrationReportRepository.generated.cs
 ..\Repositories\Report\Impl\DischargeReportRepository.generated.cs
 ..\Repositories\Report\Impl\OperationMaintenanceReportRepository.generated.cs
 ..\Repositories\Report\Impl\ReportInfoRepository.generated.cs

@@ -168,6 +168,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="LampblackMonitorDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LampblackMonitorDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="T4\ControllerScript.cs">
       <DependentUpon>ControllerScript.tt</DependentUpon>
@@ -876,6 +881,17 @@
     <Content Include="fksmis2DataSet.xss">
       <DependentUpon>fksmis2DataSet.xsd</DependentUpon>
     </Content>
+    <Content Include="LampblackMonitorDataSet.xsc">
+      <DependentUpon>LampblackMonitorDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="LampblackMonitorDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>LampblackMonitorDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="LampblackMonitorDataSet.xss">
+      <DependentUpon>LampblackMonitorDataSet.xsd</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\fksmis.pubxml" />
     <None Include="scripts\libs\jquery-2.1.0.intellisense.js" />
     <Content Include="scripts\form\jquery.unobtrusive-ajax.js" />
@@ -1331,6 +1347,7 @@
     <EmbeddedResource Include="ReportModule\DischargeReport.rdlc">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportModule\LampblackMonitorReport.rdlc" />
     <EmbeddedResource Include="ReportModule\OperationMaintenanceReport.rdlc" />
     <EmbeddedResource Include="ReportModule\SampleReport.rdlc" />
   </ItemGroup>

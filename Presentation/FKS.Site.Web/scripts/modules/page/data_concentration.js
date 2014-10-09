@@ -51,7 +51,7 @@ function (a, b, c, d, e, f, g, h, i) {
                 }
                 var g = [];
                 g.push({
-                    name: "排放量",
+                    name: "油烟浓度",
                     data: k[h.Id]
                 })
                 try {

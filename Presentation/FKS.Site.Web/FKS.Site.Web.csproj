@@ -913,7 +913,7 @@
     <Content Include="scripts\modules\page\authority.js" />
     <Content Include="scripts\modules\page\data_clean.js" />
     <Content Include="scripts\modules\page\data_concentration.js" />
-    <Content Include="scripts\modules\page\data_discharge_report.js" />
+    <Content Include="scripts\modules\page\lampblack_monitor_report.js" />
     <Content Include="scripts\modules\page\data_purerate.js" />
     <Content Include="scripts\modules\page\data_discharge.js" />
     <Content Include="scripts\modules\page\data_linkage.js" />
@@ -1324,7 +1324,7 @@
     <Content Include="Views\DataAnalyse\ConcentrationIndex.cshtml" />
     <Content Include="Views\DataAnalyse\AbnormalDataIndex.cshtml" />
     <Content Include="Views\ParameterSet\Index.cshtml" />
-    <Content Include="Views\ReportInfo\DischargeIndex.cshtml" />
+    <Content Include="Views\ReportInfo\LampblackMonitorIndex.cshtml" />
     <Content Include="Views\Authority\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

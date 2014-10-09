@@ -108,9 +108,9 @@
     }, {
         "id": 134,
         "iconCls": "icon_14",
-        "text": "报表打印",
+        "text": "油烟监测报告",
         "attributes": {
-            "hash": "page/data_discharge_report/报表打印"
+            "hash": "page/lampblack_monitor_report/油烟监测报告"
         }
     }]
 }, {

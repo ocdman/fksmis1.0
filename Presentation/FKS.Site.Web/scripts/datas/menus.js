@@ -112,6 +112,13 @@
         "attributes": {
             "hash": "page/lampblack_monitor_report/油烟监测报告"
         }
+    }, {
+        "id": 135,
+        "iconCls": "icon_19",
+        "text": "油烟台账报告",
+        "attributes": {
+            "hash": "page/lampblack_account_report/油烟台账报告"
+        }
     }]
 }, {
     "id": 13,

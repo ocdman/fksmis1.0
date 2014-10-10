@@ -913,6 +913,7 @@
     <Content Include="scripts\modules\page\authority.js" />
     <Content Include="scripts\modules\page\data_clean.js" />
     <Content Include="scripts\modules\page\data_concentration.js" />
+    <Content Include="scripts\modules\page\lampblack_account_report.js" />
     <Content Include="scripts\modules\page\lampblack_monitor_report.js" />
     <Content Include="scripts\modules\page\data_purerate.js" />
     <Content Include="scripts\modules\page\data_discharge.js" />
@@ -1326,6 +1327,7 @@
     <Content Include="Views\ParameterSet\Index.cshtml" />
     <Content Include="Views\ReportInfo\LampblackMonitorIndex.cshtml" />
     <Content Include="Views\Authority\Index.cshtml" />
+    <Content Include="Views\ReportInfo\LampblackAccountIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Account\Login.cshtml" />

@@ -242,18 +242,6 @@ function (a, b, c, d, e, f, g, h, i) {
             g.$tablePanel = f.tabs("getTab", 1);
             g.$tablePanel1 = f.tabs("getTab", 0);
             g.$tablePanel2 = f.tabs("getTab", 2);
-            
-            g.doInitTable({
-                rownumbers: !0,
-                onLoadSuccess: function (a) {
-
-                },
-                onDbClickRow: a.noop,
-                url: "",
-                pagination: !0,
-                pageSize: 50,
-                pageList: [50]
-            }, [], "", "");
 
             g.doInitTable1({
                 rownumbers: !0,
@@ -268,6 +256,18 @@ function (a, b, c, d, e, f, g, h, i) {
             }, [], "", "");
 
             g.doInitTable2({
+                rownumbers: !0,
+                onLoadSuccess: function (a) {
+
+                },
+                onDbClickRow: a.noop,
+                url: "",
+                pagination: !0,
+                pageSize: 50,
+                pageList: [50]
+            }, [], "", "");
+
+            g.doInitTable({
                 rownumbers: !0,
                 onLoadSuccess: function (a) {
 
@@ -317,7 +317,6 @@ function (a, b, c, d, e, f, g, h, i) {
             g.$searchBar.find(".startTime").datetimebox("setValue", e.getDate(-1) + e.getStartHour());
             g.$searchBar.find(".endTime").datetimebox("setValue", e.getDate(-1) + e.getEndHour());
         },
-      
         doInitTable1: function(c, e, f, g){
             var h = this;
             h.$table1 = a(document.createElement("table")).appendTo(h.$tablePanel1);

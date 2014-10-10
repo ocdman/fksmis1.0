@@ -147,15 +147,45 @@ namespace FKS.Site.Web.Controllers.Controllers
             return File(renderedBytes, mimeType);
         }
 
-        #region 排放量统计
-        public ActionResult DischargeIndex()
+        #region 油烟监测报告
+        public ActionResult LampblackMonitorIndex()
         {
             return View();
         }
 
-        public ActionResult DischargeDataRow(ReportParams param)
+        /// <summary>
+        /// 油烟浓度报表数据
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        public ActionResult ConcentrationReportDataRow(ReportParams param)
         {
-            //AnalyseReportType(param);
+            if (CheckAuthority() == false)
+            {
+                return Json("error", JsonRequestBehavior.DenyGet);
+            }
+            param.StartTime = DateTime.Parse("2014-06-23 00:00:00");
+            param.EndTime = DateTime.Parse("2014-06-23 23:00:00");
+            var result = this.SiteContract.GetConcentrationReportData(param.SortType, param.StartTime, param.EndTime);
+            var dataGridData = new DataGridView<ConcentrationReport>()
+            {
+                total = result.Count,
+                rows = result.Skip((param.page - 1) * param.rows).Take(param.rows).ToList()
+            };
+            return Json(dataGridData, JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 排放量报表数据
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        public ActionResult DischargeReportDataRow(ReportParams param)
+        {
+            if (CheckAuthority() == false)
+            {
+                return Json("error", JsonRequestBehavior.DenyGet);
+            }
             param.StartTime = DateTime.Parse("2014-06-23 00:00:00");
             param.EndTime = DateTime.Parse("2014-06-23 23:00:00");
             var result = this.SiteContract.GetDischargeReportData(param.SortType, param.StartTime, param.EndTime);
@@ -167,17 +197,41 @@ namespace FKS.Site.Web.Controllers.Controllers
             return Json(dataGridData, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult DischargeReporting(ReportParams param)
+        /// <summary>
+        /// 报警次数报表数据
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        public ActionResult AlarmTimeReportDataRow(ReportParams param)
         {
+            if (CheckAuthority() == false)
+            {
+                return Json("error", JsonRequestBehavior.DenyGet);
+            }
+            param.StartTime = DateTime.Parse("2014-06-23 00:00:00");
+            param.EndTime = DateTime.Parse("2014-06-23 23:00:00");
+            var result = this.SiteContract.GetAlarmTimeReportData(param.SortType, param.StartTime, param.EndTime);
+            var dataGridData = new DataGridView<AlarmTimeReport>()
+            {
+                total = result.Count,
+                rows = result.Skip((param.page - 1) * param.rows).Take(param.rows).ToList()
+            };
+            return Json(dataGridData, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult LampblackMonitorReporting(ReportParams param)
+        {
+            if (CheckAuthority() == false)
+            {
+                return Json("error", JsonRequestBehavior.DenyGet);
+            }
             string type = "Excel";
             param.StartTime = DateTime.Parse("2014-06-23 00:00:00");
             param.EndTime = DateTime.Parse("2014-06-23 23:00:00");
             List<ConcentrationReport> ds1 = (List<ConcentrationReport>)this.SiteContract.GetConcentrationReportData(param.SortType, param.StartTime, param.EndTime);
             List<DischargeReport> ds2 = (List<DischargeReport>)this.SiteContract.GetDischargeReportData(param.SortType, param.StartTime, param.EndTime);
             List<AlarmTimeReport> ds3 = (List<AlarmTimeReport>)this.SiteContract.GetAlarmTimeReportData(param.SortType, param.StartTime, param.EndTime);
-            //List<ReportStatistics>[] ds = new List<ReportStatistics>[2];
-            //ds[0] = ds0;
-            //ds[1] = ds1;
+
             string parameter1 = ds2.Count.ToString();
             string parameter2 = param.StartTime.ToString();
             string parameter3 = param.EndTime.ToString();
@@ -225,6 +279,60 @@ namespace FKS.Site.Web.Controllers.Controllers
             //renderedBytes = localReport.Render(reportType, deviceInfo);
             return File(renderedBytes, mimeType);
         }
+        #endregion
+
+        #region 油烟台账报告
+
+        public ActionResult LampblackAccountIndex()
+        {
+            return View();
+        }
+
+        public ActionResult LampblackAccountReporting(ReportParams param)
+        {
+            if (CheckAuthority() == false)
+            {
+                return Json("error", JsonRequestBehavior.DenyGet);
+            }
+            string type = "Excel";
+            param.StartTime = DateTime.Parse("2014-06-01 00:00:00");
+            param.EndTime = DateTime.Parse("2014-06-30 23:00:00");
+
+            LocalReport localReport = new LocalReport();
+            localReport.ReportPath = Server.MapPath("~/ReportModule/LampblackMonitorReport.rdlc");
+
+            string reportType = type;
+            string mimeType;
+            string encoding;
+            string fileNameExtension;
+
+            string deviceInfo =
+                "<DeviceInfo>" +
+                "<OutputFormat>" + type + "</OutputFormat>" +
+                "<PageWidth>11in</PageWidth>" +
+                "<PageHeight>11in</PageHeight>" +
+                "<MarginTop>0.5in</MarginTop>" +
+                "<MarginLeft>1in</MarginLeft>" +
+                "<MarginRight>1in</MarginRight>" +
+                "<MarginBottom>0.5in</MarginBottom>" +
+                "</DeviceInfo>";
+            Warning[] warnings;
+            string[] streams;
+            byte[] renderedBytes;
+
+            renderedBytes = localReport.Render(
+                reportType,
+                deviceInfo,
+                out mimeType,
+                out encoding,
+                out fileNameExtension,
+                out streams,
+                out warnings);
+
+            //renderedBytes = localReport.Render(reportType, deviceInfo);
+            return File(renderedBytes, mimeType);
+        }
+
         #endregion
     }
 }

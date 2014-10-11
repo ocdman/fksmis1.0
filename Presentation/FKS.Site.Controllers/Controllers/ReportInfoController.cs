@@ -14,8 +14,8 @@ using System.Web.Mvc;
 namespace FKS.Site.Web.Controllers.Controllers
 {
     public class ReportParams
-	{
-		public string collectionCode { get; set; }
+    {
+        public string collectionCode { get; set; }
         public string reportType { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
@@ -23,7 +23,7 @@ namespace FKS.Site.Web.Controllers.Controllers
         public int rows { get; set; }
 
         public string SortType { get; set; }
-	}
+    }
 
     [Export]
     public class ReportInfoController : ManagerController<IReportSiteContract, ReportInfoView>
@@ -295,11 +295,85 @@ namespace FKS.Site.Web.Controllers.Controllers
                 return Json("error", JsonRequestBehavior.DenyGet);
             }
             string type = "Excel";
+            param.collectionCode = "fjb020160001";
             param.StartTime = DateTime.Parse("2014-06-01 00:00:00");
             param.EndTime = DateTime.Parse("2014-06-30 23:00:00");
 
+            List<LampblackAccountReport> ds1 = (List<LampblackAccountReport>)this.SiteContract.GetLampblackAccountReportData(param.collectionCode, param.StartTime, param.EndTime);
+
+            int day = 1;
+            int temp;
+            List<LampblackAccountReport> ds2 = new List<LampblackAccountReport>();
+            //foreach (LampblackAccountReport lap in ds1)
+            //{
+            //    if (lap.AccountDate.Day == day)
+            //    {
+            //        ds2.Add(lap);
+            //        day++;
+            //    }
+            //    else
+            //    {
+            //        temp = lap.AccountDate.Day - day;
+            //        while (--temp >= 0)
+            //        {
+            //            ds2.Add(new LampblackAccountReport());
+            //        }
+            //        ds2.Add(lap);
+            //        day = lap.AccountDate.Day + 1;
+            //    }
+            //}
+
+            int month = param.StartTime.Month;
+            int bound;
+            if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12)
+            {
+                bound = 31;
+            }
+            else if (month == 2)
+            {
+                int year = param.StartTime.Year;
+                if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0)
+                {
+                    bound = 29;
+                }
+                else
+                {
+                    bound = 28;
+                }
+            }
+            else
+            {
+                bound = 30;
+            }
+
+            int i = 0;
+            foreach (LampblackAccountReport lap in ds1)
+            {
+
+                if (i == lap.AccountDate.Day)
+                {
+                    ds2.Add(lap);
+                    i++;
+                }
+                else
+                {
+                    while (i++ != lap.AccountDate.Day - 1)
+                    {
+                        ds2.Add(new LampblackAccountReport());
+                    }
+                    ds2.Add(lap);
+                }
+            }
+            while (31 > i++)
+            {
+                ds2.Add(new LampblackAccountReport());
+            }
+
             LocalReport localReport = new LocalReport();
-            localReport.ReportPath = Server.MapPath("~/ReportModule/LampblackMonitorReport.rdlc");
+            localReport.ReportPath = Server.MapPath("~/ReportModule/LampblackAccountReport.rdlc");
+
+            ReportDataSource reportDataSource1 = new ReportDataSource("DataSet1", ds2);
+            localReport.DataSources.Add(reportDataSource1);
 
             string reportType = type;
             string mimeType;

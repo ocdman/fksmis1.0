@@ -156,24 +156,26 @@ function (a, b, c, d, e, f, g, h, i) {
             e.$searchBar = d;
         },
         doSearch: function () {
-            var b = this;
-            c = b.$searchBar.find(".startTime").datebox("getValue");
-            d = b.$searchBar.find(".endTime").datebox("getValue");
-            c && d && b.currentId && a.ajax({
-                url: b.getHref(!1, b.controller, "DischargeDataRow"),
-                data: {
-                    tableName: b.currentId,
-                    StartTime: c,
-                    EndTime: d
-                },
-                success: function (a) {
-                    console.log(a);
-                    b.doRenderChart(a);
-                },
-                error: function () {
-                    a.messager.alert("提示", "获取数据失败", "error");
-                }
-            })
+            //var b = this;
+            //b.currentId && a.ajax({
+            //    url: b.getHref(!1, b.controller, "LampblackAccountReporting"),
+            //    data: {
+            //        tableName: b.currentId,
+            //        //StartTime: c,
+            //        //EndTime: d
+            //    },
+            //    success: function (a) {
+            //        console.log(a);
+            //        //b.doRenderChart(a);
+            //    },
+            //    error: function () {
+            //        a.messager.alert("提示", "获取数据失败", "error");
+            //    }
+            //})
+
+            var a = this;
+            var strurl = '../ReportInfo/LampblackAccountReporting';
+            window.open(strurl);
         },
         dispose: function () {
             this.base("dispose");

@@ -168,6 +168,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="LampblackAccountDataSet.cs">
+      <DependentUpon>LampblackAccountDataSet.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LampblackAccountDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LampblackAccountDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="LampblackMonitorDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -884,6 +893,17 @@
     <Content Include="LampblackMonitorDataSet.xsc">
       <DependentUpon>LampblackMonitorDataSet.xsd</DependentUpon>
     </Content>
+    <Content Include="LampblackAccountDataSet.xsc">
+      <DependentUpon>LampblackAccountDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="LampblackAccountDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>LampblackAccountDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="LampblackAccountDataSet.xss">
+      <DependentUpon>LampblackAccountDataSet.xsd</DependentUpon>
+    </Content>
     <None Include="LampblackMonitorDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>LampblackMonitorDataSet.Designer.cs</LastGenOutput>
@@ -1346,7 +1366,7 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ReportModule\DischargeReport.rdlc">
+    <EmbeddedResource Include="ReportModule\LampblackAccountReport.rdlc">
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportModule\LampblackMonitorReport.rdlc" />

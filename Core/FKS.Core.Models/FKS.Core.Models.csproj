@@ -64,6 +64,7 @@
     <Compile Include="Parameters\ParameterSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Report\DischargeReport.cs" />
+    <Compile Include="Report\LampblackAccountReport.cs" />
     <Compile Include="Report\OperationMaintenanceReport.cs" />
     <Compile Include="Report\ReportInfo.cs" />
     <Compile Include="Report\ReportStatistics.cs" />

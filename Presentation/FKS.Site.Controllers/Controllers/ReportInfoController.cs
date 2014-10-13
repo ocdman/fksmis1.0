@@ -288,7 +288,7 @@ namespace FKS.Site.Web.Controllers.Controllers
             return View();
         }
 
-        public ActionResult LampblackAccountReporting(ReportParams param)
+        public ActionResult LampblackAccountReporting(ReportParams param, string NickName, string Address)
         {
             if (CheckAuthority() == false)
             {
@@ -304,24 +304,6 @@ namespace FKS.Site.Web.Controllers.Controllers
             int day = 1;
             int temp;
             List<LampblackAccountReport> ds2 = new List<LampblackAccountReport>();
-            //foreach (LampblackAccountReport lap in ds1)
-            //{
-            //    if (lap.AccountDate.Day == day)
-            //    {
-            //        ds2.Add(lap);
-            //        day++;
-            //    }
-            //    else
-            //    {
-            //        temp = lap.AccountDate.Day - day;
-            //        while (--temp >= 0)
-            //        {
-            //            ds2.Add(new LampblackAccountReport());
-            //        }
-            //        ds2.Add(lap);
-            //        day = lap.AccountDate.Day + 1;
-            //    }
-            //}
 
             int month = param.StartTime.Month;
             int bound;
@@ -374,6 +356,8 @@ namespace FKS.Site.Web.Controllers.Controllers
 
             ReportDataSource reportDataSource1 = new ReportDataSource("DataSet1", ds2);
             localReport.DataSources.Add(reportDataSource1);
+            localReport.SetParameters(new ReportParameter("ReportParameter1", NickName));
+            localReport.SetParameters(new ReportParameter("ReportParameter2", Address));
 
             string reportType = type;
             string mimeType;

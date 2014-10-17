@@ -106,14 +106,18 @@ namespace FKS.Site.Web.Controllers.Controllers
             }
 
             string type = "Excel";
-            //param.StartTime = DateTime.Parse("2014-06-23 00:00:00");
-            //param.EndTime = DateTime.Parse("2014-06-28 00:00:00");
-            AnalyseReportType(param);
-            List<ReportInfo> ds = (List<ReportInfo>)this.SiteContract.GetReportData(param.collectionCode, param.StartTime, param.EndTime, param.reportType);
+            //AnalyseReportType(param);
+            List<DischargeReport> ds1 = (List<DischargeReport>)this.SiteContract.GetDischargeReportData(param.SortType, param.StartTime, param.EndTime);
+            List<ConcentrationReport> ds2 = (List<ConcentrationReport>)this.SiteContract.GetConcentrationReportData(param.SortType, param.StartTime, param.EndTime);
+            List<PureRateReport> ds3 = (List<PureRateReport>)this.SiteContract.GetPureRateReportData(param.SortType, param.StartTime, param.EndTime);
             LocalReport localReport = new LocalReport();
             localReport.ReportPath = Server.MapPath("~/ReportModule/SampleReport.rdlc");
-            ReportDataSource reportDataSource = new ReportDataSource("DataSet1", ds);
-            localReport.DataSources.Add(reportDataSource);
+            ReportDataSource reportDataSource1 = new ReportDataSource("DataSet1", ds1);
+            ReportDataSource reportDataSource2 = new ReportDataSource("DataSet2", ds2);
+            ReportDataSource reportDataSource3 = new ReportDataSource("DataSet3", ds3);
+            localReport.DataSources.Add(reportDataSource1);
+            localReport.DataSources.Add(reportDataSource2);
+            localReport.DataSources.Add(reportDataSource3);
 
             string reportType = type;
             string mimeType;
@@ -164,8 +168,8 @@ namespace FKS.Site.Web.Controllers.Controllers
             {
                 return Json("error", JsonRequestBehavior.DenyGet);
             }
-            param.StartTime = DateTime.Parse("2014-06-23 00:00:00");
-            param.EndTime = DateTime.Parse("2014-06-23 23:00:00");
+            //param.StartTime = DateTime.Parse("2014-06-23 00:00:00");
+            //param.EndTime = DateTime.Parse("2014-06-23 23:00:00");
             var result = this.SiteContract.GetConcentrationReportData(param.SortType, param.StartTime, param.EndTime);
             var dataGridData = new DataGridView<ConcentrationReport>()
             {
@@ -186,8 +190,8 @@ namespace FKS.Site.Web.Controllers.Controllers
             {
                 return Json("error", JsonRequestBehavior.DenyGet);
             }
-            param.StartTime = DateTime.Parse("2014-06-23 00:00:00");
-            param.EndTime = DateTime.Parse("2014-06-23 23:00:00");
+            //param.StartTime = DateTime.Parse("2014-06-23 00:00:00");
+            //param.EndTime = DateTime.Parse("2014-06-23 23:00:00");
             var result = this.SiteContract.GetDischargeReportData(param.SortType, param.StartTime, param.EndTime);
             var dataGridData = new DataGridView<DischargeReport>()
             {
@@ -208,8 +212,8 @@ namespace FKS.Site.Web.Controllers.Controllers
             {
                 return Json("error", JsonRequestBehavior.DenyGet);
             }
-            param.StartTime = DateTime.Parse("2014-06-23 00:00:00");
-            param.EndTime = DateTime.Parse("2014-06-23 23:00:00");
+            //param.StartTime = DateTime.Parse("2014-06-23 00:00:00");
+            //param.EndTime = DateTime.Parse("2014-06-23 23:00:00");
             var result = this.SiteContract.GetAlarmTimeReportData(param.SortType, param.StartTime, param.EndTime);
             var dataGridData = new DataGridView<AlarmTimeReport>()
             {
@@ -226,8 +230,8 @@ namespace FKS.Site.Web.Controllers.Controllers
                 return Json("error", JsonRequestBehavior.DenyGet);
             }
             string type = "Excel";
-            param.StartTime = DateTime.Parse("2014-06-23 00:00:00");
-            param.EndTime = DateTime.Parse("2014-06-23 23:00:00");
+            //param.StartTime = DateTime.Parse("2014-06-23 00:00:00");
+            //param.EndTime = DateTime.Parse("2014-06-23 23:00:00");
             List<ConcentrationReport> ds1 = (List<ConcentrationReport>)this.SiteContract.GetConcentrationReportData(param.SortType, param.StartTime, param.EndTime);
             List<DischargeReport> ds2 = (List<DischargeReport>)this.SiteContract.GetDischargeReportData(param.SortType, param.StartTime, param.EndTime);
             List<AlarmTimeReport> ds3 = (List<AlarmTimeReport>)this.SiteContract.GetAlarmTimeReportData(param.SortType, param.StartTime, param.EndTime);
@@ -295,9 +299,9 @@ namespace FKS.Site.Web.Controllers.Controllers
                 return Json("error", JsonRequestBehavior.DenyGet);
             }
             string type = "Excel";
-            param.collectionCode = "fjb020160001";
-            param.StartTime = DateTime.Parse("2014-06-01 00:00:00");
-            param.EndTime = DateTime.Parse("2014-06-30 23:00:00");
+            //param.collectionCode = "fjb020160001";
+            //param.StartTime = DateTime.Parse("2014-06-01 00:00:00");
+            //param.EndTime = DateTime.Parse("2014-06-30 23:00:00");
 
             List<LampblackAccountReport> ds1 = (List<LampblackAccountReport>)this.SiteContract.GetLampblackAccountReportData(param.collectionCode, param.StartTime, param.EndTime);
 

@@ -674,6 +674,7 @@
     <Content Include="contents\easyui\themes\metro\validatebox.css" />
     <Content Include="contents\easyui\themes\metro\window.css" />
     <Content Include="contents\images\background.jpg" />
+    <Content Include="contents\images\green.png" />
     <Content Include="contents\images\icon2.png" />
     <Content Include="contents\images\loading.gif" />
     <Content Include="contents\images\LOGO.gif" />
@@ -706,6 +707,8 @@
     <Content Include="contents\images\png\20140515103605734_easyicon_net_512.png" />
     <Content Include="contents\images\png\20140515103740688_easyicon_net_128.png" />
     <Content Include="contents\images\png\report.png" />
+    <Content Include="contents\images\red.png" />
+    <Content Include="contents\images\red1.png" />
     <Content Include="contents\jquery.plot\jquery.jqplot.min.css" />
     <Content Include="contents\login\login.css" />
     <Content Include="contents\site.css" />
@@ -933,6 +936,7 @@
     <Content Include="scripts\modules\page\authority.js" />
     <Content Include="scripts\modules\page\data_clean.js" />
     <Content Include="scripts\modules\page\data_concentration.js" />
+    <Content Include="scripts\modules\page\data_overdue.js" />
     <Content Include="scripts\modules\page\lampblack_account_report.js" />
     <Content Include="scripts\modules\page\lampblack_monitor_report.js" />
     <Content Include="scripts\modules\page\data_purerate.js" />
@@ -1348,6 +1352,7 @@
     <Content Include="Views\ReportInfo\LampblackMonitorIndex.cshtml" />
     <Content Include="Views\Authority\Index.cshtml" />
     <Content Include="Views\ReportInfo\LampblackAccountIndex.cshtml" />
+    <Content Include="Views\DataAnalyse\OverdueDataIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Account\Login.cshtml" />

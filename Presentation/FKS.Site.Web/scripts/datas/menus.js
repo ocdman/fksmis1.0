@@ -79,6 +79,13 @@
         "attributes": {
             "hash": "page/data_abnormal/异常设备"
         }
+    }, {
+        "id": 137,
+        "iconCls": "icon_10",
+        "text": "维护时间超时设备",
+        "attributes": {
+            "hash": "page/data_overdue/维护时间超时设备"
+        }
     }]
 }, {
     "id": 13,
@@ -107,13 +114,20 @@
         }
     }, {
         "id": 134,
+        "text": "报表统计",
+        "iconCls": "icon_19",
+        "attributes": {
+            "hash": "page/report/报表统计"
+        }
+    },{
+        "id": 135,
         "iconCls": "icon_14",
         "text": "油烟监测报告",
         "attributes": {
             "hash": "page/lampblack_monitor_report/油烟监测报告"
         }
     }, {
-        "id": 135,
+        "id": 136,
         "iconCls": "icon_19",
         "text": "油烟台账报告",
         "attributes": {

@@ -13,14 +13,15 @@
 {
     <div class="bs-example">
         <h1 class="title">修改参数</h1>
+        @*<h6 class="subtitle">维护天数设定</h6>*@
         <div class="form-horizontal pd10">
-            <h2 class="title">维护天数设定</h2>
+            <h6 class="subtitle">维护天数设定</h6>
             @Html.FormItem(model => model.MaintenanceBound)
-            <h2 class="title">报警阈值设定</h2>
+            <h6 class="subtitle">报警阈值设定</h6>
             @Html.FormItem(model => model.ConcentrateBound)
             @Html.FormItem(model => model.PurifierBound)
             @Html.FormItem(model => model.DayDischargeBound)
-            <h2 class="title">排序位数设定</h2>
+            <h6 class="subtitle">排序位数设定</h6>
             @Html.FormItem(model => model.ShowNumbers)
         </div>
     </div>

@@ -19,6 +19,9 @@ namespace FKS.Core
         ICollection<ConcentrationReport> GetConcentrationReportData(string sortType, DateTime timeStart,
             DateTime timeEnd);
 
+        ICollection<PureRateReport> GetPureRateReportData(string sortType, DateTime timeStart,
+            DateTime timeEnd);
+
         ICollection<AlarmTimeReport> GetAlarmTimeReportData(string sortType, DateTime timeStart, DateTime timeEnd);
 
         ICollection<LampblackAccountReport> GetLampblackAccountReportData(string collectionCode, DateTime timeStart, DateTime timeEnd);

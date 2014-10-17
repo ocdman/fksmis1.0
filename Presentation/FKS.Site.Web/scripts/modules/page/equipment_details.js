@@ -23,7 +23,9 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
                 width: 150,
                 sortable: !1,
                 formatter: function (a) {
-                    return e.DateFormat(e.getUnixToTime1(a.replace("/Date(", "").replace(")/", "")), "yyyy-MM-dd");
+                    return ((e.getUnixToTime3(a.replace("/Date(", "").replace(")/", "")) != (new Date("1900/01/01 00:00:00")).getTime()) &&
+                            (e.getUnixToTime3(a.replace("/Date(", "").replace(")/", "")) != (new Date("1970/01/01 00:00:00")).getTime()))
+                    ? e.DateFormat(e.getUnixToTime1(a.replace("/Date(", "").replace(")/", "")), "yyyy-MM-dd") : "";
                 }
             },
             {
@@ -32,7 +34,8 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
                 width: 150,
                 sortable: !1,
                 formatter: function (a) {
-                    return (e.getUnixToTime3(a.replace("/Date(", "").replace(")/", "")) != (new Date("1900/01/01 00:00:00")).getTime())
+                    return ((e.getUnixToTime3(a.replace("/Date(", "").replace(")/", "")) != (new Date("1900/01/01 00:00:00")).getTime()) &&
+                            (e.getUnixToTime3(a.replace("/Date(", "").replace(")/", "")) != (new Date("1970/01/01 00:00:00")).getTime()))
                     ? e.DateFormat(e.getUnixToTime1(a.replace("/Date(", "").replace(")/", "")), "yyyy-MM-dd") : "";
                 }
             },
@@ -42,7 +45,8 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
                 width: 150,
                 sortable: !1,
                 formatter: function (a) {
-                    return (e.getUnixToTime3(a.replace("/Date(", "").replace(")/","")) !=  (new Date("1900/01/01 00:00:00")).getTime()) 
+                    return ((e.getUnixToTime3(a.replace("/Date(", "").replace(")/", "")) != (new Date("1900/01/01 00:00:00")).getTime()) &&
+                            (e.getUnixToTime3(a.replace("/Date(", "").replace(")/", "")) != (new Date("1970/01/01 00:00:00")).getTime()))
                     ? e.DateFormat(e.getUnixToTime1(a.replace("/Date(", "").replace(")/", "")), "yyyy-MM-dd") : "";
                 }
             },
@@ -111,7 +115,7 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
             var b, c = this;
             b = new BMap.Point(1 * a.YHX, 1 * a.YHY),
             c.mapApi.addCustomerLabel({
-                icon: a.ZTfj ? "/contents/images/red.png" : "/contents/images/green.png",
+                icon: a.ZTfj ? "/contents/images/green.png" : "/contents/images/red.png",
                 iconWidth: 32,
                 iconHeight: 32,
                 point: b,

@@ -50,6 +50,12 @@ namespace FKS.Core
         /// <returns></returns>
         ICollection<AbnormalEquip> GetAbnormalData();
         /// <summary>
+        /// 维护时间超时设备
+        /// </summary>
+        /// <returns></returns>
+        ICollection<AbnormalEquip> GetOverdueData();
+
+        /// <summary>
         /// 排放量
         /// </summary>
         /// <param name="tableName"></param>

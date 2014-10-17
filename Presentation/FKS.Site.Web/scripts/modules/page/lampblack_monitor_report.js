@@ -43,8 +43,6 @@ function (a, b, c, d, e, f, g, h, i) {
             }), h.doAddModule(c.controller, a, c), !0) : !1
         },
         getTableColumns: function(){
-            var a = this,
-                b;
             return [[{
                 field: "NickName",
                 title: "企业名称",
@@ -73,8 +71,6 @@ function (a, b, c, d, e, f, g, h, i) {
             }]];
         },
         getTableColumns1: function () {
-            var a = this,
-                b;
             return [[{
                 field: "NickName",
                 title: "企业名称",
@@ -103,8 +99,6 @@ function (a, b, c, d, e, f, g, h, i) {
             }]];
         },
         getTableColumns2: function () {
-            var a = this,
-                b;
             return [[{
                 field: "NickName",
                 title: "企业名称",
@@ -239,9 +233,9 @@ function (a, b, c, d, e, f, g, h, i) {
                 }
             });
             
-            g.$tablePanel = f.tabs("getTab", 1);
             g.$tablePanel1 = f.tabs("getTab", 0);
             g.$tablePanel2 = f.tabs("getTab", 2);
+            g.$tablePanel = f.tabs("getTab", 1);
 
             g.doInitTable1({
                 rownumbers: !0,
@@ -408,7 +402,8 @@ function (a, b, c, d, e, f, g, h, i) {
         },
         createReport: function(){
             var a = this;
-            var strurl = '../ReportInfo/LampblackMonitorReporting' + '?reportType=' + a.reportType + '&sortType=' + a.sortType;
+            var strurl = '../ReportInfo/LampblackMonitorReporting' + '?reportType=' + a.reportType + '&sortType=' + a.sortType + 
+                        '&StartTime=' + a.$searchBar.find(".startTime").datetimebox("getValue") + '&EndTime=' + a.$searchBar.find(".endTime").datetimebox("getValue");
             window.open(strurl);
         },
 

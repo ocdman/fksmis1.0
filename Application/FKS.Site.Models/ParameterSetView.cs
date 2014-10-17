@@ -13,7 +13,7 @@ namespace FKS.Site.Models
         /// 维护期限
         /// </summary>
         [Required]
-        [Display(Name = "维护期限(月)")]
+        [Display(Name = "维护期限(天)")]
         public int MaintenanceBound { get; set; }
 
         /// <summary>

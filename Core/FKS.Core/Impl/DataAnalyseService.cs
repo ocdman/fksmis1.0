@@ -112,6 +112,13 @@ namespace FKS.Core.Impl
             return result.ToList();
         }
 
+        public ICollection<AbnormalEquip> GetOverdueData()
+        {
+            var result = from p in this.UnitOfWork.DbContext.Database.SqlQuery<AbnormalEquip>("exec pro_get_overdue_data")
+                         select p;
+            return result.ToList();
+        }
+
         public ICollection<DataStatistics> GetDischarge(string tableName, DateTime timeStart, DateTime timeEnd)
         {
             SqlParameter[] sqlparams = new SqlParameter[3];
@@ -153,8 +160,5 @@ namespace FKS.Core.Impl
 
             return result.ToList();
         }
-
-
-       
     }
 }

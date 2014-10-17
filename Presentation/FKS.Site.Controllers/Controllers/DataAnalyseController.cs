@@ -96,6 +96,11 @@ namespace FKS.Site.Web.Controllers.Controllers
             return View();
         }
 
+        public ActionResult OverdueDataIndex()
+        {
+            return View();
+        }
+
         /// <summary>
         /// 排放量
         /// </summary>
@@ -263,6 +268,20 @@ namespace FKS.Site.Web.Controllers.Controllers
                 return Json("error", JsonRequestBehavior.DenyGet);
             }
             var result = this.SiteContract.GetAbnormalData();
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 维护时间超时设备
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult OverdueDataRow()
+        {
+            if (CheckAuthority() == false)
+            {
+                return Json("error", JsonRequestBehavior.DenyGet);
+            }
+            var result = this.SiteContract.GetOverdueData();
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 

@@ -66,13 +66,13 @@ function (a, b, c, d, e, f, g, h, i, j) {
                 toggle: !1,
                 selected: !1
             },
-            {
-                operation: "doPermiss",
-                text: "分配用户",
-                icon: "pencil",
-                toggle: !1,
-                selected: !1
-            },
+            //{
+            //    operation: "doPermiss",
+            //    text: "分配用户",
+            //    icon: "pencil",
+            //    toggle: !1,
+            //    selected: !1
+            //},
             {
                 operation: "doShowSearch",
                 text: "查询条件",

@@ -81,7 +81,7 @@ function (a, b, c, d, e, f, g, h, l) {
             },
             [{
                 operation: "doPrint",
-                text: "打印",
+                text: "生成报表",
                 icon: "print",
                 toggle: !1,
                 selected: !1

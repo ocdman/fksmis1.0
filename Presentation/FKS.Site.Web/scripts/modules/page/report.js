@@ -9,256 +9,407 @@
     "modules/page/equipment_manager",
     "plugins/jquery.plot/plugins/jqplot.cursor.min",
     "plugins/jquery.plot/plugins/jqplot.dateAxisRenderer.min",
-    "plugins/jquery.plot/plugins/jqplot.logAxisRenderer.min",
-    "plugins/jquery.plot/plugins/jqplot.canvasTextRenderer.min",
-    "plugins/jquery.plot/plugins/jqplot.canvasAxisTickRenderer.min"],
-    function (a, b, c, d, e, f, g, h, i) {
-        var o = g.extend({
-            controller: "ReportInfo",
-            isInitTable: !1,
-            currentId: 0,
-            reportType: "01",
-            $jqPlot: null,
-            doInit: function (title, icon) {
-                var _this = this;
-
-                if (_this.base("doInit", [title])) {
-                    _this.doAddTab({
-                        title: title,
-                        iconCls: icon,
-                        closable: !0,
-                        href: _this.getHref(!1, _this.controller, "Index"),
-                        onLoad: function () { _this.render(); }
-                    });
-                    h.doAddModule(_this.controller, title, _this);
-                    return true;
+    "plugins/jquery.plot/plugins/jqplot.categoryAxisRenderer.min",
+    "plugins/jquery.plot/plugins/jqplot.barRenderer.min",
+    "plugins/jquery.plot/plugins/jqplot.pointLabels.min",
+    "plugins/jquery.plot/plugins/jqplot.canvasAxisTickRenderer.min",
+    "plugins/jquery.plot/plugins/jqplot.canvasOverlay.min",
+    "plugins/jquery.plot/plugins/jqplot.highlighter.min"],
+function (a, b, c, d, e, f, g, h, i) {
+    var j = g.extend({
+        controller: "ReportInfo",
+        $jqPlot: null,
+        $table1: null,
+        $table2: null,
+        $tablePanel1: null,
+        $tablePanel2: null,
+        timeID: 0,
+        reportType: "01",
+        sortType: "01",
+        LineData: {},
+        serials: [],
+        currentId: 0,
+        isStop: !0,
+        doInit: function (a, b) {
+            var c = this;
+            return c.base("doInit", [a], g) ? (c.doAddTab({
+                title: a,
+                iconCls: b,
+                href: c.getHref(!1, c.controller, "Index"),
+                closable: !0,
+                onLoad: function () {
+                    c.render();
                 }
-                return false;
-            },
-            getTableColumns: function () {
-                var a = this;
-                var b;
-                return [[{
-                    field: "UploadTime",
-                    title: "上传时间",
-                    width: 100,
-                    sortable: !1,
-                    formatter: function (a) {
-                        return e.DateFormat(e.getUnixToTime1(a.replace("/Date(", "").replace(")/", "")), "yyyy-MM-dd HH:mm:ss");
-                    }
-                },
-                //{
-                //    field: "DetectorID1",
-                //    title: "探测器ID1",
-                //    width: 80,
-                //    sortable: !1
-                //},
-                {
-                    field: "YouYanND",
-                    title: "油烟浓度",
-                    width: 100,
-                    sortable: !1
-                },
-                {
-                    field: "YouYanSD",
-                    title: "油烟湿度",
-                    width: 100,
-                    sortable: !1
-                },
-                {
-                    field: "YouYanWD",
-                    title: "油烟温度",
-                    width: 100,
-                    sortable: !1
-                },
-                //{
-                //    field: "DetectorID2",
-                //    title: "探测器ID2",
-                //    width: 80,
-                //    sortable: !1,
-                //},
-                {
-                    field: "YouYanND2",
-                    title: "油烟浓度2",
-                    width: 100,
-                    sortable: !1,
-                },
-                {
-                    field: "YouYanSD2",
-                    title: "油烟湿度2",
-                    width: 100,
-                    sortable: !1,
-                },
-                {
-                    field: "YouYanWD2",
-                    title: "油烟温度2",
-                    width: 100,
-                    sortable: !1,
-                },
-                {
-                    field: "PurifierRunTime",
-                    title: "净化器运行时间",
-                    width: 110,
-                    sortable: !1
-                },
-                {
-                    field: "FanRunTime",
-                    title: "风机运行时间",
-                    width: 110,
-                    sortable: !1
-                }]]
-            },
-            render: function () {
-                var b, c, d, f, e = this,
-                g = a.md5(e.title);
-                b = e.$panel.find(".easyui-layout").layout();
-                c = b.layout("panel", "center");
-                d = b.layout("panel", "north");
-                f = e.$panel.find(".easyui-tabs").tabs({
-                    onSelect: function (a, b) {
-                        1 == b && e.$table.datagrid("resize")
-                    }
-                });
-                e.$tablePanel = f.tabs("getTab", 1);
-                e.doInitTable({
-                    rownumbers: !0,
-                    onLoadSuccess: function (a) {
-                        e.doRenderChart(a.rows);
-                    },
-                    onLoadError: function(){
-                        a.messager.alert("提示", "系统数据库查询异常", "error");
-                    },
-                    onDblClickRow: a.noop,
-                    url: "",
-                    pagination: !0,
-                    pageSize: 300,
-                    pageList: [300]
-                }, [], "", "");
-                d.find(".EquipInfo").combogrid({
-                    idField: i.prototype.idField,
-                    textField: i.prototype.textField,
-                    url: e.getHref(!1, i.prototype.controller, "DataRowIndex"),
-                    columns: i.prototype.getTableColumns.call(this),
-                    required: !0,
-                    width: 150,
-                    panelWidth: 450,
-                    pagination: !0,
-                    onSelect: function (a, b) {
-                        e.currentId = b.CollectionCode;
-                    }
-                });
-                d.find("#cc").combobox({
-                    required: !0,
-                    width: 150,
-                    onSelect: function (a) {
-                        e.reportType = a.value;
-                    }
-                })
-                d.find(".easyui-linkbutton").linkbutton({
-                    onClick: function () {
-                        var b = a(this).attr("data-operation");
-                        b && e[b] && e[b].call(e);
-                    }
-                })
-            },
-            doSearch: function () {
-                var a = this;
-                a.reportType && a.currentId && (a.$table.datagrid("options").url = a.getHref(!1, a.controller, "ReportDataRow"),
-                a.$table.datagrid("reload", {
-                    collectionCode: a.currentId,
-                    reportType: a.reportType
-                }))
-            },
-            createReport: function () {
-                var a = this;
-                var urlStr = '../ReportInfo/Reporting' + '?collectionCode=' + a.currentId + '&reportType=' + a.reportType;
-                window.open(urlStr);
-            },
-            doRenderChart: function (b) {
-                var c = [[],[],[],[],[],[]];
-                if (b && b.length) {
-                    for (var d in b) {
-                        var f = b[d];
-                        c[0].push([e.getUnixToTime1(f.UploadTime.replace("/Date(", "").replace(")/", "")), f.YouYanND]);
-                        c[1].push([e.getUnixToTime1(f.UploadTime.replace("/Date(", "").replace(")/", "")), f.YouYanSD]);
-                        c[2].push([e.getUnixToTime1(f.UploadTime.replace("/Date(", "").replace(")/", "")), f.YouYanWD]);
-                        c[3].push([e.getUnixToTime1(f.UploadTime.replace("/Date(", "").replace(")/", "")), f.YouYanND2]);
-                        c[4].push([e.getUnixToTime1(f.UploadTime.replace("/Date(", "").replace(")/", "")), f.YouYanSD2]);
-                        c[5].push([e.getUnixToTime1(f.UploadTime.replace("/Date(", "").replace(")/", "")), f.YouYanWD2]);
-                    }
-                    try{
-                        this.doDrawChart(c);
-                    }
-                    catch (g) { }
+            }), h.doAddModule(c.controller, a, c), !0) : !1
+        },
+        getTableColumns: function () {
+            return [[{
+                field: "NickName",
+                title: "企业名称",
+                width: 100,
+                sortable: !1
+            }, {
+                field: "Discharge",
+                title: "排放量",
+                width: 100,
+                sortable: !1
+            }, {
+                field: "Address",
+                title: "安装地址",
+                width: 100,
+                sortable: !1
+            }, {
+                field: "Contacts",
+                title: "联系人",
+                width: 100,
+                sortable: !1
+            }, {
+                field: "ContactInfo",
+                title: "联系方式",
+                width: 100,
+                sortable: !1
+            }]];
+        },
+        getTableColumns1: function () {
+            return [[{
+                field: "NickName",
+                title: "企业名称",
+                width: 100,
+                sortable: !1
+            }, {
+                field: "Concentration",
+                title: "油烟浓度",
+                width: 100,
+                sortable: !1
+            }, {
+                field: "Address",
+                title: "安装地址",
+                width: 100,
+                sortable: !1
+            }, {
+                field: "Contacts",
+                title: "联系人",
+                width: 100,
+                sortable: !1
+            }, {
+                field: "ContactInfo",
+                title: "联系方式",
+                width: 100,
+                sortable: !1
+            }]];
+        },
+        getTableColumns2: function () {
+            return [[{
+                field: "NickName",
+                title: "企业名称",
+                width: 100,
+                sortable: !1
+            }, {
+                field: "PureRate",
+                title: "洁净度",
+                width: 100,
+                sortable: !1
+            }, {
+                field: "Address",
+                title: "安装地址",
+                width: 100,
+                sortable: !1
+            }, {
+                field: "Contacts",
+                title: "联系人",
+                width: 100,
+                sortable: !1
+            }, {
+                field: "ContactInfo",
+                title: "联系方式",
+                width: 100,
+                sortable: !1
+            }]];
+        },
+        doRenderChart: function (b) {
+            var c = [[]];
+            d = [];
+            f = "";
+            if (b && b.length) {
+                j = b[0].DayDischargeBound;
+                for (var g in b) {
+                    var h = b[g];
+                    void 0 != h.TimeUp && void 0 != h.Id && (f != h.TimeUp && (f = h.TimeUp, d.push(e.DateFormat(e.getUnixToTime1(f.replace("/Date(", "").replace(")/", "")), "yyyy/MM/dd"))), c[h.Id].push(h.YouYanND))
                 }
-                else {
-                    a.messager.alert("提示", "没有数据", "warning");
+                try {
+                    this.doDrawChart(c, d, j)
                 }
-            },
-            doDrawChart: function (b) {
-                var d = this;
-                d.$jqPlot && d.$jqPlot.destroy();
-                d.$jqPlot = a.jqplot("reportChart", b, {
-                    seriesColors: ["#008000", "#0000FF", "#FF0000", "#00FF00", "#00BFFF", "#8A2BE2", "#953579", "#4b5de4", "#d8b83f", "#ff5800", "#0085cc"],
-                    series: [{
-                        label: "油烟浓度",
-                        markerOptions: {
-                            show: !1
-                        }
-                        
-                    }, {
-                        label: "油烟湿度",
-                        markerOptions: {
-                            show: !1
-                        }
-                    }, {
-                        label: "油烟温度",
-                        markerOptions: {
-                            show: !1
-                        }
-                    }, {
-                        label: "油烟浓度2",
-                        markerOptions: {
-                            show: !1
-                        }
-
-                    }, {
-                        label: "油烟湿度2",
-                        markerOptions: {
-                            show: !1
-                        }
-                    }, {
-                        label: "油烟温度2",
-                        markerOptions: {
-                            show: !1
-                        }
-                    }],
-                    legend:{
-                        show: !0,
-                        xoffset: 12,
-                        yoffset: 12,
-                    },
-                    axes: {
-                        xaxis: {
-                            renderer: a.jqplot.DateAxisRenderer,
-                            tickRenderer: a.jqplot.CanvasAxisTickRenderer,
-                            title: "时间",
-                            tickOptions: {
-                                angle: -.1,
-                                formatString: "%#m-%#d %H:%M"
-                            }
-                        },
-                        yaxis: {
-                            renderer: a.jqplot.LinerAxisRenderer,
-                            title: "",
-                        }
-                    },
-                    cursor: {
-                        show: !0,
-                        zoom: !0
-                    }
-                });
+                catch (i) { }
             }
-        });
-        return o;
-    })
+            else a.messager.alert("提示", "没有数据！", "warning");
+
+            //var c = [];
+            //d = [];
+            //f = "";
+            // if (b && b.length) {
+            //    for (var g in b) {
+            //        var h = b[g];
+            //        void 0 != h.TimeUp && void 0 != h.Id && (f != h.TimeUp && (f = h.TimeUp, c.push([e.DateFormat(e.getUnixToTime1(f.replace("/Date(", "").replace(")/", "")), "yyyy/MM/dd"), h.YouYanND])));
+            //    }
+            //    try {
+            //        this.doDrawChart(c, d)
+            //    }
+            //    catch (i) { }
+            //}
+            //else a.messager.alert("提示", "没有数据！", "warning");
+        },
+        doDrawChart: function (b, c, j) {
+            var d = this;
+            d.$jqPlot && d.$jqPlot.destroy();
+            d.$jqPlot = a.jqplot("discharge", b, {
+                animate: !0,
+                animateReplot: !0,
+                cursor: {
+                    show: !0,
+                    zoom: !0,
+                    looseZoom: !0,
+                    showTooltip: !1
+                },
+                seriesDefaults: {
+                    renderer: a.jqplot.BarRenderer,
+                    pointLabels: { show: !0 },
+                    rendererOptions: {
+                        fillToZero: !0,
+                        animation: {
+                            speed: 2500
+                        },
+                    },
+                },
+                series: [
+                    {
+                        label: "排放量"
+                    },
+                ],
+                axesDefaults: {
+                    pad: 0
+                },
+                axes: {
+                    xaxis: {
+                        renderer: a.jqplot.CategoryAxisRenderer,
+                        ticks: c,
+                    },
+                    yaxis: {
+                        pad: 1.05,
+                        tickOptions: {
+                            formatString: "%d 克"
+                        },
+                    },
+                },
+                canvasOverlay: {
+                    show: true,
+                    objects: [
+                        {
+                            horizontalLine: {
+                                name: 'pebbles',
+                                y: j,
+                                lineWidth: 3,
+                                xOffset: 0,
+                                color: 'rgb(89, 198, 154)',
+                                shadow: false
+                            }
+                        }
+                    ]
+                }
+            })
+            //$('#discharge').bind('jqplotDataHighlight',
+            //    function (ev, seriesIndex, pointIndex, data) {
+            //        $('#dischargeContent').html('日期： ' + c[pointIndex] + '，数据：' + data[1] + '克');
+            //    })
+
+        },
+        render: function () {
+            var b, c, d, g = this;
+            b = g.$panel.find(".easyui-layout").layout(),
+            c = b.layout("panel", "center"),
+            d = b.layout("panel", "north"),
+            f = g.$panel.find(".easyui-tabs").tabs({
+                onSelect: function (a, b) {
+                    1 == b && g.$table.datagrid("resize");
+                }
+            });
+
+            g.$tablePanel1 = f.tabs("getTab", 0);
+            g.$tablePanel2 = f.tabs("getTab", 2);
+            g.$tablePanel = f.tabs("getTab", 1);
+
+            g.doInitTable1({
+                rownumbers: !0,
+                onLoadSuccess: function (a) {
+
+                },
+                onDbClickRow: a.noop,
+                url: "",
+                pagination: !0,
+                pageSize: 50,
+                pageList: [50]
+            }, [], "", "");
+
+            g.doInitTable2({
+                rownumbers: !0,
+                onLoadSuccess: function (a) {
+
+                },
+                onDbClickRow: a.noop,
+                url: "",
+                pagination: !0,
+                pageSize: 50,
+                pageList: [50]
+            }, [], "", "");
+
+            g.doInitTable({
+                rownumbers: !0,
+                onLoadSuccess: function (a) {
+
+                },
+                onDbClickRow: a.noop,
+                url: "",
+                pagination: !0,
+                pageSize: 50,
+                pageList: [50]
+            }, [], "", "");
+
+            d.find("#reportType").combobox({
+                required: !0,
+                width: 150,
+                onSelect: function (a) {
+                    g.reportType = a.value;
+                    if (a.value == "01") {
+                        var yesterday = e.getDate(-1);
+                        g.$searchBar.find(".startTime").datetimebox("setValue", yesterday + e.getStartHour());
+                        g.$searchBar.find(".endTime").datetimebox("setValue", yesterday + e.getEndHour());
+                    }
+                    else if (a.value == "02") {
+                        var monday = e.getMonday();
+                        g.$searchBar.find(".startTime").datetimebox("setValue", e.getDate(-monday - 7) + e.getStartHour());
+                        g.$searchBar.find(".endTime").datetimebox("setValue", e.getDate(-monday - 1) + e.getEndHour());
+                    }
+                    else if (a.value == "03") {
+                        g.$searchBar.find(".startTime").datetimebox("setValue", e.getMonth("s", -1) + e.getStartHour());
+                        g.$searchBar.find(".endTime").datetimebox("setValue", e.getMonth("g", -1) + e.getEndHour());
+                    }
+                }
+            });
+            d.find("#sortType").combobox({
+                required: !0,
+                width: 150,
+                onSelect: function (a) {
+                    g.sortType = a.value;
+                }
+            });
+            d.find(".easyui-linkbutton").linkbutton({
+                onClick: function () {
+                    var b = a(this).attr("data-operation");
+                    b && g[b] && g[b].call(g);
+                }
+            }),
+            g.$searchBar = d;
+            g.$searchBar.find(".startTime").datetimebox("setValue", e.getDate(-1) + e.getStartHour());
+            g.$searchBar.find(".endTime").datetimebox("setValue", e.getDate(-1) + e.getEndHour());
+        },
+        doInitTable1: function (c, e, f, g) {
+            var h = this;
+            h.$table1 = a(document.createElement("table")).appendTo(h.$tablePanel1);
+            h.$table1 && h.$table1.size() && h.$table1.datagrid(b.extend({
+                fit: !0,
+                border: !1,
+                striped: !0,
+                method: "get",
+                pagination: !0,
+                singleSelect: !0,
+                loadMsg: "加载数据中...",
+                cache: !1,
+                idField: h.idField,
+                textField: h.textField,
+                queryParams: h.queryParams,
+                url: h.getHref(!1, h.controller, "DataRowIndex"),
+                //toolbar: d.strFormat("#{0}_toolbar", a.md5(h.title)),
+                columns: h.getTableColumns1(),
+                onResize: function () {
+                    h.$ajaxDialog && (h.$ajaxDialog.dialog("restore"), h.$ajaxDialog.dialog("maximize"))
+                },
+                onSelect: function (a, b) {
+                    h.currentRow = b
+                },
+                onLoadError: function () {
+                    a.messager.alert("提示", "服务器忙，请稍后再试！", "warning")
+                },
+                onDblClickRow: function (a, b) {
+                    h.currentRow = b,
+                    h.doEdit && h.doEdit()
+                }
+            },
+            c));
+        },
+        doInitTable2: function (c, e, f, g) {
+            var h = this;
+            h.$table2 = a(document.createElement("table")).appendTo(h.$tablePanel2);
+            h.$table2 && h.$table2.size() && h.$table2.datagrid(b.extend({
+                fit: !0,
+                border: !1,
+                striped: !0,
+                method: "get",
+                pagination: !0,
+                singleSelect: !0,
+                loadMsg: "加载数据中...",
+                cache: !1,
+                idField: h.idField,
+                textField: h.textField,
+                queryParams: h.queryParams,
+                url: h.getHref(!1, h.controller, "DataRowIndex"),
+                //toolbar: d.strFormat("#{0}_toolbar", a.md5(h.title)),
+                columns: h.getTableColumns2(),
+                onResize: function () {
+                    h.$ajaxDialog && (h.$ajaxDialog.dialog("restore"), h.$ajaxDialog.dialog("maximize"))
+                },
+                onSelect: function (a, b) {
+                    h.currentRow = b
+                },
+                onLoadError: function () {
+                    a.messager.alert("提示", "服务器忙，请稍后再试！", "warning")
+                },
+                onDblClickRow: function (a, b) {
+                    h.currentRow = b,
+                    h.doEdit && h.doEdit()
+                }
+            },
+            c));
+        },
+        doSearch: function () {
+            var b = this;
+            b.sortType && (b.$table.datagrid("options").url = b.getHref(!1, b.controller, "DischargeReportDataRow"),
+            b.$table.datagrid("reload", {
+                SortType: b.sortType,
+                StartTime: b.$searchBar.find(".startTime").datetimebox("getValue"),
+                EndTime: b.$searchBar.find(".endTime").datetimebox("getValue")
+            }));
+            b.sortType && (b.$table1.datagrid("options").url = b.getHref(!1, b.controller, "ConcentrationReportDataRow"),
+            b.$table1.datagrid("reload", {
+                SortType: b.sortType,
+                StartTime: b.$searchBar.find(".startTime").datetimebox("getValue"),
+                EndTime: b.$searchBar.find(".endTime").datetimebox("getValue")
+            }));
+            b.sortType && (b.$table2.datagrid("options").url = b.getHref(!1, b.controller, "AlarmTimeReportDataRow"),
+            b.$table2.datagrid("reload", {
+                SortType: b.sortType,
+                StartTime: b.$searchBar.find(".startTime").datetimebox("getValue"),
+                EndTime: b.$searchBar.find(".endTime").datetimebox("getValue")
+            }));
+        },
+        createReport: function () {
+            var a = this;
+            var strurl = '../ReportInfo/Reporting'  + '?sortType=' + a.sortType +
+                        '&StartTime=' + a.$searchBar.find(".startTime").datetimebox("getValue") + '&EndTime=' + a.$searchBar.find(".endTime").datetimebox("getValue");
+            window.open(strurl);
+        },
+
+        dispose: function () {
+            this.base("dispose");
+        }
+    });
+    return j;
+})

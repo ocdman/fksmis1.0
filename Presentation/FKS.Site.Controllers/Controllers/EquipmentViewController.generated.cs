@@ -132,7 +132,7 @@ namespace FKS.Site.Web.Controllers.Controllers
 
             foreach (EquipmentView ev in dgvResult.rows)
             {
-                if (ev.CleanTime != DateTime.Parse("1900-01-01"))
+                if (ev.CleanTime != DateTime.Parse("1900-01-01") && ev.CleanTime != DateTime.Parse("1970-01-01"))
                 {
                     ev.NextCleanTime = ev.CleanTime.AddDays(paramModel.MaintenanceBound);
                 }

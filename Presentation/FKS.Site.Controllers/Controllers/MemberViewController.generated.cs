@@ -25,12 +25,12 @@ namespace FKS.Site.Web.Controllers.Controllers
     [Export]
     public partial class MemberViewController : ManagerController<IAccountSiteContract, MemberView>
     {
-        protected IQueryBuilder<Member> ViewQueryBuilder{get;set;}
-        private bool IsExist{get;set;}
+        protected IQueryBuilder<Member> ViewQueryBuilder { get; set; }
+        private bool IsExist { get; set; }
 
         partial void SetQueryBuilder(Pagination pagination);
-        partial void DoCheckExist(Member model,OperationResult res);
-        
+        partial void DoCheckExist(Member model, OperationResult res);
+
         #region R
 
         /// <summary>
@@ -43,17 +43,17 @@ namespace FKS.Site.Web.Controllers.Controllers
             int total = 0;
             List<PropertySortCondition> sortConditions = this.getPropertySortCondition(pagination);
             DataGridView<MemberView> dgvResult = new DataGridView<MemberView>();
-            
+
             this.SetQueryBuilder(pagination);
             var memberViews = this.SiteContract.Members.Where(this.ViewQueryBuilder.Expression).Where<Member, long>(m => true, pagination.page, pagination.rows, out total, sortConditions.ToArray())
                 .Select(m => new MemberView
                 {
-                                                                Id = m.Id,
-                                                                            UserName = m.UserName,
-                                                                            NickName = m.NickName,
-                                                                            Password = m.Password,
-                                                                            IsAdmin = m.IsAdmin,
-                                                });
+                    Id = m.Id,
+                    UserName = m.UserName,
+                    NickName = m.NickName,
+                    Password = m.Password,
+                    IsAdmin = m.IsAdmin,
+                }).Where<MemberView>(m => m.UserName != "admin");
 
             dgvResult.rows = memberViews.ToList();
             dgvResult.total = total;
@@ -78,13 +78,13 @@ namespace FKS.Site.Web.Controllers.Controllers
                 Member model = new Member
                 {
                     AddDate = DateTime.Now,
-                                                                UserName = viewModel.UserName,
-                                                                            NickName = viewModel.NickName,
-                                                                            Password = viewModel.Password,
-                                                                            IsAdmin = viewModel.IsAdmin,
-                                                };
-                this.DoCheckExist(model,res);
-                if(res.ResultType == OperationResultType.Success)
+                    UserName = viewModel.UserName,
+                    NickName = viewModel.NickName,
+                    Password = viewModel.Password,
+                    IsAdmin = viewModel.IsAdmin,
+                };
+                this.DoCheckExist(model, res);
+                if (res.ResultType == OperationResultType.Success)
                 {
                     var count = this.SiteContract.Add(model);
                     if (count > 0)
@@ -121,12 +121,12 @@ namespace FKS.Site.Web.Controllers.Controllers
             {
                 viewModel = new MemberView
                 {
-                                                                Id = model.Id,
-                                                                            UserName = model.UserName,
-                                                                            NickName = model.NickName,
-                                                                            Password = model.Password,
-                                                                            IsAdmin = model.IsAdmin,
-                                                };
+                    Id = model.Id,
+                    UserName = model.UserName,
+                    NickName = model.NickName,
+                    Password = model.Password,
+                    IsAdmin = model.IsAdmin,
+                };
             }
 
             this.doGetAjaxReturnInfo();
@@ -145,9 +145,11 @@ namespace FKS.Site.Web.Controllers.Controllers
                 var model = this.SiteContract.Members.Single<Member>(m => m.Id == viewModel.Id);
                 if (model != null)
                 {
-                                                                model.NickName = viewModel.NickName;
-                                                                            model.IsAdmin = viewModel.IsAdmin;
-                                
+                    model.NickName = viewModel.NickName;
+                    model.IsAdmin = viewModel.IsAdmin;
+                    model.Password = viewModel.Password;
+
+
                     var count = this.SiteContract.Edit(model);
                     if (count >= 0)
                     {
@@ -158,7 +160,9 @@ namespace FKS.Site.Web.Controllers.Controllers
                         res.ResultType = OperationResultType.Error;
                         res.Message = @"保存数据失败，请查看日志！";
                     }
-                }else{
+                }
+                else
+                {
                     res.ResultType = OperationResultType.Error;
                     res.Message = @"未查询到数据！";
                 }
@@ -186,12 +190,12 @@ namespace FKS.Site.Web.Controllers.Controllers
             {
                 viewModel = new MemberView
                 {
-                                                                Id = model.Id,
-                                                                            UserName = model.UserName,
-                                                                            NickName = model.NickName,
-                                                                            Password = model.Password,
-                                                                            IsAdmin = model.IsAdmin,
-                                                };
+                    Id = model.Id,
+                    UserName = model.UserName,
+                    NickName = model.NickName,
+                    Password = model.Password,
+                    IsAdmin = model.IsAdmin,
+                };
             }
 
             this.doGetAjaxReturnInfo();
@@ -208,25 +212,27 @@ namespace FKS.Site.Web.Controllers.Controllers
         {
             //var result = this.doCheckViewModel(res =>
             //{
-                var res = new OperationResult(OperationResultType.Success, string.Empty);
-                var model = this.SiteContract.Members.Single<Member>(m => m.Id == viewModel.Id);
-                if (model != null)
-                {
-                    var count = this.SiteContract.Del(model);
+            var res = new OperationResult(OperationResultType.Success, string.Empty);
+            var model = this.SiteContract.Members.Single<Member>(m => m.Id == viewModel.Id);
+            if (model != null)
+            {
+                var count = this.SiteContract.Del(model);
 
-                    if (count > 0)
-                    {
-                        res.ResultType = OperationResultType.Success;
-                    }
-                    else
-                    {
-                        res.ResultType = OperationResultType.Error;
-                        res.Message = @"保存数据失败，请查看日志！";
-                    }
-                }else{
-                    res.ResultType = OperationResultType.Error;
-                    res.Message = @"未查询到数据！";
+                if (count > 0)
+                {
+                    res.ResultType = OperationResultType.Success;
                 }
+                else
+                {
+                    res.ResultType = OperationResultType.Error;
+                    res.Message = @"保存数据失败，请查看日志！";
+                }
+            }
+            else
+            {
+                res.ResultType = OperationResultType.Error;
+                res.Message = @"未查询到数据！";
+            }
             //});
             this.doSetLogInfo("删除操作员:" + viewModel.NickName, res);
 

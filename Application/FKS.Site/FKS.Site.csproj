@@ -79,12 +79,14 @@
     <Compile Include="Helper\Logging\AdminLogAttribute.cs" />
     <Compile Include="Helper\SiteStaticStrings.cs" />
     <Compile Include="ILogInfoSiteContract.cs" />
+    <Compile Include="IMessageSetSiteContract.cs" />
     <Compile Include="Impl\AccountSiteService.cs" />
     <Compile Include="Impl\AuthoritySiteService.cs" />
     <Compile Include="Impl\DataAnalyseSiteService.cs" />
     <Compile Include="Impl\EquipManagerSiteService.cs" />
     <Compile Include="Impl\EquipmentSiteService.cs" />
     <Compile Include="Impl\LogInfoSiteService.cs" />
+    <Compile Include="Impl\MessageSetSiteService.cs" />
     <Compile Include="Impl\ParameterSetSiteService.cs" />
     <Compile Include="Impl\ReportSiteService.cs" />
     <Compile Include="IParameterSetSiteContract.cs" />

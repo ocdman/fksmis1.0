@@ -61,6 +61,7 @@
     <Compile Include="Configurations\Account\MemberExtendConfiguration.generated.cs" />
     <Compile Include="Configurations\Authority\AuthorityConfiguration.generated.cs" />
     <Compile Include="Configurations\Hardware\AbnormalEquipConfiguration.generated.cs" />
+    <Compile Include="Configurations\Message\MessageSetConfiguration.generated.cs" />
     <Compile Include="Configurations\Report\AlarmTimeReportConfiguration.generated.cs" />
     <Compile Include="Configurations\Report\ConcentrationReportConfiguration.generated.cs" />
     <Compile Include="Configurations\Hardware\DataAnalyseConfiguration.generated.cs" />
@@ -86,6 +87,8 @@
     <Compile Include="Repositories\Authority\IAuthorityRepository.generated.cs" />
     <Compile Include="Repositories\Authority\Impl\AuthorityRepository.generated.cs" />
     <Compile Include="Repositories\Hardware\IAbnormalEquipRepository.generated.cs" />
+    <Compile Include="Repositories\Message\IMessageSetRepository.generated.cs" />
+    <Compile Include="Repositories\Message\Impl\MessageSetRepository.generated.cs" />
     <Compile Include="Repositories\Report\IAlarmTimeReportRepository.generated.cs" />
     <Compile Include="Repositories\Report\IConcentrationReportRepository.generated.cs" />
     <Compile Include="Repositories\Hardware\IDataAnalyseRepository.generated.cs" />
@@ -154,6 +157,7 @@
 ..\Configurations\Hardware\RunningTimeConfiguration.generated.cs
 ..\Configurations\logger\FKSLoggerConfiguration.generated.cs
 ..\Configurations\logger\LogInfoConfiguration.generated.cs
+..\Configurations\Message\MessageSetConfiguration.generated.cs
 ..\Configurations\Parameters\ParameterSetConfiguration.generated.cs
 ..\Configurations\Report\AlarmTimeReportConfiguration.generated.cs
 ..\Configurations\Report\ConcentrationReportConfiguration.generated.cs
@@ -183,6 +187,8 @@
 ..\Repositories\logger\ILogInfoRepository.generated.cs
 ..\Repositories\logger\Impl\FKSLoggerRepository.generated.cs
 ..\Repositories\logger\Impl\LogInfoRepository.generated.cs
+..\Repositories\Message\IMessageSetRepository.generated.cs
+..\Repositories\Message\Impl\MessageSetRepository.generated.cs
 ..\Repositories\Parameters\Impl\ParameterSetRepository.generated.cs
 ..\Repositories\Parameters\IParameterSetRepository.generated.cs
 ..\Repositories\Report\IAlarmTimeReportRepository.generated.cs

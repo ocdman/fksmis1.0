@@ -52,6 +52,7 @@
     <Compile Include="LogInfoView.cs" />
     <Compile Include="LoginModel.cs" />
     <Compile Include="MemberView.cs" />
+    <Compile Include="MessageSetView.cs" />
     <Compile Include="OperationMaintenanceView.cs" />
     <Compile Include="ParameterSetView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

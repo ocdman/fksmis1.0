@@ -368,7 +368,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!Discharge.Value, "DataSet2")</Value>
+                              <Value>=Round(Sum(Fields!Discharge.Value, "DataSet2"),1)</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -389,6 +389,7 @@
                       </Style>
                     </Textbox>
                     <ColSpan>2</ColSpan>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell />
@@ -458,7 +459,6 @@
                       </Style>
                     </Textbox>
                     <ColSpan>2</ColSpan>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell />
@@ -593,7 +593,6 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
-        <Left>0cm</Left>
         <Height>5.4cm</Height>
         <Width>18cm</Width>
         <Style>
@@ -1266,7 +1265,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!Discharge.Value</Value>
+                              <Value>=round(Fields!Discharge.Value,1)</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>

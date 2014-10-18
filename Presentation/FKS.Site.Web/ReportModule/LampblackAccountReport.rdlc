@@ -30,11 +30,13 @@
                                         <Paragraph>
                                           <TextRuns>
                                             <TextRun>
-                                              <Value />
+                                              <Value>项目  |  日期</Value>
                                               <Style />
                                             </TextRun>
                                           </TextRuns>
-                                          <Style />
+                                          <Style>
+                                            <TextAlign>Center</TextAlign>
+                                          </Style>
                                         </Paragraph>
                                       </Paragraphs>
                                       <rd:DefaultName>textbox1</rd:DefaultName>
@@ -43,6 +45,7 @@
                                         <Border>
                                           <Style>Solid</Style>
                                         </Border>
+                                        <VerticalAlign>Middle</VerticalAlign>
                                         <PaddingLeft>2pt</PaddingLeft>
                                         <PaddingRight>2pt</PaddingRight>
                                         <PaddingTop>2pt</PaddingTop>
@@ -80,7 +83,9 @@
                                                 <Style />
                                               </TextRun>
                                             </TextRuns>
-                                            <Style />
+                                            <Style>
+                                              <TextAlign>Center</TextAlign>
+                                            </Style>
                                           </Paragraph>
                                         </Paragraphs>
                                         <rd:DefaultName>Ldb</rd:DefaultName>
@@ -88,6 +93,7 @@
                                           <Border>
                                             <Style>Solid</Style>
                                           </Border>
+                                          <VerticalAlign>Middle</VerticalAlign>
                                           <PaddingLeft>2pt</PaddingLeft>
                                           <PaddingRight>2pt</PaddingRight>
                                           <PaddingTop>2pt</PaddingTop>
@@ -211,7 +217,9 @@
                                                 <Style />
                                               </TextRun>
                                             </TextRuns>
-                                            <Style />
+                                            <Style>
+                                              <TextAlign>Center</TextAlign>
+                                            </Style>
                                           </Paragraph>
                                         </Paragraphs>
                                         <rd:DefaultName>AvgND</rd:DefaultName>
@@ -220,6 +228,7 @@
                                           <Border>
                                             <Style>Solid</Style>
                                           </Border>
+                                          <VerticalAlign>Middle</VerticalAlign>
                                           <PaddingLeft>2pt</PaddingLeft>
                                           <PaddingRight>2pt</PaddingRight>
                                           <PaddingTop>2pt</PaddingTop>
@@ -277,7 +286,9 @@
                                                 <Style />
                                               </TextRun>
                                             </TextRuns>
-                                            <Style />
+                                            <Style>
+                                              <TextAlign>Center</TextAlign>
+                                            </Style>
                                           </Paragraph>
                                         </Paragraphs>
                                         <rd:DefaultName>Avgjjd</rd:DefaultName>
@@ -286,6 +297,7 @@
                                           <Border>
                                             <Style>Solid</Style>
                                           </Border>
+                                          <VerticalAlign>Middle</VerticalAlign>
                                           <PaddingLeft>2pt</PaddingLeft>
                                           <PaddingRight>2pt</PaddingRight>
                                           <PaddingTop>2pt</PaddingTop>
@@ -418,7 +430,9 @@
                                                   <Style />
                                                 </TextRun>
                                               </TextRuns>
-                                              <Style />
+                                              <Style>
+                                                <TextAlign>Center</TextAlign>
+                                              </Style>
                                             </Paragraph>
                                           </Paragraphs>
                                           <rd:DefaultName>textbox2</rd:DefaultName>
@@ -427,6 +441,7 @@
                                             <Border>
                                               <Style>Solid</Style>
                                             </Border>
+                                            <VerticalAlign>Middle</VerticalAlign>
                                             <PaddingLeft>2pt</PaddingLeft>
                                             <PaddingRight>2pt</PaddingRight>
                                             <PaddingTop>2pt</PaddingTop>
@@ -686,8 +701,7 @@
                           <RepeatColumnHeaders>true</RepeatColumnHeaders>
                           <RepeatRowHeaders>true</RepeatRowHeaders>
                           <DataSetName>DataSet1</DataSetName>
-                          <Top>0cm</Top>
-                          <Height>2in</Height>
+                          <Height>1.99998in</Height>
                           <Width>1.8in</Width>
                           <Style />
                         </Tablix>
@@ -1191,8 +1205,8 @@
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
-        <Height>2cm</Height>
-        <Width>18.796cm</Width>
+        <Height>2.00001cm</Height>
+        <Width>18.79599cm</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>

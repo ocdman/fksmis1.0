@@ -2,7 +2,7 @@
 //     此代码由工具生成。
 //     对此文件的更改可能会导致不正确的行为，并且如果
 //     重新生成代码，这些更改将会丢失。
-//		如存在本生成代码外的新需求，请在相同命名空间下创建同名分部类实现 AuthorityConfigurationAppend 分部方法。
+//		如存在本生成代码外的新需求，请在相同命名空间下创建同名分部类实现 MessageSetConfigurationAppend 分部方法。
 // </auto-generated>
 
 using System.Data.Entity;
@@ -11,22 +11,22 @@ using System.Data.Entity.ModelConfiguration;
 using System.Data.Entity.ModelConfiguration.Configuration;
 
 using FKS.Component.Data;
-using FKS.Core.Models.Authority;
+using FKS.Core.Models.Message;
 
 
-namespace FKS.Core.Data.Configurations.Authority
+namespace FKS.Core.Data.Configurations.Message
 {
     /// <summary>
-    /// 实体类-数据表映射——Authority
+    /// 实体类-数据表映射——MessageSet
     /// </summary>    
-	internal partial class AuthorityConfiguration : EntityTypeConfiguration<FKS.Core.Models.Authority.Authority>, IEntityMapper
+	internal partial class MessageSetConfiguration : EntityTypeConfiguration<MessageSet>, IEntityMapper
     {
         /// <summary>
-        /// 实体类-数据表映射构造函数——Authority
+        /// 实体类-数据表映射构造函数——MessageSet
         /// </summary>
-        public AuthorityConfiguration()
+        public MessageSetConfiguration()
         {
-			AuthorityConfigurationAppend();
+			MessageSetConfigurationAppend();
         }
         
         private DbModelBuilder modelBuilder{get;set;}
@@ -34,7 +34,7 @@ namespace FKS.Core.Data.Configurations.Authority
         /// <summary>
         /// 额外的数据映射
         /// </summary>
-        partial void AuthorityConfigurationAppend();
+        partial void MessageSetConfigurationAppend();
 		
         /// <summary>
         /// 将当前实体映射对象注册到当前数据访问上下文实体映射配置注册器中

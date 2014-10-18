@@ -54,8 +54,6 @@ namespace FKS.Site.Web.Controllers.Controllers
             }
 
             AnalyseReportType(param);
-            //param.StartTime = DateTime.Parse("2014-06-23 00:00:00");
-            //param.EndTime = DateTime.Parse("2014-06-28 00:00:00");
             var result = this.SiteContract.GetReportData(param.collectionCode, param.StartTime, param.EndTime, param.reportType);
             var dataGridData = new DataGridView<ReportInfo>
             {
@@ -112,12 +110,16 @@ namespace FKS.Site.Web.Controllers.Controllers
             List<PureRateReport> ds3 = (List<PureRateReport>)this.SiteContract.GetPureRateReportData(param.SortType, param.StartTime, param.EndTime);
             LocalReport localReport = new LocalReport();
             localReport.ReportPath = Server.MapPath("~/ReportModule/SampleReport.rdlc");
+            string parameter1 = param.StartTime.ToString();
+            string parameter2 = param.EndTime.ToString();
             ReportDataSource reportDataSource1 = new ReportDataSource("DataSet1", ds1);
             ReportDataSource reportDataSource2 = new ReportDataSource("DataSet2", ds2);
             ReportDataSource reportDataSource3 = new ReportDataSource("DataSet3", ds3);
             localReport.DataSources.Add(reportDataSource1);
             localReport.DataSources.Add(reportDataSource2);
             localReport.DataSources.Add(reportDataSource3);
+            localReport.SetParameters(new ReportParameter("ReportParameter1", parameter1));
+            localReport.SetParameters(new ReportParameter("ReportParameter2", parameter2));
 
             string reportType = type;
             string mimeType;
@@ -168,8 +170,6 @@ namespace FKS.Site.Web.Controllers.Controllers
             {
                 return Json("error", JsonRequestBehavior.DenyGet);
             }
-            //param.StartTime = DateTime.Parse("2014-06-23 00:00:00");
-            //param.EndTime = DateTime.Parse("2014-06-23 23:00:00");
             var result = this.SiteContract.GetConcentrationReportData(param.SortType, param.StartTime, param.EndTime);
             var dataGridData = new DataGridView<ConcentrationReport>()
             {
@@ -190,10 +190,28 @@ namespace FKS.Site.Web.Controllers.Controllers
             {
                 return Json("error", JsonRequestBehavior.DenyGet);
             }
-            //param.StartTime = DateTime.Parse("2014-06-23 00:00:00");
-            //param.EndTime = DateTime.Parse("2014-06-23 23:00:00");
             var result = this.SiteContract.GetDischargeReportData(param.SortType, param.StartTime, param.EndTime);
             var dataGridData = new DataGridView<DischargeReport>()
+            {
+                total = result.Count,
+                rows = result.Skip((param.page - 1) * param.rows).Take(param.rows).ToList()
+            };
+            return Json(dataGridData, JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 净化效率报表数据
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        public ActionResult PureRateReportDataRow(ReportParams param)
+        {
+            if (CheckAuthority() == false)
+            {
+                return Json("error", JsonRequestBehavior.DenyGet);
+            }
+            var result = this.SiteContract.GetPureRateReportData(param.SortType, param.StartTime, param.EndTime);
+            var dataGridData = new DataGridView<PureRateReport>()
             {
                 total = result.Count,
                 rows = result.Skip((param.page - 1) * param.rows).Take(param.rows).ToList()

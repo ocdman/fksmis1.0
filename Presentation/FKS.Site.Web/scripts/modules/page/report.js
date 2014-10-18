@@ -52,7 +52,10 @@ function (a, b, c, d, e, f, g, h, i) {
                 field: "Discharge",
                 title: "排放量",
                 width: 100,
-                sortable: !1
+                sortable: !1,
+                formatter: function (a) {
+                    return a.toFixed(1);
+                }
             }, {
                 field: "Address",
                 title: "安装地址",
@@ -80,7 +83,10 @@ function (a, b, c, d, e, f, g, h, i) {
                 field: "Concentration",
                 title: "油烟浓度",
                 width: 100,
-                sortable: !1
+                sortable: !1,
+                formatter: function (a) {
+                    return a.toFixed(1);
+                }
             }, {
                 field: "Address",
                 title: "安装地址",
@@ -106,7 +112,7 @@ function (a, b, c, d, e, f, g, h, i) {
                 sortable: !1
             }, {
                 field: "PureRate",
-                title: "洁净度",
+                title: "净化效率",
                 width: 100,
                 sortable: !1
             }, {
@@ -142,85 +148,6 @@ function (a, b, c, d, e, f, g, h, i) {
                 catch (i) { }
             }
             else a.messager.alert("提示", "没有数据！", "warning");
-
-            //var c = [];
-            //d = [];
-            //f = "";
-            // if (b && b.length) {
-            //    for (var g in b) {
-            //        var h = b[g];
-            //        void 0 != h.TimeUp && void 0 != h.Id && (f != h.TimeUp && (f = h.TimeUp, c.push([e.DateFormat(e.getUnixToTime1(f.replace("/Date(", "").replace(")/", "")), "yyyy/MM/dd"), h.YouYanND])));
-            //    }
-            //    try {
-            //        this.doDrawChart(c, d)
-            //    }
-            //    catch (i) { }
-            //}
-            //else a.messager.alert("提示", "没有数据！", "warning");
-        },
-        doDrawChart: function (b, c, j) {
-            var d = this;
-            d.$jqPlot && d.$jqPlot.destroy();
-            d.$jqPlot = a.jqplot("discharge", b, {
-                animate: !0,
-                animateReplot: !0,
-                cursor: {
-                    show: !0,
-                    zoom: !0,
-                    looseZoom: !0,
-                    showTooltip: !1
-                },
-                seriesDefaults: {
-                    renderer: a.jqplot.BarRenderer,
-                    pointLabels: { show: !0 },
-                    rendererOptions: {
-                        fillToZero: !0,
-                        animation: {
-                            speed: 2500
-                        },
-                    },
-                },
-                series: [
-                    {
-                        label: "排放量"
-                    },
-                ],
-                axesDefaults: {
-                    pad: 0
-                },
-                axes: {
-                    xaxis: {
-                        renderer: a.jqplot.CategoryAxisRenderer,
-                        ticks: c,
-                    },
-                    yaxis: {
-                        pad: 1.05,
-                        tickOptions: {
-                            formatString: "%d 克"
-                        },
-                    },
-                },
-                canvasOverlay: {
-                    show: true,
-                    objects: [
-                        {
-                            horizontalLine: {
-                                name: 'pebbles',
-                                y: j,
-                                lineWidth: 3,
-                                xOffset: 0,
-                                color: 'rgb(89, 198, 154)',
-                                shadow: false
-                            }
-                        }
-                    ]
-                }
-            })
-            //$('#discharge').bind('jqplotDataHighlight',
-            //    function (ev, seriesIndex, pointIndex, data) {
-            //        $('#dischargeContent').html('日期： ' + c[pointIndex] + '，数据：' + data[1] + '克');
-            //    })
-
         },
         render: function () {
             var b, c, d, g = this;
@@ -229,14 +156,15 @@ function (a, b, c, d, e, f, g, h, i) {
             d = b.layout("panel", "north"),
             f = g.$panel.find(".easyui-tabs").tabs({
                 onSelect: function (a, b) {
-                    1 == b && g.$table.datagrid("resize");
+                    1 == b && g.$table1.datagrid("resize");
+                    2 == b && g.$table2.datagrid("resize");
                 }
             });
 
-            g.$tablePanel1 = f.tabs("getTab", 0);
+            g.$tablePanel = f.tabs("getTab", 0);
+            g.$tablePanel1 = f.tabs("getTab", 1);
             g.$tablePanel2 = f.tabs("getTab", 2);
-            g.$tablePanel = f.tabs("getTab", 1);
-
+            
             g.doInitTable1({
                 rownumbers: !0,
                 onLoadSuccess: function (a) {
@@ -327,7 +255,6 @@ function (a, b, c, d, e, f, g, h, i) {
                 textField: h.textField,
                 queryParams: h.queryParams,
                 url: h.getHref(!1, h.controller, "DataRowIndex"),
-                //toolbar: d.strFormat("#{0}_toolbar", a.md5(h.title)),
                 columns: h.getTableColumns1(),
                 onResize: function () {
                     h.$ajaxDialog && (h.$ajaxDialog.dialog("restore"), h.$ajaxDialog.dialog("maximize"))
@@ -361,7 +288,6 @@ function (a, b, c, d, e, f, g, h, i) {
                 textField: h.textField,
                 queryParams: h.queryParams,
                 url: h.getHref(!1, h.controller, "DataRowIndex"),
-                //toolbar: d.strFormat("#{0}_toolbar", a.md5(h.title)),
                 columns: h.getTableColumns2(),
                 onResize: function () {
                     h.$ajaxDialog && (h.$ajaxDialog.dialog("restore"), h.$ajaxDialog.dialog("maximize"))
@@ -393,7 +319,7 @@ function (a, b, c, d, e, f, g, h, i) {
                 StartTime: b.$searchBar.find(".startTime").datetimebox("getValue"),
                 EndTime: b.$searchBar.find(".endTime").datetimebox("getValue")
             }));
-            b.sortType && (b.$table2.datagrid("options").url = b.getHref(!1, b.controller, "AlarmTimeReportDataRow"),
+            b.sortType && (b.$table2.datagrid("options").url = b.getHref(!1, b.controller, "PureRateReportDataRow"),
             b.$table2.datagrid("reload", {
                 SortType: b.sortType,
                 StartTime: b.$searchBar.find(".startTime").datetimebox("getValue"),

@@ -66,6 +66,7 @@
     <Compile Include="IEquipManagerContract.cs" />
     <Compile Include="IEquipmentContract.cs" />
     <Compile Include="ILogInfoContract.cs" />
+    <Compile Include="IMessageSetContract.cs" />
     <Compile Include="Impl\AccountService.cs" />
     <Compile Include="Impl\AuthorityService.cs" />
     <Compile Include="Impl\CoreServiceBase.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="Impl\EquipManagerService.cs" />
     <Compile Include="Impl\EquipmentService.cs" />
     <Compile Include="Impl\LogInfoService.cs" />
+    <Compile Include="Impl\MessageSetService.cs" />
     <Compile Include="Impl\ParameterSetService.cs" />
     <Compile Include="Impl\ReportService.cs" />
     <Compile Include="IParameterSetContract.cs" />

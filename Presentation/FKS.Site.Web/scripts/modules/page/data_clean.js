@@ -66,7 +66,7 @@ function (a, b, c, d, e, f, g, h, i) {
                     x: -20 //center
                 },
                 subtitle: {
-                    //text: '1：清洁 2：较清洁 3：脏 4：较脏 5：极脏',
+                    text: '1：清洁 2：较清洁 3：脏 4：较脏 5：极脏',
                     x: -20
                 },
                 chart: {

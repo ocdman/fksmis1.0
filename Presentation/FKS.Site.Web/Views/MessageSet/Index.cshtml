@@ -1,0 +1,21 @@
+﻿@model FKS.Site.Models.MessageSetView
+@using FKS.Site.Helper.MVCHtmlExtend
+
+@{
+    Layout = "~/Views/Shared/_AjaxForm.cshtml";
+}
+
+@using (Ajax.BeginForm(new AjaxOptions
+{
+    OnSuccess = ViewBag.Success,
+    OnFailure = ViewBag.Failure
+}))
+{
+    <div class="bs-example">
+        <h1 class="title">短信设置</h1>
+        <div class="form-horizontal pd10">
+            @Html.FormItem(model => model.PhoneNumber)
+            @Html.FormItem(model => model.SendTime)
+        </div>
+    </div>
+}

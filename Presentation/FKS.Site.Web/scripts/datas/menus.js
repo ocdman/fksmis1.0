@@ -26,7 +26,7 @@
     }, {
         "id": 124,
         "text": "运行维护一览",
-        "iconCls": "icon_11",
+        "iconCls": "icon_26",
         "attributes": {
             "hash": "page/operation_maintenance/运行维护一览"
         }
@@ -81,7 +81,7 @@
         }
     }, {
         "id": 137,
-        "iconCls": "icon_10",
+        "iconCls": "icon_24",
         "text": "维护时间超时设备",
         "attributes": {
             "hash": "page/data_overdue/维护时间超时设备"
@@ -121,14 +121,14 @@
         }
     },{
         "id": 135,
-        "iconCls": "icon_14",
+        "iconCls": "icon_20",
         "text": "油烟监测报告",
         "attributes": {
             "hash": "page/lampblack_monitor_report/油烟监测报告"
         }
     }, {
         "id": 136,
-        "iconCls": "icon_19",
+        "iconCls": "icon_21",
         "text": "油烟台账报告",
         "attributes": {
             "hash": "page/lampblack_account_report/油烟台账报告"
@@ -137,7 +137,7 @@
 }, {
     "id": 13,
     "text": "系统管理",
-    "iconCls": "icon_15",
+    "iconCls": "icon_23",
     "children": [{
         "id": 131,
         "text": "操作员管理",
@@ -159,16 +159,23 @@
         "attributes": {
             "hash": "page/parameterSet/参数设定"
         }
-    },{
-        "id": 134,
+    }, {
+        "id": 138,
+        "text": "短信设定",
+        "iconCls": "icon_22",
+        "attributes": {
+            "hash": "page/messageSet/短信设定"
+        }
+    }, {
+        "id": 135,
         "iconCls": "icon_18",
         "text": "操作日志",
         "attributes": {
             "hash": "page/log/操作日志"
         }
     }, {
-        "id": 135,
-        "iconCls": "icon_0",
+        "id": 136,
+        "iconCls": "icon_25",
         "text": "权限设置",
         "attributes": {
             "hash": "page/authority/权限设置"

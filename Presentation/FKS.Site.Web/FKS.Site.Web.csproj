@@ -706,7 +706,13 @@
     <Content Include="contents\images\png\20140515102134563_easyicon_net_128.png" />
     <Content Include="contents\images\png\20140515103605734_easyicon_net_512.png" />
     <Content Include="contents\images\png\20140515103740688_easyicon_net_128.png" />
+    <Content Include="contents\images\png\authority.jpg" />
+    <Content Include="contents\images\png\maintenance.jpg" />
+    <Content Include="contents\images\png\message.jpg" />
     <Content Include="contents\images\png\report.png" />
+    <Content Include="contents\images\png\report1.png" />
+    <Content Include="contents\images\png\report2.png" />
+    <Content Include="contents\images\png\system.jpg" />
     <Content Include="contents\images\red.png" />
     <Content Include="contents\images\red1.png" />
     <Content Include="contents\jquery.plot\jquery.jqplot.min.css" />
@@ -953,6 +959,7 @@
     <Content Include="scripts\modules\page\data_abnormal.js" />
     <Content Include="scripts\modules\page\log.js" />
     <Content Include="scripts\modules\page\operation_maintenance.js" />
+    <Content Include="scripts\modules\page\messageSet.js" />
     <Content Include="scripts\modules\page\parameterSet.js" />
     <Content Include="scripts\modules\page\report.js" />
     <Content Include="scripts\modules\page\user_manager.js" />
@@ -1353,6 +1360,7 @@
     <Content Include="Views\Authority\Index.cshtml" />
     <Content Include="Views\ReportInfo\LampblackAccountIndex.cshtml" />
     <Content Include="Views\DataAnalyse\OverdueDataIndex.cshtml" />
+    <Content Include="Views\MessageSet\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Account\Login.cshtml" />
@@ -1381,6 +1389,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

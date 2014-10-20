@@ -327,6 +327,7 @@ namespace FKS.Site.Web.Controllers.Controllers
             int temp;
             List<LampblackAccountReport> ds2 = new List<LampblackAccountReport>();
 
+            int year = param.StartTime.Year;
             int month = param.StartTime.Month;
             int bound;
             if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12)
@@ -335,7 +336,7 @@ namespace FKS.Site.Web.Controllers.Controllers
             }
             else if (month == 2)
             {
-                int year = param.StartTime.Year;
+                //int year = param.StartTime.Year;
                 if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0)
                 {
                     bound = 29;
@@ -380,6 +381,8 @@ namespace FKS.Site.Web.Controllers.Controllers
             localReport.DataSources.Add(reportDataSource1);
             localReport.SetParameters(new ReportParameter("ReportParameter1", NickName));
             localReport.SetParameters(new ReportParameter("ReportParameter2", Address));
+            localReport.SetParameters(new ReportParameter("ReportParameter3", year.ToString()));
+            localReport.SetParameters(new ReportParameter("ReportParameter4", month.ToString()));
 
             string reportType = type;
             string mimeType;

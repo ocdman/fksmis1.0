@@ -47,7 +47,7 @@ function (a, b, c, d, e, f, g, h, i) {
                 for (var g in b) {
                     var h = b[g];
                     k[h.Id] || (k[h.Id] = []),
-                    k[h.Id].push([e.getUnixToTime2(h.TimeUp.replace("/Date(", "").replace(")/", "")), h.YouYanND])
+                    k[h.Id].push([e.getUnixToTime2(h.TimeUp.replace("/Date(", "").replace(")/", "")), parseFloat((h.YouYanND).toFixed(1))])
                 }
                 var g = [];
                 g.push({
@@ -90,7 +90,7 @@ function (a, b, c, d, e, f, g, h, i) {
                 },
                 yAxis: {
                     title: {
-                        text: '排放量 (克)'
+                        text: '排放量 (克/天)'
                     },
                     plotLines: [{
                         color: 'red',
@@ -109,7 +109,7 @@ function (a, b, c, d, e, f, g, h, i) {
                     }]
                 },
                 tooltip: {
-                    valueSuffix: '克'
+                    valueSuffix: '克/天'
                 },
                 legend: {
                     layout: 'vertical',

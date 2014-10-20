@@ -964,7 +964,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Now</Value>
+                              <Value>=Parameters!ReportParameter3.Value + " 年 " + Parameters!ReportParameter4.Value + "月"</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -1289,6 +1289,18 @@
       <Nullable>true</Nullable>
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter2</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="ReportParameter3">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter3</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="ReportParameter4">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter4</Prompt>
     </ReportParameter>
   </ReportParameters>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>

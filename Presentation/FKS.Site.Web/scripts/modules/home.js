@@ -19,8 +19,9 @@ function (a, b, c, d, e) {
                     }
                     else if (a(".hidden")[0].children.IsAdmin.value == "True" &&
                         a(".hidden")[0].children.UserName.value != "admin") {
-                        this.childNodes[3].children[1].children[4].hidden = !0;
+                        this.childNodes[3].children[1].children[5].hidden = !0;
                     };
+                    this.childNodes[3].children[1].children[1].hidden = !0;
                     a(".loading").fadeOut();
                     //location.hash = "#page/data_monitor/dajige数据"
                 }

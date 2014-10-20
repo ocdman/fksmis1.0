@@ -47,7 +47,7 @@ function (a, b, c, d, e, f, g, h, i) {
                 for (var g in b) {
                     var h = b[g];
                     k[h.Id] || (k[h.Id] = []),
-                    k[h.Id].push([e.getUnixToTime2(h.TimeUp.replace("/Date(", "").replace(")/", "")), h.YouYanND]);
+                    k[h.Id].push([e.getUnixToTime2(h.TimeUp.replace("/Date(", "").replace(")/", "")), parseFloat((h.YouYanND * 100).toFixed(1))]);
                     //void 0 != h.TimeUp && void 0 != h.Id && (f != h.TimeUp && (f = h.TimeUp, d.push(e.DateFormat(e.getUnixToTime1(f.replace("/Date(", "").replace(")/", "")), "yyyy/MM/dd"))), c[h.Id].push(h.YouYanND))
                 }
                 var g = [];
@@ -90,11 +90,11 @@ function (a, b, c, d, e, f, g, h, i) {
                 },
                 yAxis: {
                     title: {
-                        //text: '排放量 (克)'
+                        text: '净化效率 (%)'
                     },
                     plotLines: [{
                         color: 'red',
-                        value: j / 100,
+                        value: j,
                         width: 2,
                         //color: '#808080'
                         label: {
@@ -109,7 +109,7 @@ function (a, b, c, d, e, f, g, h, i) {
                     }]
                 },
                 tooltip: {
-                    //valueSuffix: '克'
+                    valueSuffix: '%'
                 },
                 legend: {
                     layout: 'vertical',

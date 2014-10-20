@@ -19,7 +19,7 @@ function (a, b, c, d, e, g, h, i, j, k) {
             //this.$ajaxDialog.find("#TimeOut").val("5")
             //this.doOnloadPage();
         },
-        controller: "ParameterSet",
+        controller: "MessageSet",
         doInit: function (a, b) {
             var _this = this;
             if (_this.base("doInit", [a])) {
@@ -77,7 +77,7 @@ function (a, b, c, d, e, g, h, i, j, k) {
             a.messager.progress("close"),
             b && "0" != b.ResultType ? a.messager.alert("提示", b.Message, "error") : a.messager.alert("提示", "修改成功！", "info",
             function () {
-                h.$tabs.tabs("close", "参数设定");
+                h.$tabs.tabs("close", "短信设定");
             });
             //{});
         },
@@ -90,11 +90,8 @@ function (a, b, c, d, e, g, h, i, j, k) {
                 url: b.getHref(!1, b.controller, "Edit"),
                 method: "post",
                 data: {
-                    MaintenanceBound: $("#MaintenanceBound").val(),
-                    ConcentrateBound: $("#ConcentrateBound").val(),
-                    PurifierBound: $("#PurifierBound").val(),
-                    DayDischargeBound: $("#DayDischargeBound").val(),
-                    ShowNumbers: $("#ShowNumbers").val(),
+                    PhoneNumber: $("#PhoneNumber").val(),
+                    SendTime: $("#SendTime").val(),
                 },
                 success: function (a) {
                     console.log(a);

@@ -63,10 +63,10 @@ function (a, b, c, d, e, f, g, h, i) {
                     text: '联动比曲线图',
                     x: -20 //center
                 },
-                subtitle: {
-                    text: '1：清洁 2：较清洁 3：脏 4：较脏 5：极脏',
-                    x: -20
-                },
+                //subtitle: {
+                //    text: '1：清洁 2：较清洁 3：脏 4：较脏 5：极脏',
+                //    x: -20
+                //},
                 chart: {
                     zoomType: 'xy'
                 },

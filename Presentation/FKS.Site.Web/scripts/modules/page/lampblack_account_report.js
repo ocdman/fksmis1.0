@@ -40,7 +40,7 @@ function (a, b, c, d, e, f, g, h, i) {
             b = g.$panel.find(".easyui-layout").layout(),
             c = b.layout("panel", "center"),
             d = b.layout("panel", "north"),
-            d.find(".EquipInfo").combogrid({
+            c.find(".EquipInfo").combogrid({
                 idField: i.prototype.idField,
                 textField: i.prototype.textField,
                 url: g.getHref(!1, i.prototype.controller, "DataRowIndex"),
@@ -55,13 +55,13 @@ function (a, b, c, d, e, f, g, h, i) {
                     g.address = b.Address
                 }
             }),
-            d.find(".easyui-linkbutton").linkbutton({
+            c.find(".easyui-linkbutton").linkbutton({
                 onClick: function () {
                     var b = a(this).attr("data-operation");
                     b && g[b] && g[b].call(g);
                 }
             }),
-            d.find("#month").combobox({
+            c.find("#month").combobox({
                 required: !0,
                 width: 150,
                 onSelect: function (a) {
@@ -116,7 +116,7 @@ function (a, b, c, d, e, f, g, h, i) {
                     }
                 }
             });
-            g.$searchBar = d;
+            g.$searchBar = c;
         },
         doAccount: function () {
             //var b = this;

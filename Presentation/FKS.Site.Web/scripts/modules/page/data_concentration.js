@@ -47,7 +47,7 @@ function (a, b, c, d, e, f, g, h, i) {
                 for (var g in b) {
                     var h = b[g];
                     k[h.Id] || (k[h.Id] = []),
-                    k[h.Id].push([e.getUnixToTime2(h.TimeUp.replace("/Date(", "").replace(")/", "")), h.YouYanND])
+                    k[h.Id].push([e.getUnixToTime2(h.TimeUp.replace("/Date(", "").replace(")/", "")), parseFloat((h.YouYanND).toFixed(1))])
                 }
                 var g = [];
                 g.push({

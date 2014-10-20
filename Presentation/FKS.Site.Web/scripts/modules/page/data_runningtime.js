@@ -92,7 +92,7 @@ function (a, b, c, d, e, f, g, h, i) {
                 },
                 yAxis: {
                     title: {
-                        //text: 'Temperature (°C)'
+                        text: '运行时间 分钟'
                     },
                     plotLines: [{
                         value: 0,
@@ -101,7 +101,7 @@ function (a, b, c, d, e, f, g, h, i) {
                     }]
                 },
                 tooltip: {
-                    //valueSuffix: '°C'
+                    valueSuffix: '分钟'
                 },
                 legend: {
                     layout: 'vertical',

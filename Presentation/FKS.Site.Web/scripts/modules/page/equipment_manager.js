@@ -225,6 +225,7 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, z) {
                 data: i,
                 valueField: "value",
                 textField: "text",
+                groupField: 'group',
                 panelHeight: "auto",
                 value: h[0].value == "" ? "2" : h[0].value,
             }),

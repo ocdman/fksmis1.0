@@ -46,20 +46,17 @@
             @Html.FormItem(model => model.NickName, new { @class = "easyui-textbox", style = "width:300px" })
             @Html.FormItem(model => model.Address, new { @class = "easyui-textbox", style = "width:300px" })
             @Html.FormItem(model => model.EquipCount, new { @class = "easyui-textbox", style = "width:300px" })
-            @Html.FormItemForUnit(model => model.Interval, new { @class = "easyui-textbox", style = "width:300px" },
-            "<label class='col-sm-2 control-label'>采集间隔(s)</label>")
+            @Html.FormItem(model => model.Interval, new { @class = "easyui-textbox", style = "width:300px" })
             @Html.FormItem(model => model.TimeOut, new { @class = "easyui-combobox", style = "width:300px" })
             @Html.FormItem(model => model.Status, new { @class = "easyui-combobox", style = "width:300px" })
-            @Html.FormItemForUnit(model => model.FanAirFlow, new { @class = "easyui-textbox", style = "width:300px" },
-            "<label class='col-sm-2 control-label'>风机风量(l/h)</label>")
-            @Html.FormItemForUnit(model => model.FanPower, new { @class = "easyui-textbox", style = "width:300px" },
-            "<label class='col-sm-2 control-label'>风机功率(kw)</label>")
-            @Html.FormItemForUnit(model => model.PurifierAirFlow, new { @class = "easyui-textbox", style = "width:300px" },
-            "<label class='col-sm-2 control-label'>净化器功率(l/h)</label>")
+            @Html.FormItem(model => model.FanAirFlow, new { @class = "easyui-textbox", style = "width:300px" })
+            @Html.FormItem(model => model.FanPower, new { @class = "easyui-textbox", style = "width:300px" })
+            @Html.FormItem(model => model.PurifierAirFlow, new { @class = "easyui-textbox", style = "width:300px" })
             @Html.FormItem(model => model.Contacts, new { @class = "easyui-textbox", style = "width:300px" })
             @Html.FormItem(model => model.ContactInfo, new { @class = "easyui-textbox", style = "width:300px" })
             @Html.FormItem(model => model.ContractNo, new { @class = "easyui-textbox", style = "width:300px" })
-            @Html.FormItem(model => model.ContractStartTime, new { @class = "easyui-datetimebox", style = "width:300px" })
+            @Html.FormItem(model => model.ContractStartTime, new { @class = "easyui-datebox", style = "width:300px" })
+            @Html.FormItem(model => model.Installer, new { @class = "easyui-textbox", style = "width:300px" })
             @Html.FormItem(model => model.Content, new { @class = "easyui-textbox", style = "width:300px" })
             <div id="allmap" class="baidumap"></div>
         </div>

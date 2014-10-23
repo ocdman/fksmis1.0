@@ -134,7 +134,7 @@ namespace FKS.Site.Web.Controllers.Controllers
             {
                 if (ev.CleanTime != DateTime.Parse("1900-01-01") && ev.CleanTime != DateTime.Parse("1970-01-01"))
                 {
-                    ev.NextCleanTime = ev.CleanTime.AddDays(paramModel.MaintenanceBound);
+                    ev.NextCleanTime = ev.CleanTime.Value.AddDays(paramModel.MaintenanceBound);
                 }
                 else
                 {
@@ -212,7 +212,7 @@ namespace FKS.Site.Web.Controllers.Controllers
                 {
                     AddDate = DateTime.Now,
                     EquipCode = viewModel.EquipCode,
-                    CollectionCode = viewModel.CollectionCode,
+                    CollectionCode = "fjb" + viewModel.CollectionCode,
                     PropertyInfo = viewModel.PropertyInfo,
                     PositionInfo = viewModel.PositionInfo,
                     NickName = viewModel.NickName,
@@ -233,7 +233,8 @@ namespace FKS.Site.Web.Controllers.Controllers
                     Contacts = viewModel.Contacts,
                     ContactInfo = viewModel.ContactInfo,
                     ContractNo = viewModel.ContractNo,
-                    ContractStartTime = viewModel.ContractStartTime
+                    ContractStartTime = viewModel.ContractStartTime,
+                    Installer = viewModel.Installer
                 };
 
                 if (viewModel.Status == 1)
@@ -251,7 +252,7 @@ namespace FKS.Site.Web.Controllers.Controllers
                         // add by wbgong at 20140711 start
                         EquipManager equipManagerModel = new EquipManager
                         {
-                            CollectionCode = viewModel.CollectionCode,
+                            CollectionCode = "fjb" + viewModel.CollectionCode,
                             DetectorCount = viewModel.EquipCount,
                             DetectorNum1 = "0000",
                             DetectorID1 = "0000",
@@ -329,7 +330,8 @@ namespace FKS.Site.Web.Controllers.Controllers
                     Contacts = model.Contacts,
                     ContactInfo = model.ContactInfo,
                     ContractNo = model.ContractNo,
-                    ContractStartTime = model.ContractStartTime
+                    ContractStartTime = model.ContractStartTime,
+                    Installer = model.Installer
                 };
             }
 
@@ -371,6 +373,7 @@ namespace FKS.Site.Web.Controllers.Controllers
                     model.ContactInfo = viewModel.ContactInfo;
                     model.ContractNo = viewModel.ContractNo;
                     model.ContractStartTime = viewModel.ContractStartTime;
+                    model.Installer = viewModel.Installer;
 
                     if (viewModel.IsCleanChecked)
                     {
@@ -438,9 +441,6 @@ namespace FKS.Site.Web.Controllers.Controllers
                     PositionInfo = model.PositionInfo,
                     NickName = model.NickName,
                     Address = model.Address,
-                    EquipCount = model.EquipCount,
-                    TimeOut = model.TimeOut,
-                    Interval = model.Interval,
                     YHX = model.YHX,
                     YHY = model.YHY,
                     Status = model.Status,
@@ -461,7 +461,8 @@ namespace FKS.Site.Web.Controllers.Controllers
                     Contacts = model.Contacts,
                     ContactInfo = model.ContactInfo,
                     ContractNo = model.ContractNo,
-                    ContractStartTime = model.ContractStartTime
+                    ContractStartTime = model.ContractStartTime,
+                    Installer = model.Installer
                 };
             }
 

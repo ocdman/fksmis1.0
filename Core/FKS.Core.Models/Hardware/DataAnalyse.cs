@@ -18,7 +18,7 @@ namespace FKS.Core.Models.Hardware
         /// <summary>
         /// 
         /// </summary>
-        public int ProbeID { get; set; }
+        public byte ProbeID { get; set; }
         /// <summary>
         /// 
         /// </summary>
@@ -30,15 +30,15 @@ namespace FKS.Core.Models.Hardware
         /// <summary>
         /// 
         /// </summary>
-        public Int16 YouYanND { get; set; }
+        public byte YouYanND { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public Int16 YouYanWD { get; set; }
+        public byte YouYanWD { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public Int16 YouYanSD { get; set; }
+        public byte YouYanSD { get; set; }
         /// <summary>
         /// 
         /// </summary>
@@ -54,7 +54,7 @@ namespace FKS.Core.Models.Hardware
         /// <summary>
         /// 
         /// </summary>
-        public Int16 ZTqd { get; set; }
+        public byte ZTqd { get; set; }
         /// <summary>
         /// 净化器时间
         /// </summary>

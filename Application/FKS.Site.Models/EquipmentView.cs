@@ -23,9 +23,8 @@ namespace FKS.Site.Models
         /// <summary>
         /// 设备编码
         /// </summary>
-        [Required, StringLength(12)]
+        [StringLength(12)]
         [Display(Name = "设备编码")]
-        [ViewModel(CanAdd = true, CanEdit = false)]
         public string EquipCode { get; set; }
 
         /// <summary>
@@ -81,7 +80,7 @@ namespace FKS.Site.Models
         /// 采集间隔
         /// </summary>
         [Required]
-        [Display(Name = "采集间隔")]
+        [Display(Name = "采集间隔(s)")]
         [ViewModel(CanAdd = true, CanEdit = true)]
         public int Interval { get; set; }
         /// <summary>
@@ -109,14 +108,14 @@ namespace FKS.Site.Models
         /// 风机风量
         /// </summary>
         [Required]
-        [Display(Name = "风机风量")]
+        [Display(Name = "风机风量(l/h)")]
         [ViewModel(CanAdd = true, CanEdit = true)]
         public double FanAirFlow { get; set; }
         /// <summary>
         /// 风机功率
         /// </summary>
         [Required]
-        [Display(Name = "风机功率")]
+        [Display(Name = "风机功率(kw)")]
         [ViewModel(CanAdd = true, CanEdit = true)]
         public double FanPower { get; set; }
         /// <summary>
@@ -166,9 +165,7 @@ namespace FKS.Site.Models
         /// <summary>
         /// 启用时间
         /// </summary>
-        [ViewModel(CanAdd = false, CanEdit = false, CanShow = true)]
-        //public long OpenTime { get; set; }
-        public DateTime OpenTime { get; set; }
+        public DateTime? OpenTime { get; set; }
 
         [ViewModel(CanAdd = false, CanEdit = false, CanShow = false)]
         public bool IsTimeOut
@@ -186,7 +183,7 @@ namespace FKS.Site.Models
         /// </summary>
         public bool IsCleanChecked { get; set; }
 
-        public DateTime CleanTime { get; set; }
+        public DateTime? CleanTime { get; set; }
 
         /// <summary>
         /// 操作员用户名
@@ -196,17 +193,17 @@ namespace FKS.Site.Models
         [ViewModel(CanAdd = true, CanEdit = true)]
         public string UserName { get; set; }
 
-        [StringLength(20)]
+        [Required, StringLength(20)]
         [Display(Name = "联系人")]
         [ViewModel(CanAdd = true, CanEdit = true)]
         public string Contacts { get; set; }
 
-        [StringLength(20)]
+        [Required, StringLength(20)]
         [Display(Name = "联系方式")]
         [ViewModel(CanAdd = true, CanEdit = true)]
         public string ContactInfo { get; set; }
 
-        [Display(Name = "净化器风量")]
+        [Display(Name = "净化器功率(l/h)")]
         [ViewModel(CanAdd = true, CanEdit = true)]
         public double? PurifierAirFlow { get; set; }
 
@@ -218,5 +215,10 @@ namespace FKS.Site.Models
 
         [Display(Name = "合同起始日期")]
         public DateTime? ContractStartTime { get; set; }
+
+        [Display(Name="安装人")]
+        public string Installer { get; set; }
+
+
     }
 }

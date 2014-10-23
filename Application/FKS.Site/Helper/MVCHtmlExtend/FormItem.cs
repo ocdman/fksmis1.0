@@ -44,25 +44,6 @@ namespace FKS.Site.Helper.MVCHtmlExtend
             return FormItemInline(helper, label, input, valid, ShowValid);
         }
 
-        // add by wbgong at 201-08-01 start
-        public static MvcHtmlString FormItemForUnit<TModel, TValue>(this HtmlHelper<TModel> helper, Expression<Func<TModel, TValue>> expression, object additionalValue, string label, bool ShowValid = true)
-        {
-            MvcHtmlString input = InputExtensions.TextBoxFor(helper, expression, additionalValue);
-            MvcHtmlString valid = ValidationExtensions.ValidationMessageFor(helper, expression, "", new { @class = "control-label" });
-
-            return FormItem(helper, MvcHtmlString.Create(label), input, valid, ShowValid);
-        }
-
-        public static MvcHtmlString FormItemInLine<TModel, TValue>(this HtmlHelper<TModel> helper, Expression<Func<TModel, TValue>> expression, object additionalLabelValue, object additionalTextValue, bool ShowValid = true)
-        {
-            MvcHtmlString label = LabelExtensions.LabelFor(helper, expression, additionalLabelValue);
-            MvcHtmlString input = InputExtensions.TextBoxFor(helper, expression, additionalTextValue);
-            MvcHtmlString valid = ValidationExtensions.ValidationMessageFor(helper, expression, "", new { @class = "control-label" });
-
-            return FormItemInline(helper, label, input, valid, ShowValid);
-        }
-        // add by wbgong at 201-08-01 end
-
         public static MvcHtmlString FormItemInline(this HtmlHelper helper, MvcHtmlString label, MvcHtmlString input, MvcHtmlString valid, bool ShowValid)
         {
             StringBuilder stringBuilder = new StringBuilder();

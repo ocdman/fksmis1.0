@@ -61,7 +61,7 @@ namespace FKS.Core.Models.Hardware
         /// <summary>
         /// 设备编码
         /// </summary>
-        [Required, StringLength(12)]
+        [StringLength(12)]
         public string EquipCode { get; set; }
         /// <summary>
         /// 采集器ID
@@ -103,7 +103,7 @@ namespace FKS.Core.Models.Hardware
         /// 启用时间
         /// </summary>
         //public long OpenTime { get; set; }
-        public DateTime OpenTime { get; set; }
+        public DateTime? OpenTime { get; set; }
         /// <summary>
         /// 采集间隔
         /// </summary>
@@ -182,7 +182,7 @@ namespace FKS.Core.Models.Hardware
         /// <summary>
         /// 清洗时间
         /// </summary>
-        public DateTime CleanTime { get; set; }
+        public DateTime? CleanTime { get; set; }
 
         [Required]
         [StringLength(20)]
@@ -222,7 +222,14 @@ namespace FKS.Core.Models.Hardware
         public string ContractNo { get; set; }
 
         // 合同起始日期
-        public DateTime? ContractStartTime { get; set; }    
+        public DateTime? ContractStartTime { get; set; }
+
+        /// <summary>
+        /// 安装人
+        /// </summary>
+        public string Installer { get; set; }
+
+
 
     }
 }

@@ -15,13 +15,13 @@
               <Width>4.14042cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.8cm</Width>
+              <Width>3cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.8cm</Width>
+              <Width>3cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.8cm</Width>
+              <Width>3cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>3.66417cm</Width>
@@ -227,6 +227,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -526,7 +527,7 @@
         <DataSetName>DataSet1</DataSetName>
         <Top>1cm</Top>
         <Height>1.2cm</Height>
-        <Width>20.04042cm</Width>
+        <Width>20.64042cm</Width>
         <Style>
           <Border>
             <Style>None</Style>

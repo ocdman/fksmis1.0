@@ -15,7 +15,6 @@
         <h1 class="title">更新用户</h1>
         <div class="form-horizontal pd10">
             @Html.FormItem(model => model.EquipCode, new { @class = "easyui-textbox", style = "width:300px" })
-            @*@Html.FormItem(model => model.CollectionCode, new { @class = "easyui-textbox", style = "width:300px" })*@
             @Html.FormItem(model => model.UserName, new { @class = "easyui-textbox", style = "width:300px" })
             @Html.FormItem(model => model.PropertyInfo, new { @class = "easyui-combobox", style = "width:300px" })
             @Html.FormItem(model => model.PositionInfo, new { @class = "easyui-combobox", style = "width:300px" })
@@ -34,11 +33,6 @@
             @Html.FormItem(model => model.ContractStartTime, new { @class = "easyui-datebox", style = "width:300px" })
             @Html.FormItem(model => model.Installer, new { @class = "easyui-textbox", style = "width:300px" })
             @Html.FormItem(model => model.Content, new { @class = "easyui-textbox", style = "width:300px" })
-            <div class="form-group">
-                <label class="col-sm-2 control-label">维护时间</label>
-                @Html.CheckBoxFor(model => model.IsCleanChecked)
-                @Html.TextBoxFor(model => model.CleanTime, new { @class = "easyui-datebox", style = "width:300px" })
-            </div>
             <div id="allmap" class="baidumap"></div>
         </div>
 

@@ -132,13 +132,9 @@ namespace FKS.Site.Web.Controllers.Controllers
 
             foreach (EquipmentView ev in dgvResult.rows)
             {
-                if (ev.CleanTime != DateTime.Parse("1900-01-01") && ev.CleanTime != DateTime.Parse("1970-01-01"))
+                if (ev.CleanTime != null)
                 {
                     ev.NextCleanTime = ev.CleanTime.Value.AddDays(paramModel.MaintenanceBound);
-                }
-                else
-                {
-                    ev.NextCleanTime = DateTime.Parse("1900-01-01");
                 }
             }
 
@@ -226,8 +222,6 @@ namespace FKS.Site.Web.Controllers.Controllers
                     FanAirFlow = viewModel.FanAirFlow,
                     FanPower = viewModel.FanPower,
                     Content = viewModel.Content,
-                    OpenTime = new DateTime(1970, 1, 1, 0, 0, 0),
-                    CleanTime = new DateTime(1970, 1, 1, 0, 0, 0),
                     UserName = viewModel.UserName,
                     PurifierAirFlow = viewModel.PurifierAirFlow,
                     Contacts = viewModel.Contacts,
@@ -346,7 +340,6 @@ namespace FKS.Site.Web.Controllers.Controllers
         [HttpPost]
         public override ActionResult Edit(EquipmentView viewModel)
         {
-            string nickName = string.Empty;
             var result = this.doCheckViewModel(res =>
             {
                 var model = this.SiteContract.Equipments.Single<Equipment>(m => m.CollectionCode == viewModel.CollectionCode);
@@ -375,9 +368,9 @@ namespace FKS.Site.Web.Controllers.Controllers
                     model.ContractStartTime = viewModel.ContractStartTime;
                     model.Installer = viewModel.Installer;
 
-                    if (viewModel.IsCleanChecked)
+                    if (model.CleanTime == null && viewModel.Status == 1)
                     {
-                        model.CleanTime = viewModel.CleanTime;
+                        model.CleanTime = DateTime.Now;
                     }
 
                     var count = this.SiteContract.Edit(model);
@@ -410,9 +403,8 @@ namespace FKS.Site.Web.Controllers.Controllers
                     res.ResultType = OperationResultType.Error;
                     res.Message = @"未查询到数据！";
                 }
-                nickName = viewModel.NickName;
             });
-            this.doSetLogInfo(viewModel.IsCleanChecked ? "修改用户:" + nickName + ",更新清洗时间:" + viewModel.CleanTime : "修改用户:" + nickName, result);
+            this.doSetLogInfo("修改用户:" + viewModel.NickName, result);
 
             return Json(result, JsonRequestBehavior.AllowGet);
         }

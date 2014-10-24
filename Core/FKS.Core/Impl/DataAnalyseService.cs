@@ -112,10 +112,13 @@ namespace FKS.Core.Impl
             return result.ToList();
         }
 
-        public ICollection<AbnormalEquip> GetOverdueData()
+        public ICollection<OverdualEquip> GetOverdueData(string overdualType)
         {
-            var result = from p in this.UnitOfWork.DbContext.Database.SqlQuery<AbnormalEquip>("exec pro_get_overdue_data")
-                         select p;
+            SqlParameter[] sqlparams = new SqlParameter[1];
+
+            sqlparams[0] = new SqlParameter("overdual_type", overdualType);
+
+            var result = from p in this.UnitOfWork.DbContext.Database.SqlQuery<OverdualEquip>("exec pro_get_overdue_data @overdual_type", sqlparams) select p;
             return result.ToList();
         }
 

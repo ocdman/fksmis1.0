@@ -178,11 +178,6 @@ namespace FKS.Site.Models
             }
         }
 
-        /// <summary>
-        /// 清洗时间复选框勾选
-        /// </summary>
-        public bool IsCleanChecked { get; set; }
-
         public DateTime? CleanTime { get; set; }
 
         /// <summary>

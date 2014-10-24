@@ -53,7 +53,7 @@ namespace FKS.Core
         /// 维护时间超时设备
         /// </summary>
         /// <returns></returns>
-        ICollection<AbnormalEquip> GetOverdueData();
+        ICollection<OverdualEquip> GetOverdueData(string overdualType);
 
         /// <summary>
         /// 排放量

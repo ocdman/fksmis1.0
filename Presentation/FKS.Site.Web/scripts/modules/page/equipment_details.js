@@ -23,9 +23,7 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
                 width: 150,
                 sortable: !1,
                 formatter: function (a) {
-                    return ((e.getUnixToTime3(a.replace("/Date(", "").replace(")/", "")) != (new Date("1900/01/01 00:00:00")).getTime()) &&
-                            (e.getUnixToTime3(a.replace("/Date(", "").replace(")/", "")) != (new Date("1970/01/01 00:00:00")).getTime()))
-                    ? e.DateFormat(e.getUnixToTime1(a.replace("/Date(", "").replace(")/", "")), "yyyy-MM-dd") : "";
+                    return (a != null) ? e.DateFormat(e.getUnixToTime1(a.replace("/Date(", "").replace(")/", "")), "yyyy-MM-dd") : "";
                 }
             },
             {
@@ -34,9 +32,7 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
                 width: 150,
                 sortable: !1,
                 formatter: function (a) {
-                    return ((e.getUnixToTime3(a.replace("/Date(", "").replace(")/", "")) != (new Date("1900/01/01 00:00:00")).getTime()) &&
-                            (e.getUnixToTime3(a.replace("/Date(", "").replace(")/", "")) != (new Date("1970/01/01 00:00:00")).getTime()))
-                    ? e.DateFormat(e.getUnixToTime1(a.replace("/Date(", "").replace(")/", "")), "yyyy-MM-dd") : "";
+                    return (a != null) ? e.DateFormat(e.getUnixToTime1(a.replace("/Date(", "").replace(")/", "")), "yyyy-MM-dd") : "";
                 }
             },
             {
@@ -45,9 +41,7 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
                 width: 150,
                 sortable: !1,
                 formatter: function (a) {
-                    return ((e.getUnixToTime3(a.replace("/Date(", "").replace(")/", "")) != (new Date("1900/01/01 00:00:00")).getTime()) &&
-                            (e.getUnixToTime3(a.replace("/Date(", "").replace(")/", "")) != (new Date("1970/01/01 00:00:00")).getTime()))
-                    ? e.DateFormat(e.getUnixToTime1(a.replace("/Date(", "").replace(")/", "")), "yyyy-MM-dd") : "";
+                    return (a != null) ? e.DateFormat(e.getUnixToTime1(a.replace("/Date(", "").replace(")/", "")), "yyyy-MM-dd") : "";
                 }
             },
             {
@@ -167,6 +161,7 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
                 width: "100",
                 valueField: "value",
                 textField: "text",
+                groupField: "group",
                 onSelect: function (b) {
                     a.searchViewModel.PropertyInfo(b.value)
                 }

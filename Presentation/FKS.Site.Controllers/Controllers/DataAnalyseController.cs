@@ -96,6 +96,10 @@ namespace FKS.Site.Web.Controllers.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 维护时间超时设备
+        /// </summary>
+        /// <returns></returns>
         public ActionResult OverdueDataIndex()
         {
             return View();
@@ -275,13 +279,13 @@ namespace FKS.Site.Web.Controllers.Controllers
         /// 维护时间超时设备
         /// </summary>
         /// <returns></returns>
-        public ActionResult OverdueDataRow()
+        public ActionResult OverdueDataRow(string overdualType)
         {
             if (CheckAuthority() == false)
             {
                 return Json("error", JsonRequestBehavior.DenyGet);
             }
-            var result = this.SiteContract.GetOverdueData();
+            var result = this.SiteContract.GetOverdueData(overdualType);
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 

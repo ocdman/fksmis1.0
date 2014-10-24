@@ -1291,6 +1291,7 @@
     <Content Include="scripts\templates\layout\tree_grid.html" />
     <Content Include="scripts\templates\search_condition\equipment_manager.html" />
     <Content Include="scripts\templates\search_condition\city_manager.html" />
+    <Content Include="scripts\templates\search_condition\overdual.html" />
     <Content Include="scripts\templates\search_condition\report.html" />
     <Content Include="scripts\templates\search_condition\user_manager.html" />
     <Content Include="scripts\templates\toolbars\common\search_btn.html" />

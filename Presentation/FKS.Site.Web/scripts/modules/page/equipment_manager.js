@@ -160,6 +160,7 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, z) {
                 width: "100",
                 valueField: "value",
                 textField: "text",
+                groupField: "group",
                 onSelect: function (b) {
                     a.searchViewModel.PropertyInfo(b.value)
                 }

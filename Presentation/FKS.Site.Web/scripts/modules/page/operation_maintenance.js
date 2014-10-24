@@ -25,7 +25,8 @@ function (a, b, c, d, e, f, g, h, l) {
             }), h.doAddModule(c.controller, a, c), c.render(), !0) : !1
         },
         getTableColumns: function () {
-            return [[{
+            return [[
+            {
                 field: "ContractNo",
                 title: "合同编号",
                 width: 100,

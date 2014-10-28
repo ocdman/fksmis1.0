@@ -71,6 +71,7 @@
     <Compile Include="Report\PureRateReport.cs" />
     <Compile Include="Report\ReportInfo.cs" />
     <Compile Include="Report\ReportStatistics.cs" />
+    <Compile Include="Report\SchoolMonthlyReport.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

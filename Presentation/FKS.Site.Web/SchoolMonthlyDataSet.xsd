@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="SchoolMonthlyDataSet" targetNamespace="http://tempuri.org/SchoolMonthlyDataSet.xsd" xmlns:mstns="http://tempuri.org/SchoolMonthlyDataSet.xsd" xmlns="http://tempuri.org/SchoolMonthlyDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="SchoolMonthlyDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="SchoolMonthlyDataSet" msprop:Generator_UserDSName="SchoolMonthlyDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="SchoolMonthlyReport" msprop:Generator_TableClassName="SchoolMonthlyReportDataTable" msprop:Generator_TableVarName="tableSchoolMonthlyReport" msprop:Generator_TablePropName="SchoolMonthlyReport" msprop:Generator_RowDeletingName="SchoolMonthlyReportRowDeleting" msprop:Generator_RowChangingName="SchoolMonthlyReportRowChanging" msprop:Generator_RowEvHandlerName="SchoolMonthlyReportRowChangeEventHandler" msprop:Generator_RowDeletedName="SchoolMonthlyReportRowDeleted" msprop:Generator_UserTableName="SchoolMonthlyReport" msprop:Generator_RowChangedName="SchoolMonthlyReportRowChanged" msprop:Generator_RowEvArgName="SchoolMonthlyReportRowChangeEvent" msprop:Generator_RowClassName="SchoolMonthlyReportRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="AlarmTime" msprop:Generator_ColumnVarNameInTable="columnAlarmTime" msprop:Generator_ColumnPropNameInRow="AlarmTime" msprop:Generator_ColumnPropNameInTable="AlarmTimeColumn" msprop:Generator_UserColumnName="AlarmTime" type="xs:int" minOccurs="0" />
+              <xs:element name="CountTime" msprop:Generator_ColumnVarNameInTable="columnCountTime" msprop:Generator_ColumnPropNameInRow="CountTime" msprop:Generator_ColumnPropNameInTable="CountTimeColumn" msprop:Generator_UserColumnName="CountTime" type="xs:int" minOccurs="0" />
+              <xs:element name="Clean" msprop:Generator_ColumnVarNameInTable="columnClean" msprop:Generator_ColumnPropNameInRow="Clean" msprop:Generator_ColumnPropNameInTable="CleanColumn" msprop:Generator_UserColumnName="Clean" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

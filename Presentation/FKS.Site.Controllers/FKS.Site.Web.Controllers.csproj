@@ -151,6 +151,7 @@
     <Compile Include="Controllers\MemberViewController.generated.cs" />
     <Compile Include="Controllers\MessageSetController.cs" />
     <Compile Include="Controllers\OperationMaintenanceController.cs" />
+    <Compile Include="Controllers\OverdueController.cs" />
     <Compile Include="Controllers\ParameterSetController.cs" />
     <Compile Include="Controllers\ReportInfoController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

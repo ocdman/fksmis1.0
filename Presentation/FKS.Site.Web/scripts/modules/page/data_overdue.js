@@ -41,15 +41,13 @@ define([
                 { field: 'CollectionCode', title: '设备ID', width: 100, sortable: !0 },
                 {
                     field: 'CleanTime', title: '上次维护时间', width: 100, sortable: !0,
-                    formatter: function (a)
-                    {
+                    formatter: function (a) {
                         return _helper.DateFormat(_helper.getUnixToTime1(a.replace("/Date(", "").replace(")/", "")), "yyyy-MM-dd")
                     }
                 },
                 {
                     field: 'NextCleanTime', title: '下次维护时间', width: 100, sortable: !0,
-                    formatter: function (a)
-                    {
+                    formatter: function (a) {
                         return _helper.DateFormat(_helper.getUnixToTime1(a.replace("/Date(", "").replace(")/", "")), "yyyy-MM-dd")
                     }
                 },
@@ -70,7 +68,7 @@ define([
                 pageSize: 200,
                 pageList: [200],
                 onDblClickRow: $.noop,
-                url: b.getHref(!1, b.controller, "OverdueDataRow"),
+                url: b.getHref(!1, b.controller, "OverdueDataRow" + "?overdualType=" + b.overdualType),
             },
                 [{
                     operation: "UpdateCleanTime",
@@ -91,11 +89,11 @@ define([
                 required: !0,
                 width: 150,
                 panelHeight: "auto",
-                onSelect: function(a){
+                onSelect: function (a) {
                     b.overdualType = a.value;
                 }
             })
-            
+
             //b.$searchBar = c;
             //b["doSearch"].call(b);
             //var _this = this;
@@ -103,17 +101,40 @@ define([
         },
         UpdateCleanTime: function () {
             var a = this,
-                ss = [];
+                ss = [],
+                rowsIndex = [];
             var rows = a.$table.datagrid('getSelections');
+            
             for (var i = 0; i < rows.length; i++) {
                 var row = rows[i];
-                ss.push('<span>' + row.NickName + '</span>');
+                ss.push(row.CollectionCode);
+                rowsIndex.push(a.$table.datagrid('getRowIndex', row));
             }
-            $.messager.alert('Info', ss.join('<br />'));
+            if (rows.length == 0) {
+                $.messager.alert('提示', "请选中行", "warning");
+                return;
+            }
+            //$.messager.alert('Info', ss.join('<br />'));
+            $.ajax({
+                url: a.getHref(!1, a.controller, "UpdateCleanTime"),
+                data: {
+                    CollectionCodes: ss.toString()
+                },
+                success: function (b) {
+                    $.messager.alert("提示", "操作成功", "info");
+                    for(var i in rowsIndex){
+                        a.$table.datagrid("deleteRow", i)
+                    }
+                    a.$table.datagrid("reload");
+                },
+                error: function () {
+                    $.messager.alert('提示', "操作失败", "error");
+                }
+            })
         },
         doSearch: function () {
             var a = this;
-            (a.$table.datagrid("options").url = a.getHref(!1, a.controller, "AbnormalDataRow"),
+            (a.$table.datagrid("options").url = a.getHref(!1, a.controller, "OverdueDataRow" + "?overdualType=" + a.overdualType),
             a.$table.datagrid("reload",
                 {}))
         },

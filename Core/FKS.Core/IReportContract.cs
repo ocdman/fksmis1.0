@@ -25,5 +25,7 @@ namespace FKS.Core
         ICollection<AlarmTimeReport> GetAlarmTimeReportData(string sortType, DateTime timeStart, DateTime timeEnd);
 
         ICollection<LampblackAccountReport> GetLampblackAccountReportData(string collectionCode, DateTime timeStart, DateTime timeEnd);
+
+        ICollection<SchoolMonthlyReport> GetSchoolMonthlyReportData(string collectionCode, DateTime timeStart, DateTime timeEnd);
     }
 }

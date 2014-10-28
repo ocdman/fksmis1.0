@@ -46,8 +46,11 @@ namespace FKS.Site.Web.Controllers.Controllers
 
             foreach (OperationMaintenanceView omv in dgvResult.rows)
             {
-                omv.OperationMaintenanceTime = omv.OpenTime.Value.AddMonths(3);
-                omv.OperationMaintenanceContractExpirationTime = omv.OpenTime.Value.AddYears(1);
+                if (omv.OpenTime != null)
+                {
+                    omv.OperationMaintenanceTime = omv.OpenTime.Value.AddMonths(3);
+                    omv.OperationMaintenanceContractExpirationTime = omv.OpenTime.Value.AddYears(1);
+                }
             }
 
             dgvResult.total = memberViews.Count();

@@ -183,6 +183,11 @@
       <DependentUpon>LampblackMonitorDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SchoolMonthlyDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SchoolMonthlyDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="T4\ControllerScript.cs">
       <DependentUpon>ControllerScript.tt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -922,6 +927,17 @@
       <DependentUpon>LampblackMonitorDataSet.xsd</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\fksmis.pubxml" />
+    <Content Include="SchoolMonthlyDataSet.xsc">
+      <DependentUpon>SchoolMonthlyDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="SchoolMonthlyDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SchoolMonthlyDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="SchoolMonthlyDataSet.xss">
+      <DependentUpon>SchoolMonthlyDataSet.xsd</DependentUpon>
+    </Content>
     <None Include="scripts\libs\jquery-2.1.0.intellisense.js" />
     <Content Include="scripts\form\jquery.unobtrusive-ajax.js" />
     <Content Include="scripts\form\jquery.validate.js" />
@@ -944,6 +960,7 @@
     <Content Include="scripts\modules\page\data_concentration.js" />
     <Content Include="scripts\modules\page\data_overdue.js" />
     <Content Include="scripts\modules\page\lampblack_account_report.js" />
+    <Content Include="scripts\modules\page\school_monthly_report.js" />
     <Content Include="scripts\modules\page\lampblack_monitor_report.js" />
     <Content Include="scripts\modules\page\data_purerate.js" />
     <Content Include="scripts\modules\page\data_discharge.js" />
@@ -1362,6 +1379,7 @@
     <Content Include="Views\ReportInfo\LampblackAccountIndex.cshtml" />
     <Content Include="Views\DataAnalyse\OverdueDataIndex.cshtml" />
     <Content Include="Views\MessageSet\Index.cshtml" />
+    <Content Include="Views\ReportInfo\SchoolMonthlyReportIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Account\Login.cshtml" />
@@ -1386,6 +1404,7 @@
     <EmbeddedResource Include="ReportModule\LampblackMonitorReport.rdlc" />
     <EmbeddedResource Include="ReportModule\OperationMaintenanceReport.rdlc" />
     <EmbeddedResource Include="ReportModule\SampleReport.rdlc" />
+    <EmbeddedResource Include="ReportModule\SchoolMonthlyReport.rdlc" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

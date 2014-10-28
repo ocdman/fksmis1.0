@@ -408,5 +408,66 @@ namespace FKS.Site.Web.Controllers.Controllers
         }
 
         #endregion
+
+        #region 学校油烟监测月报表
+        public ActionResult SchoolMonthlyReportIndex()
+        {
+            return View();
+        }
+
+        public ActionResult SchoolMonthlyReporting(string CollectionCodes, string NickName, ReportParams param)
+        {
+            if (CheckAuthority() == false)
+            {
+                return Json("error", JsonRequestBehavior.DenyGet);
+            }
+
+            string type = "Excel";
+            List<SchoolMonthlyReport> ds1 = (List<SchoolMonthlyReport>)this.SiteContract.GetSchoolMonthlyReportData(param.collectionCode, param.StartTime, param.EndTime);
+            LocalReport localReport = new LocalReport();
+            localReport.ReportPath = Server.MapPath("~/ReportModule/SchoolMonthlyReport.rdlc");
+            string parameter1 = param.StartTime.ToString();
+            string parameter2 = param.EndTime.ToString();
+            string parameter3 = NickName;
+            ReportDataSource reportDataSource1 = new ReportDataSource("DataSet1", ds1);
+            localReport.DataSources.Add(reportDataSource1);
+            localReport.SetParameters(new ReportParameter("ReportParameter1", parameter1));
+            localReport.SetParameters(new ReportParameter("ReportParameter2", parameter2));
+            localReport.SetParameters(new ReportParameter("ReportParameter3", parameter3));
+
+            string reportType = type;
+            string mimeType;
+            string encoding;
+            string fileNameExtension;
+
+            string deviceInfo =
+                "<DeviceInfo>" +
+                "<OutputFormat>" + type + "</OutputFormat>" +
+                "<PageWidth>11in</PageWidth>" +
+                "<PageHeight>11in</PageHeight>" +
+                "<MarginTop>0.5in</MarginTop>" +
+                "<MarginLeft>1in</MarginLeft>" +
+                "<MarginRight>1in</MarginRight>" +
+                "<MarginBottom>0.5in</MarginBottom>" +
+                "</DeviceInfo>";
+            Warning[] warnings;
+            string[] streams;
+            byte[] renderedBytes;
+
+            renderedBytes = localReport.Render(
+                reportType,
+                deviceInfo,
+                out mimeType,
+                out encoding,
+                out fileNameExtension,
+                out streams,
+                out warnings);
+
+            //renderedBytes = localReport.Render(reportType, deviceInfo);
+            return File(renderedBytes, mimeType);
+        }
+
+
+        #endregion
     }
 }

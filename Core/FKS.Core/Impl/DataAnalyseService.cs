@@ -72,6 +72,21 @@ namespace FKS.Core.Impl
             return result.ToList();
         }
 
+        public ICollection<DataAnalyse> GetCleanData(string tableName, DateTime timeStart, DateTime timeEnd, int interval)
+        {
+            SqlParameter[] sqlparams = new SqlParameter[4];
+
+            sqlparams[0] = new SqlParameter("@table_name", tableName);
+            sqlparams[1] = new SqlParameter("@start_time", System.Data.SqlDbType.DateTime, 4) { Value = timeStart };
+            sqlparams[2] = new SqlParameter("@end_time", System.Data.SqlDbType.DateTime, 4) { Value = timeEnd };
+            sqlparams[3] = new SqlParameter("@interval", interval);
+
+            var result = from p in this.UnitOfWork.DbContext.Database.SqlQuery<DataAnalyse>("exec pro_getClean_data @table_name,@start_time,@end_time,@interval", sqlparams)
+                         select p;
+
+            return result.ToList();
+        }
+
         public ICollection<DataAnalyse> GetLinkageData(string tableName, DateTime timeStart, DateTime timeEnd)
         {
             SqlParameter[] sqlparams = new SqlParameter[3];
@@ -163,5 +178,20 @@ namespace FKS.Core.Impl
 
             return result.ToList();
         }
+
+
+        public int UpdateCleanTime(string CollectionCodes)
+        {
+            SqlParameter[] sqlparams = new SqlParameter[1];
+
+            sqlparams[0] = new SqlParameter("@collectionCodes", CollectionCodes);
+
+            var result = this.UnitOfWork.DbContext.Database.ExecuteSqlCommand("exec pro_update_cleantime @collectionCodes", sqlparams);
+
+            return result;
+        }
+
+
+
     }
 }

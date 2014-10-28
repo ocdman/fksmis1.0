@@ -54,6 +54,7 @@ namespace FKS.Site.Web.Controllers.Controllers
 
             this.ViewQueryBuilder = queryBuilder;
         }
+
         partial void DoCheckExist(Equipment model, OperationResult res)
         {
             var equip = this.SiteContract.Equipments.SingleOrDefault(m => m.CollectionCode.Equals(model.CollectionCode));

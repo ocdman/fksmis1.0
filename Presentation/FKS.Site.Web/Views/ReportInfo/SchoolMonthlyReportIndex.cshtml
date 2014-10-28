@@ -1,0 +1,70 @@
+﻿@Styles.Render("~/contents/jquery.plot/jquery.jqplot.min.css")
+
+<div class="easyui-layout" data-options="fit:true">
+    <div data-options="region:'north',border:false,collapsible:false" style="height: 90px;padding: 10px; overflow: hidden; border-bottom-width: 1px;">
+        <div style="margin: 5px;" class="form-inline">
+            <div class="form-group">
+                <label class="control-label">统计方式：</label>
+            </div>
+            <div class="form-group">
+                <select id="reportType" class="easyui-combobox" style="width:200px;" data-operation="required:true">
+                    <option value="01">日统计</option>
+                    <option value="02">周统计</option>
+                    <option value="03" selected="selected">月统计</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">设备选择：</label>
+            </div>
+            <div class="form-group">
+                <input data-role="type" type="text" class="form-control input-sm EquipInfo" />
+            </div>
+        </div>
+        <div style="margin: 5px" class="form-inline">
+            <div class="form-group">
+                <label class="control-label">开始日期：</label>
+            </div>
+
+            <div class="form-group">
+                <input data-role="type" type="text" data-options="required:true,value:'6/3/2014'" class="form-control input-sm easyui-datetimebox startTime" style="width:150px" />
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">截止日期：</label>
+            </div>
+
+            <div class="form-group">
+                <input data-role="type" type="text" data-options="required:true,value:'7/2/2014'" class="form-control input-sm easyui-datetimebox endTime" style="width:150px" />
+            </div>
+
+            <a href="#"
+               data-operation="doSearch"
+               iconcls="icon-search"
+               class="easyui-linkbutton"
+               data-options="plain:true,toggle:false">
+                查询
+            </a>
+            <a href="#"
+               data-operation="createReport"
+               iconcls="icon_19"
+               class="easyui-linkbutton"
+               data-options="plain:true,toggle:false">
+                生成报表
+            </a>
+        </div>
+    </div>
+
+    <div data-options="region:'center',border:false,split:true">
+        <div id="tt" class="easyui-tabs" data-options="fit:true, border:false">
+            <div title="油烟浓度排名" id="concentrationTab" style="padding:20px">
+
+            </div>
+            <div title="排放量排名" id="dischargeTab" style="padding:20px">
+
+            </div>
+            <div title="报警次数排名" id="alarmTimeTab" style="padding:20px">
+
+            </div>
+        </div>
+    </div>
+</div>

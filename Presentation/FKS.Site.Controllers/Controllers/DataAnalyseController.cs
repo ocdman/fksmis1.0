@@ -41,7 +41,8 @@ namespace FKS.Site.Web.Controllers.Controllers
         protected IAuthoritySiteContract AuthoritySiteContract { get; set; }
 
 
-        static DateTime time = new DateTime(2014, 6, 11, 12, 01, 0);
+        //static DateTime time = new DateTime(2014, 6, 11, 12, 01, 0);
+        static DateTime time = DateTime.Now;
 
         #region View
 
@@ -235,7 +236,7 @@ namespace FKS.Site.Web.Controllers.Controllers
                 param.Interval = 1440;
             }
 
-            var result = this.SiteContract.GetMonitorData(param.tableName, param.StartTime, param.EndTime, param.Interval);
+            var result = this.SiteContract.GetCleanData(param.tableName, param.StartTime, param.EndTime, param.Interval);
 
             return Json(result, JsonRequestBehavior.AllowGet);
         }
@@ -335,6 +336,12 @@ namespace FKS.Site.Web.Controllers.Controllers
         }
 
         #endregion
+
+        public ActionResult UpdateCleanTime(string CollectionCodes)
+        {
+            var result = this.SiteContract.UpdateCleanTime(CollectionCodes);
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
     }
 }
 

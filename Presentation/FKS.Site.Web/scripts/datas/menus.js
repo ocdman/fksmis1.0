@@ -25,10 +25,10 @@
         }
     }, {
         "id": 124,
-        "text": "运行维护一览",
-        "iconCls": "icon_26",
+        "iconCls": "icon_24",
+        "text": "维护时间超时设备",
         "attributes": {
-            "hash": "page/operation_maintenance/运行维护一览"
+            "hash": "page/data_overdue/维护时间超时设备"
         }
     }]
 }, {
@@ -79,13 +79,6 @@
         "attributes": {
             "hash": "page/data_abnormal/异常设备"
         }
-    }, {
-        "id": 137,
-        "iconCls": "icon_24",
-        "text": "维护时间超时设备",
-        "attributes": {
-            "hash": "page/data_overdue/维护时间超时设备"
-        }
     }]
 }, {
     "id": 13,
@@ -119,7 +112,7 @@
         "attributes": {
             "hash": "page/report/报表统计"
         }
-    },{
+    }, {
         "id": 135,
         "iconCls": "icon_20",
         "text": "油烟监测报告",
@@ -132,6 +125,20 @@
         "text": "油烟台账报告",
         "attributes": {
             "hash": "page/lampblack_account_report/油烟台账报告"
+        }
+    }, {
+        "id": 137,
+        "text": "运行维护一览",
+        "iconCls": "icon_26",
+        "attributes": {
+            "hash": "page/operation_maintenance/运行维护一览"
+        }
+    }, {
+        "id": 138,
+        "text": "学校油烟监测报告",
+        "iconCls": "icon_20",
+        "attributes": {
+            "hash": "page/school_monthly_report/学校油烟监测报告"
         }
     }]
 }, {

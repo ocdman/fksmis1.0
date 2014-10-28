@@ -29,6 +29,16 @@ namespace FKS.Core
         ICollection<DataAnalyse> GetMonitorData(string tableName, DateTime timeStart, DateTime timeEnd, int interval);
 
         /// <summary>
+        /// 取得洁净度数据
+        /// </summary>
+        /// <param name="tableName"></param>
+        /// <param name="timeStart"></param>
+        /// <param name="timeEnd"></param>
+        /// <param name="interval"></param>
+        /// <returns></returns>
+        ICollection<DataAnalyse> GetCleanData(string tableName, DateTime timeStart, DateTime timeEnd, int interval);
+
+        /// <summary>
         /// 取得联动比数据
         /// </summary>
         /// <param name="tableName"></param>
@@ -79,5 +89,12 @@ namespace FKS.Core
         /// <param name="timeEnd"></param>
         /// <returns></returns>
         ICollection<DataStatistics> GetConcentration(string tableName, DateTime timeStart, DateTime timeEnd);
+
+        /// <summary>
+        /// 更新维护时间
+        /// </summary>
+        /// <param name="CollectionCodes"></param>
+        /// <returns></returns>
+        int UpdateCleanTime(string CollectionCodes);
     }
 }

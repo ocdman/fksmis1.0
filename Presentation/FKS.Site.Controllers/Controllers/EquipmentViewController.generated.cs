@@ -30,6 +30,7 @@ namespace FKS.Site.Web.Controllers.Controllers
         private bool IsExist { get; set; }
 
         partial void SetQueryBuilder(Pagination pagination);
+
         partial void DoCheckExist(Equipment model, OperationResult res);
 
         [Import]
@@ -157,6 +158,47 @@ namespace FKS.Site.Web.Controllers.Controllers
 
             this.SetQueryBuilder(pagination);
             var memberViews = this.SiteContract.Equipments.Where(this.ViewQueryBuilder.Expression).Where<Equipment, int>(m => m.EquipCount == 2, pagination.page, pagination.rows, out total, sortConditions.ToArray())
+                .Select(m => new EquipmentView
+                {
+                    EquipCode = m.EquipCode,
+                    CollectionCode = m.CollectionCode,
+                    PropertyInfo = m.PropertyInfo,
+                    PositionInfo = m.PositionInfo,
+                    NickName = m.NickName,
+                    Address = m.Address,
+                    EquipCount = m.EquipCount,
+                    TimeOut = m.TimeOut,
+                    Interval = m.Interval,
+                    YHX = m.YHX,
+                    YHY = m.YHY,
+                    Status = m.Status,
+                    Content = m.Content,
+                    ZTjhq = m.ZTjhq,
+                    ZTfj = m.ZTfj,
+                    ZTst = m.ZTst,
+                    YouYanND = m.YouYanND,
+                    YouYanWD = m.YouYanWD,
+                    YouYanSD = m.YouYanSD,
+                    LastTimeGet = m.LastTimeGet,
+                    OpenTime = m.OpenTime,
+                    CleanTime = m.CleanTime,
+                    UserName = m.UserName
+                });
+
+            dgvResult.rows = memberViews.ToList();
+            dgvResult.total = total;
+
+            return Json(dgvResult, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult DataRowIndexForSchool(Pagination pagination)
+        {
+            int total = 0;
+            List<PropertySortCondition> sortConditions = this.getPropertySortCondition(pagination);
+            DataGridView<EquipmentView> dgvResult = new DataGridView<EquipmentView>();
+
+            this.SetQueryBuilder(pagination);
+            var memberViews = this.SiteContract.Equipments.Where(this.ViewQueryBuilder.Expression).Where<Equipment, int>(m => m.PropertyInfo >= 6, pagination.page, pagination.rows, out total, sortConditions.ToArray())
                 .Select(m => new EquipmentView
                 {
                     EquipCode = m.EquipCode,

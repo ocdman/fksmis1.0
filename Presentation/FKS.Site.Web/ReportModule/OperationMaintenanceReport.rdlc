@@ -227,7 +227,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -376,7 +375,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!ContractStartTime.Value</Value>
+                              <Value>=IIf(IsNothing(Fields!ContractStartTime.Value), "", CDate(Fields!ContractStartTime.Value).ToString("yyyy年MM月dd日"))</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -409,7 +408,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!OpenTime.Value</Value>
+                              <Value>=IIf(IsNothing(Fields!OpenTime.Value), "", CDate(Fields!OpenTime.Value).ToString("yyyy年MM月dd日"))</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -442,7 +441,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!OperationMaintenanceTime.Value</Value>
+                              <Value>=IIf(IsNothing(Fields!OperationMaintenanceTime.Value), "", CDate(Fields!OperationMaintenanceTime.Value).ToString("yyyy年MM月dd日"))</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -475,7 +474,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!OperationMaintenanceContractExpirationTime.Value</Value>
+                              <Value>=IIf(IsNothing(Fields!OperationMaintenanceContractExpirationTime.Value), "", CDate(Fields!OperationMaintenanceContractExpirationTime.Value).ToString("yyyy年MM月dd日"))</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -497,6 +496,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>

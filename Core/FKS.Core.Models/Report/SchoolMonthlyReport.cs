@@ -19,6 +19,10 @@ namespace FKS.Core.Models.Report
         /// <summary>
         /// 洁净度
         /// </summary>
-        public int Clean { get; set; }
+        public int? Clean { get; set; }
+        /// <summary>
+        /// 用户名称
+        /// </summary>
+        public string NickName { get; set; }
     }
 }

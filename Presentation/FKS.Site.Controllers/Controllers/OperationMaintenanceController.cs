@@ -74,8 +74,11 @@ namespace FKS.Site.Web.Controllers.Controllers
 
             foreach (OperationMaintenanceView omr in reportList)
             {
-                omr.OperationMaintenanceTime = omr.OpenTime.Value.AddMonths(3);
-                omr.OperationMaintenanceContractExpirationTime = omr.OpenTime.Value.AddYears(1);
+                if (omr.OpenTime != null)
+                {
+                    omr.OperationMaintenanceTime = omr.OpenTime.Value.AddMonths(3);
+                    omr.OperationMaintenanceContractExpirationTime = omr.OpenTime.Value.AddYears(1);
+                }
             }
 
             LocalReport localReport = new LocalReport();

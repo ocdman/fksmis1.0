@@ -296,7 +296,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!AlarmTime.Value / Fields!CountTime.Value</Value>
+                              <Value>=Round(IIf(Fields!CountTime.Value = 0, 0, Fields!AlarmTime.Value / Fields!CountTime.Value), 1)</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -361,7 +361,14 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!Clean.Value</Value>
+                              <Value>=Switch(Fields!Clean.Value = 5,
+"五颗星" &amp; chr(13) &amp; chr(10) &amp; "目前净化设备洁净度较高，净化效果良好，能及时且有效的对排放油烟进行净化。",
+Fields!Clean.Value = 4,
+"四颗星" &amp; chr(13) &amp; chr(10) &amp;"目前净化设备处于轻度污染状态，轻度污染对净化设备净化效果影响较小，净化设备仍能保持正常工作状态。",
+Fields!Clean.Value = 3,
+"三颗星" &amp; chr(13) &amp; chr(10) &amp;"净化设备已经处于中度污染状态，内部积污会影响净化设备正常工作电流，使净化设备净化效率下降，从而影响排放情况，可能会出现频繁超标。",
+Fields!Clean.Value &lt;= 2,
+"两颗星" &amp; chr(13) &amp; chr(10) &amp;"净化设备已经处于严重污染状态，净化器、风机和管道大量积污，已经严重净化设备净化效果，且存在火灾隐患。")</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -402,7 +409,14 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>=Switch(Fields!Clean.Value = 5, 
+"请保持目前的净化设备状态。",
+Fields!Clean.Value = 4,
+"可继续正常使用，建议对厨房烟罩进行清洗。",
+Fields!Clean.Value = 3,
+"建议清洗净化器，找专业公司对净化器内部进行清洗，使净化器可回到正常工作状态。",
+Fields!Clean.Value &lt;= 2,
+"建议清洗整套净化设备，包括烟罩、管道、风机和净化器。")</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -584,7 +598,29 @@
                       <Paragraph>
                         <TextRuns>
                           <TextRun>
+                            <Value />
+                            <Style />
+                          </TextRun>
+                        </TextRuns>
+                        <Style>
+                          <TextAlign>Center</TextAlign>
+                        </Style>
+                      </Paragraph>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
                             <Value>洁净度</Value>
+                            <Style />
+                          </TextRun>
+                        </TextRuns>
+                        <Style>
+                          <TextAlign>Center</TextAlign>
+                        </Style>
+                      </Paragraph>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value />
                             <Style />
                           </TextRun>
                         </TextRuns>
@@ -621,7 +657,29 @@
                       <Paragraph>
                         <TextRuns>
                           <TextRun>
+                            <Value />
+                            <Style />
+                          </TextRun>
+                        </TextRuns>
+                        <Style>
+                          <TextAlign>Center</TextAlign>
+                        </Style>
+                      </Paragraph>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
                             <Value>改进建议</Value>
+                            <Style />
+                          </TextRun>
+                        </TextRuns>
+                        <Style>
+                          <TextAlign>Center</TextAlign>
+                        </Style>
+                      </Paragraph>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value />
                             <Style />
                           </TextRun>
                         </TextRuns>
@@ -651,7 +709,6 @@
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
         <Top>1.8cm</Top>
-        <Left>0cm</Left>
         <Height>6cm</Height>
         <Width>15cm</Width>
         <Style>
@@ -681,7 +738,6 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox153</rd:DefaultName>
-        <Left>0cm</Left>
         <Height>0.6cm</Height>
         <Width>15cm</Width>
         <ZIndex>1</ZIndex>
@@ -712,7 +768,6 @@
         </Paragraphs>
         <rd:DefaultName>Textbox153</rd:DefaultName>
         <Top>0.6cm</Top>
-        <Left>0cm</Left>
         <Height>0.6cm</Height>
         <Width>15cm</Width>
         <ZIndex>2</ZIndex>
@@ -742,7 +797,6 @@
         </Paragraphs>
         <rd:DefaultName>Textbox153</rd:DefaultName>
         <Top>1.2cm</Top>
-        <Left>0cm</Left>
         <Height>0.6cm</Height>
         <Width>15cm</Width>
         <ZIndex>3</ZIndex>
@@ -774,7 +828,6 @@
         </Paragraphs>
         <rd:DefaultName>Textbox153</rd:DefaultName>
         <Top>9.07233cm</Top>
-        <Left>0cm</Left>
         <Height>0.6cm</Height>
         <Width>15cm</Width>
         <ZIndex>4</ZIndex>

@@ -1398,6 +1398,7 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ReportModule\HorizontalTable.rdlc" />
     <EmbeddedResource Include="ReportModule\LampblackAccountReport.rdlc">
       <SubType>Designer</SubType>
     </EmbeddedResource>

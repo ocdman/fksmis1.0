@@ -363,8 +363,21 @@ function (a, b, c, d, e, f, g, h, i) {
             }));
         },
         createReport: function () {
-            var a = this;
-            var strurl = '../ReportInfo/LampblackMonitorReporting' + '?reportType=' + a.reportType + '&sortType=' + a.sortType +
+            var a = this,
+                b, d;
+            b = a.$panel.find(".easyui-layout").layout(),
+            d = b.layout("panel", "north"),
+            CollectionCodes = [];
+
+            var grid = d.find(".EquipInfo").combogrid("grid");
+            var rows = grid.datagrid('getSelections');
+
+            for (var j = 0; j < rows.length; j++) {
+                var row = rows[j];
+                CollectionCodes.push(row.CollectionCode);
+            }
+
+            var strurl = '../ReportInfo/SchoolMonthlyReporting' + '?CollectionCodes=' + CollectionCodes.toString() + 
                         '&StartTime=' + a.$searchBar.find(".startTime").datetimebox("getValue") + '&EndTime=' + a.$searchBar.find(".endTime").datetimebox("getValue");
             window.open(strurl);
         },

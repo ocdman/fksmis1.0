@@ -1234,7 +1234,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -1426,7 +1425,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Now</Value>
+                              <Value>=Now.ToString("yyyy年MM月dd日")</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -1447,6 +1446,7 @@
                       </Style>
                     </Textbox>
                     <ColSpan>3</ColSpan>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell />

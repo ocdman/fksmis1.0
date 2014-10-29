@@ -285,6 +285,8 @@ namespace FKS.Site.Web {
             
             private global::System.Data.DataColumn columnClean;
             
+            private global::System.Data.DataColumn columnNickName;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public SchoolMonthlyReportDataTable() {
@@ -344,6 +346,14 @@ namespace FKS.Site.Web {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn NickNameColumn {
+                get {
+                    return this.columnNickName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -379,12 +389,13 @@ namespace FKS.Site.Web {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SchoolMonthlyReportRow AddSchoolMonthlyReportRow(int AlarmTime, int CountTime, int Clean) {
+            public SchoolMonthlyReportRow AddSchoolMonthlyReportRow(int AlarmTime, int CountTime, int Clean, string NickName) {
                 SchoolMonthlyReportRow rowSchoolMonthlyReportRow = ((SchoolMonthlyReportRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         AlarmTime,
                         CountTime,
-                        Clean};
+                        Clean,
+                        NickName};
                 rowSchoolMonthlyReportRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSchoolMonthlyReportRow);
                 return rowSchoolMonthlyReportRow;
@@ -410,6 +421,7 @@ namespace FKS.Site.Web {
                 this.columnAlarmTime = base.Columns["AlarmTime"];
                 this.columnCountTime = base.Columns["CountTime"];
                 this.columnClean = base.Columns["Clean"];
+                this.columnNickName = base.Columns["NickName"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -421,6 +433,8 @@ namespace FKS.Site.Web {
                 base.Columns.Add(this.columnCountTime);
                 this.columnClean = new global::System.Data.DataColumn("Clean", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnClean);
+                this.columnNickName = new global::System.Data.DataColumn("NickName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNickName);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -611,6 +625,22 @@ namespace FKS.Site.Web {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string NickName {
+                get {
+                    try {
+                        return ((string)(this[this.tableSchoolMonthlyReport.NickNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“SchoolMonthlyReport”中列“NickName”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableSchoolMonthlyReport.NickNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsAlarmTimeNull() {
                 return this.IsNull(this.tableSchoolMonthlyReport.AlarmTimeColumn);
             }
@@ -643,6 +673,18 @@ namespace FKS.Site.Web {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetCleanNull() {
                 this[this.tableSchoolMonthlyReport.CleanColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsNickNameNull() {
+                return this.IsNull(this.tableSchoolMonthlyReport.NickNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetNickNameNull() {
+                this[this.tableSchoolMonthlyReport.NickNameColumn] = global::System.Convert.DBNull;
             }
         }
         

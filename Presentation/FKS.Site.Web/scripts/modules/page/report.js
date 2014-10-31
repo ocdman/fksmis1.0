@@ -6,15 +6,7 @@
     "plugins/map",
     "modules/base/manager_base",
     "modules/main_ui",
-    "modules/page/equipment_manager",
-    "plugins/jquery.plot/plugins/jqplot.cursor.min",
-    "plugins/jquery.plot/plugins/jqplot.dateAxisRenderer.min",
-    "plugins/jquery.plot/plugins/jqplot.categoryAxisRenderer.min",
-    "plugins/jquery.plot/plugins/jqplot.barRenderer.min",
-    "plugins/jquery.plot/plugins/jqplot.pointLabels.min",
-    "plugins/jquery.plot/plugins/jqplot.canvasAxisTickRenderer.min",
-    "plugins/jquery.plot/plugins/jqplot.canvasOverlay.min",
-    "plugins/jquery.plot/plugins/jqplot.highlighter.min"],
+    "modules/page/equipment_manager"],
 function (a, b, c, d, e, f, g, h, i) {
     var j = g.extend({
         controller: "ReportInfo",

@@ -40,9 +40,9 @@ namespace FKS.Site.Web.Controllers.Controllers
                     NickName = m.NickName,
                     ContractStartTime = m.ContractStartTime,
                     OpenTime = m.OpenTime
-                });
+                }).ToList();
 
-            dgvResult.rows = memberViews.ToList();
+            dgvResult.rows = memberViews.Skip((pagination.page - 1) * pagination.rows).Take(pagination.rows).ToList();
 
             foreach (OperationMaintenanceView omv in dgvResult.rows)
             {

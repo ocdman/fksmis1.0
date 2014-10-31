@@ -8,14 +8,7 @@ define(["jquery",
     "modules/base/manager_base",
     "modules/main_ui",
     "modules/page/equipment_manager",
-    "plugins/jquery.plot/plugins/jqplot.cursor.min",
-    "plugins/jquery.plot/plugins/jqplot.dateAxisRenderer.min",
-    "plugins/jquery.plot/plugins/jqplot.logAxisRenderer.min",
-    "plugins/jquery.plot/plugins/jqplot.canvasTextRenderer.min",
-    "plugins/jquery.plot/plugins/jqplot.canvasAxisTickRenderer.min",
-    "plugins/js/highcharts",
-    "plugins/js/highcharts-more",
-    "plugins/js/modules/exporting"],
+    "plugins/js/highcharts"],
 function (a, b, c, d, e, f, g, h, i) {
     var j = g.extend({
         controller: "DataAnalyse",
@@ -125,10 +118,20 @@ function (a, b, c, d, e, f, g, h, i) {
                     )),
                     b[f.ProbeID + "SD"] || (b[f.ProbeID + "SD"] = [], c.push(
                         f.ProbeID + "湿度"
-                    )),
+                    ));
+                    if (f.ProbeID == 1)
+                    {
+                        b["FJ"] || (b["FJ"] = [], c.push("风机"));
+                        b["JHQ"] || (b["JHQ"] = [], c.push("净化器"));
+                    }
                     b[f.ProbeID + "ND"].push([e.getUnixToTime2(f.TimeUp.replace("/Date(", "").replace(")/", "")), f.YouYanND != 0 ? 100 / f.YouYanND : 0]),
                     b[f.ProbeID + "WD"].push([e.getUnixToTime2(f.TimeUp.replace("/Date(", "").replace(")/", "")), .64 * f.YouYanWD - 40]),
-                    b[f.ProbeID + "SD"].push([e.getUnixToTime2(f.TimeUp.replace("/Date(", "").replace(")/", "")), f.YouYanSD])
+                    b[f.ProbeID + "SD"].push([e.getUnixToTime2(f.TimeUp.replace("/Date(", "").replace(")/", "")), f.YouYanSD]);
+                    if (f.ProbeID == 1)
+                    {
+                        b["FJ"].push([e.getUnixToTime2(f.TimeUp.replace("/Date(", "").replace(")/", "")), (f.ZTfj == true) ? 1 : 0]);
+                        b["JHQ"].push([e.getUnixToTime2(f.TimeUp.replace("/Date(", "").replace(")/", "")), (f.ZTjhq == true) ? 1 : 0])
+                    }
                 }
                 var g = [];
                 var i = 0;

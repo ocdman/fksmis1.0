@@ -6,23 +6,11 @@
     "plugins/map",
     "modules/base/manager_base",
     "modules/main_ui",
-    "modules/page/equipment_manager",
-    "plugins/jquery.plot/plugins/jqplot.cursor.min",
-    "plugins/jquery.plot/plugins/jqplot.dateAxisRenderer.min",
-    "plugins/jquery.plot/plugins/jqplot.categoryAxisRenderer.min",
-    "plugins/jquery.plot/plugins/jqplot.barRenderer.min",
-    "plugins/jquery.plot/plugins/jqplot.pointLabels.min",
-    "plugins/jquery.plot/plugins/jqplot.canvasAxisTickRenderer.min",
-    "plugins/jquery.plot/plugins/jqplot.canvasOverlay.min",
-    "plugins/jquery.plot/plugins/jqplot.highlighter.min"],
+    "modules/page/equipment_manager"],
 function (a, b, c, d, e, f, g, h, i) {
     var j = g.extend({
         controller: "ReportInfo",
         $jqPlot: null,
-        $table1: null,
-        $table2: null,
-        $tablePanel1: null,
-        $tablePanel2: null,
         timeID: 0,
         reportType: "03",
         sortType: "01",
@@ -43,68 +31,7 @@ function (a, b, c, d, e, f, g, h, i) {
             }), h.doAddModule(c.controller, a, c), !0) : !1
         },
         getTableColumns: function () {
-            return [[{
-                field: "NickName",
-                title: "企业名称",
-                width: 100,
-                sortable: !1
-            }, {
-                field: "Concentration",
-                title: "油烟浓度",
-                width: 100,
-                sortable: !1,
-                formatter: function (a) {
-                    return a.toFixed(1);
-                }
-            }, {
-                field: "Address",
-                title: "安装地址",
-                width: 100,
-                sortable: !1
-            }, {
-                field: "Contacts",
-                title: "联系人",
-                width: 100,
-                sortable: !1
-            }, {
-                field: "ContactInfo",
-                title: "联系方式",
-                width: 100,
-                sortable: !1
-            }]];
-        },
-        getTableColumns1: function () {
-            return [[{
-                field: "NickName",
-                title: "企业名称",
-                width: 100,
-                sortable: !1
-            }, {
-                field: "Discharge",
-                title: "排放量",
-                width: 100,
-                sortable: !1,
-                formatter: function (a) {
-                    return a.toFixed(1);
-                }
-            }, {
-                field: "Address",
-                title: "安装地址",
-                width: 100,
-                sortable: !1
-            }, {
-                field: "Contacts",
-                title: "联系人",
-                width: 100,
-                sortable: !1
-            }, {
-                field: "ContactInfo",
-                title: "联系方式",
-                width: 100,
-                sortable: !1
-            }]];
-        },
-        getTableColumns2: function () {
+            var a = this;
             return [[{
                 field: "NickName",
                 title: "企业名称",
@@ -114,22 +41,20 @@ function (a, b, c, d, e, f, g, h, i) {
                 field: "AlarmTime",
                 title: "报警次数",
                 width: 100,
-                sortable: !1
+                sortable: !1,
             }, {
-                field: "Address",
-                title: "安装地址",
+                field: "CountTime",
+                title: "总次数",
                 width: 100,
                 sortable: !1
             }, {
-                field: "Contacts",
-                title: "联系人",
+                field: "Clean",
+                title: "清洁度",
                 width: 100,
-                sortable: !1
-            }, {
-                field: "ContactInfo",
-                title: "联系方式",
-                width: 100,
-                sortable: !1
+                sortable: !1,
+                formatter: function (b) {
+                    a.getLevel(b)
+                }
             }]];
         },
         getTableColumns3: function () {
@@ -179,8 +104,6 @@ function (a, b, c, d, e, f, g, h, i) {
             f = g.$panel.find(".easyui-tabs").tabs({
                 onSelect: function (a, b) {
                     0 == b && g.$table.datagrid("resize");
-                    1 == b && g.$table1.datagrid("resize");
-                    2 == b && g.$table2.datagrid("resize");
                 }
             });
             d.find(".EquipInfo").combogrid({
@@ -198,34 +121,8 @@ function (a, b, c, d, e, f, g, h, i) {
                 }
             });
             g.$tablePanel = f.tabs("getTab", 0);
-            g.$tablePanel1 = f.tabs("getTab", 1);
-            g.$tablePanel2 = f.tabs("getTab", 2);
 
             g.doInitTable({
-                rownumbers: !0,
-                onLoadSuccess: function (a) {
-
-                },
-                onDbClickRow: a.noop,
-                url: "",
-                pagination: !0,
-                pageSize: 50,
-                pageList: [50]
-            }, [], "", "");
-
-            g.doInitTable1({
-                rownumbers: !0,
-                onLoadSuccess: function (a) {
-
-                },
-                onDbClickRow: a.noop,
-                url: "",
-                pagination: !0,
-                pageSize: 50,
-                pageList: [50]
-            }, [], "", "");
-
-            g.doInitTable2({
                 rownumbers: !0,
                 onLoadSuccess: function (a) {
 
@@ -275,89 +172,24 @@ function (a, b, c, d, e, f, g, h, i) {
             g.$searchBar.find(".startTime").datetimebox("setValue", e.getMonth("s", -1) + e.getStartHour());
             g.$searchBar.find(".endTime").datetimebox("setValue", e.getMonth("g", -1) + e.getEndHour());
         },
-        doInitTable1: function (c, e, f, g) {
-            var h = this;
-            h.$table1 = a(document.createElement("table")).appendTo(h.$tablePanel1);
-            h.$table1 && h.$table1.size() && h.$table1.datagrid(b.extend({
-                fit: !0,
-                border: !1,
-                striped: !0,
-                method: "get",
-                pagination: !0,
-                singleSelect: !0,
-                loadMsg: "加载数据中...",
-                cache: !1,
-                idField: h.idField,
-                textField: h.textField,
-                queryParams: h.queryParams,
-                url: h.getHref(!1, h.controller, "DataRowIndex"),
-                columns: h.getTableColumns1(),
-                onResize: function () {
-                    h.$ajaxDialog && (h.$ajaxDialog.dialog("restore"), h.$ajaxDialog.dialog("maximize"))
-                },
-                onSelect: function (a, b) {
-                    h.currentRow = b
-                },
-                onLoadError: function () {
-                    a.messager.alert("提示", "服务器忙，请稍后再试！", "warning")
-                },
-                onDblClickRow: function (a, b) {
-                    h.currentRow = b,
-                    h.doEdit && h.doEdit()
-                }
-            },
-            c));
-        },
-        doInitTable2: function (c, e, f, g) {
-            var h = this;
-            h.$table2 = a(document.createElement("table")).appendTo(h.$tablePanel2);
-            h.$table2 && h.$table2.size() && h.$table2.datagrid(b.extend({
-                fit: !0,
-                border: !1,
-                striped: !0,
-                method: "get",
-                pagination: !0,
-                singleSelect: !0,
-                loadMsg: "加载数据中...",
-                cache: !1,
-                idField: h.idField,
-                textField: h.textField,
-                queryParams: h.queryParams,
-                url: h.getHref(!1, h.controller, "DataRowIndex"),
-                columns: h.getTableColumns2(),
-                onResize: function () {
-                    h.$ajaxDialog && (h.$ajaxDialog.dialog("restore"), h.$ajaxDialog.dialog("maximize"))
-                },
-                onSelect: function (a, b) {
-                    h.currentRow = b
-                },
-                onLoadError: function () {
-                    a.messager.alert("提示", "服务器忙，请稍后再试！", "warning")
-                },
-                onDblClickRow: function (a, b) {
-                    h.currentRow = b,
-                    h.doEdit && h.doEdit()
-                }
-            },
-            c));
-        },
         doSearch: function () {
             var b = this;
-            b.sortType && (b.$table.datagrid("options").url = b.getHref(!1, b.controller, "ConcentrationReportDataRow"),
+            var a, d;
+            a = b.$panel.find(".easyui-layout").layout(),
+            d = a.layout("panel", "north"),
+            ss = [];
+
+            var grid = d.find(".EquipInfo").combogrid("grid");
+            var rows = grid.datagrid('getSelections');
+
+            for (var j = 0; j < rows.length; j++) {
+                var row = rows[j];
+                ss.push(row.CollectionCode);
+            }
+
+            b.sortType && (b.$table.datagrid("options").url = b.getHref(!1, b.controller, "SchoolMonthlyReportDataRow"),
             b.$table.datagrid("reload", {
-                SortType: b.sortType,
-                StartTime: b.$searchBar.find(".startTime").datetimebox("getValue"),
-                EndTime: b.$searchBar.find(".endTime").datetimebox("getValue")
-            }));
-            b.sortType && (b.$table1.datagrid("options").url = b.getHref(!1, b.controller, "DischargeReportDataRow"),
-            b.$table1.datagrid("reload", {
-                SortType: b.sortType,
-                StartTime: b.$searchBar.find(".startTime").datetimebox("getValue"),
-                EndTime: b.$searchBar.find(".endTime").datetimebox("getValue")
-            }));
-            b.sortType && (b.$table2.datagrid("options").url = b.getHref(!1, b.controller, "AlarmTimeReportDataRow"),
-            b.$table2.datagrid("reload", {
-                SortType: b.sortType,
+                CollectionCodes: ss.toString(),
                 StartTime: b.$searchBar.find(".startTime").datetimebox("getValue"),
                 EndTime: b.$searchBar.find(".endTime").datetimebox("getValue")
             }));
@@ -367,17 +199,17 @@ function (a, b, c, d, e, f, g, h, i) {
                 b, d;
             b = a.$panel.find(".easyui-layout").layout(),
             d = b.layout("panel", "north"),
-            CollectionCodes = [];
+            ss = [];
 
             var grid = d.find(".EquipInfo").combogrid("grid");
             var rows = grid.datagrid('getSelections');
 
             for (var j = 0; j < rows.length; j++) {
                 var row = rows[j];
-                CollectionCodes.push(row.CollectionCode);
+                ss.push(row.CollectionCode);
             }
 
-            var strurl = '../ReportInfo/SchoolMonthlyReporting' + '?CollectionCodes=' + CollectionCodes.toString() + 
+            var strurl = '../ReportInfo/SchoolMonthlyReporting' + '?CollectionCodes=' + ss.toString() + 
                         '&StartTime=' + a.$searchBar.find(".startTime").datetimebox("getValue") + '&EndTime=' + a.$searchBar.find(".endTime").datetimebox("getValue");
             window.open(strurl);
         },

@@ -6,12 +6,12 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>5.90551in</Width>
+              <Width>6.5in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
             <TablixRow>
-              <Height>4.25in</Height>
+              <Height>7.5in</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -31,10 +31,43 @@
                                           <TextRuns>
                                             <TextRun>
                                               <Value />
-                                              <Style />
+                                              <Style>
+                                                <FontFamily>宋体</FontFamily>
+                                                <FontSize>14pt</FontSize>
+                                              </Style>
                                             </TextRun>
                                           </TextRuns>
-                                          <Style />
+                                          <Style>
+                                            <TextAlign>Center</TextAlign>
+                                          </Style>
+                                        </Paragraph>
+                                        <Paragraph>
+                                          <TextRuns>
+                                            <TextRun>
+                                              <Value>项目</Value>
+                                              <Style>
+                                                <FontFamily>宋体</FontFamily>
+                                                <FontSize>14pt</FontSize>
+                                              </Style>
+                                            </TextRun>
+                                          </TextRuns>
+                                          <Style>
+                                            <TextAlign>Center</TextAlign>
+                                          </Style>
+                                        </Paragraph>
+                                        <Paragraph>
+                                          <TextRuns>
+                                            <TextRun>
+                                              <Value />
+                                              <Style>
+                                                <FontFamily>宋体</FontFamily>
+                                                <FontSize>14pt</FontSize>
+                                              </Style>
+                                            </TextRun>
+                                          </TextRuns>
+                                          <Style>
+                                            <TextAlign>Center</TextAlign>
+                                          </Style>
                                         </Paragraph>
                                       </Paragraphs>
                                       <rd:DefaultName>textbox1</rd:DefaultName>
@@ -43,6 +76,7 @@
                                         <Border>
                                           <Style>Solid</Style>
                                         </Border>
+                                        <VerticalAlign>Middle</VerticalAlign>
                                         <PaddingLeft>2pt</PaddingLeft>
                                         <PaddingRight>2pt</PaddingRight>
                                         <PaddingTop>2pt</PaddingTop>
@@ -57,18 +91,18 @@
                           <TablixBody>
                             <TablixColumns>
                               <TablixColumn>
-                                <Width>1in</Width>
+                                <Width>1.2in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>1in</Width>
+                                <Width>1.2in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>2in</Width>
+                                <Width>2.4in</Width>
                               </TablixColumn>
                             </TablixColumns>
                             <TablixRows>
                               <TablixRow>
-                                <Height>0.25in</Height>
+                                <Height>0.5in</Height>
                                 <TablixCells>
                                   <TablixCell>
                                     <CellContents>
@@ -79,8 +113,39 @@
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
+                                                <Value />
+                                                <Style>
+                                                  <FontFamily>宋体</FontFamily>
+                                                  <FontSize>14pt</FontSize>
+                                                </Style>
+                                              </TextRun>
+                                            </TextRuns>
+                                            <Style>
+                                              <TextAlign>Center</TextAlign>
+                                            </Style>
+                                          </Paragraph>
+                                          <Paragraph>
+                                            <TextRuns>
+                                              <TextRun>
                                                 <Value>超标次数</Value>
-                                                <Style />
+                                                <Style>
+                                                  <FontFamily>宋体</FontFamily>
+                                                  <FontSize>14pt</FontSize>
+                                                </Style>
+                                              </TextRun>
+                                            </TextRuns>
+                                            <Style>
+                                              <TextAlign>Center</TextAlign>
+                                            </Style>
+                                          </Paragraph>
+                                          <Paragraph>
+                                            <TextRuns>
+                                              <TextRun>
+                                                <Value />
+                                                <Style>
+                                                  <FontFamily>宋体</FontFamily>
+                                                  <FontSize>14pt</FontSize>
+                                                </Style>
                                               </TextRun>
                                             </TextRuns>
                                             <Style>
@@ -114,7 +179,10 @@
                                             <TextRuns>
                                               <TextRun>
                                                 <Value>=Fields!AlarmTime.Value</Value>
-                                                <Style />
+                                                <Style>
+                                                  <FontFamily>宋体</FontFamily>
+                                                  <FontSize>14pt</FontSize>
+                                                </Style>
                                               </TextRun>
                                             </TextRuns>
                                             <Style />
@@ -167,7 +235,7 @@
                                 </TablixCells>
                               </TablixRow>
                               <TablixRow>
-                                <Height>0.25in</Height>
+                                <Height>0.5in</Height>
                                 <TablixCells>
                                   <TablixCell>
                                     <CellContents>
@@ -178,8 +246,39 @@
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
+                                                <Value />
+                                                <Style>
+                                                  <FontFamily>宋体</FontFamily>
+                                                  <FontSize>14pt</FontSize>
+                                                </Style>
+                                              </TextRun>
+                                            </TextRuns>
+                                            <Style>
+                                              <TextAlign>Center</TextAlign>
+                                            </Style>
+                                          </Paragraph>
+                                          <Paragraph>
+                                            <TextRuns>
+                                              <TextRun>
                                                 <Value>总记录次数</Value>
-                                                <Style />
+                                                <Style>
+                                                  <FontFamily>宋体</FontFamily>
+                                                  <FontSize>14pt</FontSize>
+                                                </Style>
+                                              </TextRun>
+                                            </TextRuns>
+                                            <Style>
+                                              <TextAlign>Center</TextAlign>
+                                            </Style>
+                                          </Paragraph>
+                                          <Paragraph>
+                                            <TextRuns>
+                                              <TextRun>
+                                                <Value />
+                                                <Style>
+                                                  <FontFamily>宋体</FontFamily>
+                                                  <FontSize>14pt</FontSize>
+                                                </Style>
                                               </TextRun>
                                             </TextRuns>
                                             <Style>
@@ -213,7 +312,10 @@
                                             <TextRuns>
                                               <TextRun>
                                                 <Value>=Fields!CountTime.Value</Value>
-                                                <Style />
+                                                <Style>
+                                                  <FontFamily>宋体</FontFamily>
+                                                  <FontSize>14pt</FontSize>
+                                                </Style>
                                               </TextRun>
                                             </TextRuns>
                                             <Style />
@@ -266,7 +368,7 @@
                                 </TablixCells>
                               </TablixRow>
                               <TablixRow>
-                                <Height>0.25in</Height>
+                                <Height>0.5in</Height>
                                 <TablixCells>
                                   <TablixCell>
                                     <CellContents>
@@ -277,8 +379,39 @@
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
+                                                <Value />
+                                                <Style>
+                                                  <FontFamily>宋体</FontFamily>
+                                                  <FontSize>14pt</FontSize>
+                                                </Style>
+                                              </TextRun>
+                                            </TextRuns>
+                                            <Style>
+                                              <TextAlign>Center</TextAlign>
+                                            </Style>
+                                          </Paragraph>
+                                          <Paragraph>
+                                            <TextRuns>
+                                              <TextRun>
                                                 <Value>超标比例</Value>
-                                                <Style />
+                                                <Style>
+                                                  <FontFamily>宋体</FontFamily>
+                                                  <FontSize>14pt</FontSize>
+                                                </Style>
+                                              </TextRun>
+                                            </TextRuns>
+                                            <Style>
+                                              <TextAlign>Center</TextAlign>
+                                            </Style>
+                                          </Paragraph>
+                                          <Paragraph>
+                                            <TextRuns>
+                                              <TextRun>
+                                                <Value />
+                                                <Style>
+                                                  <FontFamily>宋体</FontFamily>
+                                                  <FontSize>14pt</FontSize>
+                                                </Style>
                                               </TextRun>
                                             </TextRuns>
                                             <Style>
@@ -311,7 +444,10 @@
                                             <TextRuns>
                                               <TextRun>
                                                 <Value>=Round(IIf(Fields!CountTime.Value = 0, 0, Fields!AlarmTime.Value / Fields!CountTime.Value), 2)</Value>
-                                                <Style />
+                                                <Style>
+                                                  <FontFamily>宋体</FontFamily>
+                                                  <FontSize>14pt</FontSize>
+                                                </Style>
                                               </TextRun>
                                             </TextRuns>
                                             <Style />
@@ -364,7 +500,7 @@
                                 </TablixCells>
                               </TablixRow>
                               <TablixRow>
-                                <Height>0.75in</Height>
+                                <Height>1.5in</Height>
                                 <TablixCells>
                                   <TablixCell>
                                     <CellContents>
@@ -383,7 +519,10 @@ Fields!Clean.Value = 3,
 "三颗星" &amp; chr(13) &amp; chr(10) &amp;"净化设备已经处于中度污染状态，内部积污会影响净化设备正常工作电流，使净化设备净化效率下降，从而影响排放情况，可能会出现频繁超标。",
 Fields!Clean.Value &lt;= 2,
 "两颗星" &amp; chr(13) &amp; chr(10) &amp;"净化设备已经处于严重污染状态，净化器、风机和管道大量积污，已经严重净化设备净化效果，且存在火灾隐患。")</Value>
-                                                <Style />
+                                                <Style>
+                                                  <FontFamily>宋体</FontFamily>
+                                                  <FontSize>14pt</FontSize>
+                                                </Style>
                                               </TextRun>
                                             </TextRuns>
                                             <Style />
@@ -409,7 +548,7 @@ Fields!Clean.Value &lt;= 2,
                                 </TablixCells>
                               </TablixRow>
                               <TablixRow>
-                                <Height>0.75in</Height>
+                                <Height>1.5in</Height>
                                 <TablixCells>
                                   <TablixCell>
                                     <CellContents>
@@ -428,7 +567,10 @@ Fields!Clean.Value = 3,
 "建议清洗净化器，找专业公司对净化器内部进行清洗，使净化器可回到正常工作状态。",
 Fields!Clean.Value &lt;= 2,
 "建议清洗整套净化设备，包括烟罩、管道、风机和净化器。")</Value>
-                                                <Style />
+                                                <Style>
+                                                  <FontFamily>宋体</FontFamily>
+                                                  <FontSize>14pt</FontSize>
+                                                </Style>
                                               </TextRun>
                                             </TextRuns>
                                             <Style />
@@ -466,7 +608,7 @@ Fields!Clean.Value &lt;= 2,
                                 <TablixMembers>
                                   <TablixMember>
                                     <TablixHeader>
-                                      <Size>0.25in</Size>
+                                      <Size>0.5in</Size>
                                       <CellContents>
                                         <Textbox Name="textbox2">
                                           <CanGrow>true</CanGrow>
@@ -476,7 +618,10 @@ Fields!Clean.Value &lt;= 2,
                                               <TextRuns>
                                                 <TextRun>
                                                   <Value>内容</Value>
-                                                  <Style />
+                                                  <Style>
+                                                    <FontFamily>宋体</FontFamily>
+                                                    <FontSize>14pt</FontSize>
+                                                  </Style>
                                                 </TextRun>
                                               </TextRuns>
                                               <Style>
@@ -506,7 +651,7 @@ Fields!Clean.Value &lt;= 2,
                                   </TablixMember>
                                   <TablixMember>
                                     <TablixHeader>
-                                      <Size>0.25in</Size>
+                                      <Size>0.5in</Size>
                                       <CellContents>
                                         <Textbox Name="Textbox15">
                                           <CanGrow>true</CanGrow>
@@ -516,7 +661,10 @@ Fields!Clean.Value &lt;= 2,
                                               <TextRuns>
                                                 <TextRun>
                                                   <Value>备注</Value>
-                                                  <Style />
+                                                  <Style>
+                                                    <FontFamily>宋体</FontFamily>
+                                                    <FontSize>14pt</FontSize>
+                                                  </Style>
                                                 </TextRun>
                                               </TextRuns>
                                               <Style>
@@ -551,7 +699,7 @@ Fields!Clean.Value &lt;= 2,
                             <TablixMembers>
                               <TablixMember>
                                 <TablixHeader>
-                                  <Size>1in</Size>
+                                  <Size>1.2in</Size>
                                   <CellContents>
                                     <Textbox Name="textbox3">
                                       <CanGrow>true</CanGrow>
@@ -560,8 +708,11 @@ Fields!Clean.Value &lt;= 2,
                                         <Paragraph>
                                           <TextRuns>
                                             <TextRun>
-                                              <Value>油烟排放情况</Value>
-                                              <Style />
+                                              <Value>油　烟　排 放　情　况</Value>
+                                              <Style>
+                                                <FontFamily>宋体</FontFamily>
+                                                <FontSize>14pt</FontSize>
+                                              </Style>
                                             </TextRun>
                                           </TextRuns>
                                           <Style>
@@ -592,7 +743,7 @@ Fields!Clean.Value &lt;= 2,
                               </TablixMember>
                               <TablixMember>
                                 <TablixHeader>
-                                  <Size>1in</Size>
+                                  <Size>1.2in</Size>
                                   <CellContents>
                                     <Textbox Name="Textbox16">
                                       <CanGrow>true</CanGrow>
@@ -602,7 +753,38 @@ Fields!Clean.Value &lt;= 2,
                                           <TextRuns>
                                             <TextRun>
                                               <Value />
-                                              <Style />
+                                              <Style>
+                                                <FontFamily>宋体</FontFamily>
+                                                <FontSize>14pt</FontSize>
+                                              </Style>
+                                            </TextRun>
+                                          </TextRuns>
+                                          <Style>
+                                            <TextAlign>Center</TextAlign>
+                                          </Style>
+                                        </Paragraph>
+                                        <Paragraph>
+                                          <TextRuns>
+                                            <TextRun>
+                                              <Value />
+                                              <Style>
+                                                <FontFamily>宋体</FontFamily>
+                                                <FontSize>14pt</FontSize>
+                                              </Style>
+                                            </TextRun>
+                                          </TextRuns>
+                                          <Style>
+                                            <TextAlign>Center</TextAlign>
+                                          </Style>
+                                        </Paragraph>
+                                        <Paragraph>
+                                          <TextRuns>
+                                            <TextRun>
+                                              <Value />
+                                              <Style>
+                                                <FontFamily>宋体</FontFamily>
+                                                <FontSize>14pt</FontSize>
+                                              </Style>
                                             </TextRun>
                                           </TextRuns>
                                           <Style>
@@ -613,7 +795,10 @@ Fields!Clean.Value &lt;= 2,
                                           <TextRuns>
                                             <TextRun>
                                               <Value>洁净度</Value>
-                                              <Style />
+                                              <Style>
+                                                <FontFamily>宋体</FontFamily>
+                                                <FontSize>14pt</FontSize>
+                                              </Style>
                                             </TextRun>
                                           </TextRuns>
                                           <Style>
@@ -624,7 +809,38 @@ Fields!Clean.Value &lt;= 2,
                                           <TextRuns>
                                             <TextRun>
                                               <Value />
-                                              <Style />
+                                              <Style>
+                                                <FontFamily>宋体</FontFamily>
+                                                <FontSize>14pt</FontSize>
+                                              </Style>
+                                            </TextRun>
+                                          </TextRuns>
+                                          <Style>
+                                            <TextAlign>Center</TextAlign>
+                                          </Style>
+                                        </Paragraph>
+                                        <Paragraph>
+                                          <TextRuns>
+                                            <TextRun>
+                                              <Value />
+                                              <Style>
+                                                <FontFamily>宋体</FontFamily>
+                                                <FontSize>14pt</FontSize>
+                                              </Style>
+                                            </TextRun>
+                                          </TextRuns>
+                                          <Style>
+                                            <TextAlign>Center</TextAlign>
+                                          </Style>
+                                        </Paragraph>
+                                        <Paragraph>
+                                          <TextRuns>
+                                            <TextRun>
+                                              <Value />
+                                              <Style>
+                                                <FontFamily>宋体</FontFamily>
+                                                <FontSize>14pt</FontSize>
+                                              </Style>
                                             </TextRun>
                                           </TextRuns>
                                           <Style />
@@ -647,7 +863,7 @@ Fields!Clean.Value &lt;= 2,
                               </TablixMember>
                               <TablixMember>
                                 <TablixHeader>
-                                  <Size>1in</Size>
+                                  <Size>1.2in</Size>
                                   <CellContents>
                                     <Textbox Name="Textbox20">
                                       <CanGrow>true</CanGrow>
@@ -657,7 +873,38 @@ Fields!Clean.Value &lt;= 2,
                                           <TextRuns>
                                             <TextRun>
                                               <Value />
-                                              <Style />
+                                              <Style>
+                                                <FontFamily>宋体</FontFamily>
+                                                <FontSize>14pt</FontSize>
+                                              </Style>
+                                            </TextRun>
+                                          </TextRuns>
+                                          <Style>
+                                            <TextAlign>Center</TextAlign>
+                                          </Style>
+                                        </Paragraph>
+                                        <Paragraph>
+                                          <TextRuns>
+                                            <TextRun>
+                                              <Value />
+                                              <Style>
+                                                <FontFamily>宋体</FontFamily>
+                                                <FontSize>14pt</FontSize>
+                                              </Style>
+                                            </TextRun>
+                                          </TextRuns>
+                                          <Style>
+                                            <TextAlign>Center</TextAlign>
+                                          </Style>
+                                        </Paragraph>
+                                        <Paragraph>
+                                          <TextRuns>
+                                            <TextRun>
+                                              <Value />
+                                              <Style>
+                                                <FontFamily>宋体</FontFamily>
+                                                <FontSize>14pt</FontSize>
+                                              </Style>
                                             </TextRun>
                                           </TextRuns>
                                           <Style>
@@ -668,7 +915,10 @@ Fields!Clean.Value &lt;= 2,
                                           <TextRuns>
                                             <TextRun>
                                               <Value>改进建议</Value>
-                                              <Style />
+                                              <Style>
+                                                <FontFamily>宋体</FontFamily>
+                                                <FontSize>14pt</FontSize>
+                                              </Style>
                                             </TextRun>
                                           </TextRuns>
                                           <Style>
@@ -679,7 +929,36 @@ Fields!Clean.Value &lt;= 2,
                                           <TextRuns>
                                             <TextRun>
                                               <Value />
-                                              <Style />
+                                              <Style>
+                                                <FontFamily>宋体</FontFamily>
+                                                <FontSize>14pt</FontSize>
+                                              </Style>
+                                            </TextRun>
+                                          </TextRuns>
+                                          <Style>
+                                            <TextAlign>Center</TextAlign>
+                                          </Style>
+                                        </Paragraph>
+                                        <Paragraph>
+                                          <TextRuns>
+                                            <TextRun>
+                                              <Value />
+                                              <Style>
+                                                <FontFamily>宋体</FontFamily>
+                                                <FontSize>14pt</FontSize>
+                                              </Style>
+                                            </TextRun>
+                                          </TextRuns>
+                                          <Style />
+                                        </Paragraph>
+                                        <Paragraph>
+                                          <TextRuns>
+                                            <TextRun>
+                                              <Value />
+                                              <Style>
+                                                <FontFamily>宋体</FontFamily>
+                                                <FontSize>14pt</FontSize>
+                                              </Style>
                                             </TextRun>
                                           </TextRuns>
                                           <Style />
@@ -705,9 +984,9 @@ Fields!Clean.Value &lt;= 2,
                           <RepeatColumnHeaders>true</RepeatColumnHeaders>
                           <RepeatRowHeaders>true</RepeatRowHeaders>
                           <DataSetName>DataSet1</DataSetName>
-                          <Top>1.8cm</Top>
-                          <Height>2.5in</Height>
-                          <Width>5in</Width>
+                          <Top>3.5cm</Top>
+                          <Height>5in</Height>
+                          <Width>6in</Width>
                           <Style />
                         </Tablix>
                         <Textbox Name="Textbox154">
@@ -718,16 +997,20 @@ Fields!Clean.Value &lt;= 2,
                               <TextRuns>
                                 <TextRun>
                                   <Value>="学校名称: " + Fields!NickName.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>宋体</FontFamily>
+                                    <FontSize>14pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox153</rd:DefaultName>
-                          <Top>0.6cm</Top>
-                          <Height>0.6cm</Height>
-                          <Width>12.7cm</Width>
+                          <Top>1.5cm</Top>
+                          <Left>0cm</Left>
+                          <Height>1cm</Height>
+                          <Width>15.24cm</Width>
                           <ZIndex>1</ZIndex>
                           <Style>
                             <Border>
@@ -747,16 +1030,19 @@ Fields!Clean.Value &lt;= 2,
                               <TextRuns>
                                 <TextRun>
                                   <Value>="监测日期: " + CDate(Parameters!ReportParameter1.Value).ToString("yyyy年MM月dd日") + " 至 " + CDate(Parameters!ReportParameter2.Value).ToString("yyyy年MM月dd日")</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>宋体</FontFamily>
+                                    <FontSize>14pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox153</rd:DefaultName>
-                          <Top>1.2cm</Top>
-                          <Height>0.6cm</Height>
-                          <Width>12.7cm</Width>
+                          <Top>2.5cm</Top>
+                          <Height>1cm</Height>
+                          <Width>15.24cm</Width>
                           <ZIndex>2</ZIndex>
                           <Style>
                             <Border>
@@ -778,7 +1064,7 @@ Fields!Clean.Value &lt;= 2,
                                   <Value>油烟监测月报表</Value>
                                   <Style>
                                     <FontFamily>宋体</FontFamily>
-                                    <FontSize>12pt</FontSize>
+                                    <FontSize>22pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -789,8 +1075,9 @@ Fields!Clean.Value &lt;= 2,
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox153</rd:DefaultName>
-                          <Height>0.6cm</Height>
-                          <Width>12.7cm</Width>
+                          <Left>0cm</Left>
+                          <Height>1.5cm</Height>
+                          <Width>15.24cm</Width>
                           <ZIndex>3</ZIndex>
                           <Style>
                             <Border>
@@ -811,7 +1098,10 @@ Fields!Clean.Value &lt;= 2,
                               <TextRuns>
                                 <TextRun>
                                   <Value>上海广聆环保科技有限公司</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>宋体</FontFamily>
+                                    <FontSize>14pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -820,9 +1110,9 @@ Fields!Clean.Value &lt;= 2,
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox153</rd:DefaultName>
-                          <Top>8.15cm</Top>
-                          <Height>0.6cm</Height>
-                          <Width>12.7cm</Width>
+                          <Top>16.2cm</Top>
+                          <Height>1cm</Height>
+                          <Width>15.24cm</Width>
                           <ZIndex>4</ZIndex>
                           <Style>
                             <Border>
@@ -842,7 +1132,10 @@ Fields!Clean.Value &lt;= 2,
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Now.ToString("yyyy年MM月dd日")</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>宋体</FontFamily>
+                                    <FontSize>14pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -851,9 +1144,9 @@ Fields!Clean.Value &lt;= 2,
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox153</rd:DefaultName>
-                          <Top>8.75cm</Top>
-                          <Height>0.6cm</Height>
-                          <Width>12.7cm</Width>
+                          <Top>17.2cm</Top>
+                          <Height>1cm</Height>
+                          <Width>15.24cm</Width>
                           <ZIndex>5</ZIndex>
                           <Style>
                             <Border>
@@ -900,19 +1193,19 @@ Fields!Clean.Value &lt;= 2,
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
-        <Height>4.25in</Height>
-        <Width>5.90551in</Width>
+        <Height>7.5in</Height>
+        <Width>6.5in</Width>
         <Style />
       </Tablix>
     </ReportItems>
-    <Height>4.25in</Height>
+    <Height>7.5in</Height>
     <Style>
       <Border>
         <Style>None</Style>
       </Border>
     </Style>
   </Body>
-  <Width>6.5in</Width>
+  <Width>7in</Width>
   <Page>
     <LeftMargin>1in</LeftMargin>
     <RightMargin>1in</RightMargin>

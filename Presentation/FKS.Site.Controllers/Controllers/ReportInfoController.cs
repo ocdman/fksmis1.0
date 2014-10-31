@@ -415,6 +415,21 @@ namespace FKS.Site.Web.Controllers.Controllers
             return View();
         }
 
+        public ActionResult SchoolMonthlyReportDataRow(string CollectionCodes, ReportParams param)
+        {
+            if (CheckAuthority() == false)
+            {
+                return Json("error", JsonRequestBehavior.DenyGet);
+            }
+            var result = this.SiteContract.GetSchoolMonthlyReportData(CollectionCodes, param.StartTime, param.EndTime);
+            var dataGridData = new DataGridView<SchoolMonthlyReport>()
+            {
+                total = result.Count,
+                rows = result.Skip((param.page - 1) * param.rows).Take(param.rows).ToList()
+            };
+            return Json(dataGridData, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult SchoolMonthlyReporting(string CollectionCodes, ReportParams param)
         {
             if (CheckAuthority() == false)

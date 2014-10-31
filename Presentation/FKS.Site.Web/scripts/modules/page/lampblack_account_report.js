@@ -7,9 +7,7 @@
     "modules/base/manager_base",
     "modules/main_ui",
     "modules/page/equipment_manager",
-    "plugins/js/highcharts",
-    "plugins/js/highcharts-more",
-    "plugins/js/modules/exporting"],
+    "plugins/js/highcharts"],
 function (a, b, c, d, e, f, g, h, i) {
     var j = g.extend({
         controller: "ReportInfo",

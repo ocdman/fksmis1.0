@@ -7,15 +7,8 @@
     "modules/base/manager_base",
     "modules/main_ui",
     "modules/page/equipment_manager",
-    "plugins/jquery.plot/plugins/jqplot.cursor.min",
-    "plugins/jquery.plot/plugins/jqplot.dateAxisRenderer.min",
-    "plugins/jquery.plot/plugins/jqplot.categoryAxisRenderer.min",
-    "plugins/jquery.plot/plugins/jqplot.barRenderer.min",
-    "plugins/jquery.plot/plugins/jqplot.pointLabels.min",
-    "plugins/jquery.plot/plugins/jqplot.canvasAxisTickRenderer.min",
-    "plugins/jquery.plot/plugins/jqplot.canvasOverlay.min",
-    "plugins/jquery.plot/plugins/jqplot.highlighter.min"],
-function (a, b, c, d, e, f, g, h, i) {
+    "localdata/propertyinfos"],
+function (a, b, c, d, e, f, g, h, i, k) {
     var j = g.extend({
         controller: "ReportInfo",
         $jqPlot: null,
@@ -25,7 +18,7 @@ function (a, b, c, d, e, f, g, h, i) {
         $tablePanel2: null,
         timeID: 0,
         reportType: "01",
-        sortType: "01",
+        propertyInfo: 0,
         LineData: {},
         serials: [],
         currentId: 0,
@@ -223,11 +216,15 @@ function (a, b, c, d, e, f, g, h, i) {
                     }
                 }
             });
-            d.find("#sortType").combobox({
-                required: !0,
+            d.find("#PropertyInfo").combobox({
+                data: k,
+                width: "100",
+                valueField: "value",
+                textField: "text",
+                groupField: "group",
                 width: 150,
                 onSelect: function (a) {
-                    g.sortType = a.value;
+                    g.propertyInfo = a.value;
                 }
             });
             d.find(".easyui-linkbutton").linkbutton({

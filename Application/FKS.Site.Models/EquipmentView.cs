@@ -213,7 +213,9 @@ namespace FKS.Site.Models
 
         [Display(Name="安装人")]
         public string Installer { get; set; }
-
-
+        /// <summary>
+        /// 是否在线
+        /// </summary>
+        public bool OnOff { get; set; }
     }
 }

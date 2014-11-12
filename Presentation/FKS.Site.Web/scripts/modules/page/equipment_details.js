@@ -45,7 +45,7 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
                 }
             },
             {
-                field: "IsTimeOut",
+                field: "OnOff",
                 title: "是否在线",
                 width: 80,
                 sortable: !1,

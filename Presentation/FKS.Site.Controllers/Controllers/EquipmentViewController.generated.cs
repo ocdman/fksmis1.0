@@ -126,7 +126,8 @@ namespace FKS.Site.Web.Controllers.Controllers
                     LastTimeGet = m.LastTimeGet,
                     OpenTime = m.OpenTime,
                     CleanTime = m.CleanTime,
-                    UserName = m.UserName
+                    UserName = m.UserName,
+                    OnOff = m.OnOff
                 });
 
             dgvResult.rows = memberViews.ToList();

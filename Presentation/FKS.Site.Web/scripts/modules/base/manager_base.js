@@ -58,12 +58,14 @@ function (a, b, c, d, e) {
         doSubmit: function () {
             var b = this,
             c = a(b.$ajaxDialog).find("form");
-            if (c.size()) if (c.valid()) this.doWait(1, 200),
-            c.trigger("submit");
-            else {
-                var d = c.find("[generated='true']:eq(0)");
-                d.length > 0 && a("#" + d.attr("for")).focus()
-            }
+            if (c.size())
+                if (c.valid())
+                    this.doWait(1, 200),
+                    c.trigger("submit");
+                else {
+                    var d = c.find("[generated='true']:eq(0)");
+                    d.length > 0 && a("#" + d.attr("for")).focus()
+                }
         },
         doAjaxSuccess: function (b) {
             var c = this;

@@ -45,12 +45,37 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
                 }
             },
             {
+                field: "YouYanND",
+                title: "浓度",
+                width: 60,
+                sortable: !1,
+                formatter: function (a) {
+                    return (a / 10).toFixed(1)
+                }
+            },
+            {
+                field: "YouYanSD",
+                title: "湿度",
+                width: 60,
+                sortable: !1
+            },
+            {
+                field: "YouYanWD",
+                title: "温度",
+                width: 60,
+                sortable: !1,
+                formatter: function (a) {
+                    return (a * 0.64 - 40).toFixed(1)
+                }
+            },
+            {
                 field: "OnOff",
                 title: "是否在线",
                 width: 80,
                 sortable: !1,
                 formatter: function (a) {
-                    return a ? "<i class='red' />" : "<i class='green' />"
+                    //return a ? "<i class='red' />" : "<i class='green' />"
+                    return a ? "在线" : "离线"
                 }
             },
             {
@@ -59,7 +84,8 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
                 width: 80,
                 sortable: !1,
                 formatter: function (a) {
-                    return a ? "<i class='green' />" : "<i class='red' />"
+                    //return a ? "<i class='green' />" : "<i class='red' />"
+                    return a ? "开" : "关"
                 }
             },
             {
@@ -68,7 +94,8 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
                 width: 90,
                 sortable: !1,
                 formatter: function (a) {
-                    return a ? "<i class='green' />" : "<i class='red' />"
+                    //return a ? "<i class='green' />" : "<i class='red' />"
+                    return a ? "开" : "关"
                 }
             },
             {

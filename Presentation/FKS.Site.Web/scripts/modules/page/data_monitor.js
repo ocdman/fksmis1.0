@@ -39,19 +39,25 @@ function (a, b, c, d, e, f, g, h, i) {
                 field: "YouYanND",
                 title: "浓度",
                 width: 60,
-                sortable: !1
+                sortable: !1,
+                formatter: function (a) {
+                    return (a / 10).toFixed(1)
+                }
             },
             {
                 field: "YouYanSD",
-                title: "温度",
+                title: "湿度",
                 width: 60,
                 sortable: !1
             },
             {
                 field: "YouYanWD",
-                title: "湿度",
+                title: "温度",
                 width: 60,
-                sortable: !1
+                sortable: !1,
+                formatter: function (a) {
+                    return (a * 0.64 - 40).toFixed(1)
+                }
             },
             {
                 field: "ZTjhq",
@@ -59,7 +65,7 @@ function (a, b, c, d, e, f, g, h, i) {
                 width: 60,
                 sortable: !1,
                 formatter: function (a) {
-                    return 1 * a
+                    return a ? "开" : "关"
                 }
             },
             {
@@ -68,7 +74,7 @@ function (a, b, c, d, e, f, g, h, i) {
                 width: 60,
                 sortable: !1,
                 formatter: function (a) {
-                    return 1 * a
+                    return a ? "开" : "关"
                 }
             },
             {
@@ -77,7 +83,7 @@ function (a, b, c, d, e, f, g, h, i) {
                 width: 60,
                 sortable: !1,
                 formatter: function (a) {
-                    return 1 * a
+                    return a ? "故障" : "正常"
                 }
             },
             {

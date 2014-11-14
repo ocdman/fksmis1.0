@@ -217,5 +217,12 @@ namespace FKS.Site.Models
         /// 是否在线
         /// </summary>
         public bool OnOff { get; set; }
+        /// <summary>
+        /// 洁净度
+        /// </summary>
+        public int Clean { get; set; }
+        [Required]
+        [Display(Name="风机类型")]
+        public int FanType { get; set; }
     }
 }

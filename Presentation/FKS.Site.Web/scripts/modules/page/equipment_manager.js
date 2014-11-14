@@ -1,6 +1,6 @@
 /*! fks 07-07-2014 */
-define(["jquery", "underscore", "backbone", "knockout", "helper", "plugins/map", "modules/base/manager_base", "modules/main_ui", "localdata/propertyinfos", "localdata/positioninfos", "localdata/statusinfos", "text!templates/toolbars/common/toolbar_1.html", "text!templates/search_condition/equipment_manager.html", "localdata/timeout"],
-function (a, b, c, d, e, f, g, h, i, j, k, l, m, z) {
+define(["jquery", "underscore", "backbone", "knockout", "helper", "plugins/map", "modules/base/manager_base", "modules/main_ui", "localdata/propertyinfos", "localdata/positioninfos", "localdata/statusinfos", "text!templates/toolbars/common/toolbar_1.html", "text!templates/search_condition/equipment_manager.html", "localdata/timeout", "localdata/fantype"],
+function (a, b, c, d, e, f, g, h, i, j, k, l, m, z, y) {
     var n = g.extend({
         controller: "EquipmentView",
         idField: "CollectionCode",
@@ -195,9 +195,11 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, z) {
             u = b.$ajaxDialog.find("#EquipCount");
             u[0].value = (u[0].value == "" ? "1" : u[0].value);
             v = b.$ajaxDialog.find("#EquipCode");
-            v[0].readOnly = (v[0].value == "" ? false : true);
+            //v[0].readOnly = (v[0].value == "" ? false : true);
             w = b.$ajaxDialog.find("#CollectionCode");
-            w[0].readOnly = (w[0].value == "" ? false : true);
+            //w[0].readOnly = (w[0].value == "" ? false : true);
+            x = b.$ajaxDialog.find("#FanType");
+            x[0].value = (x[0].value == "" ? "1" : x[0].value);
             b.doWait(o, 0,
             function () {
                 b.base("doOnloadPage", null, g)
@@ -250,6 +252,13 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, z) {
                 textField: "text",
                 panelHeight: "auto",
                 value: s[0].value == "" ? "5" : s[0].value,
+            }),
+            x.size() && x.combobox({
+                data: y,
+                valueField: "value",
+                textField: "text",
+                panelHeight: "auto",
+                value: x[0].value == "" ? "1" : x[0].value,
             })
         },
         doGetSearchCondition: function (a) {

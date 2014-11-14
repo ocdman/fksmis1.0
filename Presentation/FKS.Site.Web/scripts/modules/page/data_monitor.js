@@ -18,6 +18,7 @@ function (a, b, c, d, e, f, g, h, i) {
         serials: [],
         curerntId: 0,
         isStop: !0,
+        factor: 10,
         getTableColumns: function () {
             var a = this;
             return [[{
@@ -41,7 +42,7 @@ function (a, b, c, d, e, f, g, h, i) {
                 width: 60,
                 sortable: !1,
                 formatter: function (a) {
-                    return (a / 10).toFixed(1)
+                    return (factor / a).toFixed(1)
                 }
             },
             {
@@ -130,7 +131,7 @@ function (a, b, c, d, e, f, g, h, i) {
                         b["FJ"] || (b["FJ"] = [], c.push("风机"));
                         b["JHQ"] || (b["JHQ"] = [], c.push("净化器"));
                     }
-                    b[f.ProbeID + "ND"].push([e.getUnixToTime2(f.TimeUp.replace("/Date(", "").replace(")/", "")), f.YouYanND != 0 ? 100 / f.YouYanND : 0]),
+                    b[f.ProbeID + "ND"].push([e.getUnixToTime2(f.TimeUp.replace("/Date(", "").replace(")/", "")), factor / f.YouYanND]),
                     b[f.ProbeID + "WD"].push([e.getUnixToTime2(f.TimeUp.replace("/Date(", "").replace(")/", "")), .64 * f.YouYanWD - 40]),
                     b[f.ProbeID + "SD"].push([e.getUnixToTime2(f.TimeUp.replace("/Date(", "").replace(")/", "")), f.YouYanSD]);
                     if (f.ProbeID == 1)

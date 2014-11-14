@@ -127,7 +127,8 @@ namespace FKS.Site.Web.Controllers.Controllers
                     OpenTime = m.OpenTime,
                     CleanTime = m.CleanTime,
                     UserName = m.UserName,
-                    OnOff = m.OnOff
+                    OnOff = m.OnOff,
+                    Clean = m.YouYanND
                 });
 
             dgvResult.rows = memberViews.ToList();
@@ -192,6 +193,11 @@ namespace FKS.Site.Web.Controllers.Controllers
             return Json(dgvResult, JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// 学校报表模块，设备展示
+        /// </summary>
+        /// <param name="pagination"></param>
+        /// <returns></returns>
         public ActionResult DataRowIndexForSchool(Pagination pagination)
         {
             int total = 0;
@@ -271,7 +277,8 @@ namespace FKS.Site.Web.Controllers.Controllers
                     ContactInfo = viewModel.ContactInfo,
                     ContractNo = viewModel.ContractNo,
                     ContractStartTime = viewModel.ContractStartTime,
-                    Installer = viewModel.Installer
+                    Installer = viewModel.Installer,
+                    FanType = viewModel.FanType
                 };
 
                 if (viewModel.Status == 1)
@@ -368,7 +375,8 @@ namespace FKS.Site.Web.Controllers.Controllers
                     ContactInfo = model.ContactInfo,
                     ContractNo = model.ContractNo,
                     ContractStartTime = model.ContractStartTime,
-                    Installer = model.Installer
+                    Installer = model.Installer,
+                    FanType = model.FanType
                 };
             }
 
@@ -410,6 +418,7 @@ namespace FKS.Site.Web.Controllers.Controllers
                     model.ContractNo = viewModel.ContractNo;
                     model.ContractStartTime = viewModel.ContractStartTime;
                     model.Installer = viewModel.Installer;
+                    model.FanType = viewModel.FanType;
 
                     if (model.CleanTime == null && viewModel.Status == 1)
                     {
@@ -497,7 +506,8 @@ namespace FKS.Site.Web.Controllers.Controllers
                     ContactInfo = model.ContactInfo,
                     ContractNo = model.ContractNo,
                     ContractStartTime = model.ContractStartTime,
-                    Installer = model.Installer
+                    Installer = model.Installer,
+                    FanType = model.FanType
                 };
             }
 

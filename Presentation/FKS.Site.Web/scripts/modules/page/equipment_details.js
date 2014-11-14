@@ -3,6 +3,7 @@ define(["jquery", "underscore", "backbone", "knockout", "helper", "plugins/map",
 function (a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
     var o = i.extend({
         isInitTable: !1,
+        factor: 10,
         getTableColumns: function () {
             var a = this;
             return [[{
@@ -50,7 +51,7 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
                 width: 60,
                 sortable: !1,
                 formatter: function (a) {
-                    return (a / 10).toFixed(1)
+                    return (factor / a).toFixed(1)
                 }
             },
             {
@@ -99,7 +100,7 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
                 }
             },
             {
-                field: "YouYanND",
+                field: "Clean",
                 title: "洁净度",
                 width: 110,
                 sortable: !1,

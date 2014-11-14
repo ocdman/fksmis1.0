@@ -229,7 +229,11 @@ namespace FKS.Core.Models.Hardware
         /// </summary>
         public string Installer { get; set; }
 
-
+        /// <summary>
+        /// 风机类型
+        /// </summary>
+        [Required]
+        public int FanType { get; set; }
 
     }
 }

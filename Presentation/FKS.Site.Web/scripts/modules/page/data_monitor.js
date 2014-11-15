@@ -32,32 +32,36 @@ function (a, b, c, d, e, f, g, h, i) {
                 title: "时间",
                 width: 150,
                 sortable: !1,
-                formatter: function (a) {
-                    return e.getUnixToTime(a.replace("/Date(", "").replace(")/", ""), 10)
+                formatter: function (b) {
+                    return e.DateFormat(e.getUnixToTime1(b.replace("/Date(", "").replace(")/", "")), "yyyy-MM-dd HH:mm:ss")
                 }
             },
             {
                 field: "YouYanND",
-                title: "浓度",
+                title: "浓度(mg/m³)",
                 width: 60,
                 sortable: !1,
-                formatter: function (a) {
-                    return (factor / a).toFixed(1)
+                formatter: function (b) {
+                    //return (a.factor / b).toFixed(1)
+                    return (b > 100) ? 0 : e.getYouYanND(b);
                 }
             },
             {
                 field: "YouYanSD",
-                title: "湿度",
+                title: "湿度(%)",
                 width: 60,
-                sortable: !1
+                sortable: !1,
+                formatter: function (b) {
+                    return (b == 255) ? 0 : b;
+                }
             },
             {
                 field: "YouYanWD",
-                title: "温度",
+                title: "温度(℃)",
                 width: 60,
                 sortable: !1,
-                formatter: function (a) {
-                    return (a * 0.64 - 40).toFixed(1)
+                formatter: function (b) {
+                    return (b == 255) ? 0 : e.getYouYanWD(b);
                 }
             },
             {
@@ -126,16 +130,14 @@ function (a, b, c, d, e, f, g, h, i) {
                     b[f.ProbeID + "SD"] || (b[f.ProbeID + "SD"] = [], c.push(
                         f.ProbeID + "湿度"
                     ));
-                    if (f.ProbeID == 1)
-                    {
+                    if (f.ProbeID == 1) {
                         b["FJ"] || (b["FJ"] = [], c.push("风机"));
                         b["JHQ"] || (b["JHQ"] = [], c.push("净化器"));
                     }
-                    b[f.ProbeID + "ND"].push([e.getUnixToTime2(f.TimeUp.replace("/Date(", "").replace(")/", "")), factor / f.YouYanND]),
-                    b[f.ProbeID + "WD"].push([e.getUnixToTime2(f.TimeUp.replace("/Date(", "").replace(")/", "")), .64 * f.YouYanWD - 40]),
+                    b[f.ProbeID + "ND"].push([e.getUnixToTime2(f.TimeUp.replace("/Date(", "").replace(")/", "")), (f.YouYanND > 100) ? 0 : parseFloat(e.getYouYanND(f.YouYanND))]),
+                    b[f.ProbeID + "WD"].push([e.getUnixToTime2(f.TimeUp.replace("/Date(", "").replace(")/", "")), parseFloat(e.getYouYanWD(f.YouYanWD))]),
                     b[f.ProbeID + "SD"].push([e.getUnixToTime2(f.TimeUp.replace("/Date(", "").replace(")/", "")), f.YouYanSD]);
-                    if (f.ProbeID == 1)
-                    {
+                    if (f.ProbeID == 1) {
                         b["FJ"].push([e.getUnixToTime2(f.TimeUp.replace("/Date(", "").replace(")/", "")), (f.ZTfj == true) ? 1 : 0]);
                         b["JHQ"].push([e.getUnixToTime2(f.TimeUp.replace("/Date(", "").replace(")/", "")), (f.ZTjhq == true) ? 1 : 0])
                     }
@@ -145,7 +147,8 @@ function (a, b, c, d, e, f, g, h, i) {
                 for (var d in b) {
                     g.push({
                         name: c[i++],
-                        data: b[d]});
+                        data: b[d]
+                    });
                 }
                 try {
                     this.doDrawChart(g)
@@ -217,10 +220,10 @@ function (a, b, c, d, e, f, g, h, i) {
             });
         },
         render: function () {
-            var b, c, e, f = this;
+            var b, c, ee, f = this;
             b = f.$panel.find(".easyui-layout").layout(),
             c = b.layout("panel", "center"),
-            e = b.layout("panel", "north"),
+            ee = b.layout("panel", "north"),
             b.layout("collapse", "east"),
             f.$tablePanel = b.layout("panel", "east"),
             f.doInitTable({
@@ -234,7 +237,7 @@ function (a, b, c, d, e, f, g, h, i) {
                 url: ""
             },
             [], "", ""),
-            e.find(".EquipInfo").combogrid({
+            ee.find(".EquipInfo").combogrid({
                 idField: i.prototype.idField,
                 textField: i.prototype.textField,
                 url: f.getHref(!1, i.prototype.controller, "DataRowIndex"),
@@ -247,18 +250,20 @@ function (a, b, c, d, e, f, g, h, i) {
                     f.curerntId = b.CollectionCode
                 }
             }),
-            e.find(".dataType").combobox({
+            ee.find(".dataType").combobox({
                 url: f.getHref(!0, "scripts", "datas", "datatype.js"),
                 width: 150,
                 method: "get"
             }),
-            e.find(".easyui-linkbutton").linkbutton({
+            ee.find(".easyui-linkbutton").linkbutton({
                 onClick: function () {
                     var b = a(this).attr("data-operation");
                     b && f[b] && f[b].call(f)
                 }
             }),
-            f.$searchBar = e,
+            ee.find(".startTime").datetimebox("setValue", e.getCurrentTime(-2)),
+            ee.find(".endTime").datetimebox("setValue", e.getCurrentTime(0)),
+            f.$searchBar = ee,
             f.dataViewModel = d.mapping.fromJS({
                 Id: 1,
                 ZTfj: !1,
@@ -270,7 +275,7 @@ function (a, b, c, d, e, f, g, h, i) {
                     return d.utils.unwrapObservable(a.Id)
                 }
             }),
-            d.applyBindings(f.dataViewModel, e[0])
+            d.applyBindings(f.dataViewModel, ee[0])
         },
         doSearch: function () {
             var a = this,

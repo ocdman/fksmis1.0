@@ -982,6 +982,7 @@
     <Content Include="scripts\modules\page\report.js" />
     <Content Include="scripts\modules\page\user_manager.js" />
     <Content Include="scripts\plugins\bootstrap\bootstrap.js" />
+    <Content Include="scripts\plugins\easyui\easyui-lang-zh_CN.js" />
     <Content Include="scripts\plugins\easyui\jquery.easyui.min.js" />
     <Content Include="scripts\libs\backbone.js" />
     <Content Include="scripts\libs\jquery-2.1.0.js" />

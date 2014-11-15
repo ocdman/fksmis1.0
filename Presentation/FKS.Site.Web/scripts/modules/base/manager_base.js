@@ -1,5 +1,5 @@
 /*! fks 07-07-2014 */
-define(["jquery", "underscore", "backbone", "helper", "modules/base/easyui_base"],
+define(["jquery", "underscore", "backbone", "helper", "modules/base/easyui_base", "../../plugins/easyui/easyui-lang-zh_CN"],
 function (a, b, c, d, e) {
     var f = e.extend({
         controller: "",

@@ -3,7 +3,7 @@ require.config(
     {
         baseUrl: "/scripts/libs",
         paths: {
-            jquery: "jQuery-2.1.0",
+            jquery: "jQuery-2.1.0.min",
             jQEasyui: "../plugins/easyui/jquery.easyui.min",
             plugins: "../plugins",
             views: "../views",

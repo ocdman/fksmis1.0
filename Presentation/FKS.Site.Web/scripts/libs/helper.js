@@ -179,16 +179,23 @@ function () {
         getEndHour: function () {
             return " 23:00:00";
         },
-        //getDay: function (day) {
-        //    var today = new Date();
-        //    var targetDayMilliseconds = today.getTime() + 1000 * 60 * 60 * 24 * day;
-        //    today.setTime(targetDayMilliseconds);
-
-        //    var tYear = today.getFullYear();
-        //    var tMonth = today.getMonth() + 1;
-        //    var tDate = today.getDate();
-        //    return tYear + "/" + tMonth + "/" + tDate;
-        //},
+        getCurrentTime: function (hour) {
+            var date = new Date();
+            return date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate() + " " + (date.getHours() + hour) + ":" + date.getMinutes()
+            + ":" + date.getSeconds();
+        },
+        getBeginningOfMonth: function () {
+            var date = new Date();
+            return date.getFullYear() + "-" + (date.getMonth() + 1) + "-01 00:00:00";
+        },
+        getYouYanND: function (a) {
+            var b = (0.0005 * a * a - 0.1 * a + 5).toFixed(1);
+            return (b == "0.0") ? "0" : b;
+        },
+        getYouYanWD: function (a) {
+            var b = (.64 * a - 40).toFixed(1)
+            return (b == "0.0") ? "0" : b;
+        },
     };
     return b
 });

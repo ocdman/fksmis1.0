@@ -143,17 +143,17 @@ namespace FKS.Site.Models
         /// 油烟浓度
         /// </summary>
         [ViewModel(CanAdd = false, CanEdit = false)]
-        public int YouYanND { get; set; }
+        public int? YouYanND { get; set; }
         /// <summary>
         /// 温度
         /// </summary>
         [ViewModel(CanAdd = false, CanEdit = false)]
-        public int YouYanWD { get; set; }
+        public int? YouYanWD { get; set; }
         /// <summary>
         /// 湿度
         /// </summary>
         [ViewModel(CanAdd = false, CanEdit = false)]
-        public int YouYanSD { get; set; }
+        public int? YouYanSD { get; set; }
         /// <summary>
         /// 地图搜索地址
         /// </summary>
@@ -220,7 +220,7 @@ namespace FKS.Site.Models
         /// <summary>
         /// 洁净度
         /// </summary>
-        public int Clean { get; set; }
+        public int? Clean { get; set; }
         [Required]
         [Display(Name="风机类型")]
         public int FanType { get; set; }

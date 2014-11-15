@@ -167,15 +167,15 @@ namespace FKS.Core.Models.Hardware
         /// <summary>
         /// 油烟浓度
         /// </summary>
-        public int YouYanND { get; set; }
+        public int? YouYanND { get; set; }
         /// <summary>
         /// 温度
         /// </summary>
-        public int YouYanWD { get; set; }
+        public int? YouYanWD { get; set; }
         /// <summary>
         /// 湿度
         /// </summary>
-        public int YouYanSD { get; set; }
+        public int? YouYanSD { get; set; }
 
         public long LastTimeGet { get; set; }
 
@@ -229,11 +229,16 @@ namespace FKS.Core.Models.Hardware
         /// </summary>
         public string Installer { get; set; }
 
+        private int _fantype = 1;
         /// <summary>
         /// 风机类型
         /// </summary>
         [Required]
-        public int FanType { get; set; }
+        public int FanType 
+        {
+            get { return _fantype; }
+            set { _fantype = value; }
+        }
 
     }
 }

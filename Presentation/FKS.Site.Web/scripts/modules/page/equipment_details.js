@@ -21,7 +21,7 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
             {
                 field: "OpenTime",
                 title: "启用时间",
-                width: 150,
+                width: 100,
                 sortable: !1,
                 formatter: function (a) {
                     return (a != null) ? e.DateFormat(e.getUnixToTime1(a.replace("/Date(", "").replace(")/", "")), "yyyy-MM-dd") : "";
@@ -30,7 +30,7 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
             {
                 field: "CleanTime",
                 title: "上次维护时间",
-                width: 150,
+                width: 100,
                 sortable: !1,
                 formatter: function (a) {
                     return (a != null) ? e.DateFormat(e.getUnixToTime1(a.replace("/Date(", "").replace(")/", "")), "yyyy-MM-dd") : "";
@@ -39,7 +39,7 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
             {
                 field: "NextCleanTime",
                 title: "下次维护时间",
-                width: 150,
+                width: 100,
                 sortable: !1,
                 formatter: function (a) {
                     return (a != null) ? e.DateFormat(e.getUnixToTime1(a.replace("/Date(", "").replace(")/", "")), "yyyy-MM-dd") : "";
@@ -47,26 +47,29 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
             },
             {
                 field: "YouYanND",
-                title: "浓度",
-                width: 60,
+                title: "浓度(mg/m³)",
+                width: 70,
                 sortable: !1,
-                formatter: function (a) {
-                    return (factor / a).toFixed(1)
+                formatter: function (b) {
+                    return (b != null) ? ((b > 100) ? 0 : e.getYouYanND(b)) : "----";
                 }
             },
             {
                 field: "YouYanSD",
-                title: "湿度",
-                width: 60,
-                sortable: !1
+                title: "湿度(%)",
+                width: 70,
+                sortable: !1,
+                formatter: function (b) {
+                    return (b != null) ? ((b == 255) ? 0 : b) : "----";
+                }
             },
             {
                 field: "YouYanWD",
-                title: "温度",
-                width: 60,
+                title: "温度(℃)",
+                width: 70,
                 sortable: !1,
-                formatter: function (a) {
-                    return (a * 0.64 - 40).toFixed(1)
+                formatter: function (b) {
+                    return (b != null) ? ((b == 255) ? 0 : e.getYouYanWD(b)) : "----";
                 }
             },
             {
@@ -105,9 +108,9 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
                 width: 110,
                 sortable: !1,
                 formatter: function (b, c, d) {
-                    return d = Math.floor(b / 20, 0),
+                    return (b != null) ? ( d = Math.floor(b / 20, 0),
                     d >= 5 && (d = 4),
-                    a.getLevel(d)
+                    a.getLevel(d)) : "----"
                 }
             }]]
         },

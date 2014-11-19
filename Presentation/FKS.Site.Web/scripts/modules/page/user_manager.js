@@ -43,7 +43,9 @@ function (a, b, c, d, e, f, g, h, i, j) {
         },
         render: function () {
             this.doInitTable({
-                rownumbers: !0
+                rownumbers: !0,
+                pageSize: 100,
+                pageList: [100,200,300]
             },
             [{
                 operation: "doAdd",

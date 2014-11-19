@@ -79,6 +79,8 @@ function (a, b, c, d, e, f, g, h, l) {
             var a = this;
             a.doInitTable({
                 rownumbers: !0,
+                pageSize: 100,
+                pageList: [100, 200, 300]
             },
             [{
                 operation: "doPrint",

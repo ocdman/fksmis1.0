@@ -189,13 +189,43 @@ function () {
             return date.getFullYear() + "-" + (date.getMonth() + 1) + "-01 00:00:00";
         },
         getYouYanND: function (a) {
-            var b = (0.0005 * a * a - 0.1 * a + 5).toFixed(1);
-            return (b == "0.0") ? "0" : b;
+            //var b = (0.0005 * a * a - 0.1 * a + 5).toFixed(1);
+            //return (b == "0.0") ? "0" : b;
+            var b = -8.975001 * Math.pow(10, -5) * Math.pow(a, 4) + 5.783941 * Math.pow(10, -3) * Math.pow(a, 3) - 0.1161801 * Math.pow(a, 2) + 0.5250484 * a + 4.201854
+            return (b <= 0) ? "0" : b.toFixed(1);
         },
         getYouYanWD: function (a) {
-            var b = (.64 * a - 40).toFixed(1)
+            var b = (.64 * a - 40).toFixed(1);
             return (b == "0.0") ? "0" : b;
         },
+        getDateDiff: function (startTime, endTime, diffType) {
+            //将xxxx-xx-xx的时间格式，转换为 xxxx/xx/xx的格式
+            startTime = startTime.replace(/-/g, "/");
+            endTime = endTime.replace(/-/g, "/");
+            //将计算间隔类性字符转换为小写
+            diffType = diffType.toLowerCase();
+            var sTime = new Date(startTime); //开始时间
+            var eTime = new Date(endTime); //结束时间
+            //作为除数的数字
+            var divNum = 1;
+            switch (diffType) {
+                case "second":
+                    divNum = 1000;
+                    break;
+                case "minute":
+                    divNum = 1000 * 60;
+                    break;
+                case "hour":
+                    divNum = 1000 * 3600;
+                    break;
+                case "day":
+                    divNum = 1000 * 3600 * 24;
+                    break;
+                default:
+                    break;
+            }
+            return parseInt((eTime.getTime() - sTime.getTime()) / parseInt(divNum));
+        }
     };
     return b
 });

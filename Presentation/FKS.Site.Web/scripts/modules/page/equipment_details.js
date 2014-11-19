@@ -3,7 +3,9 @@ define(["jquery", "underscore", "backbone", "knockout", "helper", "plugins/map",
 function (a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
     var o = i.extend({
         isInitTable: !1,
-        factor: 10,
+        SI: null,
+        time: 10,
+        seconds: 0,
         getTableColumns: function () {
             var a = this;
             return [[{
@@ -115,14 +117,16 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
             }]]
         },
         doSearch: function () {
-            this.params = {
+            var _this = this;
+            _this.seconds = _this.time;
+            _this.params = {
                 KeyValues: [],
                 page: 1,
-                rows: 50
+                rows: 100
             };
-            var b = d.mapping.toJS(this.searchViewModel);
+            var b = d.mapping.toJS(_this.searchViewModel);
             for (var c in b)
-                b[c] && this.params.KeyValues.push({
+                b[c] && _this.params.KeyValues.push({
                 Key: c,
                 Value: b[c]
             });
@@ -132,9 +136,35 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
                 text: "正在加载数据{value}%",
                 interval: 0
             }),
-            this.$table.datagrid("loadData", []),
-            this.mapApi.map.clearOverlays(),
-            this.getData()
+            _this.$table.datagrid("loadData", []),
+            _this.mapApi.map.clearOverlays();
+            _this.getData();
+            if(_this.SI != null){
+                clearInterval(_this.SI);
+            }
+            _this.SI = setInterval(function () {
+                _this.doSearchTiming()
+            }, 1000);
+        },
+        doSearchTiming: function () {
+            var b = this;
+            b.seconds -= 1;
+            a("#hint").html("离下次刷新时间还有 " + b.seconds + " 秒")
+            if (b.seconds == 0) {
+                b.$table.datagrid("loadData", []),
+                a.ajax({
+                url: b.getHref(!1, b.controller, "DataRowIndexForNextCleanTime"),
+                data: e.mvcParamsFormat(this.params, "KeyValues"),
+                success: function (c) {
+                    for (var d in c.rows)
+                        b.$table.datagrid("appendRow", c.rows[d]);
+                },
+                error: function () {
+                    alert("error")
+                }
+                });
+                b.seconds = b.time;
+            }
         },
         doAddMapLabel: function (a) {
             var b, c = this;
@@ -173,7 +203,7 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
                 error: function () {
                     alert("error")
                 }
-            })
+            });
         },
         doInitSearchInfo: function () {
             var a = this;
@@ -226,6 +256,8 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
                 onDblClickRow: a.noop,
                 url: "",
                 pagination: !0,
+                pageSize: 100,
+                pageList: [100, 200, 300]
                 //url: e.getHref(!1, e.controller, "DataRowIndexForNextCleanTime"),
             },
             [], n, ""),
@@ -243,7 +275,12 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
                 var b = a(this).attr("data-operation");
                 b && e[b] && e[b].call(e)
             }),
-            e.doInitSearchInfo()
+            e.doInitSearchInfo();
+            e.doSearch();
+        },
+        dispose: function () {
+            this.base("dispose");
+            clearInterval(this.SI);
         }
     });
     return o

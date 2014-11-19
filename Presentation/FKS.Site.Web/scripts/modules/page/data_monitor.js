@@ -121,6 +121,7 @@ function (a, b, c, d, e, f, g, h, i) {
             if (a && a.length) {
                 for (var d in a) {
                     var f = a[d];
+                    var time = e.getUnixToTime2(f.TimeUp.replace("/Date(", "").replace(")/", ""));
                     b[f.ProbeID + "ND"] || (b[f.ProbeID + "ND"] = [], c.push(
                         f.ProbeID + "浓度"
                     )),
@@ -134,12 +135,12 @@ function (a, b, c, d, e, f, g, h, i) {
                         b["FJ"] || (b["FJ"] = [], c.push("风机"));
                         b["JHQ"] || (b["JHQ"] = [], c.push("净化器"));
                     }
-                    b[f.ProbeID + "ND"].push([e.getUnixToTime2(f.TimeUp.replace("/Date(", "").replace(")/", "")), (f.YouYanND > 100) ? 0 : parseFloat(e.getYouYanND(f.YouYanND))]),
-                    b[f.ProbeID + "WD"].push([e.getUnixToTime2(f.TimeUp.replace("/Date(", "").replace(")/", "")), parseFloat(e.getYouYanWD(f.YouYanWD))]),
-                    b[f.ProbeID + "SD"].push([e.getUnixToTime2(f.TimeUp.replace("/Date(", "").replace(")/", "")), f.YouYanSD]);
+                    b[f.ProbeID + "ND"].push([time, parseFloat(e.getYouYanND(f.YouYanND))]),
+                    b[f.ProbeID + "WD"].push([time, parseFloat(e.getYouYanWD(f.YouYanWD))]),
+                    b[f.ProbeID + "SD"].push([time, f.YouYanSD]);
                     if (f.ProbeID == 1) {
-                        b["FJ"].push([e.getUnixToTime2(f.TimeUp.replace("/Date(", "").replace(")/", "")), (f.ZTfj == true) ? 1 : 0]);
-                        b["JHQ"].push([e.getUnixToTime2(f.TimeUp.replace("/Date(", "").replace(")/", "")), (f.ZTjhq == true) ? 1 : 0])
+                        b["FJ"].push([time, (f.ZTfj == true) ? 1 : 0]);
+                        b["JHQ"].push([time, (f.ZTjhq == true) ? 1 : 0])
                     }
                 }
                 var g = [];
@@ -156,6 +157,11 @@ function (a, b, c, d, e, f, g, h, i) {
             }
         },
         doDrawChart: function (b) {
+            var c = this,
+                d = c.$searchBar.find(".startTime").datetimebox("getValue"),
+                f = c.$searchBar.find(".endTime").datetimebox("getValue");
+            var g = e.getDateDiff(d, f, "minute");
+
             $('#monitor').highcharts({
                 credits: {
                     enabled: false
@@ -176,7 +182,8 @@ function (a, b, c, d, e, f, g, h, i) {
                     labels: {
                         //step: 2,
                         formatter: function () {
-                            return Highcharts.dateFormat('%Y-%m-%d', this.value);
+                            //大于1天显示年月日，1天内显示小时分钟
+                            return (g >= 1440) ? Highcharts.dateFormat('%Y-%m-%d', this.value) : Highcharts.dateFormat('%H:%M', this.value);
                         }
                     }
                 },
@@ -231,8 +238,8 @@ function (a, b, c, d, e, f, g, h, i) {
                 onLoadSuccess: function (a) {
                     f.doRenderChart(a.rows)
                 },
-                pageSize: 300,
-                pageList: [300],
+                pageSize: 640,
+                pageList: [640],
                 onDblClickRow: a.noop,
                 url: ""
             },
@@ -246,6 +253,8 @@ function (a, b, c, d, e, f, g, h, i) {
                 panelWidth: 450,
                 required: !0,
                 pagination: !0,
+                pageSize: 100,
+                pageList: [100, 200, 300],
                 onSelect: function (a, b) {
                     f.curerntId = b.CollectionCode
                 }
@@ -253,7 +262,9 @@ function (a, b, c, d, e, f, g, h, i) {
             ee.find(".dataType").combobox({
                 url: f.getHref(!0, "scripts", "datas", "datatype.js"),
                 width: 150,
-                method: "get"
+                method: "get",
+                value: 0,
+                panelHeight: "auto"
             }),
             ee.find(".easyui-linkbutton").linkbutton({
                 onClick: function () {

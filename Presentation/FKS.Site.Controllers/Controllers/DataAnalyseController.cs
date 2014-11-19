@@ -171,6 +171,19 @@ namespace FKS.Site.Web.Controllers.Controllers
             {
                 return Json("error", JsonRequestBehavior.DenyGet);
             }
+
+            TimeSpan ts = new TimeSpan();
+            ts = param.EndTime - param.StartTime;
+            double minutes = ts.TotalMinutes;
+            if (minutes < param.rows)
+            {
+                param.Interval = 1;
+            }
+            else
+            {
+                param.Interval = (int)Math.Ceiling(minutes / param.rows);
+            }
+
             var result = this.SiteContract.GetMonitorData(param.tableName, param.StartTime, param.EndTime, param.Interval);
 
             var datagriddata = new DataGridView<DataAnalyse>

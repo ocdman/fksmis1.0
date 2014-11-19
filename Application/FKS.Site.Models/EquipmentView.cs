@@ -32,6 +32,7 @@ namespace FKS.Site.Models
         /// </summary>
         [Required, StringLength(12)]
         [Display(Name = "采集器ID")]
+        [RegularExpression(@"^[0-9]{9}$", ErrorMessage = "必须输入9位数字")]
         [ViewModel(CanAdd = true, CanEdit = false)]
         public string CollectionCode { get; set; }
         /// <summary>

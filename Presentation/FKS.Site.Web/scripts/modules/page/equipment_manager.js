@@ -115,7 +115,9 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, z, y) {
         render: function () {
             var a = this;
             a.doInitTable({
-                rownumbers: !0
+                rownumbers: !0,
+                pageSize: 100,
+                pageList: [100, 200, 300]
             },
             [{
                 operation: "doEdit",

@@ -141,6 +141,8 @@ function (a, b, c, d, e, f, g, h, i) {
                 panelWidth: 450,
                 required: !0,
                 pagination: !0,
+                pageSize: 100,
+                pageList: [100,200,300],
                 onSelect: function (a, b) {
                     e.currentId = b.CollectionCode
                 }

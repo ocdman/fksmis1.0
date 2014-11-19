@@ -99,6 +99,7 @@ define(["jquery",
                                         d.mapping.fromJS(a[0], c.dataViewModel);
                                         for (var f in a) {
                                             var g = a[f];
+                                            var time = e.getUnixToTime2(g.TimeUp.replace("/Date(", "").replace(")/", ""));
                                             c.$table.datagrid("appendRow", g),
                                             c.LineData[g.ProbeID + "ND"] || (c.LineData[g.ProbeID + "ND"] = [],
                                             //c.serials.push({ label: g.ProbeID + "浓度", markerOptions: { show: !1 } })
@@ -112,12 +113,9 @@ define(["jquery",
                                             //c.serials.push({ label: g.ProbeID + "湿度", markerOptions: { show: !1 } })
                                             c.serials.push(g.ProbeID + "湿度")
                                             ),
-                                            c.LineData[g.ProbeID + "ND"].push([e.getUnixToTime2(g.TimeUp.replace("/Date(", "").replace(")/", "")),
-                                                g.YouYanND]),
-                                            c.LineData[g.ProbeID + "WD"].push([e.getUnixToTime2(g.TimeUp.replace("/Date(", "").replace(")/", "")),
-                                                g.YouYanWD]),
-                                            c.LineData[g.ProbeID + "SD"].push([e.getUnixToTime2(g.TimeUp.replace("/Date(", "").replace(")/", "")),
-                                                    g.YouYanSD])
+                                            c.LineData[g.ProbeID + "ND"].push([time, g.YouYanND]),
+                                            c.LineData[g.ProbeID + "WD"].push([time, g.YouYanWD]),
+                                            c.LineData[g.ProbeID + "SD"].push([time, g.YouYanSD])
                                         }
                                         var h = [];
                                         var j = 0;
@@ -236,6 +234,8 @@ define(["jquery",
                     width: 200,
                     panelWidth: 450,
                     pagination: !0,
+                    pageSize: 100,
+                    pageList: [100, 200, 300],
                     onSelect: function (a, b) {
                         f.curerntId = b.CollectionCode
                     }

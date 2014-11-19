@@ -116,6 +116,8 @@ function (a, b, c, d, e, f, g, h, i) {
                 required: !0,
                 pagination: !0,
                 multiple: !0,
+                pageSize: 100,
+                pageList: [100,200,300],
                 OnSelect: function (a, b) {
                     g.currentId = b.CollectionCode
                 }

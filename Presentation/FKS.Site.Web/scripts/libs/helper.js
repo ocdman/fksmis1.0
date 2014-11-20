@@ -189,10 +189,9 @@ function () {
             return date.getFullYear() + "-" + (date.getMonth() + 1) + "-01 00:00:00";
         },
         getYouYanND: function (a) {
-            //var b = (0.0005 * a * a - 0.1 * a + 5).toFixed(1);
-            //return (b == "0.0") ? "0" : b;
-            var b = -8.975001 * Math.pow(10, -5) * Math.pow(a, 4) + 5.783941 * Math.pow(10, -3) * Math.pow(a, 3) - 0.1161801 * Math.pow(a, 2) + 0.5250484 * a + 4.201854
-            return (b <= 0) ? "0" : b.toFixed(1);
+            //var b = -8.975001 * Math.pow(10, -5) * Math.pow(a, 4) + 5.783941 * Math.pow(10, -3) * Math.pow(a, 3) - 0.1161801 * Math.pow(a, 2) + 0.5250484 * a + 4.201854
+            //return (b <= 0) ? "0" : b.toFixed(1);
+            return a / 10;
         },
         getYouYanWD: function (a) {
             var b = (.64 * a - 40).toFixed(1);

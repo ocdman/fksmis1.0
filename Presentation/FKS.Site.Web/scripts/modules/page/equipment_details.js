@@ -4,7 +4,7 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
     var o = i.extend({
         isInitTable: !1,
         SI: null,
-        time: 10,
+        time: 60,
         seconds: 0,
         getTableColumns: function () {
             var a = this;
@@ -53,7 +53,7 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
                 width: 70,
                 sortable: !1,
                 formatter: function (b) {
-                    return (b != null) ? ((b > 100) ? 0 : e.getYouYanND(b)) : "----";
+                    return (b != null) ? ((b == 255) ? 0 : e.getYouYanND(b)) : "----";
                 }
             },
             {
@@ -110,9 +110,9 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
                 width: 110,
                 sortable: !1,
                 formatter: function (b, c, d) {
-                    return (b != null) ? ( d = Math.floor(b / 20, 0),
+                    return (b != null || b == 255) ? (c.OnOff == true ? (d = Math.floor(b / 10, 0),
                     d >= 5 && (d = 4),
-                    a.getLevel(d)) : "----"
+                    a.getLevel(d)) : "----") : "----"
                 }
             }]]
         },
@@ -235,7 +235,20 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
                 onSelect: function (b) {
                     a.searchViewModel.PositionInfo(b.value)
                 }
-            })
+            });
+            j.push({ "text": "默认", "value": 0 });
+            k.push({ "text": "默认", "value": 0 });
+            a.$searchBar.find("#PropertyInfo").combobox("loadData", j);
+            a.$searchBar.find("#PositionInfo").combobox("loadData", k);
+            var dataProperty = a.$searchBar.find("#PropertyInfo").combobox('getData');
+            var dataPosition = a.$searchBar.find("#PositionInfo").combobox('getData');
+            if (dataProperty.length > 0) {
+                a.$searchBar.find("#PropertyInfo").combobox('select', dataProperty[9].value);
+            }
+            if (dataPosition.length > 0) {
+                a.$searchBar.find("#PositionInfo").combobox('select', dataPosition[15].value);
+            }
+            
         },
         render: function () {
             var b, c, d, e = this,
@@ -281,6 +294,8 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
         dispose: function () {
             this.base("dispose");
             clearInterval(this.SI);
+            j.pop();
+            k.pop();
         }
     });
     return o

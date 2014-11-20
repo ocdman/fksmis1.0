@@ -17,7 +17,7 @@ function (a, b, c, d, e, f) {
         getLevel: function (a) {
             var b = [];
             b.push("<div>");
-            for (var c = 0; a >= c; c++) b.push("<i class='level_high' />");
+            for (var c = 4; c >= a; c--) b.push("<i class='level_high' />");
             return b.push("</div>"),
             b.join("")
         },

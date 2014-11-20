@@ -1,7 +1,8 @@
 /*! fks 07-07-2014 */
 define([],
 function () {
-    return [{
+    return [
+    {
         value: 1,
         text: "九亭镇"
     },

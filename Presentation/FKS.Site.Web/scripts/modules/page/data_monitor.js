@@ -43,7 +43,7 @@ function (a, b, c, d, e, f, g, h, i) {
                 sortable: !1,
                 formatter: function (b) {
                     //return (a.factor / b).toFixed(1)
-                    return (b > 100) ? 0 : e.getYouYanND(b);
+                    return (b == 255) ? 0 : e.getYouYanND(b);
                 }
             },
             {
@@ -135,7 +135,7 @@ function (a, b, c, d, e, f, g, h, i) {
                         b["FJ"] || (b["FJ"] = [], c.push("风机"));
                         b["JHQ"] || (b["JHQ"] = [], c.push("净化器"));
                     }
-                    b[f.ProbeID + "ND"].push([time, parseFloat(e.getYouYanND(f.YouYanND))]),
+                    b[f.ProbeID + "ND"].push([time, e.getYouYanND(f.YouYanND)]),
                     b[f.ProbeID + "WD"].push([time, parseFloat(e.getYouYanWD(f.YouYanWD))]),
                     b[f.ProbeID + "SD"].push([time, f.YouYanSD]);
                     if (f.ProbeID == 1) {

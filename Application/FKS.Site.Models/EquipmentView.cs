@@ -225,5 +225,9 @@ namespace FKS.Site.Models
         [Required]
         [Display(Name="风机类型")]
         public int FanType { get; set; }
+        /// <summary>
+        /// 信号强度
+        /// </summary>
+        public int ZTqd { get; set; }
     }
 }

@@ -38,26 +38,51 @@ define([
                 { field: 'NickName', title: '用户名', width: 100, sortable: true },
                 { field: 'Address', title: '用户地址', width: 150, sortable: true },
                 { field: 'CollectionCode', title: '设备ID', width: 100, sortable: true },
-                { field: 'ZTqd', title: '信号强度', width: 100, sortable: true },
+
                 {
                     field: 'OnOff', title: '连接状态', width: 100, sortable: true,
                     formatter: function (a) {
                         if (a == 0)
                             return "离线";
                         else
-                            return "在线"
+                            return "在线";
                     }
                 },
                 {
                     field: 'ZTst', title: '探测器', width: 100, sortable: true,
-                    formatter: function (a) {
-                        if (a == 0)
-                            return "报警";
+                    formatter: function (a, b) {
+                        if (b.OnOff == 0)
+                            return "----";
                         else
-                            return "正常"
+                        {
+                            if (a == 1)
+                                return "报警";
+                            else
+                                return "正常";
+                        }
                     }
                 },
-                { field: 'Category', title: '类型', width: 100, sortable: true},
+                {
+                    field: 'ZTqd', title: '信号强度', width: 100, sortable: true,
+                    formatter: function (a, b) {
+                        if (b.OnOff == 0)
+                            return "----";
+                        else {
+                            if (a < 15 && a >= 10) {
+                                return "弱";
+                            }
+                            else if (a < 10) {
+                                return "差";
+                            }
+                            else if (a >= 15 && a < 20) {
+                                return "正常";
+                            }
+                            else if (a >= 20) {
+                                return "良好";
+                            }
+                        }
+                    }
+                }
             ]];
         },
         render: function () {

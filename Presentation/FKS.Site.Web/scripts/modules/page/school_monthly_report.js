@@ -106,22 +106,15 @@ function (a, b, c, d, e, f, g, h, i) {
                     0 == b && g.$table.datagrid("resize");
                 }
             });
-            d.find(".EquipInfo").combogrid({
+            g.doInitCombogrid(d.find(".EquipInfo"), {
                 idField: i.prototype.idField,
                 textField: i.prototype.textField,
                 url: g.getHref(!1, i.prototype.controller, "DataRowIndexForSchool"),
                 columns: g.getTableColumns3(),
-                width: 150,
-                panelWidth: 450,
-                required: !0,
-                pagination: !0,
-                multiple: !0,
-                pageSize: 100,
-                pageList: [100,200,300],
                 OnSelect: function (a, b) {
                     g.currentId = b.CollectionCode
                 }
-            });
+            }),
             g.$tablePanel = f.tabs("getTab", 0);
 
             g.doInitTable({

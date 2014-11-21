@@ -128,7 +128,8 @@ namespace FKS.Site.Web.Controllers.Controllers
                     CleanTime = m.CleanTime,
                     UserName = m.UserName,
                     OnOff = m.OnOff,
-                    Clean = m.YouYanND
+                    Clean = m.YouYanND,
+                    ZTqd = m.ZTqd
                 });
 
             dgvResult.rows = memberViews.ToList();

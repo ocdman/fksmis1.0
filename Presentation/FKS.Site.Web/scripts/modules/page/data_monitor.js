@@ -244,17 +244,11 @@ function (a, b, c, d, e, f, g, h, i) {
                 url: ""
             },
             [], "", ""),
-            ee.find(".EquipInfo").combogrid({
+            f.doInitCombogrid(ee.find(".EquipInfo"), {
                 idField: i.prototype.idField,
                 textField: i.prototype.textField,
                 url: f.getHref(!1, i.prototype.controller, "DataRowIndex"),
                 columns: i.prototype.getTableColumns.call(this),
-                width: 150,
-                panelWidth: 450,
-                required: !0,
-                pagination: !0,
-                pageSize: 100,
-                pageList: [100, 200, 300],
                 onSelect: function (a, b) {
                     f.curerntId = b.CollectionCode
                 }

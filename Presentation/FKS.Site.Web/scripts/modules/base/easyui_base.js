@@ -142,6 +142,18 @@ function (a, b, c, d, e, f) {
             },
             c)))
         },
+        doInitCombogrid: function (a, c) {
+            a.combogrid(b.extend({
+                width: 150,
+                panelWidth: 450,
+                rownumbers: !0,
+                panelHeight: 450,
+                required: !0,
+                pagination: !0,
+                pageSize: 100,
+                pageList: [100, 200, 300],
+            }, c))
+        }
     });
     return g
 });

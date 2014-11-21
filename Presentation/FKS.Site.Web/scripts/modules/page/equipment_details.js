@@ -75,13 +75,23 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
                 }
             },
             {
+                field: "ZTqd",
+                title: "信号强度",
+                width: 70,
+                sortable: !1,
+                formatter: function (a) {
+                    return a;
+                }
+            },
+            {
                 field: "OnOff",
                 title: "是否在线",
                 width: 80,
                 sortable: !1,
                 formatter: function (a) {
                     //return a ? "<i class='red' />" : "<i class='green' />"
-                    return a ? "在线" : "离线"
+                    //return a ? "在线" : "离线"
+                    return a ? "在线" : "<div class='red_font'>离线</div>"
                 }
             },
             {

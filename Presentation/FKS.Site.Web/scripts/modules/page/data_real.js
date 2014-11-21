@@ -226,16 +226,11 @@ define(["jquery",
                     onDblClickRow: a.noop, url: "",
                     pagination: !1
                 }, [], "", ""),
-                a("#EquipInfo").combogrid({
+                f.doInitCombogrid(a("#EquipInfo"), {
                     idField: i.prototype.idField,
                     textField: i.prototype.textField,
                     url: f.getHref(!1, i.prototype.controller, "DataRowIndex"),
                     columns: i.prototype.getTableColumns.call(this),
-                    width: 200,
-                    panelWidth: 450,
-                    pagination: !0,
-                    pageSize: 100,
-                    pageList: [100, 200, 300],
                     onSelect: function (a, b) {
                         f.curerntId = b.CollectionCode
                     }

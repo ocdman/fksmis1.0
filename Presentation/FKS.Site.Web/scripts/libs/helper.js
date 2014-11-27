@@ -111,7 +111,7 @@ function () {
             var y = dd.getFullYear();
             var m = dd.getMonth() + 1;
             var d = dd.getDate();
-            return y + "/" + m + "/" + d;
+            return y + "-" + m + "-" + d;
         },
         getMonday: function () {
             var d = new Date();
@@ -144,24 +144,24 @@ function () {
             }
 
             var date = d.getDate();
-            var firstday = year + "/" + month + "/" + 1;
+            var firstday = year + "-" + month + "-" + 1;
             var lastday;
 
             if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 ||
                 month == 10 || month == 12) {
-                lastday = year + "/" + month + "/" + 31;
+                lastday = year + "-" + month + "-" + 31;
             }
             else if (month == 2) {
                 //判断是否为闰年
                 if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
-                    lastday = year + "/" + month + "/" + 29;
+                    lastday = year + "-" + month + "-" + 29;
                 }
                 else {
-                    lastday = year + "/" + month + "/" + 28;
+                    lastday = year + "-" + month + "-" + 28;
                 }
             }
             else {
-                lastday = year + "/" + month + "/" + 30;
+                lastday = year + "-" + month + "-" + 30;
             }
 
             var day = "";
@@ -181,7 +181,7 @@ function () {
         },
         getCurrentTime: function (hour) {
             var date = new Date();
-            return date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate() + " " + (date.getHours() + hour) + ":" + date.getMinutes()
+            return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " + (date.getHours() + hour) + ":" + date.getMinutes()
             + ":" + date.getSeconds();
         },
         getBeginningOfMonth: function () {

@@ -511,13 +511,13 @@
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>=Switch(Fields!Clean.Value = 5,
+                                                <Value>=Switch(Fields!Clean.Value = 0,
 "五颗星" &amp; chr(13) &amp; chr(10) &amp; "目前净化设备洁净度较高，净化效果良好，能及时且有效的对排放油烟进行净化。",
-Fields!Clean.Value = 4,
+Fields!Clean.Value = 1,
 "四颗星" &amp; chr(13) &amp; chr(10) &amp;"目前净化设备处于轻度污染状态，轻度污染对净化设备净化效果影响较小，净化设备仍能保持正常工作状态。",
-Fields!Clean.Value = 3,
+Fields!Clean.Value = 2,
 "三颗星" &amp; chr(13) &amp; chr(10) &amp;"净化设备已经处于中度污染状态，内部积污会影响净化设备正常工作电流，使净化设备净化效率下降，从而影响排放情况，可能会出现频繁超标。",
-Fields!Clean.Value &lt;= 2,
+Fields!Clean.Value &gt;= 3,
 "两颗星" &amp; chr(13) &amp; chr(10) &amp;"净化设备已经处于严重污染状态，净化器、风机和管道大量积污，已经严重净化设备净化效果，且存在火灾隐患。")</Value>
                                                 <Style>
                                                   <FontFamily>宋体</FontFamily>
@@ -540,6 +540,7 @@ Fields!Clean.Value &lt;= 2,
                                         </Style>
                                       </Textbox>
                                       <ColSpan>3</ColSpan>
+                                      <rd:Selected>true</rd:Selected>
                                     </CellContents>
                                     <DataElementOutput>Output</DataElementOutput>
                                   </TablixCell>
@@ -1008,7 +1009,6 @@ Fields!Clean.Value &lt;= 2,
                           </Paragraphs>
                           <rd:DefaultName>Textbox153</rd:DefaultName>
                           <Top>1.5cm</Top>
-                          <Left>0cm</Left>
                           <Height>1cm</Height>
                           <Width>15.24cm</Width>
                           <ZIndex>1</ZIndex>
@@ -1075,7 +1075,6 @@ Fields!Clean.Value &lt;= 2,
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox153</rd:DefaultName>
-                          <Left>0cm</Left>
                           <Height>1.5cm</Height>
                           <Width>15.24cm</Width>
                           <ZIndex>3</ZIndex>

@@ -39,10 +39,16 @@ namespace FKS.Site.Web.Controllers.BaseControllers
         {
             var model = new MemberView();
             if (User.IsInRole("管理员"))
+            {
                 model.IsAdmin = true;
+            }
             else
+            {
                 model.IsAdmin = false;
+            }
+               
             model.UserName = User.Identity.Name;
+            
             return View(model);
         }
 

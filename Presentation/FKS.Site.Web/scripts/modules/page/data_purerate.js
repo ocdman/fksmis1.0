@@ -114,97 +114,32 @@ function (a, b, c, d, e, f, g, h, i) {
                         },
                     }
                 },
-                //series: [{
-                //    name: '油烟浓度1',
-                //    data: b[0]
-                //}, {
-                //    name: '油烟温度1',
-                //    data: b[1]
-                //}, {
-                //    name: '油烟湿度1',
-                //    data: b[2]
-                //}]
                 series: b
             });
-            //var d = this;
-            //d.$jqPlot && d.$jqPlot.destroy();
-            //d.$jqPlot = a.jqplot("pureRate", b, {
-            //    animate: !0,
-            //    animateReplot: !0,
-            //    cursor:{
-            //        show: !0,
-            //        zoom: !0,
-            //        looseZoom: !0,
-            //        showTooltip: !1
-            //    },
-            //    seriesDefaults: {
-            //        renderer: a.jqplot.BarRenderer,
-            //        pointLabels: { show: !0},
-            //        rendererOptions: {
-            //            fillToZero: !0,
-            //            animation: {
-            //                speed: 2500
-            //            },
-            //        },
-            //    },
-            //    series: [
-            //        { label: "净化效率" }
-            //    ],
-            //    axes: {
-            //        xaxis: {
-            //            renderer: a.jqplot.CategoryAxisRenderer,
-            //            ticks: c,
-            //        },
-            //        yaxis: {
-            //            //pad: 1.05,
-            //            tickOptions: {
-            //                //formatString: "%d"
-            //            },
-            //        },
-            //    },
-            //    canvasOverlay: {
-            //        show: true,
-            //        objects: [
-            //            {
-            //                horizontalLine: {
-            //                    name: 'pebbles',
-            //                    y: j,
-            //                    lineWidth: 3,
-            //                    xOffset: 0,
-            //                    color: 'rgb(89, 198, 154)',
-            //                    shadow: false
-            //                }
-            //            }
-            //        ]
-            //    }
-            //})
-            //$('#discharge').bind('jqplotDataHighlight',
-            //    function (ev, seriesIndex, pointIndex, data) {
-            //        $('#dischargeContent').html('日期： ' + c[pointIndex] + '，数据：' + data[1] + '克');
-            //    })
-
         },
         render: function () {
-            var b, c, d, e = this;
-            b = e.$panel.find(".easyui-layout").layout(),
+            var b, c, d, ee = this;
+            b = ee.$panel.find(".easyui-layout").layout(),
             c = b.layout("panel", "center"),
             d = b.layout("panel", "north"),
-            e.doInitCombogrid(d.find(".EquipInfo"), {
+            ee.doInitCombogrid(d.find(".EquipInfo"), {
                 idField: i.prototype.idField,
                 textField: i.prototype.textField,
-                url: e.getHref(!1, i.prototype.controller, "DataRowIndexForTwoEquipCounts"),
+                url: ee.getHref(!1, i.prototype.controller, "DataRowIndexForTwoEquipCounts"),
                 columns: i.prototype.getTableColumns.call(this),
                 onSelect: function (a, b) {
-                    e.currentId = b.CollectionCode
+                    ee.currentId = b.CollectionCode
                 }
             }),
             d.find(".easyui-linkbutton").linkbutton({
                 onClick: function () {
                     var b = a(this).attr("data-operation");
-                    b && e[b] && e[b].call(e);
+                    b && ee[b] && ee[b].call(ee);
                 }
             }),
-            e.$searchBar = d;
+            d.find(".startTime").datebox("setValue", e.getDate(-7)),
+            d.find(".endTime").datebox("setValue", e.getDate(-1)),
+            ee.$searchBar = d;
         },
         doSearch: function () {
             var b = this;

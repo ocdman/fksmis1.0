@@ -127,26 +127,28 @@ function (a, b, c, d, e, f, g, h, i) {
             });
         },
         render: function () {
-            var b, c, d, e = this;
-            b = e.$panel.find(".easyui-layout").layout(),
+            var b, c, d, ee = this;
+            b = ee.$panel.find(".easyui-layout").layout(),
             c = b.layout("panel", "center"),
             d = b.layout("panel", "north"),
-            e.doInitCombogrid(d.find(".EquipInfo"), {
+            ee.doInitCombogrid(d.find(".EquipInfo"), {
                 idField: i.prototype.idField,
                 textField: i.prototype.textField,
-                url: e.getHref(!1, i.prototype.controller, "DataRowIndex"),
+                url: ee.getHref(!1, i.prototype.controller, "DataRowIndex"),
                 columns: i.prototype.getTableColumns.call(this),
                 onSelect: function (a, b) {
-                    e.currentId = b.CollectionCode
+                    ee.currentId = b.CollectionCode
                 }
             }),
             d.find(".easyui-linkbutton").linkbutton({
                 onClick: function () {
                     var b = a(this).attr("data-operation");
-                    b && e[b] && e[b].call(e);
+                    b && ee[b] && ee[b].call(ee);
                 }
             }),
-            e.$searchBar = d;
+            d.find(".startTime").datebox("setValue", e.getDate(-7)),
+            d.find(".endTime").datebox("setValue", e.getDate(-1)),
+            ee.$searchBar = d;
         },
         doSearch: function () {
             var b = this;

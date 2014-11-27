@@ -854,6 +854,8 @@
     <Content Include="scripts\datas\logtype.js" />
     <Content Include="scripts\datas\datatype.js" />
     <Content Include="scripts\datas\menus.js" />
+    <Content Include="scripts\datas\positioninfosWithDefault.js" />
+    <Content Include="scripts\datas\propertyinfosWithDefault.js" />
     <Content Include="scripts\datas\result.js" />
     <Content Include="scripts\datas\timeout.js" />
     <Content Include="scripts\datas\statusinfos.js" />
@@ -1308,6 +1310,7 @@
     <Content Include="scripts\templates\layout\report_top_center.html" />
     <Content Include="scripts\templates\layout\top_center.html" />
     <Content Include="scripts\templates\layout\tree_grid.html" />
+    <Content Include="scripts\templates\search_condition\equipment_detail.html" />
     <Content Include="scripts\templates\search_condition\equipment_manager.html" />
     <Content Include="scripts\templates\search_condition\city_manager.html" />
     <Content Include="scripts\templates\search_condition\overdual.html" />

@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace FKS.Core.Models.Report
 {
-    public class ConcentrationReport : EntityBase<int>
+    public class ConcentrationReport
     {
-        public float Concentration { get; set; }
+        public double AvgConcentration { get; set; }
 
         public string NickName { get; set; }
 

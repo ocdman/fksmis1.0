@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 
 namespace FKS.Core.Models.Report
 {
-    public class AlarmTimeReport : EntityBase<int>
+    public class AlarmTimeReport
     {
-        public float AlarmTime { get; set; }
+        public int SumNDbjCount { get; set; }
+
+        public decimal AlarmRate { get; set; }
 
         public string NickName { get; set; }
 

@@ -166,7 +166,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Parameters!ReportParameter2.Value + " 至 " + Parameters!ReportParameter3.Value</Value>
+                              <Value>=CDate(Parameters!ReportParameter2.Value).ToString("yyyy年MM月dd日") + " 至 " + CDate(Parameters!ReportParameter3.Value).ToString("yyyy年MM月dd日")</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -186,6 +186,7 @@
                       </Style>
                     </Textbox>
                     <ColSpan>2</ColSpan>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell />
@@ -368,7 +369,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Round(Sum(Fields!Discharge.Value, "DataSet2"),1)</Value>
+                              <Value>=Round(Sum(Fields!SumDischarge.Value, "DataSet2"),1)</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -437,7 +438,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!AlarmTime.Value, "DataSet3")</Value>
+                              <Value>=Sum(Fields!SumNDbjCount.Value, "DataSet3")</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -853,21 +854,21 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Concentration4">
+                    <Textbox Name="AvgConcentration">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!Concentration.Value</Value>
+                              <Value>=Round(Fields!AvgConcentration.Value, 1)</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Concentration4</rd:DefaultName>
+                      <rd:DefaultName>AvgConcentration</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
@@ -1264,7 +1265,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=round(Fields!Discharge.Value,1)</Value>
+                              <Value>=round(Fields!SumDischarge.Value,1)</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -1661,21 +1662,21 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="AlarmTime">
+                    <Textbox Name="SumNDbjCount">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!AlarmTime.Value</Value>
+                              <Value>=Fields!SumNDbjCount.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>AlarmTime</rd:DefaultName>
+                      <rd:DefaultName>SumNDbjCount</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
@@ -2046,7 +2047,6 @@
                       </Style>
                     </Textbox>
                     <ColSpan>3</ColSpan>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell />
@@ -2127,13 +2127,9 @@
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
-        <Field Name="Id">
-          <DataField>Id</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="Concentration">
-          <DataField>Concentration</DataField>
-          <rd:TypeName>System.Single</rd:TypeName>
+        <Field Name="AvgConcentration">
+          <DataField>AvgConcentration</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="NickName">
           <DataField>NickName</DataField>
@@ -2150,14 +2146,6 @@
         <Field Name="ContactInfo">
           <DataField>ContactInfo</DataField>
           <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="IsDeleted">
-          <DataField>IsDeleted</DataField>
-          <rd:TypeName>System.Boolean</rd:TypeName>
-        </Field>
-        <Field Name="AddDate">
-          <DataField>AddDate</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>
@@ -2175,13 +2163,9 @@
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
-        <Field Name="Id">
-          <DataField>Id</DataField>
+        <Field Name="SumDischarge">
+          <DataField>SumDischarge</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="Discharge">
-          <DataField>Discharge</DataField>
-          <rd:TypeName>System.Single</rd:TypeName>
         </Field>
         <Field Name="NickName">
           <DataField>NickName</DataField>
@@ -2198,14 +2182,6 @@
         <Field Name="ContactInfo">
           <DataField>ContactInfo</DataField>
           <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="IsDeleted">
-          <DataField>IsDeleted</DataField>
-          <rd:TypeName>System.Boolean</rd:TypeName>
-        </Field>
-        <Field Name="AddDate">
-          <DataField>AddDate</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>
@@ -2223,13 +2199,13 @@
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
-        <Field Name="Id">
-          <DataField>Id</DataField>
+        <Field Name="SumNDbjCount">
+          <DataField>SumNDbjCount</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="AlarmTime">
-          <DataField>AlarmTime</DataField>
-          <rd:TypeName>System.Single</rd:TypeName>
+        <Field Name="AlarmRate">
+          <DataField>AlarmRate</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="NickName">
           <DataField>NickName</DataField>
@@ -2246,14 +2222,6 @@
         <Field Name="ContactInfo">
           <DataField>ContactInfo</DataField>
           <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="IsDeleted">
-          <DataField>IsDeleted</DataField>
-          <rd:TypeName>System.Boolean</rd:TypeName>
-        </Field>
-        <Field Name="AddDate">
-          <DataField>AddDate</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>

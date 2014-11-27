@@ -23,6 +23,10 @@ namespace FKS.Site.Web.Controllers.Controllers
         public int rows { get; set; }
 
         public string SortType { get; set; }
+
+        public int PositionInfo { get; set; }
+
+        public int PropertyInfo { get; set; }
     }
 
     [Export]
@@ -96,6 +100,7 @@ namespace FKS.Site.Web.Controllers.Controllers
             }
         }
 
+        /*
         public ActionResult Reporting(ReportParams param)
         {
             if (CheckAuthority() == false)
@@ -151,6 +156,7 @@ namespace FKS.Site.Web.Controllers.Controllers
             //renderedBytes = localReport.Render(reportType, deviceInfo);
             return File(renderedBytes, mimeType);
         }
+        */
 
         #region 油烟监测报告
         public ActionResult LampblackMonitorIndex()
@@ -169,7 +175,7 @@ namespace FKS.Site.Web.Controllers.Controllers
             {
                 return Json("error", JsonRequestBehavior.DenyGet);
             }
-            var result = this.SiteContract.GetConcentrationReportData(param.SortType, param.StartTime, param.EndTime);
+            var result = this.SiteContract.GetConcentrationReportData(param.SortType, param.PositionInfo, param.PropertyInfo, param.StartTime, param.EndTime);
             var dataGridData = new DataGridView<ConcentrationReport>()
             {
                 total = result.Count,
@@ -189,7 +195,7 @@ namespace FKS.Site.Web.Controllers.Controllers
             {
                 return Json("error", JsonRequestBehavior.DenyGet);
             }
-            var result = this.SiteContract.GetDischargeReportData(param.SortType, param.StartTime, param.EndTime);
+            var result = this.SiteContract.GetDischargeReportData(param.SortType, param.PositionInfo, param.PropertyInfo, param.StartTime, param.EndTime);
             var dataGridData = new DataGridView<DischargeReport>()
             {
                 total = result.Count,
@@ -229,7 +235,7 @@ namespace FKS.Site.Web.Controllers.Controllers
             {
                 return Json("error", JsonRequestBehavior.DenyGet);
             }
-            var result = this.SiteContract.GetAlarmTimeReportData(param.SortType, param.StartTime, param.EndTime);
+            var result = this.SiteContract.GetAlarmTimeReportData(param.SortType, param.PositionInfo, param.PropertyInfo, param.StartTime, param.EndTime);
             var dataGridData = new DataGridView<AlarmTimeReport>()
             {
                 total = result.Count,
@@ -245,9 +251,9 @@ namespace FKS.Site.Web.Controllers.Controllers
                 return Json("error", JsonRequestBehavior.DenyGet);
             }
             string type = "Excel";
-            List<ConcentrationReport> ds1 = (List<ConcentrationReport>)this.SiteContract.GetConcentrationReportData(param.SortType, param.StartTime, param.EndTime);
-            List<DischargeReport> ds2 = (List<DischargeReport>)this.SiteContract.GetDischargeReportData(param.SortType, param.StartTime, param.EndTime);
-            List<AlarmTimeReport> ds3 = (List<AlarmTimeReport>)this.SiteContract.GetAlarmTimeReportData(param.SortType, param.StartTime, param.EndTime);
+            List<ConcentrationReport> ds1 = (List<ConcentrationReport>)this.SiteContract.GetConcentrationReportData(param.SortType, param.PositionInfo, param.PropertyInfo, param.StartTime, param.EndTime);
+            List<DischargeReport> ds2 = (List<DischargeReport>)this.SiteContract.GetDischargeReportData(param.SortType, param.PositionInfo, param.PropertyInfo, param.StartTime, param.EndTime);
+            List<AlarmTimeReport> ds3 = (List<AlarmTimeReport>)this.SiteContract.GetAlarmTimeReportData(param.SortType, param.PositionInfo, param.PropertyInfo, param.StartTime, param.EndTime);
 
             string parameter1 = ds2.Count.ToString();
             string parameter2 = param.StartTime.ToString();

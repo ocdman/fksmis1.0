@@ -1,33 +1,40 @@
 ﻿@Styles.Render("~/contents/jquery.plot/jquery.jqplot.min.css")
 
 <div class="easyui-layout" data-options="fit:true">
-    <div data-options="region:'north',border:false,collapsible:false" style="height: 90px;padding: 10px; overflow: hidden; border-bottom-width: 1px;">
+    <div data-options="region:'north',border:false,collapsible:false" style="height: 100px;padding: 10px; overflow: hidden; border-bottom-width: 1px;">
         <div style="margin: 5px;" class="form-inline">
             <div class="form-group">
                 <label class="control-label">统计方式：</label>
             </div>
             <div class="form-group">
-                <select id="reportType" class="easyui-combobox" style="width:200px;" data-operation="required:true">
+                <select id="reportType" class="easyui-combobox" style="width:150px;" data-operation="required:true">
                     <option value="01">日统计</option>
                     <option value="02">周统计</option>
                     <option value="03">月统计</option>
                 </select>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="margin-left:10px;">
                 <label class="control-label">排列方式：</label>
             </div>
             <div class="form-group">
-                <select id="sortType" class="easyui-combobox" style="width:200px;" data-operation="required:true">
+                <select id="sortType" class="easyui-combobox" style="width:150px;" data-operation="required:true">
                     <option value="01">从高到低</option>
                     <option value="02">从低到高</option>
                 </select>
             </div>
+        </div>
+        <div style="margin: 5px;" class="form-inline">
             <div class="form-group">
                 <label class="control-label">属性信息：</label>
             </div>
             <div class="form-group">
-                <select id="PropertyInfo" class="easyui-combobox" style="width:200px;" data-operation="required:false">
-                </select>
+                <select id="PropertyInfo" class="easyui-combobox" style="width:150px;" data-operation="required:false"></select>
+            </div>
+            <div class="form-group" style="margin-left:10px;">
+                <label class="control-label">位置信息：</label>
+            </div>
+            <div class="form-group">
+                <select id="PositionInfo" class="easyui-combobox" style="width:150px;" data-operation="required:false"></select>
             </div>
         </div>
         <div style="margin: 5px" class="form-inline">
@@ -39,7 +46,7 @@
                 <input data-role="type" type="text" data-options="required:true,showSeconds:true,value:'6/3/2014 13:12'" class="form-control input-sm easyui-datetimebox startTime" style="width:150px" />
             </div>
 
-            <div class="form-group">
+            <div class="form-group" style="margin-left:10px;">
                 <label class="control-label">截止日期：</label>
             </div>
 
@@ -67,10 +74,10 @@
     <div data-options="region:'center',border:false,split:true">
         <div id="tt" class="easyui-tabs" data-options="fit:true, border:false">
             <div title="油烟浓度排名" id="concentrationTab" style="padding:20px">
-                
+
             </div>
             <div title="排放量排名" id="dischargeTab" style="padding:20px">
-                
+
             </div>
             <div title="报警次数排名" id="alarmTimeTab" style="padding:20px">
 

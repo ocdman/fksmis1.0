@@ -35,9 +35,9 @@ function (a, b, c, d, e, f, g, h, i) {
             if (b && b.length) {
                 for (var d in b) {
                     var f = b[d],
-                    g = Math.floor(f.YouYanND / 20, 0);
+                    g = Math.floor(f.YouYanND / 10, 0);
                     g >= 5 && (g = 4),
-                    c[0].push([e.getUnixToTime2(f.TimeUp.replace("/Date(", "").replace(")/", "")), g])
+                    c[0].push([e.getUnixToTime2(f.TimeUp.replace("/Date(", "").replace(")/", "")), g + 1])
                 }
                 var h = [];
                 h.push({

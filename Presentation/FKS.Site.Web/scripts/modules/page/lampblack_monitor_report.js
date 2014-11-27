@@ -7,8 +7,9 @@
     "modules/base/manager_base",
     "modules/main_ui",
     "modules/page/equipment_manager",
-    "localdata/propertyinfos"],
-function (a, b, c, d, e, f, g, h, i, k) {
+    "localdata/propertyinfosWithDefault",
+    "localdata/positioninfosWithDefault"],
+function (a, b, c, d, e, f, g, h, i, k, l) {
     var j = g.extend({
         controller: "ReportInfo",
         $jqPlot: null,
@@ -18,7 +19,9 @@ function (a, b, c, d, e, f, g, h, i, k) {
         $tablePanel2: null,
         timeID: 0,
         reportType: "01",
+        sortType: "01",
         propertyInfo: 0,
+        positionInfo: 0,
         LineData: {},
         serials: [],
         currentId: 0,
@@ -42,7 +45,7 @@ function (a, b, c, d, e, f, g, h, i, k) {
                 width: 100,
                 sortable: !1
             }, {
-                field: "Concentration",
+                field: "AvgConcentration",
                 title: "油烟浓度",
                 width: 100,
                 sortable: !1,
@@ -73,7 +76,7 @@ function (a, b, c, d, e, f, g, h, i, k) {
                 width: 100,
                 sortable: !1
             }, {
-                field: "Discharge",
+                field: "SumDischarge",
                 title: "排放量",
                 width: 100,
                 sortable: !1,
@@ -104,10 +107,18 @@ function (a, b, c, d, e, f, g, h, i, k) {
                 width: 100,
                 sortable: !1
             }, {
-                field: "AlarmTime",
+                field: "SumNDbjCount",
                 title: "报警次数",
                 width: 100,
                 sortable: !1
+            }, {
+                field: "AlarmRate",
+                title: "报警比例",
+                width: 100,
+                sortable: !1,
+                formatter: function(a){
+                    return a.toFixed(1)
+                }
             }, {
                 field: "Address",
                 title: "安装地址",
@@ -223,8 +234,20 @@ function (a, b, c, d, e, f, g, h, i, k) {
                 textField: "text",
                 groupField: "group",
                 width: 150,
+                value: 0,
                 onSelect: function (a) {
                     g.propertyInfo = a.value;
+                }
+            });
+            d.find("#PositionInfo").combobox({
+                data: l,
+                width: "100",
+                valueField: "value",
+                textField: "text",
+                width: 150,
+                value: 0,
+                onSelect: function (a) {
+                    g.positionInfo = a.value;
                 }
             });
             d.find(".easyui-linkbutton").linkbutton({
@@ -308,25 +331,31 @@ function (a, b, c, d, e, f, g, h, i, k) {
             b.sortType && (b.$table.datagrid("options").url = b.getHref(!1, b.controller, "ConcentrationReportDataRow"),
             b.$table.datagrid("reload", {
                 SortType: b.sortType,
+                PositionInfo: b.positionInfo,
+                PropertyInfo: b.propertyInfo,
                 StartTime: b.$searchBar.find(".startTime").datetimebox("getValue"),
                 EndTime: b.$searchBar.find(".endTime").datetimebox("getValue")
             }));
             b.sortType && (b.$table1.datagrid("options").url = b.getHref(!1, b.controller, "DischargeReportDataRow"),
             b.$table1.datagrid("reload", {
                 SortType: b.sortType,
+                PositionInfo: b.positionInfo,
+                PropertyInfo: b.propertyInfo,
                 StartTime: b.$searchBar.find(".startTime").datetimebox("getValue"),
                 EndTime: b.$searchBar.find(".endTime").datetimebox("getValue")
             }));
             b.sortType && (b.$table2.datagrid("options").url = b.getHref(!1, b.controller, "AlarmTimeReportDataRow"),
             b.$table2.datagrid("reload", {
                 SortType: b.sortType,
+                PositionInfo: b.positionInfo,
+                PropertyInfo: b.propertyInfo,
                 StartTime: b.$searchBar.find(".startTime").datetimebox("getValue"),
                 EndTime: b.$searchBar.find(".endTime").datetimebox("getValue")
             }));
         },
         createReport: function () {
             var a = this;
-            var strurl = '../ReportInfo/LampblackMonitorReporting' + '?reportType=' + a.reportType + '&sortType=' + a.sortType +
+            var strurl = '../ReportInfo/LampblackMonitorReporting' + '?sortType=' + a.sortType + '&PositionInfo=' + a.positionInfo + '&PropertyInfo=' + a.propertyInfo +
                         '&StartTime=' + a.$searchBar.find(".startTime").datetimebox("getValue") + '&EndTime=' + a.$searchBar.find(".endTime").datetimebox("getValue");
             window.open(strurl);
         },

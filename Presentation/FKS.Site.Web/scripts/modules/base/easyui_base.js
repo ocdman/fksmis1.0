@@ -145,7 +145,7 @@ function (a, b, c, d, e, f) {
         doInitCombogrid: function (a, c) {
             a.combogrid(b.extend({
                 width: 150,
-                panelWidth: 450,
+                panelWidth: 800,
                 rownumbers: !0,
                 panelHeight: 450,
                 required: !0,

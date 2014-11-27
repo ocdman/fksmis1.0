@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace FKS.Core.Models.Report
 {
-    public class DischargeReport : EntityBase<int>
+    public class DischargeReport
     {
-        public float Discharge { get; set; }
+        public int SumDischarge { get; set; }
 
         public string NickName { get; set; }
 

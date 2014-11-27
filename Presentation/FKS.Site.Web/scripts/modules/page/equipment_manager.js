@@ -24,78 +24,21 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, z, y) {
                 sortable: !1
             },
             {
-                field: "EquipCode",
-                title: "设备编码",
-                width: 100,
-                sortable: !1
-            },
-            {
                 field: "CollectionCode",
                 title: "采集器ID",
                 width: 100,
                 sortable: !1
             },
             {
-                field: "UserName",
-                title: "操作员用户名",
-                width: 100,
-                sortable: !1
-            },
-            {
-                field: "PropertyInfo",
-                title: "属性信息",
-                width: 60,
-                sortable: !1,
-                formatter: function (a) {
-                    for (var b in i) {
-                        var c = i[b];
-                        if (c.value == a) return c.text
-                    }
-                    return a
-                }
-            },
-            {
-                field: "PositionInfo",
-                title: "位置信息",
-                width: 120,
-                sortable: !1,
-                formatter: function (a) {
-                    for (var b in j) {
-                        var c = j[b];
-                        if (c.value == a) return c.text;
-                    }
-                    return a;
-                }
-            },
-            {
                 field: "Address",
                 title: "安装地址",
-                width: 200,
+                width: 250,
                 sortable: !1
             },
             {
                 field: "EquipCount",
                 title: "探测器数量",
                 width: 70,
-                sortable: !1
-            },
-            {
-                field: "TimeOut",
-                title: "超时时间",
-                width: 60,
-                sortable: !1,
-                formatter: function (a) {
-                    for (var b in z) {
-                        var c = z[b];
-                        if (c.value == a) return c.text;
-                    }
-                    return a;
-                }
-            },
-            {
-                field: "Interval",
-                title: "采集间隔",
-                width: 60,
                 sortable: !1
             },
             {

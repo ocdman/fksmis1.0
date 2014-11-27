@@ -107,34 +107,27 @@
         }
     }, {
         "id": 134,
-        "text": "报表统计",
         "iconCls": "icon_19",
-        "attributes": {
-            "hash": "page/report/报表统计"
-        }
-    }, {
-        "id": 135,
-        "iconCls": "icon_20",
         "text": "油烟监测报告",
         "attributes": {
             "hash": "page/lampblack_monitor_report/油烟监测报告"
         }
     }, {
-        "id": 136,
+        "id": 135,
         "iconCls": "icon_21",
         "text": "油烟台账报告",
         "attributes": {
             "hash": "page/lampblack_account_report/油烟台账报告"
         }
     }, {
-        "id": 137,
+        "id": 136,
         "text": "运行维护一览",
         "iconCls": "icon_26",
         "attributes": {
             "hash": "page/operation_maintenance/运行维护一览"
         }
     }, {
-        "id": 138,
+        "id": 137,
         "text": "学校油烟监测报告",
         "iconCls": "icon_20",
         "attributes": {
@@ -161,27 +154,20 @@
         }
     }, {
         "id": 133,
-        "text": "参数设定",
-        "iconCls": "icon_15",
-        "attributes": {
-            "hash": "page/parameterSet/参数设定"
-        }
-    }, {
-        "id": 138,
         "text": "短信设定",
         "iconCls": "icon_22",
         "attributes": {
             "hash": "page/messageSet/短信设定"
         }
     }, {
-        "id": 135,
+        "id": 134,
         "iconCls": "icon_18",
         "text": "操作日志",
         "attributes": {
             "hash": "page/log/操作日志"
         }
     }, {
-        "id": 136,
+        "id": 135,
         "iconCls": "icon_25",
         "text": "权限设置",
         "attributes": {

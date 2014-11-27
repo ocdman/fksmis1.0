@@ -1,5 +1,5 @@
 /*! fks 07-07-2014 */
-define(["jquery", "underscore", "backbone", "knockout", "helper", "plugins/map", "modules/base/manager_base", "modules/main_ui", "modules/page/equipment_manager", "localdata/propertyinfos", "localdata/positioninfos", "text!templates/layout/top_center.html", "text!templates/search_condition/equipment_manager.html", "text!templates/toolbars/common/toolbar_1.html"],
+define(["jquery", "underscore", "backbone", "knockout", "helper", "plugins/map", "modules/base/manager_base", "modules/main_ui", "modules/page/equipment_manager", "localdata/propertyinfosWithDefault", "localdata/positioninfosWithDefault", "text!templates/layout/top_center.html", "text!templates/search_condition/equipment_detail.html", "text!templates/toolbars/common/toolbar_1.html"],
 function (a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
     var o = i.extend({
         isInitTable: !1,
@@ -23,7 +23,7 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
             {
                 field: "OpenTime",
                 title: "启用时间",
-                width: 100,
+                width: 75,
                 sortable: !1,
                 formatter: function (a) {
                     return (a != null) ? e.DateFormat(e.getUnixToTime1(a.replace("/Date(", "").replace(")/", "")), "yyyy-MM-dd") : "";
@@ -32,7 +32,7 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
             {
                 field: "CleanTime",
                 title: "上次维护时间",
-                width: 100,
+                width: 85,
                 sortable: !1,
                 formatter: function (a) {
                     return (a != null) ? e.DateFormat(e.getUnixToTime1(a.replace("/Date(", "").replace(")/", "")), "yyyy-MM-dd") : "";
@@ -41,7 +41,7 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
             {
                 field: "NextCleanTime",
                 title: "下次维护时间",
-                width: 100,
+                width: 85,
                 sortable: !1,
                 formatter: function (a) {
                     return (a != null) ? e.DateFormat(e.getUnixToTime1(a.replace("/Date(", "").replace(")/", "")), "yyyy-MM-dd") : "";
@@ -52,41 +52,41 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
                 title: "浓度(mg/m³)",
                 width: 70,
                 sortable: !1,
-                formatter: function (b) {
-                    return (b != null) ? ((b == 255) ? 0 : e.getYouYanND(b)) : "----";
+                formatter: function (b, c) {
+                    return c.OnOff ? ((b != null) ? ((b == 255) ? 0 : e.getYouYanND(b)) : "----") : "----";
                 }
             },
             {
                 field: "YouYanSD",
                 title: "湿度(%)",
-                width: 70,
+                width: 50,
                 sortable: !1,
-                formatter: function (b) {
-                    return (b != null) ? ((b == 255) ? 0 : b) : "----";
+                formatter: function (b, c) {
+                    return c.OnOff ? ((b != null) ? ((b == 255) ? 0 : b) : "----") : "----";
                 }
             },
             {
                 field: "YouYanWD",
                 title: "温度(℃)",
-                width: 70,
+                width: 50,
                 sortable: !1,
-                formatter: function (b) {
-                    return (b != null) ? ((b == 255) ? 0 : e.getYouYanWD(b)) : "----";
+                formatter: function (b, c) {
+                    return c.OnOff ? ((b != null) ? ((b == 255) ? 0 : e.getYouYanWD(b)) : "----") : "----";
                 }
             },
             {
                 field: "ZTqd",
                 title: "信号强度",
-                width: 70,
+                width: 60,
                 sortable: !1,
-                formatter: function (a) {
-                    return a;
+                formatter: function (a, c) {
+                    return c.OnOff ? a : "----";
                 }
             },
             {
                 field: "OnOff",
                 title: "是否在线",
-                width: 80,
+                width: 60,
                 sortable: !1,
                 formatter: function (a) {
                     //return a ? "<i class='red' />" : "<i class='green' />"
@@ -97,7 +97,7 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
             {
                 field: "ZTfj",
                 title: "风机状态",
-                width: 80,
+                width: 60,
                 sortable: !1,
                 formatter: function (a) {
                     //return a ? "<i class='green' />" : "<i class='red' />"
@@ -107,7 +107,7 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
             {
                 field: "ZTjhq",
                 title: "净化器状态",
-                width: 90,
+                width: 70,
                 sortable: !1,
                 formatter: function (a) {
                     //return a ? "<i class='green' />" : "<i class='red' />"
@@ -123,6 +123,15 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
                     return (b != null || b == 255) ? (c.OnOff == true ? (d = Math.floor(b / 10, 0),
                     d >= 5 && (d = 4),
                     a.getLevel(d)) : "----") : "----"
+                }
+            },
+            {
+                field: "Search",
+                title: "查看数据",
+                width: 60,
+                sortable: !1,
+                formatter: function (b, c, d) {
+                    return "查看";
                 }
             }]]
         },
@@ -195,8 +204,8 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
                 Status: "1"
             },
             this.searchViewModel),
-            this.$searchBar.find("#PositionInfo").combobox("setValue", ""),
-            this.$searchBar.find("#PropertyInfo").combobox("setValue", "")
+            this.$searchBar.find("#PropertyInfoWithDefault").combobox("setValue", ""),
+            this.$searchBar.find("#PositionInfoWithDefault").combobox("setValue", "")
         },
         getData: function () {
             var b = this;
@@ -227,38 +236,27 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
                     return d.utils.unwrapObservable(a.id)
                 }
             }),
-            a.$searchBar.find("#PropertyInfo").combobox({
+            a.$searchBar.find("#PropertyInfoWithDefault").combobox({
                 data: j,
                 width: "100",
                 valueField: "value",
                 textField: "text",
                 groupField: "group",
+                value: 0,
                 onSelect: function (b) {
                     a.searchViewModel.PropertyInfo(b.value)
                 }
             }),
-            a.$searchBar.find("#PositionInfo").combobox({
+            a.$searchBar.find("#PositionInfoWithDefault").combobox({
                 data: k,
                 width: "100",
                 valueField: "value",
                 textField: "text",
+                value: 0,
                 onSelect: function (b) {
                     a.searchViewModel.PositionInfo(b.value)
                 }
             });
-            j.push({ "text": "默认", "value": 0 });
-            k.push({ "text": "默认", "value": 0 });
-            a.$searchBar.find("#PropertyInfo").combobox("loadData", j);
-            a.$searchBar.find("#PositionInfo").combobox("loadData", k);
-            var dataProperty = a.$searchBar.find("#PropertyInfo").combobox('getData');
-            var dataPosition = a.$searchBar.find("#PositionInfo").combobox('getData');
-            if (dataProperty.length > 0) {
-                a.$searchBar.find("#PropertyInfo").combobox('select', dataProperty[9].value);
-            }
-            if (dataPosition.length > 0) {
-                a.$searchBar.find("#PositionInfo").combobox('select', dataPosition[15].value);
-            }
-            
         },
         render: function () {
             var b, c, d, e = this,
@@ -304,8 +302,6 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
         dispose: function () {
             this.base("dispose");
             clearInterval(this.SI);
-            j.pop();
-            k.pop();
         }
     });
     return o

@@ -55,29 +55,11 @@ namespace FKS.Site.Web.Controllers.Controllers
             var memberViews = this.SiteContract.Equipments.Where(this.ViewQueryBuilder.Expression).Where<Equipment, int>(m => true, pagination.page, pagination.rows, out total, sortConditions.ToArray())
                 .Select(m => new EquipmentView
                 {
-                    EquipCode = m.EquipCode,
                     CollectionCode = m.CollectionCode,
-                    PropertyInfo = m.PropertyInfo,
-                    PositionInfo = m.PositionInfo,
                     NickName = m.NickName,
                     Address = m.Address,
                     EquipCount = m.EquipCount,
-                    TimeOut = m.TimeOut,
-                    Interval = m.Interval,
-                    YHX = m.YHX,
-                    YHY = m.YHY,
                     Status = m.Status,
-                    Content = m.Content,
-                    ZTjhq = m.ZTjhq,
-                    ZTfj = m.ZTfj,
-                    ZTst = m.ZTst,
-                    YouYanND = m.YouYanND,
-                    YouYanWD = m.YouYanWD,
-                    YouYanSD = m.YouYanSD,
-                    LastTimeGet = m.LastTimeGet,
-                    OpenTime = m.OpenTime,
-                    CleanTime = m.CleanTime,
-                    UserName = m.UserName
                 });
 
             dgvResult.rows = memberViews.ToList();
@@ -88,7 +70,7 @@ namespace FKS.Site.Web.Controllers.Controllers
 
         /// <summary>
         /// 查询数据
-        /// 针对下次维护时间而言
+        /// 针对设备管理画面
         /// </summary>
         /// <param name="pagination"></param>
         /// <returns></returns>
@@ -104,29 +86,16 @@ namespace FKS.Site.Web.Controllers.Controllers
             var memberViews = this.SiteContract.Equipments.Where(this.ViewQueryBuilder.Expression).Where<Equipment, int>(m => true, pagination.page, pagination.rows, out total, sortConditions.ToArray())
                 .Select(m => new EquipmentView
                 {
-                    EquipCode = m.EquipCode,
                     CollectionCode = m.CollectionCode,
-                    PropertyInfo = m.PropertyInfo,
-                    PositionInfo = m.PositionInfo,
                     NickName = m.NickName,
                     Address = m.Address,
-                    EquipCount = m.EquipCount,
-                    TimeOut = m.TimeOut,
-                    Interval = m.Interval,
-                    YHX = m.YHX,
-                    YHY = m.YHY,
-                    Status = m.Status,
-                    Content = m.Content,
                     ZTjhq = m.ZTjhq,
                     ZTfj = m.ZTfj,
-                    ZTst = m.ZTst,
                     YouYanND = m.YouYanND,
                     YouYanWD = m.YouYanWD,
                     YouYanSD = m.YouYanSD,
-                    LastTimeGet = m.LastTimeGet,
                     OpenTime = m.OpenTime,
                     CleanTime = m.CleanTime,
-                    UserName = m.UserName,
                     OnOff = m.OnOff,
                     Clean = m.YouYanND,
                     ZTqd = m.ZTqd
@@ -149,7 +118,7 @@ namespace FKS.Site.Web.Controllers.Controllers
 
         /// <summary>
         /// 查询数据
-        /// 针对两个探测器而言
+        /// 针对净化效率画面
         /// </summary>
         /// <param name="pagination"></param>
         /// <returns></returns>
@@ -163,29 +132,11 @@ namespace FKS.Site.Web.Controllers.Controllers
             var memberViews = this.SiteContract.Equipments.Where(this.ViewQueryBuilder.Expression).Where<Equipment, int>(m => m.EquipCount == 2, pagination.page, pagination.rows, out total, sortConditions.ToArray())
                 .Select(m => new EquipmentView
                 {
-                    EquipCode = m.EquipCode,
                     CollectionCode = m.CollectionCode,
-                    PropertyInfo = m.PropertyInfo,
-                    PositionInfo = m.PositionInfo,
                     NickName = m.NickName,
                     Address = m.Address,
                     EquipCount = m.EquipCount,
-                    TimeOut = m.TimeOut,
-                    Interval = m.Interval,
-                    YHX = m.YHX,
-                    YHY = m.YHY,
                     Status = m.Status,
-                    Content = m.Content,
-                    ZTjhq = m.ZTjhq,
-                    ZTfj = m.ZTfj,
-                    ZTst = m.ZTst,
-                    YouYanND = m.YouYanND,
-                    YouYanWD = m.YouYanWD,
-                    YouYanSD = m.YouYanSD,
-                    LastTimeGet = m.LastTimeGet,
-                    OpenTime = m.OpenTime,
-                    CleanTime = m.CleanTime,
-                    UserName = m.UserName
                 });
 
             dgvResult.rows = memberViews.ToList();
@@ -195,7 +146,8 @@ namespace FKS.Site.Web.Controllers.Controllers
         }
 
         /// <summary>
-        /// 学校报表模块，设备展示
+        /// 查询数据
+        /// 针对学校报表模块画面
         /// </summary>
         /// <param name="pagination"></param>
         /// <returns></returns>
@@ -209,29 +161,11 @@ namespace FKS.Site.Web.Controllers.Controllers
             var memberViews = this.SiteContract.Equipments.Where(this.ViewQueryBuilder.Expression).Where<Equipment, int>(m => m.PropertyInfo >= 6, pagination.page, pagination.rows, out total, sortConditions.ToArray())
                 .Select(m => new EquipmentView
                 {
-                    EquipCode = m.EquipCode,
                     CollectionCode = m.CollectionCode,
-                    PropertyInfo = m.PropertyInfo,
-                    PositionInfo = m.PositionInfo,
                     NickName = m.NickName,
                     Address = m.Address,
                     EquipCount = m.EquipCount,
-                    TimeOut = m.TimeOut,
-                    Interval = m.Interval,
-                    YHX = m.YHX,
-                    YHY = m.YHY,
                     Status = m.Status,
-                    Content = m.Content,
-                    ZTjhq = m.ZTjhq,
-                    ZTfj = m.ZTfj,
-                    ZTst = m.ZTst,
-                    YouYanND = m.YouYanND,
-                    YouYanWD = m.YouYanWD,
-                    YouYanSD = m.YouYanSD,
-                    LastTimeGet = m.LastTimeGet,
-                    OpenTime = m.OpenTime,
-                    CleanTime = m.CleanTime,
-                    UserName = m.UserName
                 });
 
             dgvResult.rows = memberViews.ToList();
@@ -282,7 +216,7 @@ namespace FKS.Site.Web.Controllers.Controllers
                     FanType = viewModel.FanType
                 };
 
-                if (viewModel.Status == 1)
+                if (viewModel.Status == 1)  //如果工作状态为开启，则启用时间和清洗时间即当前时间
                 {
                     model.OpenTime = DateTime.Now;
                     model.CleanTime = DateTime.Now;
@@ -294,27 +228,7 @@ namespace FKS.Site.Web.Controllers.Controllers
                     var count = this.SiteContract.Add(model);
                     if (count > 0)
                     {
-                        // add by wbgong at 20140711 start
-                        EquipManager equipManagerModel = new EquipManager
-                        {
-                            CollectionCode = "fjb" + viewModel.CollectionCode,
-                            DetectorCount = viewModel.EquipCount,
-                            DetectorNum1 = "0000",
-                            DetectorID1 = "0000",
-                            DetectorNum2 = "----",
-                            DetectorID2 = "----"
-                        };
-                        if (viewModel.EquipCount == 2)
-                        {
-                            equipManagerModel.DetectorNum2 = "0000";
-                            equipManagerModel.DetectorID2 = "0000";
-                        }
-                        var count1 = this.EquipManagerSiteContract.Add(equipManagerModel);
-                        // add by wbgong at 20140711 end
-                        if (count1 > 0)
-                        {
-                            res.ResultType = OperationResultType.Success;
-                        }
+                        res.ResultType = OperationResultType.Success;
                     }
                     else
                     {
@@ -347,7 +261,7 @@ namespace FKS.Site.Web.Controllers.Controllers
                 viewModel = new EquipmentView
                 {
                     EquipCode = model.EquipCode,
-                    CollectionCode = model.CollectionCode,
+                    CollectionCode = model.CollectionCode.Substring(3),
                     PropertyInfo = model.PropertyInfo,
                     PositionInfo = model.PositionInfo,
                     NickName = model.NickName,
@@ -394,11 +308,10 @@ namespace FKS.Site.Web.Controllers.Controllers
         {
             var result = this.doCheckViewModel(res =>
             {
-                var model = this.SiteContract.Equipments.Single<Equipment>(m => m.CollectionCode == viewModel.CollectionCode);
+                var model = this.SiteContract.Equipments.Single<Equipment>(m => m.CollectionCode == "fjb" + viewModel.CollectionCode);
                 if (model != null)
                 {
                     model.EquipCode = viewModel.EquipCode;
-                    model.CollectionCode = viewModel.CollectionCode;
                     model.PropertyInfo = viewModel.PropertyInfo;
                     model.PositionInfo = viewModel.PositionInfo;
                     model.NickName = viewModel.NickName;
@@ -429,21 +342,7 @@ namespace FKS.Site.Web.Controllers.Controllers
                     var count = this.SiteContract.Edit(model);
                     if (count >= 0)
                     {
-                        // add by wbgong at 20140711 start
-                        var equipManagerModel = this.EquipManagerSiteContract.EquipManagers.Single<EquipManager>(m => m.CollectionCode == viewModel.CollectionCode);
-
-                        equipManagerModel.DetectorCount = viewModel.EquipCount;
-                        if (viewModel.EquipCount == 1)
-                        {
-                            equipManagerModel.DetectorNum2 = "----";
-                            equipManagerModel.DetectorID2 = "----";
-                        }
-                        var count1 = this.EquipManagerSiteContract.Edit(equipManagerModel);
-                        // add by wbgong at 20140711 end
-                        if (count1 > 0)
-                        {
-                            res.ResultType = OperationResultType.Success;
-                        }
+                        res.ResultType = OperationResultType.Success;
                     }
                     else
                     {
@@ -481,7 +380,7 @@ namespace FKS.Site.Web.Controllers.Controllers
                 viewModel = new EquipmentView
                 {
                     EquipCode = model.EquipCode,
-                    CollectionCode = model.CollectionCode,
+                    CollectionCode = model.CollectionCode.Substring(3),
                     PropertyInfo = model.PropertyInfo,
                     PositionInfo = model.PositionInfo,
                     NickName = model.NickName,
@@ -528,24 +427,14 @@ namespace FKS.Site.Web.Controllers.Controllers
             //var result = this.doCheckViewModel(res =>
             //{
             var res = new OperationResult(OperationResultType.Success, string.Empty);
-            var model = this.SiteContract.Equipments.Single<Equipment>(m => m.CollectionCode == viewModel.CollectionCode);
+            var model = this.SiteContract.Equipments.Single<Equipment>(m => m.CollectionCode == "fjb" + viewModel.CollectionCode);
             if (model != null)
             {
                 var count = this.SiteContract.Del(model);
 
                 if (count > 0)
                 {
-                    // add by wbgong at 20140711 start
-                    var equipManagerModel = this.EquipManagerSiteContract.EquipManagers.Single<EquipManager>(m => m.CollectionCode == viewModel.CollectionCode);
-
-                    equipManagerModel.DetectorCount = viewModel.EquipCount;
-
-                    var count1 = this.EquipManagerSiteContract.Del(equipManagerModel);
-                    // add by wbgong at 20140711 end
-                    if (count1 > 0)
-                    {
-                        res.ResultType = OperationResultType.Success;
-                    }
+                    res.ResultType = OperationResultType.Success;
                 }
                 else
                 {

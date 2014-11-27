@@ -6,8 +6,9 @@
     "plugins/map",
     "modules/base/manager_base",
     "modules/main_ui",
-    "modules/page/equipment_manager"],
-function (a, b, c, d, e, f, g, h, i) {
+    "modules/page/equipment_manager",
+    "localdata/statusinfos"],
+function (a, b, c, d, e, f, g, h, i, k) {
     var j = g.extend({
         controller: "ReportInfo",
         $jqPlot: null,
@@ -53,7 +54,8 @@ function (a, b, c, d, e, f, g, h, i) {
                 width: 100,
                 sortable: !1,
                 formatter: function (b) {
-                    a.getLevel(b)
+                    return b >= 5 && (b = 4),
+                    a.getLevel(b);
                 }
             }]];
         },
@@ -75,8 +77,27 @@ function (a, b, c, d, e, f, g, h, i) {
             {
                 field: "Address",
                 title: "安装地址",
-                width: 200,
+                width: 250,
                 sortable: !1
+            },
+            {
+                field: "EquipCount",
+                title: "探测器数量",
+                width: 70,
+                sortable: !1
+            },
+            {
+                field: "Status",
+                title: "工作状态",
+                width: 60,
+                sortable: !1,
+                formatter: function (a) {
+                    for (var b in k) {
+                        var c = k[b];
+                        if (c.value == a) return c.text;
+                    }
+                    return a;
+                }
             }]]
         },
         doRenderChart: function (b) {
@@ -111,6 +132,7 @@ function (a, b, c, d, e, f, g, h, i) {
                 textField: i.prototype.textField,
                 url: g.getHref(!1, i.prototype.controller, "DataRowIndexForSchool"),
                 columns: g.getTableColumns3(),
+                multiple: !0,
                 OnSelect: function (a, b) {
                     g.currentId = b.CollectionCode
                 }
@@ -190,9 +212,9 @@ function (a, b, c, d, e, f, g, h, i) {
             }));
         },
         createReport: function () {
-            var a = this,
+            var aa = this,
                 b, d;
-            b = a.$panel.find(".easyui-layout").layout(),
+            b = aa.$panel.find(".easyui-layout").layout(),
             d = b.layout("panel", "north"),
             ss = [];
 
@@ -204,9 +226,14 @@ function (a, b, c, d, e, f, g, h, i) {
                 ss.push(row.CollectionCode);
             }
 
-            var strurl = '../ReportInfo/SchoolMonthlyReporting' + '?CollectionCodes=' + ss.toString() + 
-                        '&StartTime=' + a.$searchBar.find(".startTime").datetimebox("getValue") + '&EndTime=' + a.$searchBar.find(".endTime").datetimebox("getValue");
-            window.open(strurl);
+            if (ss.length > 0) {
+                var strurl = '../ReportInfo/SchoolMonthlyReporting' + '?CollectionCodes=' + ss.toString() +
+                        '&StartTime=' + aa.$searchBar.find(".startTime").datetimebox("getValue") + '&EndTime=' + aa.$searchBar.find(".endTime").datetimebox("getValue");
+                window.open(strurl);
+            }
+            else {
+                a.messager.alert("提示", "请选择设备！", "warning");
+            }
         },
 
         dispose: function () {

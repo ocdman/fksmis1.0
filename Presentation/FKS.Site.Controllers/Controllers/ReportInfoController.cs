@@ -35,6 +35,9 @@ namespace FKS.Site.Web.Controllers.Controllers
         [Import]
         protected IAuthoritySiteContract AuthoritySiteContract { get; set; }
 
+        [Import]
+        protected IEquipmentSiteContract EquipmentSiteContract { get; set; }
+
         //
         // GET: /ReportInfo/
 
@@ -246,6 +249,7 @@ namespace FKS.Site.Web.Controllers.Controllers
 
         public ActionResult LampblackMonitorReporting(ReportParams param)
         {
+            var count = 0;
             if (CheckAuthority() == false)
             {
                 return Json("error", JsonRequestBehavior.DenyGet);
@@ -255,7 +259,25 @@ namespace FKS.Site.Web.Controllers.Controllers
             List<DischargeReport> ds2 = (List<DischargeReport>)this.SiteContract.GetDischargeReportData(param.SortType, param.PositionInfo, param.PropertyInfo, param.StartTime, param.EndTime);
             List<AlarmTimeReport> ds3 = (List<AlarmTimeReport>)this.SiteContract.GetAlarmTimeReportData(param.SortType, param.PositionInfo, param.PropertyInfo, param.StartTime, param.EndTime);
 
-            string parameter1 = ds2.Count.ToString();
+            var member = EquipmentSiteContract.Equipments;
+            if (param.PositionInfo == 0 && param.PropertyInfo == 0)
+            {
+                count = member.Count();
+            }
+            else if (param.PositionInfo != 0 && param.PropertyInfo == 0)
+            {
+                count = member.Where(m => m.PositionInfo == param.PositionInfo).Count();
+            }
+            else if (param.PositionInfo == 0 && param.PropertyInfo != 0)
+            {
+                count = member.Where(m => m.PropertyInfo == param.PropertyInfo).Count();
+            }
+            else
+            {
+                count = member.Where(m => m.PropertyInfo == param.PropertyInfo).Where(m => m.PositionInfo == param.PositionInfo).Count();
+            }
+
+            string parameter1 = count.ToString();
             string parameter2 = param.StartTime.ToString();
             string parameter3 = param.EndTime.ToString();
 

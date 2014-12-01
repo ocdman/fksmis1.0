@@ -58,12 +58,12 @@ namespace FKS.Core
         /// 异常设备
         /// </summary>
         /// <returns></returns>
-        ICollection<AbnormalEquip> GetAbnormalData();
+        ICollection<AbnormalEquip> GetAbnormalData(int jurisdiction);
         /// <summary>
         /// 维护时间超时设备
         /// </summary>
         /// <returns></returns>
-        ICollection<OverdualEquip> GetOverdueData(string overdualType);
+        ICollection<OverdualEquip> GetOverdueData(string overdualType, int jurisdiction);
 
         /// <summary>
         /// 排放量

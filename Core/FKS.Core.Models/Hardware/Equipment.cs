@@ -239,6 +239,9 @@ namespace FKS.Core.Models.Hardware
             get { return _fantype; }
             set { _fantype = value; }
         }
-
+        /// <summary>
+        /// 管辖
+        /// </summary>
+        public int Jurisdiction { get; set; }
     }
 }

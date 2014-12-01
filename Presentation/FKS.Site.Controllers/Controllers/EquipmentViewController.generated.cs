@@ -98,7 +98,9 @@ namespace FKS.Site.Web.Controllers.Controllers
                     CleanTime = m.CleanTime,
                     OnOff = m.OnOff,
                     Clean = m.YouYanND,
-                    ZTqd = m.ZTqd
+                    ZTqd = m.ZTqd,
+                    YHX = m.YHX,
+                    YHY = m.YHY
                 });
 
             dgvResult.rows = memberViews.ToList();
@@ -197,6 +199,7 @@ namespace FKS.Site.Web.Controllers.Controllers
                     PositionInfo = viewModel.PositionInfo,
                     NickName = viewModel.NickName,
                     Address = viewModel.Address,
+                    Jurisdiction = viewModel.Jurisdiction,
                     EquipCount = viewModel.EquipCount,
                     TimeOut = viewModel.TimeOut,
                     Interval = viewModel.Interval,
@@ -266,6 +269,7 @@ namespace FKS.Site.Web.Controllers.Controllers
                     PositionInfo = model.PositionInfo,
                     NickName = model.NickName,
                     Address = model.Address,
+                    Jurisdiction = model.Jurisdiction,
                     EquipCount = model.EquipCount,
                     TimeOut = model.TimeOut,
                     Interval = model.Interval,
@@ -316,6 +320,7 @@ namespace FKS.Site.Web.Controllers.Controllers
                     model.PositionInfo = viewModel.PositionInfo;
                     model.NickName = viewModel.NickName;
                     model.Address = viewModel.Address;
+                    model.Jurisdiction = viewModel.Jurisdiction;
                     model.EquipCount = viewModel.EquipCount;
                     model.TimeOut = viewModel.TimeOut;
                     model.Interval = viewModel.Interval;
@@ -385,6 +390,7 @@ namespace FKS.Site.Web.Controllers.Controllers
                     PositionInfo = model.PositionInfo,
                     NickName = model.NickName,
                     Address = model.Address,
+                    Jurisdiction = model.Jurisdiction,
                     YHX = model.YHX,
                     YHY = model.YHY,
                     Status = model.Status,

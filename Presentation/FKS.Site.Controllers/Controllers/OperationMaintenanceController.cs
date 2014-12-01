@@ -1,4 +1,5 @@
-﻿using FKS.Component.Tools;
+﻿using CoolCode.Linq;
+using FKS.Component.Tools;
 using FKS.Core.Models.Hardware;
 using FKS.Core.Models.Report;
 using FKS.Site.Models;
@@ -16,6 +17,8 @@ namespace FKS.Site.Web.Controllers.Controllers
     [Export]
     public class OperationMaintenanceController : ManagerController<IEquipmentSiteContract, EquipmentView>
     {
+        protected IQueryBuilder<Equipment> ViewQueryBuilder { get; set; }
+
         //
         // GET: /OperationMaintenance/
 
@@ -33,7 +36,8 @@ namespace FKS.Site.Web.Controllers.Controllers
         {
             DataGridView<OperationMaintenanceView> dgvResult = new DataGridView<OperationMaintenanceView>();
 
-            var memberViews = this.SiteContract.Equipments.Where<Equipment>(m => true)
+            this.SetQueryBuilder();
+            var memberViews = this.SiteContract.Equipments.Where(this.ViewQueryBuilder.Expression).Where<Equipment>(m => true)
                 .Select(m => new OperationMaintenanceView
                 {
                     ContractNo = m.ContractNo,
@@ -61,8 +65,9 @@ namespace FKS.Site.Web.Controllers.Controllers
         public ActionResult Reporting(ReportParams param)
         {
             string type = "Excel";
-            
-            var members = this.SiteContract.Equipments.Where<Equipment>(m => true)
+
+            this.SetQueryBuilder();
+            var members = this.SiteContract.Equipments.Where(this.ViewQueryBuilder.Expression).Where<Equipment>(m => true)
                 .Select(m => new OperationMaintenanceView
                 {
                     ContractNo = m.ContractNo,
@@ -116,6 +121,16 @@ namespace FKS.Site.Web.Controllers.Controllers
 
             //renderedBytes = localReport.Render(reportType, deviceInfo);
             return File(renderedBytes, mimeType);
+        }
+
+        public void SetQueryBuilder()
+        {
+            IQueryBuilder<Equipment> queryBuilder = QueryBuilder.Create<Equipment>();
+            if (User.IsInRole("松江教育局"))
+            {
+                queryBuilder.Equals(s => s.Jurisdiction, 0);
+            }
+            this.ViewQueryBuilder = queryBuilder;
         }
     }
 }

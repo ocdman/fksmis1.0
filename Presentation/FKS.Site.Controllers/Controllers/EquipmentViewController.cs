@@ -47,9 +47,13 @@ namespace FKS.Site.Web.Controllers.Controllers
                 }
             }
 
-            if (!User.IsInRole("管理员"))
+            if (User.IsInRole("操作员"))
             {
                 queryBuilder.Equals(s => s.UserName, User.Identity.Name);
+            }
+            else if (User.IsInRole("松江教育局"))
+            {
+                queryBuilder.Equals(s => s.Jurisdiction, 0);
             }
 
             this.ViewQueryBuilder = queryBuilder;

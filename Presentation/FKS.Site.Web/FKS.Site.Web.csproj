@@ -850,6 +850,7 @@
     <Content Include="grunt\gruntfile.js" />
     <Content Include="scripts\datas\city_type.js" />
     <Content Include="scripts\datas\fantype.js" />
+    <Content Include="scripts\datas\jurisdiction.js" />
     <Content Include="scripts\datas\operationresulttype.js" />
     <Content Include="scripts\datas\logtype.js" />
     <Content Include="scripts\datas\datatype.js" />

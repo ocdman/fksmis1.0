@@ -174,11 +174,16 @@ namespace FKS.Site.Web.Controllers.Controllers
         /// <returns></returns>
         public ActionResult ConcentrationReportDataRow(ReportParams param)
         {
+            int jurisdiction = 1;
             if (CheckAuthority() == false)
             {
                 return Json("error", JsonRequestBehavior.DenyGet);
             }
-            var result = this.SiteContract.GetConcentrationReportData(param.SortType, param.PositionInfo, param.PropertyInfo, param.StartTime, param.EndTime);
+            if (User.IsInRole("松江教育局"))
+            {
+                jurisdiction = 0;
+            }
+            var result = this.SiteContract.GetConcentrationReportData(param.SortType, param.PositionInfo, param.PropertyInfo, jurisdiction, param.StartTime, param.EndTime);
             var dataGridData = new DataGridView<ConcentrationReport>()
             {
                 total = result.Count,
@@ -194,11 +199,16 @@ namespace FKS.Site.Web.Controllers.Controllers
         /// <returns></returns>
         public ActionResult DischargeReportDataRow(ReportParams param)
         {
+            int jurisdiction = 1;
             if (CheckAuthority() == false)
             {
                 return Json("error", JsonRequestBehavior.DenyGet);
             }
-            var result = this.SiteContract.GetDischargeReportData(param.SortType, param.PositionInfo, param.PropertyInfo, param.StartTime, param.EndTime);
+            if (User.IsInRole("松江教育局"))
+            {
+                jurisdiction = 0;
+            }
+            var result = this.SiteContract.GetDischargeReportData(param.SortType, param.PositionInfo, param.PropertyInfo, jurisdiction, param.StartTime, param.EndTime);
             var dataGridData = new DataGridView<DischargeReport>()
             {
                 total = result.Count,
@@ -234,11 +244,16 @@ namespace FKS.Site.Web.Controllers.Controllers
         /// <returns></returns>
         public ActionResult AlarmTimeReportDataRow(ReportParams param)
         {
+            int jurisdiction = 1;
             if (CheckAuthority() == false)
             {
                 return Json("error", JsonRequestBehavior.DenyGet);
             }
-            var result = this.SiteContract.GetAlarmTimeReportData(param.SortType, param.PositionInfo, param.PropertyInfo, param.StartTime, param.EndTime);
+            if (User.IsInRole("松江教育局"))
+            {
+                jurisdiction = 0;
+            }
+            var result = this.SiteContract.GetAlarmTimeReportData(param.SortType, param.PositionInfo, param.PropertyInfo, jurisdiction, param.StartTime, param.EndTime);
             var dataGridData = new DataGridView<AlarmTimeReport>()
             {
                 total = result.Count,
@@ -250,14 +265,19 @@ namespace FKS.Site.Web.Controllers.Controllers
         public ActionResult LampblackMonitorReporting(ReportParams param)
         {
             var count = 0;
+            int jurisdiction = 1;
             if (CheckAuthority() == false)
             {
                 return Json("error", JsonRequestBehavior.DenyGet);
             }
+            if (User.IsInRole("松江教育局"))
+            {
+                jurisdiction = 0;
+            }
             string type = "Excel";
-            List<ConcentrationReport> ds1 = (List<ConcentrationReport>)this.SiteContract.GetConcentrationReportData(param.SortType, param.PositionInfo, param.PropertyInfo, param.StartTime, param.EndTime);
-            List<DischargeReport> ds2 = (List<DischargeReport>)this.SiteContract.GetDischargeReportData(param.SortType, param.PositionInfo, param.PropertyInfo, param.StartTime, param.EndTime);
-            List<AlarmTimeReport> ds3 = (List<AlarmTimeReport>)this.SiteContract.GetAlarmTimeReportData(param.SortType, param.PositionInfo, param.PropertyInfo, param.StartTime, param.EndTime);
+            List<ConcentrationReport> ds1 = (List<ConcentrationReport>)this.SiteContract.GetConcentrationReportData(param.SortType, param.PositionInfo, param.PropertyInfo, jurisdiction, param.StartTime, param.EndTime);
+            List<DischargeReport> ds2 = (List<DischargeReport>)this.SiteContract.GetDischargeReportData(param.SortType, param.PositionInfo, param.PropertyInfo, jurisdiction, param.StartTime, param.EndTime);
+            List<AlarmTimeReport> ds3 = (List<AlarmTimeReport>)this.SiteContract.GetAlarmTimeReportData(param.SortType, param.PositionInfo, param.PropertyInfo, jurisdiction, param.StartTime, param.EndTime);
 
             var member = EquipmentSiteContract.Equipments;
             if (param.PositionInfo == 0 && param.PropertyInfo == 0)

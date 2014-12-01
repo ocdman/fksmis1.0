@@ -66,33 +66,34 @@ namespace FKS.Core.Impl
         }
 
 
-        public ICollection<DischargeReport> GetDischargeReportData(string sortType, int PositionInfo, int PropertyInfo, DateTime timeStart,
-            DateTime timeEnd)
+        public ICollection<DischargeReport> GetDischargeReportData(string sortType, int PositionInfo, int PropertyInfo, int jurisdiction, DateTime timeStart, DateTime timeEnd)
         {
-            SqlParameter[] sqlParams = new SqlParameter[5];
+            SqlParameter[] sqlParams = new SqlParameter[6];
             sqlParams[0] = new SqlParameter("@sort_type", sortType);
             sqlParams[1] = new SqlParameter("@positionInfo", PositionInfo);
             sqlParams[2] = new SqlParameter("@propertyInfo", PropertyInfo);
-            sqlParams[3] = new SqlParameter("@start_time", timeStart);
-            sqlParams[4] = new SqlParameter("@end_time", timeEnd);
+            sqlParams[3] = new SqlParameter("@jurisdiction", jurisdiction);
+            sqlParams[4] = new SqlParameter("@start_time", timeStart);
+            sqlParams[5] = new SqlParameter("@end_time", timeEnd);
 
-            var result = from p in this.UnitOfWork.DbContext.Database.SqlQuery<DischargeReport>("exec proc_get_discharge_report @sort_type,@positionInfo,@propertyInfo,@start_time,@end_time", sqlParams)
+            var result = from p in this.UnitOfWork.DbContext.Database.SqlQuery<DischargeReport>("exec proc_get_discharge_report @sort_type,@positionInfo,@propertyInfo,@jurisdiction,@start_time,@end_time", sqlParams)
                          select p;
 
             return result.ToList();
         }
 
 
-        public ICollection<ConcentrationReport> GetConcentrationReportData(string sortType, int PositionInfo, int PropertyInfo, DateTime timeStart, DateTime timeEnd)
+        public ICollection<ConcentrationReport> GetConcentrationReportData(string sortType, int PositionInfo, int PropertyInfo, int jurisdiction, DateTime timeStart, DateTime timeEnd)
         {
-            SqlParameter[] sqlParams = new SqlParameter[5];
+            SqlParameter[] sqlParams = new SqlParameter[6];
             sqlParams[0] = new SqlParameter("@sort_type", sortType);
             sqlParams[1] = new SqlParameter("@positionInfo", PositionInfo);
             sqlParams[2] = new SqlParameter("@propertyInfo", PropertyInfo);
-            sqlParams[3] = new SqlParameter("@start_time", timeStart);
-            sqlParams[4] = new SqlParameter("@end_time", timeEnd);
+            sqlParams[3] = new SqlParameter("@jurisdiction", jurisdiction);
+            sqlParams[4] = new SqlParameter("@start_time", timeStart);
+            sqlParams[5] = new SqlParameter("@end_time", timeEnd);
 
-            var result = from p in this.UnitOfWork.DbContext.Database.SqlQuery<ConcentrationReport>("exec proc_get_concentration_report @sort_type,@positionInfo,@propertyInfo,@start_time,@end_time", sqlParams)
+            var result = from p in this.UnitOfWork.DbContext.Database.SqlQuery<ConcentrationReport>("exec proc_get_concentration_report @sort_type,@positionInfo,@propertyInfo,@jurisdiction,@start_time,@end_time", sqlParams)
                          select p;
 
             return result.ToList();
@@ -112,17 +113,17 @@ namespace FKS.Core.Impl
         }
 
 
-        public ICollection<AlarmTimeReport> GetAlarmTimeReportData(string sortType, int PositionInfo, int PropertyInfo, DateTime timeStart,
-            DateTime timeEnd)
+        public ICollection<AlarmTimeReport> GetAlarmTimeReportData(string sortType, int PositionInfo, int PropertyInfo, int jurisdiction, DateTime timeStart, DateTime timeEnd)
         {
-            SqlParameter[] sqlParams = new SqlParameter[5];
+            SqlParameter[] sqlParams = new SqlParameter[6];
             sqlParams[0] = new SqlParameter("@sort_type", sortType);
             sqlParams[1] = new SqlParameter("@positionInfo", PositionInfo);
             sqlParams[2] = new SqlParameter("@propertyInfo", PropertyInfo);
-            sqlParams[3] = new SqlParameter("@start_time", timeStart);
-            sqlParams[4] = new SqlParameter("@end_time", timeEnd);
+            sqlParams[3] = new SqlParameter("@jurisdiction", jurisdiction);
+            sqlParams[4] = new SqlParameter("@start_time", timeStart);
+            sqlParams[5] = new SqlParameter("@end_time", timeEnd);
 
-            var result = from p in this.UnitOfWork.DbContext.Database.SqlQuery<AlarmTimeReport>("exec proc_get_alarmtime_report @sort_type,@positionInfo,@propertyInfo,@start_time,@end_time", sqlParams)
+            var result = from p in this.UnitOfWork.DbContext.Database.SqlQuery<AlarmTimeReport>("exec proc_get_alarmtime_report @sort_type,@positionInfo,@propertyInfo,@jurisdiction,@start_time,@end_time", sqlParams)
                          select p;
 
             return result.ToList();

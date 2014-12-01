@@ -38,7 +38,7 @@ namespace FKS.Site.Web.Controllers.BaseControllers
         public virtual ActionResult Index()
         {
             var model = new MemberView();
-            if (User.IsInRole("管理员"))
+            if (!User.IsInRole("操作员"))
             {
                 model.IsAdmin = true;
             }

@@ -1,6 +1,6 @@
 /*! fks 07-07-2014 */
-define(["jquery", "underscore", "backbone", "knockout", "helper", "plugins/map", "modules/base/manager_base", "modules/main_ui", "localdata/propertyinfos", "localdata/positioninfos", "localdata/statusinfos", "text!templates/toolbars/common/toolbar_1.html", "text!templates/search_condition/equipment_manager.html", "localdata/timeout", "localdata/fantype"],
-function (a, b, c, d, e, f, g, h, i, j, k, l, m, z, y) {
+define(["jquery", "underscore", "backbone", "knockout", "helper", "plugins/map", "modules/base/manager_base", "modules/main_ui", "localdata/propertyinfos", "localdata/positioninfos", "localdata/statusinfos", "text!templates/toolbars/common/toolbar_1.html", "text!templates/search_condition/equipment_manager.html", "localdata/timeout", "localdata/fantype", "localdata/jurisdiction"],
+function (a, b, c, d, e, f, g, h, i, j, k, l, m, z, y, xx) {
     var n = g.extend({
         controller: "EquipmentView",
         idField: "CollectionCode",
@@ -145,6 +145,8 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, z, y) {
             //w[0].readOnly = (w[0].value == "" ? false : true);
             x = b.$ajaxDialog.find("#FanType");
             x[0].value = (x[0].value == "" ? "1" : x[0].value);
+            yy = b.$ajaxDialog.find("#Jurisdiction");
+            yy[0].value = (yy[0].value == "" ? "0" : yy[0].value);
             b.doWait(o, 0,
             function () {
                 b.base("doOnloadPage", null, g)
@@ -204,6 +206,13 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, z, y) {
                 textField: "text",
                 panelHeight: "auto",
                 value: x[0].value == "" ? "1" : x[0].value,
+            }),
+            yy.size() && yy.combobox({
+                data: xx,
+                valueField: "value",
+                textField: "text",
+                panelHeight: "auto",
+                value: yy[0].value == "" ? "0" : yy[0].value,
             })
         },
         doGetSearchCondition: function (a) {

@@ -281,11 +281,16 @@ namespace FKS.Site.Web.Controllers.Controllers
         /// <returns></returns>
         public ActionResult AbnormalDataRow()
         {
+            int jurisdiction = 1;
             if (CheckAuthority() == false)
             {
                 return Json("error", JsonRequestBehavior.DenyGet);
             }
-            var result = this.SiteContract.GetAbnormalData();
+            if (User.IsInRole("松江教育局"))
+            {
+                jurisdiction = 0;
+            }
+            var result = this.SiteContract.GetAbnormalData(jurisdiction);
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
@@ -295,11 +300,16 @@ namespace FKS.Site.Web.Controllers.Controllers
         /// <returns></returns>
         public ActionResult OverdueDataRow(string overdualType)
         {
+            int jurisdiction = 1;
             if (CheckAuthority() == false)
             {
                 return Json("error", JsonRequestBehavior.DenyGet);
             }
-            var result = this.SiteContract.GetOverdueData(overdualType);
+            if (User.IsInRole("松江教育局"))
+            {
+                jurisdiction = 0;
+            }
+            var result = this.SiteContract.GetOverdueData(overdualType, jurisdiction);
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
@@ -350,6 +360,11 @@ namespace FKS.Site.Web.Controllers.Controllers
 
         #endregion
 
+        /// <summary>
+        /// 维护时间更新
+        /// </summary>
+        /// <param name="CollectionCodes"></param>
+        /// <returns></returns>
         public ActionResult UpdateCleanTime(string CollectionCodes)
         {
             var result = this.SiteContract.UpdateCleanTime(CollectionCodes);

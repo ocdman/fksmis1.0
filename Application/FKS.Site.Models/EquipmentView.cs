@@ -229,5 +229,7 @@ namespace FKS.Site.Models
         /// 信号强度
         /// </summary>
         public int ZTqd { get; set; }
+        [Display(Name = "管辖")]
+        public int Jurisdiction { get; set; }
     }
 }

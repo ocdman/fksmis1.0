@@ -120,20 +120,22 @@ namespace FKS.Core.Impl
             return result.ToList();
         }
 
-        public ICollection<AbnormalEquip> GetAbnormalData()
+        public ICollection<AbnormalEquip> GetAbnormalData(int jurisdiction)
         {
-            var result = from p in this.UnitOfWork.DbContext.Database.SqlQuery<AbnormalEquip>("exec pro_get_abnormal")
-                         select p;
+            SqlParameter[] sqlparams = new SqlParameter[1];
+            sqlparams[0] = new SqlParameter("jurisdiction", jurisdiction);
+            var result = from p in this.UnitOfWork.DbContext.Database.SqlQuery<AbnormalEquip>("exec pro_get_abnormal @jurisdiction", sqlparams) select p;
             return result.ToList();
         }
 
-        public ICollection<OverdualEquip> GetOverdueData(string overdualType)
+        public ICollection<OverdualEquip> GetOverdueData(string overdualType, int jurisdiction)
         {
-            SqlParameter[] sqlparams = new SqlParameter[1];
+            SqlParameter[] sqlparams = new SqlParameter[2];
 
             sqlparams[0] = new SqlParameter("overdual_type", overdualType);
+            sqlparams[1] = new SqlParameter("jurisdiction", jurisdiction);
 
-            var result = from p in this.UnitOfWork.DbContext.Database.SqlQuery<OverdualEquip>("exec pro_get_overdue_data @overdual_type", sqlparams) select p;
+            var result = from p in this.UnitOfWork.DbContext.Database.SqlQuery<OverdualEquip>("exec pro_get_overdue_data @overdual_type,@jurisdiction", sqlparams) select p;
             return result.ToList();
         }
 

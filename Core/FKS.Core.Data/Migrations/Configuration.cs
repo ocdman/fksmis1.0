@@ -18,7 +18,7 @@ namespace FKS.Core.Data.Migrations
 
         protected override void Seed(FKS.Component.Data.EFDbContext context)
         {
-            /*
+            
             List<Member> members = new List<Member>
             {
                 new Member { 
@@ -37,65 +37,9 @@ namespace FKS.Core.Data.Migrations
                 }
             };
 
-            for (int i = 0; i < 100; i++)
-            {
-                Random rnd = new Random((int)DateTime.Now.Ticks + i);
-                Member member = new Member
-                {
-                    UserName = "userName" + i,
-                    Password = "123456",
-                    NickName = "用户" + i,
-                    IsAdmin = false
-                };
-
-                members.Add(member);
-            }
             DbSet<Member> memberSet = context.Set<Member>();
             memberSet.AddOrUpdate(m => new { m.UserName }, members.ToArray());
 
-
-            List<Equipment> equipments = new List<Equipment>();
-
-
-            for (int i = 1; i <= 100; i++)
-            {
-                Random rnd = new Random((int)DateTime.Now.Ticks + i);
-                Equipment member = new Equipment
-                {
-                    //YHDZ = "上海松江",
-                    //YHHY = "01",
-                    //YHMC = "硬件设备" + i.ToString(),
-                    //YHQY = i.ToString("d5"),
-                    //YHQY1 = "1" + i.ToString("d4"),
-                    //YHQY2 = "2" + i.ToString("d4"),
-
-                    Address = "上海松江",
-                    EquipCode = "201407" + i.ToString("d4"),
-                    CollectionCode = "fjb02016" + i.ToString("d4"),
-                    //EquipCode = "硬件设备" + i.ToString(),
-                    EquipCount = 1,
-                    Interval = 60,
-                    NickName = "硬件设备" + i.ToString(),
-                    PositionInfo = 1,
-                    PropertyInfo = 1,
-                    Status = 1,
-                    TimeOut = 2,
-                    YHX = 116.983194,
-                    YHY = 36.693155,
-                    ZTfj = false,
-                    ZTjhq = false,
-                    ZTst = false,
-                    YouYanND = 10,
-                    YouYanSD = 20,
-                    YouYanWD = 30,
-                    //LastTimeGet = DateTime.Now,
-                    //Id = "fjb02016" + i.ToString("d4")
-                };
-
-                equipments.Add(member);
-            }
-            DbSet<Equipment> EquipmentSet = context.Set<Equipment>();
-            EquipmentSet.AddOrUpdate(m => new { m.CollectionCode }, equipments.ToArray());
 
             FKS.Core.Models.Parameters.ParameterSet parameter = new Models.Parameters.ParameterSet 
             {
@@ -118,8 +62,6 @@ namespace FKS.Core.Data.Migrations
             authoritySet.AddOrUpdate(m => new { m.Id }, authority);
             
             context.SaveChanges();
-             */
-
         }
     }
 }

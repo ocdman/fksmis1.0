@@ -312,7 +312,6 @@ namespace FKS.Site.Web.Controllers.Controllers
             localReport.SetParameters(new ReportParameter("ReportParameter1", parameter1));
             localReport.SetParameters(new ReportParameter("ReportParameter2", parameter2));
             localReport.SetParameters(new ReportParameter("ReportParameter3", parameter3));
-
             string reportType = type;
             string mimeType;
             string encoding;
@@ -340,7 +339,6 @@ namespace FKS.Site.Web.Controllers.Controllers
                 out fileNameExtension,
                 out streams,
                 out warnings);
-
             //renderedBytes = localReport.Render(reportType, deviceInfo);
             return File(renderedBytes, mimeType);
         }

@@ -9,6 +9,7 @@ using FKS.Site.Helper;
 using FKS.Core.Models.logger;
 using FKS.Core.Models.Account;
 using FKS.Site.Models;
+using System.Web.Security;
 
 namespace FKS.Site.Web.Controllers.BaseControllers
 {
@@ -38,7 +39,7 @@ namespace FKS.Site.Web.Controllers.BaseControllers
         public virtual ActionResult Index()
         {
             var model = new MemberView();
-            if (!User.IsInRole("操作员"))
+            if (User.IsInRole("管理员"))
             {
                 model.IsAdmin = true;
             }
@@ -48,6 +49,8 @@ namespace FKS.Site.Web.Controllers.BaseControllers
             }
                
             model.UserName = User.Identity.Name;
+            FormsIdentity id = (FormsIdentity)User.Identity;
+            model.NickName = id.Ticket.UserData;
             
             return View(model);
         }

@@ -18,7 +18,7 @@ function (a, b, c, d, e, f, g, h, i, k, l) {
         $tablePanel1: null,
         $tablePanel2: null,
         timeID: 0,
-        reportType: "01",
+        reportType: "02",
         sortType: "01",
         propertyInfo: 0,
         positionInfo: 0,
@@ -42,11 +42,11 @@ function (a, b, c, d, e, f, g, h, i, k, l) {
             return [[{
                 field: "NickName",
                 title: "企业名称",
-                width: 100,
+                width: 180,
                 sortable: !1
             }, {
                 field: "AvgConcentration",
-                title: "油烟浓度",
+                title: "油烟浓度(mg/m³)",
                 width: 100,
                 sortable: !1,
                 formatter: function (a) {
@@ -55,12 +55,12 @@ function (a, b, c, d, e, f, g, h, i, k, l) {
             }, {
                 field: "Address",
                 title: "安装地址",
-                width: 100,
+                width: 220,
                 sortable: !1
             }, {
                 field: "Contacts",
                 title: "联系人",
-                width: 100,
+                width: 80,
                 sortable: !1
             }, {
                 field: "ContactInfo",
@@ -73,11 +73,11 @@ function (a, b, c, d, e, f, g, h, i, k, l) {
             return [[{
                 field: "NickName",
                 title: "企业名称",
-                width: 100,
+                width: 180,
                 sortable: !1
             }, {
                 field: "SumDischarge",
-                title: "排放量",
+                title: "排放量(克/天)",
                 width: 100,
                 sortable: !1,
                 formatter: function (a) {
@@ -86,12 +86,12 @@ function (a, b, c, d, e, f, g, h, i, k, l) {
             }, {
                 field: "Address",
                 title: "安装地址",
-                width: 100,
+                width: 220,
                 sortable: !1
             }, {
                 field: "Contacts",
                 title: "联系人",
-                width: 100,
+                width: 80,
                 sortable: !1
             }, {
                 field: "ContactInfo",
@@ -104,30 +104,22 @@ function (a, b, c, d, e, f, g, h, i, k, l) {
             return [[{
                 field: "NickName",
                 title: "企业名称",
-                width: 100,
+                width: 180,
                 sortable: !1
             }, {
                 field: "SumNDbjCount",
-                title: "报警次数",
+                title: "报警次数(次)",
                 width: 100,
                 sortable: !1
             }, {
-                field: "AlarmRate",
-                title: "报警比例",
-                width: 100,
-                sortable: !1,
-                formatter: function(a){
-                    return a.toFixed(1)
-                }
-            }, {
                 field: "Address",
                 title: "安装地址",
-                width: 100,
+                width: 220,
                 sortable: !1
             }, {
                 field: "Contacts",
                 title: "联系人",
-                width: 100,
+                width: 80,
                 sortable: !1
             }, {
                 field: "ContactInfo",
@@ -227,6 +219,13 @@ function (a, b, c, d, e, f, g, h, i, k, l) {
                     }
                 }
             });
+            d.find("#sortType").combobox({
+                required: !0,
+                width: 150,
+                onSelect: function (a) {
+                    g.sortType = a.value;
+                }
+            });
             d.find("#PropertyInfo").combobox({
                 data: k,
                 width: "100",
@@ -257,8 +256,9 @@ function (a, b, c, d, e, f, g, h, i, k, l) {
                 }
             }),
             g.$searchBar = d;
-            g.$searchBar.find(".startTime").datetimebox("setValue", e.getDate(-1) + e.getStartHour());
-            g.$searchBar.find(".endTime").datetimebox("setValue", e.getDate(-1) + e.getEndHour());
+            var monday = e.getMonday();
+            g.$searchBar.find(".startTime").datetimebox("setValue", e.getDate(-monday - 7) + e.getStartHour());
+            g.$searchBar.find(".endTime").datetimebox("setValue", e.getDate(-monday - 1) + e.getEndHour());
         },
         doInitTable1: function (c, e, f, g) {
             var h = this;

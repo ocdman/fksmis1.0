@@ -177,7 +177,7 @@ function () {
             return " 00:00:00";
         },
         getEndHour: function () {
-            return " 23:00:00";
+            return " 23:59:00";
         },
         getCurrentTime: function (hour) {
             var date = new Date();

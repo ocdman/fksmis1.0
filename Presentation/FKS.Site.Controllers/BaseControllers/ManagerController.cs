@@ -111,6 +111,7 @@ namespace FKS.Site.Web.Controllers.BaseControllers
                         }
                     }
                 }
+                result.ResultType = OperationResultType.Error;
             }
 
             return result;

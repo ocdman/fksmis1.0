@@ -33,12 +33,41 @@ function (a, b, c, d, e, f, g, h, i) {
                 }
             }), h.doAddModule(c.controller, a, c), !0) : !1
         },
+        getTableColumns: function () {
+            return [[{
+                field: "Ldb",
+                title: "联动比",
+                width: 80,
+                sortable: !1
+            }, {
+                field: "NDbjCount",
+                title: "超标次数",
+                width: 100,
+                sortable: !1,
+            }, {
+                field: "Avgjjd",
+                title: "洁净度",
+                width: 100,
+                sortable: !1
+            }, {
+                field: "AccountDate",
+                title: "日期",
+                width: 80,
+                sortable: !1
+            }]];
+        },
         render: function () {
             var b, c, d, g = this;
             b = g.$panel.find(".easyui-layout").layout(),
             c = b.layout("panel", "center"),
             d = b.layout("panel", "north"),
-            g.doInitCombogrid(c.find(".EquipInfo"), {
+            f = g.$panel.find(".easyui-tabs").tabs({
+                onSelect: function (a, b) {
+                    0 == b && g.$table.datagrid("resize");
+                }
+            });
+            g.$tablePanel = f.tabs("getTab", 0);
+            g.doInitCombogrid(d.find(".EquipInfo"), {
                 idField: i.prototype.idField,
                 textField: i.prototype.textField,
                 url: g.getHref(!1, i.prototype.controller, "DataRowIndex"),
@@ -49,13 +78,24 @@ function (a, b, c, d, e, f, g, h, i) {
                     g.address = b.Address
                 }
             }),
-            c.find(".easyui-linkbutton").linkbutton({
+            g.doInitTable({
+                rownumbers: !0,
+                onLoadSuccess: function (a) {
+
+                },
+                onDbClickRow: a.noop,
+                url: "",
+                pagination: !0,
+                pageSize: 50,
+                pageList: [50]
+            }, [], "", ""),
+            d.find(".easyui-linkbutton").linkbutton({
                 onClick: function () {
                     var b = a(this).attr("data-operation");
                     b && g[b] && g[b].call(g);
                 }
             }),
-            c.find("#month").combobox({
+            d.find("#month").combobox({
                 required: !0,
                 width: 150,
                 onSelect: function (a) {
@@ -110,7 +150,11 @@ function (a, b, c, d, e, f, g, h, i) {
                     }
                 }
             });
-            g.$searchBar = c;
+            //c.find(".datepicker").val(e.DateFormat(new Date(), "yyyy-MM"));
+            //a(".datepicker").select(function () {
+            //    alert("hello");
+            //})
+            g.$searchBar = d;
         },
         doAccount: function () {
             //var b = this;
@@ -130,10 +174,17 @@ function (a, b, c, d, e, f, g, h, i) {
             //    }
             //})
 
-            var a = this;
-            var strurl = '../ReportInfo/LampblackAccountReporting' + '?collectionCode=' + a.currentId + '&StartTime='
-                + a.StartTime + '&EndTime=' + a.EndTime + '&NickName=' + a.nickName + '&Address=' + a.address;
-            window.open(strurl);
+            var aa = this;
+            if (aa.currentId != 0)
+            {
+                var strurl = '../ReportInfo/LampblackAccountReporting' + '?collectionCode=' + aa.currentId + '&StartTime='
+                + aa.StartTime + '&EndTime=' + aa.EndTime + '&NickName=' + aa.nickName + '&Address=' + aa.address;
+                window.open(strurl);
+            }
+            else {
+                a.messager.alert("提示", "请选择设备！", "warning");
+            }
+            
         },
         dispose: function () {
             this.base("dispose");

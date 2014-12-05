@@ -19,49 +19,49 @@ namespace FKS.Core.Data.Migrations
         protected override void Seed(FKS.Component.Data.EFDbContext context)
         {
             
-            List<Member> members = new List<Member>
-            {
-                new Member { 
-                    UserName = "admin", 
-                    Password = "123456",
-                    NickName = "管理员", 
-                    IsDeleted=false ,
-                    IsAdmin = true
-                },
-                new Member { 
-                    UserName = "gmfcn", 
-                    Password = "123456", 
-                    NickName = "NCCN", 
-                    IsDeleted=false ,
-                    IsAdmin = true
-                }
-            };
+            //List<Member> members = new List<Member>
+            //{
+            //    new Member { 
+            //        UserName = "admin", 
+            //        Password = "123456",
+            //        NickName = "管理员", 
+            //        IsDeleted=false ,
+            //        IsAdmin = true
+            //    },
+            //    new Member { 
+            //        UserName = "gmfcn", 
+            //        Password = "123456", 
+            //        NickName = "NCCN", 
+            //        IsDeleted=false ,
+            //        IsAdmin = true
+            //    }
+            //};
 
-            DbSet<Member> memberSet = context.Set<Member>();
-            memberSet.AddOrUpdate(m => new { m.UserName }, members.ToArray());
+            //DbSet<Member> memberSet = context.Set<Member>();
+            //memberSet.AddOrUpdate(m => new { m.UserName }, members.ToArray());
 
 
-            FKS.Core.Models.Parameters.ParameterSet parameter = new Models.Parameters.ParameterSet 
-            {
-                Id = 1,
-                MaintenanceBound = 3,
-                ConcentrateBound = 1,
-                PurifierBound = 80,
-                DayDischargeBound = 50,
-                ShowNumbers = 10
-            };
-            DbSet<FKS.Core.Models.Parameters.ParameterSet> parameterSet = context.Set<FKS.Core.Models.Parameters.ParameterSet>();
-            parameterSet.AddOrUpdate(m => new { m.Id }, parameter);
+            //FKS.Core.Models.Parameters.ParameterSet parameter = new Models.Parameters.ParameterSet 
+            //{
+            //    Id = 1,
+            //    MaintenanceBound = 90,
+            //    ConcentrateBound = 1,
+            //    PurifierBound = 80,
+            //    DayDischargeBound = 50,
+            //    ShowNumbers = 10
+            //};
+            //DbSet<FKS.Core.Models.Parameters.ParameterSet> parameterSet = context.Set<FKS.Core.Models.Parameters.ParameterSet>();
+            //parameterSet.AddOrUpdate(m => new { m.Id }, parameter);
              
-            FKS.Core.Models.Authority.Authority authority = new Models.Authority.Authority
-            {
-                Id = 1,
-                HasAuthority = true
-            };
-            DbSet<FKS.Core.Models.Authority.Authority> authoritySet = context.Set<FKS.Core.Models.Authority.Authority>();
-            authoritySet.AddOrUpdate(m => new { m.Id }, authority);
+            //FKS.Core.Models.Authority.Authority authority = new Models.Authority.Authority
+            //{
+            //    Id = 1,
+            //    HasAuthority = true
+            //};
+            //DbSet<FKS.Core.Models.Authority.Authority> authoritySet = context.Set<FKS.Core.Models.Authority.Authority>();
+            //authoritySet.AddOrUpdate(m => new { m.Id }, authority);
             
-            context.SaveChanges();
+            //context.SaveChanges();
         }
     }
 }

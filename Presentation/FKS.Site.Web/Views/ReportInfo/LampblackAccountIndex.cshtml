@@ -1,11 +1,12 @@
 ﻿<div class="easyui-layout" data-options="fit:true">
-    <div data-options="region:'center',border:false,collapsible:false" style="height: 90px;padding: 10px; overflow: hidden; border-bottom-width: 1px;">
+    <div data-options="region:'north',border:false,collapsible:false" style="height: 90px;padding: 10px; overflow: hidden; border-bottom-width: 1px;">
         <div style="margin: 5px;" class="form-inline">
             <div class="form-group">
                 <label class="control-label">月份：</label>
             </div>
             <div class="form-group">
-                <select id="month" class="easyui-combobox" style="width:200px;" data-operation="required:true">
+                @*<input data-role="type" type="month" class="form-control input-sm datepicker" value="new Date()" />*@
+                <select id="month" class="easyui-combobox" style="width:150px;" data-operation="required:true">
                     <option value="01">1月份</option>
                     <option value="02">2月份</option>
                     <option value="03">3月份</option>
@@ -37,10 +38,11 @@
             </a>
         </div>
     </div>
-    @*<div data-options="region:'center',border:false,split:true,title:'曲线图'" style="border-right-width:1px;">
-        <div class="form-group">
-            <label id="dischargeContent" style="margin-bottom:10px" />
-            <div id="discharge" style="margin-top:10px" />
+    <div data-options="region:'center',border:false,split:true">
+        <div id="tt" class="easyui-tabs" data-options="fit:true, border:false">
+            <div title="油烟净化台账" id="concentrationTab" style="padding:20px">
+
+            </div>
         </div>
-    </div>*@
+    </div>
 </div>

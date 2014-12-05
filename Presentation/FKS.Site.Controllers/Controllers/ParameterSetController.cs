@@ -22,6 +22,7 @@ namespace FKS.Site.Web.Controllers.Controllers
             ParameterSetView viewModel = null;
 
             var model = this.SiteContract.ParameterSets.Single<ParameterSet>(m => m.Id == 1);
+            
             if (model != null)
             {
                 viewModel = new ParameterSetView
@@ -43,6 +44,7 @@ namespace FKS.Site.Web.Controllers.Controllers
             var result = this.doCheckViewModel(res => 
             {
                 var model = this.SiteContract.ParameterSets.Single<ParameterSet>(m => m.Id == 1);
+
                 if (model != null)
                 {
                     model.MaintenanceBound = viewModel.MaintenanceBound;

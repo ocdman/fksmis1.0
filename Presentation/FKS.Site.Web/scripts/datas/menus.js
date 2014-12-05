@@ -147,10 +147,10 @@
         }
     }, {
         "id": 132,
-        "text": "设备管理",
-        "iconCls": "icon_17",
+        "text": "参数设定",
+        "iconCls": "icon_15",
         "attributes": {
-            "hash": "page/equipManager/设备管理"
+            "hash": "page/parameterSet/参数设定"
         }
     }, {
         "id": 133,

@@ -42,8 +42,9 @@ function (a, b, c, d, e, f, g, h, i) {
                 width: 60,
                 sortable: !1,
                 formatter: function (b) {
-                    //return (a.factor / b).toFixed(1)
-                    return (b == 255) ? 0 : e.getYouYanND(b);
+                    var d = e.getYouYanND(b);
+                    (d > 2) && (d = "<div class='red_font'>" + d + "</div>");
+                    return (b == 255) ? 0 : d;
                 }
             },
             {
@@ -115,12 +116,12 @@ function (a, b, c, d, e, f, g, h, i) {
                 }
             }), h.doAddModule(c.controller, a, c), !0) : !1
         },
-        doRenderChart: function (a) {
+        doRenderChart: function (aa) {
             var b = {},
             c = [];
-            if (a && a.length) {
-                for (var d in a) {
-                    var f = a[d];
+            if (aa && aa.length) {
+                for (var d in aa) {
+                    var f = aa[d];
                     var time = e.getUnixToTime2(f.TimeUp.replace("/Date(", "").replace(")/", ""));
                     b[f.ProbeID + "ND"] || (b[f.ProbeID + "ND"] = [], c.push(
                         f.ProbeID + "浓度"
@@ -135,9 +136,9 @@ function (a, b, c, d, e, f, g, h, i) {
                         b["FJ"] || (b["FJ"] = [], c.push("风机"));
                         b["JHQ"] || (b["JHQ"] = [], c.push("净化器"));
                     }
-                    b[f.ProbeID + "ND"].push([time, e.getYouYanND(f.YouYanND)]),
-                    b[f.ProbeID + "WD"].push([time, parseFloat(e.getYouYanWD(f.YouYanWD))]),
-                    b[f.ProbeID + "SD"].push([time, f.YouYanSD]);
+                    b[f.ProbeID + "ND"].push([time, (f.YouYanND == 255) ? 0 : e.getYouYanND(f.YouYanND)]),
+                    b[f.ProbeID + "WD"].push([time, (f.YouYanWD == 255) ? 0 : parseFloat(e.getYouYanWD(f.YouYanWD))]),
+                    b[f.ProbeID + "SD"].push([time, (f.YouYanSD == 255) ? 0 : f.YouYanSD]);
                     if (f.ProbeID == 1) {
                         b["FJ"].push([time, (f.ZTfj == true) ? 1 : 0]);
                         b["JHQ"].push([time, (f.ZTjhq == true) ? 1 : 0])
@@ -155,6 +156,7 @@ function (a, b, c, d, e, f, g, h, i) {
                     this.doDrawChart(g)
                 } catch (h) { }
             }
+            else a.messager.alert("提示", "没有数据！", "warning");
         },
         doDrawChart: function (b) {
             var c = this,

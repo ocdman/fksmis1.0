@@ -38,7 +38,6 @@ namespace FKS.Site.Web.Controllers.Controllers
                     }
                 }
             }
-
             this.ViewQueryBuilder = queryBuilder;
         }
         partial void DoCheckExist(Member model, OperationResult res)

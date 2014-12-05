@@ -44,7 +44,16 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
                 width: 85,
                 sortable: !1,
                 formatter: function (a) {
-                    return (a != null) ? e.DateFormat(e.getUnixToTime1(a.replace("/Date(", "").replace(")/", "")), "yyyy-MM-dd") : "";
+                    if (a != null) {
+                        var d = e.DateFormat(e.getUnixToTime1(a.replace("/Date(", "").replace(")/", "")), "yyyy-MM-dd");
+                        var c = e.DateFormat(new Date(), "yyyy-MM-dd");
+                        dArr = d.split('-');
+                        cArr = c.split('-');
+                        v1 = new Date(dArr[0], dArr[1], dArr[2]);
+                        v2 = new Date(cArr[0], cArr[1], cArr[2]);
+                        (v1 < v2) && (d = "<div class='red_font'>" + d + "</div>");
+                    }
+                    return (a != null) ? d : "";
                 }
             },
             {
@@ -53,6 +62,8 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
                 width: 70,
                 sortable: !1,
                 formatter: function (b, c) {
+                    var d = e.getYouYanND(b);
+                    (d > 2) && (d = "<div class='red_font'>" + d + "</div>");
                     return c.OnOff ? ((b != null) ? ((b == 255) ? 0 : e.getYouYanND(b)) : "----") : "----";
                 }
             },

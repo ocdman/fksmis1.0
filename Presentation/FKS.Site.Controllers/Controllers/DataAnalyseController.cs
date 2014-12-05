@@ -300,16 +300,11 @@ namespace FKS.Site.Web.Controllers.Controllers
         /// <returns></returns>
         public ActionResult OverdueDataRow(string overdualType)
         {
-            int jurisdiction = 1;
             if (CheckAuthority() == false)
             {
                 return Json("error", JsonRequestBehavior.DenyGet);
             }
-            if (User.IsInRole("松江教育局"))
-            {
-                jurisdiction = 0;
-            }
-            var result = this.SiteContract.GetOverdueData(overdualType, jurisdiction);
+            var result = this.SiteContract.GetOverdueData(overdualType);
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 

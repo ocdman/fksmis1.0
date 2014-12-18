@@ -1,1 +1,3 @@
-﻿
+﻿namespace FKS.Site.Web
+{
+}

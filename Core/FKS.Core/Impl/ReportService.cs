@@ -144,14 +144,16 @@ namespace FKS.Core.Impl
 
 
 
-        public ICollection<SchoolMonthlyReport> GetSchoolMonthlyReportData(string collectionCode, DateTime timeStart, DateTime timeEnd)
+        public ICollection<SchoolMonthlyReport> GetSchoolMonthlyReportData(string collectionCode, string sortType, string sortObject, DateTime timeStart, DateTime timeEnd)
         {
-            SqlParameter[] sqlParams = new SqlParameter[3];
+            SqlParameter[] sqlParams = new SqlParameter[5];
             sqlParams[0] = new SqlParameter("@collection_code", collectionCode);
-            sqlParams[1] = new SqlParameter("@start_time", System.Data.SqlDbType.DateTime, 4) { Value = timeStart };
-            sqlParams[2] = new SqlParameter("@end_time", System.Data.SqlDbType.DateTime, 4) { Value = timeEnd };
+            sqlParams[1] = new SqlParameter("@sort_type", sortType);
+            sqlParams[2] = new SqlParameter("@sort_object", sortObject);
+            sqlParams[3] = new SqlParameter("@start_time", System.Data.SqlDbType.DateTime, 4) { Value = timeStart };
+            sqlParams[4] = new SqlParameter("@end_time", System.Data.SqlDbType.DateTime, 4) { Value = timeEnd };
 
-            var result = from p in this.UnitOfWork.DbContext.Database.SqlQuery<SchoolMonthlyReport>("exec proc_get_schoolMonthly_report @collection_code,@start_time,@end_time", sqlParams)
+            var result = from p in this.UnitOfWork.DbContext.Database.SqlQuery<SchoolMonthlyReport>("exec proc_get_schoolMonthly_report @collection_code,@sort_type,@sort_object,@start_time,@end_time", sqlParams)
                          select p;
             return result.ToList();
         }

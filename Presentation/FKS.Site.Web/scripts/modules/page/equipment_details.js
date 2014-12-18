@@ -282,7 +282,7 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
                     1 == b && e.$table.datagrid("resize")
                 }
             }),
-            e.$tablePanel = h.tabs("getTab", 1),
+            e.$tablePanel = h.tabs("getTab", 1);
             e.doInitTable({
                 rownumbers: !0,
                 onDblClickRow: a.noop,
@@ -309,6 +309,7 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
             }),
             e.doInitSearchInfo();
             e.doSearch();
+            h.tabs('select', 1);
         },
         dispose: function () {
             this.base("dispose");

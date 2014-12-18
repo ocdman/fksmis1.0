@@ -128,10 +128,10 @@
         }
     }, {
         "id": 137,
-        "text": "学校油烟监测报告",
+        "text": "教育局油烟监测报告",
         "iconCls": "icon_20",
         "attributes": {
-            "hash": "page/school_monthly_report/学校油烟监测报告"
+            "hash": "page/school_monthly_report/教育局油烟监测报告"
         }
     }]
 }, {

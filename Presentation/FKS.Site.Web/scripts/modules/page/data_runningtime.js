@@ -33,14 +33,16 @@ function (a, b, c, d, e, f, g, h, i) {
         doRenderChart: function (b) {
             var d = [],
             k = {};
-            if (b && b.length) {
-                for (var g in b) {
-                    var h = b[g];
+            if (b.Vals && b.Vals.length) {
+                c = this.$panel.find(".easyui-layout").layout();
+                dd = c.layout("panel", "north");
+                dd.find(".FjTotal").text(b.FjTotal + "分钟");
+                dd.find(".JhqTotal").text(b.JhqTotal + "分钟");
+                for (var g in b.Vals) {
+                    var h = b.Vals[g];
                     k[h.Category] || (k[h.Category] = [],
-                        h.Category == "fj" ? d.push("风机有效时间") :
-                    (h.Category == "fjall" ? d.push("风机运行时间") :
-                    (h.Category == "jhq" ? d.push("净化器有效时间") :
-                    (h.Category == "jhqall" ? d.push("净化器运行时间") : null)))),
+                        h.Category == "fjall" ? d.push("风机运行时间") :
+                        (h.Category == "jhqall" ? d.push("净化器运行时间") : null)),
                     k[h.Category].push([e.getUnixToTime2(h.TimeUp.replace("/Date(", "").replace(")/", "")), h.ProbeID])
                 }
                 var g = [],
@@ -108,16 +110,6 @@ function (a, b, c, d, e, f, g, h, i) {
                         },
                     }
                 },
-                //series: [{
-                //    name: '油烟浓度1',
-                //    data: b[0]
-                //}, {
-                //    name: '油烟温度1',
-                //    data: b[1]
-                //}, {
-                //    name: '油烟湿度1',
-                //    data: b[2]
-                //}]
                 series: b
             });
         },

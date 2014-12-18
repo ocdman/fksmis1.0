@@ -463,7 +463,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>排放总量</Value>
+                                  <Value EvaluationMode="Constant">排放总量(克)</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -532,7 +532,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>报警总数</Value>
+                                  <Value EvaluationMode="Constant">报警总数(次)</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -601,7 +601,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>超标油烟浓度范围</Value>
+                                  <Value EvaluationMode="Constant">超标油烟浓度范围(mg/m³)</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -632,7 +632,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>="2.0 mg/m³"</Value>
+                                  <Value>="2.0"</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -828,7 +828,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>油烟浓度</Value>
+                                  <Value EvaluationMode="Constant">油烟浓度(mg/m³)</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -1238,7 +1238,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>排放量</Value>
+                                  <Value EvaluationMode="Constant">排放量(克)</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -1648,7 +1648,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>报警次数</Value>
+                                  <Value EvaluationMode="Constant">报警次数(次)</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -2038,6 +2038,7 @@
                           </Style>
                         </Textbox>
                         <ColSpan>3</ColSpan>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell />

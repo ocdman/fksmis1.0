@@ -40,7 +40,6 @@ function () {
     },
     {
         value: 9,
-        text: "大学",
-        group: "学校"
+        text: "大学"
     }]
 });

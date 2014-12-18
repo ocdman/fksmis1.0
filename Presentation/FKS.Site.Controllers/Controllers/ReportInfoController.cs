@@ -24,6 +24,8 @@ namespace FKS.Site.Web.Controllers.Controllers
 
         public string SortType { get; set; }
 
+        public string SortObject { get; set; }
+
         public int PositionInfo { get; set; }
 
         public int PropertyInfo { get; set; }
@@ -313,7 +315,22 @@ namespace FKS.Site.Web.Controllers.Controllers
             return View();
         }
 
-        public ActionResult LampblackAccountReporting(ReportParams param, string NickName, string Address)
+        public ActionResult LampblackAccountDataRaw(ReportParams param) 
+        {
+            if (CheckAuthority() == false)
+            {
+                return Json("error", JsonRequestBehavior.DenyGet);
+            }
+            var result = this.SiteContract.GetLampblackAccountReportData(param.collectionCode, param.StartTime, param.EndTime);
+            var dataGridData = new DataGridView<LampblackAccountReport>()
+            {
+                total = result.Count,
+                rows = result.Skip((param.page - 1) * param.rows).Take(param.rows).ToList()
+            };
+            return Json(dataGridData, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult LampblackAccountReporting(ReportParams param)
         {
             if (CheckAuthority() == false)
             {
@@ -350,24 +367,25 @@ namespace FKS.Site.Web.Controllers.Controllers
             }
 
             int i = 0;
+            string tempEquID = string.Empty;
             foreach (LampblackAccountReport lap in ds1)
             {
-
-                if (i == lap.AccountDate.Day)
+                if (tempEquID != string.Empty && (lap.EquID != tempEquID))
                 {
-                    ds2.Add(lap);
-                    i++;
-                }
-                else
-                {
-                    while (i++ != lap.AccountDate.Day - 1)
+                    while (32 > i++)
                     {
-                        ds2.Add(new LampblackAccountReport());
+                        ds2.Add(new LampblackAccountReport() { NickName = lap.NickName, Address = lap.Address});
                     }
-                    ds2.Add(lap);
+                    i = 0;
                 }
+                while (i++ != lap.AccountDate.Day - 1)
+                {
+                    ds2.Add(new LampblackAccountReport() { NickName = lap.NickName, Address = lap.Address });
+                }
+                ds2.Add(lap);
+                tempEquID = lap.EquID;
             }
-            while (31 > i++)
+            while (32 > i++)
             {
                 ds2.Add(new LampblackAccountReport());
             }
@@ -377,8 +395,6 @@ namespace FKS.Site.Web.Controllers.Controllers
 
             ReportDataSource reportDataSource1 = new ReportDataSource("DataSet1", ds2);
             localReport.DataSources.Add(reportDataSource1);
-            localReport.SetParameters(new ReportParameter("ReportParameter1", NickName));
-            localReport.SetParameters(new ReportParameter("ReportParameter2", Address));
             localReport.SetParameters(new ReportParameter("ReportParameter3", year.ToString()));
             localReport.SetParameters(new ReportParameter("ReportParameter4", month.ToString()));
 
@@ -400,7 +416,7 @@ namespace FKS.Site.Web.Controllers.Controllers
             {
                 return Json("error", JsonRequestBehavior.DenyGet);
             }
-            var result = this.SiteContract.GetSchoolMonthlyReportData(CollectionCodes, param.StartTime, param.EndTime);
+            var result = this.SiteContract.GetSchoolMonthlyReportData(CollectionCodes,param.SortType, param.SortObject, param.StartTime, param.EndTime);
             var dataGridData = new DataGridView<SchoolMonthlyReport>()
             {
                 total = result.Count,
@@ -416,7 +432,7 @@ namespace FKS.Site.Web.Controllers.Controllers
                 return Json("error", JsonRequestBehavior.DenyGet);
             }
 
-            List<SchoolMonthlyReport> ds1 = (List<SchoolMonthlyReport>)this.SiteContract.GetSchoolMonthlyReportData(CollectionCodes, param.StartTime, param.EndTime);
+            List<SchoolMonthlyReport> ds1 = (List<SchoolMonthlyReport>)this.SiteContract.GetSchoolMonthlyReportData(CollectionCodes, param.SortType, param.SortObject, param.StartTime, param.EndTime);
             LocalReport localReport = new LocalReport();
             localReport.ReportPath = Server.MapPath("~/ReportModule/HorizontalTable.rdlc");
             string parameter1 = param.StartTime.ToString();

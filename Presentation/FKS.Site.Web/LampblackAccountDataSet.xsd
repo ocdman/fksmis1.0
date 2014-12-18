@@ -47,7 +47,7 @@
   <xs:element name="LampblackAccountDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="LampblackAccountDataSet" msprop:Generator_UserDSName="LampblackAccountDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="DailyAccount" msprop:Generator_TableClassName="DailyAccountDataTable" msprop:Generator_TableVarName="tableDailyAccount" msprop:Generator_TablePropName="DailyAccount" msprop:Generator_RowDeletingName="DailyAccountRowDeleting" msprop:Generator_RowChangingName="DailyAccountRowChanging" msprop:Generator_RowEvHandlerName="DailyAccountRowChangeEventHandler" msprop:Generator_RowDeletedName="DailyAccountRowDeleted" msprop:Generator_UserTableName="DailyAccount" msprop:Generator_RowChangedName="DailyAccountRowChanged" msprop:Generator_RowEvArgName="DailyAccountRowChangeEvent" msprop:Generator_RowClassName="DailyAccountRow">
+        <xs:element name="DailyAccount" msprop:Generator_TableClassName="DailyAccountDataTable" msprop:Generator_TableVarName="tableDailyAccount" msprop:Generator_RowChangedName="DailyAccountRowChanged" msprop:Generator_TablePropName="DailyAccount" msprop:Generator_RowDeletingName="DailyAccountRowDeleting" msprop:Generator_RowChangingName="DailyAccountRowChanging" msprop:Generator_RowEvHandlerName="DailyAccountRowChangeEventHandler" msprop:Generator_RowDeletedName="DailyAccountRowDeleted" msprop:Generator_RowClassName="DailyAccountRow" msprop:Generator_UserTableName="DailyAccount" msprop:Generator_RowEvArgName="DailyAccountRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="AvgND" msprop:Generator_ColumnVarNameInTable="columnAvgND" msprop:Generator_ColumnPropNameInRow="AvgND" msprop:Generator_ColumnPropNameInTable="AvgNDColumn" msprop:Generator_UserColumnName="AvgND" type="xs:double" minOccurs="0" />
@@ -55,6 +55,8 @@
               <xs:element name="NDbjCount" msprop:Generator_ColumnVarNameInTable="columnNDbjCount" msprop:Generator_ColumnPropNameInRow="NDbjCount" msprop:Generator_ColumnPropNameInTable="NDbjCountColumn" msprop:Generator_UserColumnName="NDbjCount" type="xs:short" minOccurs="0" />
               <xs:element name="Ldb" msprop:Generator_ColumnVarNameInTable="columnLdb" msprop:Generator_ColumnPropNameInRow="Ldb" msprop:Generator_ColumnPropNameInTable="LdbColumn" msprop:Generator_UserColumnName="Ldb" type="xs:double" minOccurs="0" />
               <xs:element name="AccountDate" msprop:Generator_ColumnVarNameInTable="columnAccountDate" msprop:Generator_ColumnPropNameInRow="AccountDate" msprop:Generator_ColumnPropNameInTable="AccountDateColumn" msprop:Generator_UserColumnName="AccountDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="NickName" msprop:Generator_ColumnVarNameInTable="columnNickName" msprop:Generator_ColumnPropNameInRow="NickName" msprop:Generator_ColumnPropNameInTable="NickNameColumn" msprop:Generator_UserColumnName="NickName" type="xs:string" minOccurs="0" />
+              <xs:element name="Address" msprop:Generator_ColumnVarNameInTable="columnAddress" msprop:Generator_ColumnPropNameInRow="Address" msprop:Generator_ColumnPropNameInTable="AddressColumn" msprop:Generator_UserColumnName="Address" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

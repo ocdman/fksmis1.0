@@ -34,6 +34,14 @@
           <DataField>NickName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="SumDischarge">
+          <DataField>SumDischarge</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="AvgConcentration">
+          <DataField>AvgConcentration</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>SchoolMonthlyDataSet</rd:DataSetName>
@@ -58,7 +66,7 @@
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>7.5in</Height>
+                  <Height>8.5in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -174,7 +182,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>超标次数</Value>
+                                                    <Value>超标次数(次)</Value>
                                                     <Style>
                                                       <FontFamily>宋体</FontFamily>
                                                       <FontSize>14pt</FontSize>
@@ -307,7 +315,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>总记录次数</Value>
+                                                    <Value>总记录次数(次)</Value>
                                                     <Style>
                                                       <FontFamily>宋体</FontFamily>
                                                       <FontSize>14pt</FontSize>
@@ -440,7 +448,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>超标比例</Value>
+                                                    <Value>超标比例(%)</Value>
                                                     <Style>
                                                       <FontFamily>宋体</FontFamily>
                                                       <FontSize>14pt</FontSize>
@@ -490,7 +498,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Round(IIf(Fields!CountTime.Value = 0, 0, Fields!AlarmTime.Value / Fields!CountTime.Value), 2)</Value>
+                                                    <Value>=Round(IIf(Fields!CountTime.Value = 0, 0, Fields!AlarmTime.Value / Fields!CountTime.Value * 100), 2)</Value>
                                                     <Style>
                                                       <FontFamily>宋体</FontFamily>
                                                       <FontSize>14pt</FontSize>
@@ -531,6 +539,270 @@
                                               </Paragraph>
                                             </Paragraphs>
                                             <rd:DefaultName>Textbox13</rd:DefaultName>
+                                            <Style>
+                                              <Border>
+                                                <Style>Solid</Style>
+                                              </Border>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingTop>2pt</PaddingTop>
+                                              <PaddingBottom>2pt</PaddingBottom>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                        <DataElementOutput>Output</DataElementOutput>
+                                      </TablixCell>
+                                    </TablixCells>
+                                  </TablixRow>
+                                  <TablixRow>
+                                    <Height>0.5in</Height>
+                                    <TablixCells>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="Textbox5">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value />
+                                                    <Style>
+                                                      <FontFamily>宋体</FontFamily>
+                                                      <FontSize>14pt</FontSize>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style>
+                                                  <TextAlign>Center</TextAlign>
+                                                </Style>
+                                              </Paragraph>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value>排放量(克)</Value>
+                                                    <Style>
+                                                      <FontFamily>宋体</FontFamily>
+                                                      <FontSize>14pt</FontSize>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style>
+                                                  <TextAlign>Center</TextAlign>
+                                                </Style>
+                                              </Paragraph>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value />
+                                                    <Style>
+                                                      <FontFamily>宋体</FontFamily>
+                                                      <FontSize>14pt</FontSize>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style>
+                                                  <TextAlign>Center</TextAlign>
+                                                </Style>
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>Textbox5</rd:DefaultName>
+                                            <Style>
+                                              <Border>
+                                                <Style>Solid</Style>
+                                              </Border>
+                                              <VerticalAlign>Middle</VerticalAlign>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingTop>2pt</PaddingTop>
+                                              <PaddingBottom>2pt</PaddingBottom>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                        <DataElementOutput>Output</DataElementOutput>
+                                      </TablixCell>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="SumDischarge">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value>=Fields!SumDischarge.Value</Value>
+                                                    <Style>
+                                                      <FontFamily>宋体</FontFamily>
+                                                      <FontSize>14pt</FontSize>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style />
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>SumDischarge</rd:DefaultName>
+                                            <Style>
+                                              <Border>
+                                                <Style>Solid</Style>
+                                              </Border>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingTop>2pt</PaddingTop>
+                                              <PaddingBottom>2pt</PaddingBottom>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                        <DataElementOutput>Output</DataElementOutput>
+                                      </TablixCell>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="Textbox7">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value />
+                                                    <Style />
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style />
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>Textbox7</rd:DefaultName>
+                                            <Style>
+                                              <Border>
+                                                <Style>Solid</Style>
+                                              </Border>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingTop>2pt</PaddingTop>
+                                              <PaddingBottom>2pt</PaddingBottom>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                        <DataElementOutput>Output</DataElementOutput>
+                                      </TablixCell>
+                                    </TablixCells>
+                                  </TablixRow>
+                                  <TablixRow>
+                                    <Height>0.5in</Height>
+                                    <TablixCells>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="Textbox10">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value />
+                                                    <Style>
+                                                      <FontFamily>宋体</FontFamily>
+                                                      <FontSize>14pt</FontSize>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style>
+                                                  <TextAlign>Center</TextAlign>
+                                                </Style>
+                                              </Paragraph>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value>油烟浓度(mg/m³)</Value>
+                                                    <Style>
+                                                      <FontFamily>宋体</FontFamily>
+                                                      <FontSize>14pt</FontSize>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style>
+                                                  <TextAlign>Center</TextAlign>
+                                                </Style>
+                                              </Paragraph>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value />
+                                                    <Style>
+                                                      <FontFamily>宋体</FontFamily>
+                                                      <FontSize>14pt</FontSize>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style>
+                                                  <TextAlign>Center</TextAlign>
+                                                </Style>
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>Textbox10</rd:DefaultName>
+                                            <Style>
+                                              <Border>
+                                                <Style>Solid</Style>
+                                              </Border>
+                                              <VerticalAlign>Middle</VerticalAlign>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingTop>2pt</PaddingTop>
+                                              <PaddingBottom>2pt</PaddingBottom>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                        <DataElementOutput>Output</DataElementOutput>
+                                      </TablixCell>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="Textbox14">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value>=Round(Fields!AvgConcentration.Value, 2)</Value>
+                                                    <Style>
+                                                      <FontFamily>宋体</FontFamily>
+                                                      <FontSize>14pt</FontSize>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style />
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>Textbox14</rd:DefaultName>
+                                            <Style>
+                                              <Border>
+                                                <Style>Solid</Style>
+                                              </Border>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingTop>2pt</PaddingTop>
+                                              <PaddingBottom>2pt</PaddingBottom>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                        <DataElementOutput>Output</DataElementOutput>
+                                      </TablixCell>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="Textbox18">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value />
+                                                    <Style />
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style />
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>Textbox18</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Style>Solid</Style>
@@ -606,13 +878,13 @@ Fields!Clean.Value &gt;= 3,
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Switch(Fields!Clean.Value = 5, 
+                                                    <Value>=Switch(Fields!Clean.Value = 0, 
 "请保持目前的净化设备状态。",
-Fields!Clean.Value = 4,
+Fields!Clean.Value = 1,
 "可继续正常使用，建议对厨房烟罩进行清洗。",
-Fields!Clean.Value = 3,
+Fields!Clean.Value = 2,
 "建议清洗净化器，找专业公司对净化器内部进行清洗，使净化器可回到正常工作状态。",
-Fields!Clean.Value &lt;= 2,
+Fields!Clean.Value &gt;= 3,
 "建议清洗整套净化设备，包括烟罩、管道、风机和净化器。")</Value>
                                                     <Style>
                                                       <FontFamily>宋体</FontFamily>
@@ -783,6 +1055,8 @@ Fields!Clean.Value &lt;= 2,
                                       </CellContents>
                                     </TablixHeader>
                                     <TablixMembers>
+                                      <TablixMember />
+                                      <TablixMember />
                                       <TablixMember />
                                       <TablixMember />
                                       <TablixMember />
@@ -1032,7 +1306,7 @@ Fields!Clean.Value &lt;= 2,
                               <RepeatRowHeaders>true</RepeatRowHeaders>
                               <DataSetName>DataSet1</DataSetName>
                               <Top>3.5cm</Top>
-                              <Height>5in</Height>
+                              <Height>6in</Height>
                               <Width>6in</Width>
                               <Style />
                             </Tablix>
@@ -1155,7 +1429,7 @@ Fields!Clean.Value &lt;= 2,
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>Textbox153</rd:DefaultName>
-                              <Top>16.2cm</Top>
+                              <Top>18.74cm</Top>
                               <Height>1cm</Height>
                               <Width>15.24cm</Width>
                               <ZIndex>4</ZIndex>
@@ -1189,7 +1463,7 @@ Fields!Clean.Value &lt;= 2,
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>Textbox153</rd:DefaultName>
-                              <Top>17.2cm</Top>
+                              <Top>19.74cm</Top>
                               <Height>1cm</Height>
                               <Width>15.24cm</Width>
                               <ZIndex>5</ZIndex>
@@ -1214,7 +1488,6 @@ Fields!Clean.Value &lt;= 2,
                             </Border>
                           </Style>
                         </Rectangle>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -1240,19 +1513,19 @@ Fields!Clean.Value &lt;= 2,
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
-            <Height>7.5in</Height>
+            <Height>8.5in</Height>
             <Width>6.5in</Width>
             <Style />
           </Tablix>
         </ReportItems>
-        <Height>7.5in</Height>
+        <Height>8.5in</Height>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
         </Style>
       </Body>
-      <Width>7in</Width>
+      <Width>7.5in</Width>
       <Page>
         <LeftMargin>1in</LeftMargin>
         <RightMargin>1in</RightMargin>

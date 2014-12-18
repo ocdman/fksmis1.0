@@ -30,19 +30,21 @@ function (a, b, c, d, e, f, g, h, i) {
             }), h.doAddModule(c.controller, a, c), !0) : !1
         },
         doRenderChart: function (b) {
-            var d = [];
             k = {};
-            if (b && b.length) {
-                j = b[0].ConcentrateBound;
-                for (var g in b) {
-                    var h = b[g];
-                    k[h.Id] || (k[h.Id] = []),
-                    k[h.Id].push([e.getUnixToTime2(h.TimeUp.replace("/Date(", "").replace(")/", "")), parseFloat((h.YouYanND).toFixed(1))])
+            if (b.Vals && b.Vals.length) {
+                j = b.Bound;
+                c = this.$panel.find(".easyui-layout").layout();
+                d = c.layout("panel", "north");
+                d.find(".ConcentrationStatistics").text(b.StatVal.toFixed(2) + "mg/m³");
+                for (var g in b.Vals) {
+                    var h = b.Vals[g];
+                    k[0] || (k[0] = []),
+                    k[0].push([e.getUnixToTime2(h.TimeUp.replace("/Date(", "").replace(")/", "")), parseFloat((h.Value).toFixed(1))])
                 }
                 var g = [];
                 g.push({
                     name: "油烟浓度",
-                    data: k[h.Id]
+                    data: k[0]
                 })
                 try {
                     this.doDrawChart(g, j)

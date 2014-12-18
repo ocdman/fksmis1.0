@@ -30,20 +30,19 @@ function (a, b, c, d, e, f, g, h, i) {
             }), h.doAddModule(c.controller, a, c), !0) : !1
         },
         doRenderChart: function (b) {
-            var d = [],
+            var d = [];
             k = {};
-            if (b && b.length) {
-                j = b[0].PurifierBound;
-                for (var g in b) {
-                    var h = b[g];
-                    k[h.Id] || (k[h.Id] = []),
-                    k[h.Id].push([e.getUnixToTime2(h.TimeUp.replace("/Date(", "").replace(")/", "")), parseFloat((h.YouYanND * 100).toFixed(1))]);
-                    //void 0 != h.TimeUp && void 0 != h.Id && (f != h.TimeUp && (f = h.TimeUp, d.push(e.DateFormat(e.getUnixToTime1(f.replace("/Date(", "").replace(")/", "")), "yyyy/MM/dd"))), c[h.Id].push(h.YouYanND))
+            if (b.Vals && b.Vals.length) {
+                j = b.Bound;
+                for (var g in b.Vals) {
+                    var h = b.Vals[g];
+                    k[0] || (k[0] = []),
+                    k[0].push([e.getUnixToTime2(h.TimeUp.replace("/Date(", "").replace(")/", "")), parseFloat((h.Value * 100).toFixed(1))]);
                 }
                 var g = [];
                 g.push({
                     name: "净化效率",
-                    data: k[h.Id]
+                    data: k[0]
                 })
                 try {
                     this.doDrawChart(g, j)

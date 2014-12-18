@@ -289,6 +289,10 @@ namespace FKS.Site.Web {
             
             private global::System.Data.DataColumn columnAccountDate;
             
+            private global::System.Data.DataColumn columnNickName;
+            
+            private global::System.Data.DataColumn columnAddress;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public DailyAccountDataTable() {
@@ -364,6 +368,22 @@ namespace FKS.Site.Web {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn NickNameColumn {
+                get {
+                    return this.columnNickName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn AddressColumn {
+                get {
+                    return this.columnAddress;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -399,14 +419,16 @@ namespace FKS.Site.Web {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DailyAccountRow AddDailyAccountRow(double AvgND, short Avgjjd, short NDbjCount, double Ldb, System.DateTime AccountDate) {
+            public DailyAccountRow AddDailyAccountRow(double AvgND, short Avgjjd, short NDbjCount, double Ldb, System.DateTime AccountDate, string NickName, string Address) {
                 DailyAccountRow rowDailyAccountRow = ((DailyAccountRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         AvgND,
                         Avgjjd,
                         NDbjCount,
                         Ldb,
-                        AccountDate};
+                        AccountDate,
+                        NickName,
+                        Address};
                 rowDailyAccountRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowDailyAccountRow);
                 return rowDailyAccountRow;
@@ -434,6 +456,8 @@ namespace FKS.Site.Web {
                 this.columnNDbjCount = base.Columns["NDbjCount"];
                 this.columnLdb = base.Columns["Ldb"];
                 this.columnAccountDate = base.Columns["AccountDate"];
+                this.columnNickName = base.Columns["NickName"];
+                this.columnAddress = base.Columns["Address"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -449,6 +473,10 @@ namespace FKS.Site.Web {
                 base.Columns.Add(this.columnLdb);
                 this.columnAccountDate = new global::System.Data.DataColumn("AccountDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnAccountDate);
+                this.columnNickName = new global::System.Data.DataColumn("NickName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNickName);
+                this.columnAddress = new global::System.Data.DataColumn("Address", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAddress);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -671,6 +699,38 @@ namespace FKS.Site.Web {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string NickName {
+                get {
+                    try {
+                        return ((string)(this[this.tableDailyAccount.NickNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“DailyAccount”中列“NickName”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableDailyAccount.NickNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Address {
+                get {
+                    try {
+                        return ((string)(this[this.tableDailyAccount.AddressColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“DailyAccount”中列“Address”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableDailyAccount.AddressColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsAvgNDNull() {
                 return this.IsNull(this.tableDailyAccount.AvgNDColumn);
             }
@@ -727,6 +787,30 @@ namespace FKS.Site.Web {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetAccountDateNull() {
                 this[this.tableDailyAccount.AccountDateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsNickNameNull() {
+                return this.IsNull(this.tableDailyAccount.NickNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetNickNameNull() {
+                this[this.tableDailyAccount.NickNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsAddressNull() {
+                return this.IsNull(this.tableDailyAccount.AddressColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetAddressNull() {
+                this[this.tableDailyAccount.AddressColumn] = global::System.Convert.DBNull;
             }
         }
         

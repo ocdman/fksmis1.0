@@ -1,7 +1,7 @@
 ﻿@Styles.Render("~/contents/jquery.plot/jquery.jqplot.min.css")
 
 <div class="easyui-layout" data-options="fit:true">
-    <div data-options="region:'north',border:false,collapsible:false" style="height: 90px;padding: 10px; overflow: hidden; border-bottom-width: 1px;">
+    <div data-options="region:'north',border:false,collapsible:false" style="height: 100px;padding: 10px; overflow: hidden; border-bottom-width: 1px;">
         <div style="margin: 5px;" class="form-inline">
             <div class="form-group">
                 <label class="control-label">统计方式：</label>
@@ -13,11 +13,32 @@
                     <option value="03" selected="selected">月统计</option>
                 </select>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="margin-left:10px;">
                 <label class="control-label">设备选择：</label>
             </div>
             <div class="form-group">
                 <input data-role="type" type="text" class="form-control input-sm EquipInfo" />
+            </div>
+        </div>
+        <div style="margin: 5px;" class="form-inline">
+            <div class="form-group">
+                <label class="control-label">排序对象：</label>
+            </div>
+            <div class="form-group">
+                <select id="sortObject" class="easyui-combobox" style="width:150px;" data-operation="required:true">
+                    <option value="01">排放量</option>
+                    <option value="02">油烟浓度</option>
+                    <option value="03">报警次数</option>
+                </select>
+            </div>
+            <div class="form-group" style="margin-left:10px;">
+                <label class="control-label">排列方式：</label>
+            </div>
+            <div class="form-group">
+                <select id="sortType" class="easyui-combobox" style="width:150px;" data-operation="required:true">
+                    <option value="01">从高到低</option>
+                    <option value="02">从低到高</option>
+                </select>
             </div>
         </div>
         <div style="margin: 5px" class="form-inline">
@@ -29,7 +50,7 @@
                 <input data-role="type" type="text" data-options="required:true,value:'6/3/2014'" class="form-control input-sm easyui-datetimebox startTime" style="width:150px" />
             </div>
 
-            <div class="form-group">
+            <div class="form-group" style="margin-left:10px;">
                 <label class="control-label">截止日期：</label>
             </div>
 

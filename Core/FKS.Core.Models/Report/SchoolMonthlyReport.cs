@@ -24,5 +24,13 @@ namespace FKS.Core.Models.Report
         /// 用户名称
         /// </summary>
         public string NickName { get; set; }
+        /// <summary>
+        /// 排放量
+        /// </summary>
+        public int SumDischarge { get; set; }
+        /// <summary>
+        /// 油烟浓度
+        /// </summary>
+        public double AvgConcentration { get; set; }
     }
 }

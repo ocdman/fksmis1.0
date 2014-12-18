@@ -42,13 +42,13 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, z, y, xx) {
                 sortable: !1
             },
             {
-                field: "Status",
-                title: "工作状态",
-                width: 60,
+                field: "Jurisdiction",
+                title: "管辖",
+                width: 80,
                 sortable: !1,
                 formatter: function (a) {
-                    for (var b in k) {
-                        var c = k[b];
+                    for (var b in xx) {
+                        var c = xx[b];
                         if (c.value == a) return c.text;
                     }
                     return a;
@@ -146,7 +146,7 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, z, y, xx) {
             x = b.$ajaxDialog.find("#FanType");
             x[0].value = (x[0].value == "" ? "1" : x[0].value);
             yy = b.$ajaxDialog.find("#Jurisdiction");
-            yy[0].value = (yy[0].value == "" ? "1" : yy[0].value);
+            yy[0].value = (yy[0].value == "" ? "0" : yy[0].value);
             b.doWait(o, 0,
             function () {
                 b.base("doOnloadPage", null, g)
@@ -212,7 +212,7 @@ function (a, b, c, d, e, f, g, h, i, j, k, l, m, z, y, xx) {
                 valueField: "value",
                 textField: "text",
                 panelHeight: "auto",
-                value: yy[0].value == "" ? "1" : yy[0].value,
+                value: yy[0].value == "" ? "0" : yy[0].value,
             })
         },
         doGetSearchCondition: function (a) {

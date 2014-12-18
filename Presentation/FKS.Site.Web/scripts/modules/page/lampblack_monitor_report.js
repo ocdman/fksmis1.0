@@ -77,7 +77,7 @@ function (a, b, c, d, e, f, g, h, i, k, l) {
                 sortable: !1
             }, {
                 field: "SumDischarge",
-                title: "排放量(克/天)",
+                title: "排放量(克)",
                 width: 100,
                 sortable: !1,
                 formatter: function (a) {

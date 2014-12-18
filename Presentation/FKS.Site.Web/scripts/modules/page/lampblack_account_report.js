@@ -7,8 +7,8 @@
     "modules/base/manager_base",
     "modules/main_ui",
     "modules/page/equipment_manager",
-    "plugins/js/highcharts"],
-function (a, b, c, d, e, f, g, h, i) {
+    "localdata/jurisdiction"],
+function (a, b, c, d, e, f, g, h, i, k) {
     var j = g.extend({
         controller: "ReportInfo",
         $jqPlot: null,
@@ -34,27 +34,91 @@ function (a, b, c, d, e, f, g, h, i) {
             }), h.doAddModule(c.controller, a, c), !0) : !1
         },
         getTableColumns: function () {
+            var _this = this;
             return [[{
+                field: "AccountDate",
+                title: "日期",
+                width: 80,
+                sortable: !1,
+                formatter: function (a) {
+                    return e.DateFormat(e.getUnixToTime1(a.replace("/Date(", "").replace(")/", "")), "yyyy-MM-dd");
+                }
+            },{
                 field: "Ldb",
                 title: "联动比",
                 width: 80,
-                sortable: !1
+                sortable: !1,
+                formatter: function (a) {
+                    return a >= 0.9 ? "√" : "×";
+                }
             }, {
                 field: "NDbjCount",
                 title: "超标次数",
                 width: 100,
                 sortable: !1,
+                formatter: function (a,b) {
+                    return b.AvgND <= 2.0 ? "√" : (a < 20 ? "○" : "×");
+                }
             }, {
                 field: "Avgjjd",
                 title: "洁净度",
                 width: 100,
-                sortable: !1
+                sortable: !1,
+                formatter: function (b) {
+                    return b >= 4 ? "√" : "×";
+                }
             }, {
-                field: "AccountDate",
-                title: "日期",
-                width: 80,
-                sortable: !1
+                field: "NickName",
+                title: "单位",
+                width: 150,
+                sortable: !1,
+            }, {
+                field: "Address",
+                title: "地址",
+                width: 220,
+                sortable: !1,
             }]];
+        },
+        getTableColumns3: function () {
+            return [[
+            { field: 'ck', checkbox: !0 },
+            {
+                field: "NickName",
+                title: "用户名称",
+                width: 150,
+                sortable: !1
+            },
+            {
+                field: "CollectionCode",
+                title: "采集器ID",
+                width: 100,
+                sortable: !1
+            },
+            {
+                field: "Address",
+                title: "安装地址",
+                width: 250,
+                sortable: !1
+            },
+            {
+                field: "EquipCount",
+                title: "探测器数量",
+                width: 70,
+                sortable: !1
+            },
+            {
+                field: "Jurisdiction",
+                title: "管辖",
+                width: 80,
+                sortable: !1,
+                formatter: function (a) {
+                    for (var b in k) {
+                        var c = k[b];
+                        if (c.value == a) return c.text;
+                    }
+                    return a;
+                }
+            }]]
         },
         render: function () {
             var b, c, d, g = this;
@@ -71,11 +135,10 @@ function (a, b, c, d, e, f, g, h, i) {
                 idField: i.prototype.idField,
                 textField: i.prototype.textField,
                 url: g.getHref(!1, i.prototype.controller, "DataRowIndex"),
-                columns: i.prototype.getTableColumns.call(this),
+                columns: g.getTableColumns3(),
+                multiple: !0,
                 onSelect: function (a, b) {
-                    g.currentId = b.CollectionCode,
-                    g.nickName = b.NickName,
-                    g.address = b.Address
+                    g.currentId = b.CollectionCode
                 }
             }),
             g.doInitTable({
@@ -86,8 +149,8 @@ function (a, b, c, d, e, f, g, h, i) {
                 onDbClickRow: a.noop,
                 url: "",
                 pagination: !0,
-                pageSize: 50,
-                pageList: [50]
+                pageSize: 100,
+                pageList: [300, 200, 100]
             }, [], "", ""),
             d.find(".easyui-linkbutton").linkbutton({
                 onClick: function () {
@@ -95,96 +158,116 @@ function (a, b, c, d, e, f, g, h, i) {
                     b && g[b] && g[b].call(g);
                 }
             }),
-            d.find("#month").combobox({
-                required: !0,
-                width: 150,
-                onSelect: function (a) {
-                    var thisMonth = (new Date()).getMonth() + 1;
-                    if (a.value == "01") {
-                        g.StartTime = e.getMonth("s", 1 - thisMonth);
-                        g.EndTime = e.getMonth("d", 1 - thisMonth);
-                    }
-                    else if (a.value == "02") {
-                        g.StartTime = e.getMonth("s", 2 - thisMonth);
-                        g.EndTime = e.getMonth("d", 2 - thisMonth);
-                    }
-                    else if (a.value == "03") {
-                        g.StartTime = e.getMonth("s", 3 - thisMonth);
-                        g.EndTime = e.getMonth("d", 3 - thisMonth);
-                    }
-                    else if (a.value == "04") {
-                        g.StartTime = e.getMonth("s", 4 - thisMonth);
-                        g.EndTime = e.getMonth("d", 4 - thisMonth);
-                    }
-                    else if (a.value == "05") {
-                        g.StartTime = e.getMonth("s", 5 - thisMonth);
-                        g.EndTime = e.getMonth("d", 5 - thisMonth);
-                    }
-                    else if (a.value == "06") {
-                        g.StartTime = e.getMonth("s", 6 - thisMonth);
-                        g.EndTime = e.getMonth("d", 6 - thisMonth);
-                    }
-                    else if (a.value == "07") {
-                        g.StartTime = e.getMonth("s", 7 - thisMonth);
-                        g.EndTime = e.getMonth("d", 7 - thisMonth);
-                    }
-                    else if (a.value == "08") {
-                        g.StartTime = e.getMonth("s", 8 - thisMonth);
-                        g.EndTime = e.getMonth("d", 8 - thisMonth);
-                    }
-                    else if (a.value == "09") {
-                        g.StartTime = e.getMonth("s", 9 - thisMonth);
-                        g.EndTime = e.getMonth("d", 9 - thisMonth);
-                    }
-                    else if (a.value == "10") {
-                        g.StartTime = e.getMonth("s", 10 - thisMonth);
-                        g.EndTime = e.getMonth("d", 10 - thisMonth);
-                    }
-                    else if (a.value == "11") {
-                        g.StartTime = e.getMonth("s", 11 - thisMonth);
-                        g.EndTime = e.getMonth("d", 11 - thisMonth);
-                    }
-                    else if (a.value == "12") {
-                        g.StartTime = e.getMonth("s", 12 - thisMonth);
-                        g.EndTime = e.getMonth("d", 12 - thisMonth);
-                    }
-                }
-            });
-            //c.find(".datepicker").val(e.DateFormat(new Date(), "yyyy-MM"));
+            d.find(".monthpicker").val(e.DateFormat(new Date(e.getMonth("s", -1)), "yyyy-MM"));
             //a(".datepicker").select(function () {
             //    alert("hello");
             //})
             g.$searchBar = d;
         },
+        getStartAndEndTime: function (year, month) {
+            var g = this;
+            var thisMonth = (new Date()).getMonth() + 1;
+            var thisYear = new Date().getFullYear();
+            if (month == "01") {
+                g.StartTime = e.getMonth("s", 1 - thisMonth).replace(thisYear, year);
+                g.EndTime = e.getMonth("d", 1 - thisMonth).replace(thisYear, year);
+            }
+            else if (month == "02") {
+                g.StartTime = e.getMonth("s", 2 - thisMonth).replace(thisYear, year);
+                g.EndTime = e.getMonth("d", 2 - thisMonth).replace(thisYear, year);
+            }
+            else if (month == "03") {
+                g.StartTime = e.getMonth("s", 3 - thisMonth).replace(thisYear, year);
+                g.EndTime = e.getMonth("d", 3 - thisMonth).replace(thisYear, year);
+            }
+            else if (month == "04") {
+                g.StartTime = e.getMonth("s", 4 - thisMonth).replace(thisYear, year);
+                g.EndTime = e.getMonth("d", 4 - thisMonth).replace(thisYear, year);
+            }
+            else if (month == "05") {
+                g.StartTime = e.getMonth("s", 5 - thisMonth).replace(thisYear, year);
+                g.EndTime = e.getMonth("d", 5 - thisMonth).replace(thisYear, year);
+            }
+            else if (month == "06") {
+                g.StartTime = e.getMonth("s", 6 - thisMonth).replace(thisYear, year);
+                g.EndTime = e.getMonth("d", 6 - thisMonth).replace(thisYear, year);
+            }
+            else if (month == "07") {
+                g.StartTime = e.getMonth("s", 7 - thisMonth).replace(thisYear, year);
+                g.EndTime = e.getMonth("d", 7 - thisMonth).replace(thisYear, year);
+            }
+            else if (month == "08") {
+                g.StartTime = e.getMonth("s", 8 - thisMonth).replace(thisYear, year);
+                g.EndTime = e.getMonth("d", 8 - thisMonth).replace(thisYear, year);
+            }
+            else if (month == "09") {
+                g.StartTime = e.getMonth("s", 9 - thisMonth).replace(thisYear, year);
+                g.EndTime = e.getMonth("d", 9 - thisMonth).replace(thisYear, year);
+            }
+            else if (month == "10") {
+                g.StartTime = e.getMonth("s", 10 - thisMonth).replace(thisYear, year);
+                g.EndTime = e.getMonth("d", 10 - thisMonth).replace(thisYear, year);
+            }
+            else if (month == "11") {
+                g.StartTime = e.getMonth("s", 11 - thisMonth).replace(thisYear, year);
+                g.EndTime = e.getMonth("d", 11 - thisMonth).replace(thisYear, year);
+            }
+            else if (month == "12") {
+                g.StartTime = e.getMonth("s", 12 - thisMonth).replace(thisYear, year);
+                g.EndTime = e.getMonth("d", 12 - thisMonth).replace(thisYear, year);
+            }
+        },
         doAccount: function () {
-            //var b = this;
-            //b.currentId && a.ajax({
-            //    url: b.getHref(!1, b.controller, "LampblackAccountReporting"),
-            //    data: {
-            //        tableName: b.currentId,
-            //        //StartTime: c,
-            //        //EndTime: d
-            //    },
-            //    success: function (a) {
-            //        console.log(a);
-            //        //b.doRenderChart(a);
-            //    },
-            //    error: function () {
-            //        a.messager.alert("提示", "获取数据失败", "error");
-            //    }
-            //})
+            var aa = this,
+            c = aa.$searchBar.find(".monthpicker").val();
+            year = c.substr(0, 4);
+            month = c.substr(5);
+            aa.getStartAndEndTime(year, month);
+            b, d;
+            b = aa.$panel.find(".easyui-layout").layout(),
+            d = b.layout("panel", "north"),
+            ss = [];
 
-            var aa = this;
-            if (aa.currentId != 0)
+            var grid = d.find(".EquipInfo").combogrid("grid");
+            var rows = grid.datagrid('getSelections');
+
+            for (var j = 0; j < rows.length; j++) {
+                var row = rows[j];
+                ss.push(row.CollectionCode);
+            }
+            if (ss.length > 0)
             {
-                var strurl = '../ReportInfo/LampblackAccountReporting' + '?collectionCode=' + aa.currentId + '&StartTime='
-                + aa.StartTime + '&EndTime=' + aa.EndTime + '&NickName=' + aa.nickName + '&Address=' + aa.address;
+                var strurl = '../ReportInfo/LampblackAccountReporting' + '?collectionCode=' + ss.toString() + '&StartTime='
+                + aa.StartTime + '&EndTime=' + aa.EndTime;
                 window.open(strurl);
             }
             else {
                 a.messager.alert("提示", "请选择设备！", "warning");
             }
             
+        },
+        doSearch: function () {
+            var b = this;
+            c = b.$searchBar.find(".monthpicker").val();
+            year = c.substr(0, 4);
+            month = c.substr(5);
+            b.getStartAndEndTime(year, month);
+            var a, d;
+            a = b.$panel.find(".easyui-layout").layout(),
+            d = a.layout("panel", "north"),
+            ss = [];
+            var grid = d.find(".EquipInfo").combogrid("grid");
+            var rows = grid.datagrid('getSelections');
+            for (var j = 0; j < rows.length; j++) {
+                var row = rows[j];
+                ss.push(row.CollectionCode);
+            }
+            b.$table.datagrid("options").url = b.getHref(!1, b.controller, "LampblackAccountDataRaw"),
+            b.$table.datagrid("reload", {
+                CollectionCode: ss.toString(),
+                StartTime: b.StartTime,
+                EndTime: b.EndTime
+            });
         },
         dispose: function () {
             this.base("dispose");

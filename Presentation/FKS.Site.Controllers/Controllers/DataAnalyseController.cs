@@ -40,8 +40,9 @@ namespace FKS.Site.Web.Controllers.Controllers
         [Import]
         protected IAuthoritySiteContract AuthoritySiteContract { get; set; }
 
+        [Import]
+        protected IParameterSetSiteContract ParameterSetSiteContract { get; set; }
 
-        //static DateTime time = new DateTime(2014, 6, 11, 12, 01, 0);
         static DateTime time = DateTime.Now;
 
         #region View
@@ -266,13 +267,14 @@ namespace FKS.Site.Web.Controllers.Controllers
             }
             var result = this.SiteContract.GetRunningTimeData(param.tableName, param.StartTime, param.EndTime);
 
-            //var datagriddata = new DataGridView<DataAnalyse>
-            //{
-            //    total = result.Count,
-            //    rows = result.Skip((param.page - 1) * param.rows).Take(param.rows).ToList(),
-            //};
+            var datagriddata = new RunningTimeGridView<RunningTime>
+            {
+                FjTotal = result.Where(m => m.Category == "fjall").Select(m => m.ProbeID).Sum(),
+                JhqTotal = result.Where(m => m.Category == "jhqall").Select(m => m.ProbeID).Sum(),
+                Vals = result.ToList()
+            };
 
-            return Json(result, JsonRequestBehavior.AllowGet);
+            return Json(datagriddata, JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
@@ -320,7 +322,16 @@ namespace FKS.Site.Web.Controllers.Controllers
                 return Json("error", JsonRequestBehavior.DenyGet);
             }
             var result = this.SiteContract.GetDischarge(param.tableName, param.StartTime, param.EndTime);
-            return Json(result, JsonRequestBehavior.AllowGet);
+
+            var datagriddata = new DataStatisticsGridView<DataStatistics>
+            {
+                Total = result.Count,
+                Vals = result.ToList(),
+                StatVal = result.Select(m => m.Value).Sum(),
+                Bound = ParameterSetSiteContract.ParameterSets.Single(m => m.Id == 1).DayDischargeBound
+            };
+
+            return Json(datagriddata, JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
@@ -335,7 +346,14 @@ namespace FKS.Site.Web.Controllers.Controllers
                 return Json("error", JsonRequestBehavior.DenyGet);
             }
             var result = this.SiteContract.GetPureRate(param.tableName, param.StartTime, param.EndTime);
-            return Json(result, JsonRequestBehavior.AllowGet);
+            var datagriddata = new DataStatisticsGridView<DataStatistics>
+            {
+                Total = result.Count,
+                Vals = result.ToList(),
+                StatVal = result.Select(m => m.Value).Average(),
+                Bound = ParameterSetSiteContract.ParameterSets.Single(m => m.Id == 1).PurifierBound
+            };
+            return Json(datagriddata, JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
@@ -350,7 +368,14 @@ namespace FKS.Site.Web.Controllers.Controllers
                 return Json("error", JsonRequestBehavior.DenyGet);
             }
             var result = this.SiteContract.GetConcentration(param.tableName, param.StartTime, param.EndTime);
-            return Json(result, JsonRequestBehavior.AllowGet);
+            var datagriddata = new DataStatisticsGridView<DataStatistics>
+            {
+                Total = result.Count,
+                Vals = result.ToList(),
+                StatVal = result.Select(m => m.Value).Average(),
+                Bound = ParameterSetSiteContract.ParameterSets.Single(m => m.Id == 1).ConcentrateBound
+            };
+            return Json(datagriddata, JsonRequestBehavior.AllowGet);
         }
 
         #endregion

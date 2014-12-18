@@ -63,10 +63,8 @@
     <Compile Include="Configurations\Hardware\AbnormalEquipConfiguration.generated.cs" />
     <Compile Include="Configurations\Message\MessageSetConfiguration.generated.cs" />
     <Compile Include="Configurations\Hardware\DataAnalyseConfiguration.generated.cs" />
-    <Compile Include="Configurations\Hardware\DataStatisticsConfiguration.generated.cs" />
     <Compile Include="Configurations\Hardware\EquipManagerConfiguration.generated.cs" />
     <Compile Include="Configurations\Hardware\EquipmentConfiguration.generated.cs" />
-    <Compile Include="Configurations\Hardware\RunningTimeConfiguration.generated.cs" />
     <Compile Include="Configurations\Parameters\ParameterSetConfiguration.generated.cs" />
     <Compile Include="Configurations\Report\OperationMaintenanceReportConfiguration.generated.cs" />
     <Compile Include="Configurations\Report\ReportInfoConfiguration.generated.cs" />
@@ -87,16 +85,12 @@
     <Compile Include="Repositories\Message\IMessageSetRepository.generated.cs" />
     <Compile Include="Repositories\Message\Impl\MessageSetRepository.generated.cs" />
     <Compile Include="Repositories\Hardware\IDataAnalyseRepository.generated.cs" />
-    <Compile Include="Repositories\Hardware\IDataStatisticsRepository.generated.cs" />
     <Compile Include="Repositories\Hardware\IEquipManagerRepository.generated.cs" />
     <Compile Include="Repositories\Hardware\IEquipmentRepository.generated.cs" />
     <Compile Include="Repositories\Hardware\Impl\AbnormalEquipRepository.generated.cs" />
     <Compile Include="Repositories\Hardware\Impl\DataAnalyseRepository.generated.cs" />
-    <Compile Include="Repositories\Hardware\Impl\DataStatisticsRepository.generated.cs" />
     <Compile Include="Repositories\Hardware\Impl\EquipManagerRepository.generated.cs" />
     <Compile Include="Repositories\Hardware\Impl\EquipmentRepository.generated.cs" />
-    <Compile Include="Repositories\Hardware\Impl\RunningTimeRepository.generated.cs" />
-    <Compile Include="Repositories\Hardware\IRunningTimeRepository.generated.cs" />
     <Compile Include="Repositories\logger\IFKSLoggerRepository.generated.cs" />
     <Compile Include="Repositories\logger\ILogInfoRepository.generated.cs" />
     <Compile Include="Repositories\logger\Impl\FKSLoggerRepository.generated.cs" />

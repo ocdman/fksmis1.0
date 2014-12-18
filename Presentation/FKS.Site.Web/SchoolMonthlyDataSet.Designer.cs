@@ -287,6 +287,10 @@ namespace FKS.Site.Web {
             
             private global::System.Data.DataColumn columnNickName;
             
+            private global::System.Data.DataColumn columnSumDischarge;
+            
+            private global::System.Data.DataColumn columnAvgConcentration;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public SchoolMonthlyReportDataTable() {
@@ -354,6 +358,22 @@ namespace FKS.Site.Web {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SumDischargeColumn {
+                get {
+                    return this.columnSumDischarge;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn AvgConcentrationColumn {
+                get {
+                    return this.columnAvgConcentration;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -389,13 +409,15 @@ namespace FKS.Site.Web {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SchoolMonthlyReportRow AddSchoolMonthlyReportRow(int AlarmTime, int CountTime, int Clean, string NickName) {
+            public SchoolMonthlyReportRow AddSchoolMonthlyReportRow(int AlarmTime, int CountTime, int Clean, string NickName, int SumDischarge, double AvgConcentration) {
                 SchoolMonthlyReportRow rowSchoolMonthlyReportRow = ((SchoolMonthlyReportRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         AlarmTime,
                         CountTime,
                         Clean,
-                        NickName};
+                        NickName,
+                        SumDischarge,
+                        AvgConcentration};
                 rowSchoolMonthlyReportRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSchoolMonthlyReportRow);
                 return rowSchoolMonthlyReportRow;
@@ -422,6 +444,8 @@ namespace FKS.Site.Web {
                 this.columnCountTime = base.Columns["CountTime"];
                 this.columnClean = base.Columns["Clean"];
                 this.columnNickName = base.Columns["NickName"];
+                this.columnSumDischarge = base.Columns["SumDischarge"];
+                this.columnAvgConcentration = base.Columns["AvgConcentration"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -435,6 +459,10 @@ namespace FKS.Site.Web {
                 base.Columns.Add(this.columnClean);
                 this.columnNickName = new global::System.Data.DataColumn("NickName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNickName);
+                this.columnSumDischarge = new global::System.Data.DataColumn("SumDischarge", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSumDischarge);
+                this.columnAvgConcentration = new global::System.Data.DataColumn("AvgConcentration", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAvgConcentration);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -641,6 +669,38 @@ namespace FKS.Site.Web {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int SumDischarge {
+                get {
+                    try {
+                        return ((int)(this[this.tableSchoolMonthlyReport.SumDischargeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“SchoolMonthlyReport”中列“SumDischarge”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableSchoolMonthlyReport.SumDischargeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public double AvgConcentration {
+                get {
+                    try {
+                        return ((double)(this[this.tableSchoolMonthlyReport.AvgConcentrationColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“SchoolMonthlyReport”中列“AvgConcentration”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableSchoolMonthlyReport.AvgConcentrationColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsAlarmTimeNull() {
                 return this.IsNull(this.tableSchoolMonthlyReport.AlarmTimeColumn);
             }
@@ -685,6 +745,30 @@ namespace FKS.Site.Web {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetNickNameNull() {
                 this[this.tableSchoolMonthlyReport.NickNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsSumDischargeNull() {
+                return this.IsNull(this.tableSchoolMonthlyReport.SumDischargeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetSumDischargeNull() {
+                this[this.tableSchoolMonthlyReport.SumDischargeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsAvgConcentrationNull() {
+                return this.IsNull(this.tableSchoolMonthlyReport.AvgConcentrationColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetAvgConcentrationNull() {
+                this[this.tableSchoolMonthlyReport.AvgConcentrationColumn] = global::System.Convert.DBNull;
             }
         }
         

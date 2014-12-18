@@ -59,7 +59,7 @@ namespace FKS.Site.Web.Controllers.Controllers
                     NickName = m.NickName,
                     Address = m.Address,
                     EquipCount = m.EquipCount,
-                    Status = m.Status,
+                    Jurisdiction = m.Jurisdiction,
                 });
 
             dgvResult.rows = memberViews.ToList();
@@ -160,7 +160,7 @@ namespace FKS.Site.Web.Controllers.Controllers
             DataGridView<EquipmentView> dgvResult = new DataGridView<EquipmentView>();
 
             this.SetQueryBuilder(pagination);
-            var memberViews = this.SiteContract.Equipments.Where(this.ViewQueryBuilder.Expression).Where<Equipment, int>(m => m.PropertyInfo >= 6, pagination.page, pagination.rows, out total, sortConditions.ToArray())
+            var memberViews = this.SiteContract.Equipments.Where(this.ViewQueryBuilder.Expression).Where<Equipment, int>(m => m.PropertyInfo >= 6, pagination.page, pagination.rows, out total, sortConditions.ToArray()).Where(m => m.Jurisdiction == 0)
                 .Select(m => new EquipmentView
                 {
                     CollectionCode = m.CollectionCode,
@@ -168,6 +168,7 @@ namespace FKS.Site.Web.Controllers.Controllers
                     Address = m.Address,
                     EquipCount = m.EquipCount,
                     Status = m.Status,
+                    Jurisdiction = m.Jurisdiction,
                 });
 
             dgvResult.rows = memberViews.ToList();

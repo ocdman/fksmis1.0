@@ -5,8 +5,8 @@
                 <label class="control-label">月份：</label>
             </div>
             <div class="form-group">
-                @*<input data-role="type" type="month" class="form-control input-sm datepicker" value="new Date()" />*@
-                <select id="month" class="easyui-combobox" style="width:150px;" data-operation="required:true">
+                <input data-role="type" type="month" class="monthpicker"/>
+                @*<select id="month" class="easyui-combobox" style="width:150px;" data-operation="required:true">
                     <option value="01">1月份</option>
                     <option value="02">2月份</option>
                     <option value="03">3月份</option>
@@ -19,7 +19,7 @@
                     <option value="10">10月份</option>
                     <option value="11">11月份</option>
                     <option value="12">12月份</option>
-                </select>
+                </select>*@
             </div>
         </div>
         <div style="margin: 5px" class="form-inline">
@@ -29,6 +29,13 @@
             <div class="form-group">
                 <input data-role="type" type="text" class="form-control input-sm EquipInfo" />
             </div>
+            <a href="#"
+               data-operation="doSearch"
+               iconcls="icon-search"
+               class="easyui-linkbutton"
+               data-options="plain:true,toggle:false">
+                查询
+            </a>
             <a href="#"
                data-operation="doAccount"
                iconcls="icon_19"

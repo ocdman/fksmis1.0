@@ -32,5 +32,18 @@ namespace FKS.Core.Models.Report
         /// 日期
         /// </summary>
         public DateTime AccountDate { get; set; }
+
+        /// <summary>
+        /// 单位
+        /// </summary>
+        public string NickName { get; set; }
+
+        /// <summary>
+        /// 地址
+        /// </summary>
+        public string Address { get; set; }
+
+        public string EquID { get; set; }
+
     }
 }

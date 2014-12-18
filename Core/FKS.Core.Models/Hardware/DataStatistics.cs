@@ -12,18 +12,26 @@ namespace FKS.Core.Models.Hardware
     /// created by wbgong at 2014-08-13 
     /// </summary>
     [Description("数据统计")]
-    public class DataStatistics : EntityBase<int>
+    public class DataStatistics
     {
-        public float YouYanND { get; set; }
-
-        public int FanRuntime { get; set; }
+        public float Value { get; set; }
 
         public DateTime TimeUp { get; set; }
 
-        public int ConcentrateBound { get; set; }
+    }
 
-        public int PurifierBound { get; set; }
+    /// <summary>
+    /// created by wbgong at 2014-12-08
+    /// </summary>
+    [Description("数据统计集合")]
+    public class DataStatisticsGridView<T>
+    {
+        public int Total { get; set; }
 
-        public int DayDischargeBound { get; set; }
+        public int Bound { get; set; }
+
+        public float StatVal { get; set; }
+
+        public IList<T> Vals { get; set; }
     }
 }

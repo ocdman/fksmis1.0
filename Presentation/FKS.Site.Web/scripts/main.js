@@ -51,4 +51,8 @@ require(["jquery",
     "knockout.mapping",
     "plugins/jquery.plot/jquery.jqplot.min"],
     function (a, b, c, d, e, f, g, h)
-    { g.mapping = h, c.history.start(), e.doInit() });
+    {
+        g.mapping = h,
+        c.history.start(),
+        e.doInit()
+    });

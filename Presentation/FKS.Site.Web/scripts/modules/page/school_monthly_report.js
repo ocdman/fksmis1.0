@@ -7,14 +7,15 @@
     "modules/base/manager_base",
     "modules/main_ui",
     "modules/page/equipment_manager",
-    "localdata/statusinfos"],
-function (a, b, c, d, e, f, g, h, i, k) {
+    "localdata/jurisdiction"],
+function (a, b, c, d, e, f, g, h, i, l) {
     var j = g.extend({
         controller: "ReportInfo",
         $jqPlot: null,
         timeID: 0,
         reportType: "03",
         sortType: "01",
+        sortObject: "01",
         LineData: {},
         serials: [],
         currentId: 0,
@@ -40,14 +41,28 @@ function (a, b, c, d, e, f, g, h, i, k) {
                 sortable: !1
             }, {
                 field: "AlarmTime",
-                title: "报警次数",
+                title: "报警次数(次)",
                 width: 100,
                 sortable: !1,
             }, {
                 field: "CountTime",
-                title: "总次数",
+                title: "总次数(次)",
                 width: 100,
                 sortable: !1
+            }, {
+                field: "SumDischarge",
+                title: "排放量(克)",
+                width: 100,
+                sortable: !1
+            }, {
+                field: "AvgConcentration",
+                title: "油烟浓度(mg/m³)",
+                width: 100,
+                sortable: !1,
+                formatter: function (a) {
+                    var b = a.toFixed(2);
+                    return a == 0 ? 0 : (b == "0.00" ? 0 : b);
+                }
             }, {
                 field: "Clean",
                 title: "清洁度",
@@ -87,13 +102,13 @@ function (a, b, c, d, e, f, g, h, i, k) {
                 sortable: !1
             },
             {
-                field: "Status",
-                title: "工作状态",
-                width: 60,
+                field: "Jurisdiction",
+                title: "管辖",
+                width: 80,
                 sortable: !1,
                 formatter: function (a) {
-                    for (var b in k) {
-                        var c = k[b];
+                    for (var b in l) {
+                        var c = l[b];
                         if (c.value == a) return c.text;
                     }
                     return a;
@@ -179,6 +194,13 @@ function (a, b, c, d, e, f, g, h, i, k) {
                     g.sortType = a.value;
                 }
             });
+            d.find("#sortObject").combobox({
+                required: !0,
+                width: 150,
+                onSelect: function (a) {
+                    g.sortObject = a.value;
+                }
+            });
             d.find(".easyui-linkbutton").linkbutton({
                 onClick: function () {
                     var b = a(this).attr("data-operation");
@@ -204,9 +226,11 @@ function (a, b, c, d, e, f, g, h, i, k) {
                 ss.push(row.CollectionCode);
             }
 
-            b.sortType && (b.$table.datagrid("options").url = b.getHref(!1, b.controller, "SchoolMonthlyReportDataRow"),
+            b.sortType && b.sortObject && (b.$table.datagrid("options").url = b.getHref(!1, b.controller, "SchoolMonthlyReportDataRow"),
             b.$table.datagrid("reload", {
                 CollectionCodes: ss.toString(),
+                SortType: b.sortType,
+                SortObject: b.sortObject,
                 StartTime: b.$searchBar.find(".startTime").datetimebox("getValue"),
                 EndTime: b.$searchBar.find(".endTime").datetimebox("getValue")
             }));
@@ -227,7 +251,7 @@ function (a, b, c, d, e, f, g, h, i, k) {
             }
 
             if (ss.length > 0) {
-                var strurl = '../ReportInfo/SchoolMonthlyReporting' + '?CollectionCodes=' + ss.toString() +
+                var strurl = '../ReportInfo/SchoolMonthlyReporting' + '?CollectionCodes=' + ss.toString() + '&SortType=' + aa.sortType + '&SortObject=' + aa.sortObject +
                         '&StartTime=' + aa.$searchBar.find(".startTime").datetimebox("getValue") + '&EndTime=' + aa.$searchBar.find(".endTime").datetimebox("getValue");
                 window.open(strurl);
             }
